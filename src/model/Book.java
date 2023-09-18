@@ -11,15 +11,15 @@ public class Book {
     private int quantity;
     //private List<User> filaReserva;
 
-    public Book(int isbn, String titulo, String autor, String editora, int anoDePubli, String categoria, BookLocation localizacao, int quantidade) {
+    public Book(int isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
         this.isbn = isbn;
-        this.title = titulo;
-        this.author = autor;
-        this.publishing_company = editora;
-        this.year_publication = anoDePubli;
-        this.category = categoria;
-        this.location = localizacao;
-        this.quantity = quantidade;
+        this.title = title;
+        this.author = author;
+        this.publishing_company = publishing_company;
+        this.year_publication = year_publication;
+        this.category = category;
+        this.location = location;
+        this.quantity = quantity;
     }
 
     public String getTitle() {
@@ -105,6 +105,6 @@ public class Book {
                 "isbn:" + isbn + '\n' +
                 "ano de publicação:" + year_publication + '\n' +
                 "categoria:" + category + '\n' +
-                "localizacao:" + "corredor - " + location.getCorredor() + ", prateleira - " + location.getPrateleira() + ", sessao - " + location.getSessao();
+                "localizacao:" + "corredor - " + location.getHall() + ", prateleira - " + location.getShelf() + ", sessao - " + location.getSection();
     }
 }
