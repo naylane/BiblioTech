@@ -1,16 +1,28 @@
 package dao;
 
-import dao.livro.LivroDAO;
-import dao.livro.LivroDAOList;
+import dao.Book.BookDAO;
+import dao.Book.BookDaoImpl;
+import dao.User.UserDAO;
+import dao.User.UserDaoImpl;
 
 public class DAO {
-    private static LivroDAO livroDAO;
+    private static BookDAO bookDAO;
+    private static UserDAO userDAO;
 
-    public static LivroDAO getLivroDAO(){
-        if (livroDAO == null) {
-            livroDAO = new LivroDAOList();
+    public static BookDAO getBookDAO(){
+        if (bookDAO == null) {
+            bookDAO = new BookDaoImpl();
         }
-        return livroDAO;
+        return bookDAO;
+    }
+    /*
+    public static UserDAO getUserDAO(){
+        if (userDAO == null){
+            userDAO = new UserDAOImpl();
+        }
+        return userDAO;
     }
 
+
+     */
 }
