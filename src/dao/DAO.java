@@ -15,14 +15,12 @@ public class DAO {
         }
         return bookDAO;
     }
-    /*
+
     public static UserDAO getUserDAO(){
         if (userDAO == null){
-            userDAO = new UserDAOImpl();
+            userDAO = new UserDaoImpl();
         }
         return userDAO;
     }
 
-
-     */
 }

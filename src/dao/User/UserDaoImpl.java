@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class UserDaoImpl { //to make the CRUD of interface
+public class UserDaoImpl implements UserDAO { //to make the CRUD of interface
     private final Map<Integer, User> usermap = new HashMap<>(); //map dos usuarios
     private int proximoID=0;
     private int getProximoID() {
