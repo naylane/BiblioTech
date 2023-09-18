@@ -8,7 +8,8 @@ public class User {
     private int phone;
     private Date registration_date;
     private Residence address;
-    public User(String name, String pin, String s, int age, int phone, Date registration_date, Residence address){  //construtor
+    private Boolean block; // diz se o user está bloqueado ou não: false - não e true - sim
+    public User(String name, String pin, String s, int age, int phone, Date registration_date, Residence address, Boolean block){  //construtor
         this.name = name;
         this.id = -1;  //esse id é alterado na classe UserDAOimpl
         this.pin = pin;
@@ -16,6 +17,8 @@ public class User {
         this.phone = phone;
         this.registration_date = registration_date;
         this.address = address;
+        this.block = false;
+
     }
     // Métodos Get
     public String getName() {
@@ -39,7 +42,11 @@ public class User {
     public Residence getAddress() {
         return address;
     }
-
+    public String getBlock(){
+        if(block){ //block == true
+            return "Blocked";
+        }else{
+            return "active";}}
     // Métodos Set
     public void setName(String name) {
         this.name = name;
@@ -67,7 +74,7 @@ public class User {
         return "[User]: " + id + "\n -Informations-\n" + "name: " + name + "age: " + age + "phone: " + phone;
     }
     //o metodo equals visa verificar se os pins de dois objetos são iguais
-    public boolean equals(Object o) {
+    public boolean equals(Object o){
         if (this == o){
             return true;
         }
@@ -75,7 +82,12 @@ public class User {
             return false;
         }
         User user = (User) o;
-        return id == user.id;
+        return id == user.id;}
+    public void block_User(User user){
+        user.block = true;}
+    public void unlock_User(User user){
+        user.block = false;}
+    public void search_Book(){ // a fazer
     }
 }
 
