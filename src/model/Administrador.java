@@ -1,5 +1,5 @@
 package model;
 
-public class Administrador { // extender de bibliotecario
+public class Administrador extends Librarian {
 
 }
