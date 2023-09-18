@@ -1,35 +1,37 @@
 package model;
 
 public class BookLocation {
-    private String prateleira;
-    private String corredor;
-    private String sessao;
+    private String shelf;
+    private String hall;
+    private String section;
 
-    public BookLocation(String prateleira, String corredor, String sessao) {
-        this.prateleira = prateleira;
-        this.corredor = corredor;
-        this.sessao = sessao;}
-    public String getPrateleira() {
-        return prateleira;
+    public BookLocation(String shelf, String hall, String section) {
+        this.shelf = shelf;
+        this.hall = hall;
+        this.section = section;
     }
 
-    public void setPrateleira(String prateleira) {
-        this.prateleira = prateleira;
+    public String getShelf() {
+        return shelf;
     }
 
-    public String getCorredor() {
-        return corredor;
+    public void setShelf(String shelf) {
+        this.shelf = shelf;
     }
 
-    public void setCorredor(String corredor) {
-        this.corredor = corredor;
+    public String getHall() {
+        return hall;
     }
 
-    public String getSessao() {
-        return sessao;
+    public void setHall(String hall) {
+        this.hall = hall;
     }
 
-    public void setSessao(String sessao) {
-        this.sessao = sessao;
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
     }
 }
