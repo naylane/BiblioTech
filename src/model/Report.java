@@ -1,9 +1,9 @@
 package model;
 
-public class Relatorio {
-    private Livro livrosEmprestados; // do tipo livro ou lista<livro>? (isso é papel do DAO?)
-    private Livro livrosAtrasados;
-    private Livro livrosReservados;
+public class Report {
+    private Book livrosEmprestados; // do tipo livro ou lista<livro>? (isso é papel do DAO?)
+    private Book livrosAtrasados;
+    private Book livrosReservados;
 
     public String geraLivrosEmprestados() {
         return null;
@@ -21,7 +21,7 @@ public class Relatorio {
        return null;
    }
 
-   public Livro geraLivroMaisPopular () {
+   public Book geraLivroMaisPopular () {
         return null;
     }
 
