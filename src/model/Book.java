@@ -77,6 +77,14 @@ public class Book {
     public void setLocation(BookLocation location) {
         this.location = location;
     }
+    
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     public void alterarTitulo(){
 
