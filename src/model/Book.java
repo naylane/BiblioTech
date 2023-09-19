@@ -11,9 +11,9 @@ public class Book {
     private String category;
     private BookLocation location;
     private int quantity;
-    private Queue<Reader> reservationQueue; //Queue: fila em java
+    private Queue<Reader> reservationQueue = new LinkedList<>(); //Queue: fila em java
 
-    public Book(int isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity, Queue<Reader> reservationQueue) {
+    public Book(int isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -22,7 +22,6 @@ public class Book {
         this.category = category;
         this.location = location;
         this.quantity = quantity;
-        this.reservationQueue = new LinkedList<>(); //inicia a fila vazia
     }
     public void addReservationQueue(Reader reader){  // Adicionando leitores à fila do livro
         reservationQueue.offer(reader);}
