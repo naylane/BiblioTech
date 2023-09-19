@@ -1,4 +1,6 @@
 package model;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class Book {
     private int isbn;
@@ -9,9 +11,9 @@ public class Book {
     private String category;
     private BookLocation location;
     private int quantity;
-    //private List<User> filaReserva;
+    private Queue<Reader> reservationQueue; //Queue: fila em java
 
-    public Book(int isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
+    public Book(int isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity, Queue<Reader> reservationQueue) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -20,8 +22,10 @@ public class Book {
         this.category = category;
         this.location = location;
         this.quantity = quantity;
+        this.reservationQueue = new LinkedList<>(); //inicia a fila vazia
     }
-
+    public void addReservationQueue(Reader reader){  // Adicionando leitores à fila do livro
+        reservationQueue.offer(reader);}
     public String getTitle() {
         return title;
     }
