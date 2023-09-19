@@ -4,9 +4,9 @@ import dao.Book.BookDAO;
 import dao.Book.BookDaoImpl;
 import dao.User.UserDAO;
 import dao.User.UserDaoImpl;
-import dao.loan.LoanDAO;
-import dao.loan.LoanDAOImpl;
-
+import dao.Loan.LoanDAO;
+import dao.Loan.LoanDAOImpl;
+//os metodos get abaixo são para obter o objeto DAO para uma classe
 public class DAO {
     private static BookDAO bookDAO;
     private static UserDAO userDAO;
