@@ -88,25 +88,7 @@ public class Book {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
-
-    public void alterarTitulo(){
-
-    }
-    public void alterarAutor(){
-
-    }
-    public void alterarEditora(){
-
-    }
-    public void alterarIsbn(){
-
-    }
-    public void alterarAnoDePubli(){
-
-    }
-    public void alterarCategoria(){
-
-    }
+    
     @Override
     public String toString() {
         return "\n[BOOK]: " + title + "\n \n" +
