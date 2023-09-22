@@ -4,5 +4,5 @@ import dao.CRUD;
 import model.Loan;
 
 public interface LoanDAO extends CRUD<Loan> {
-    public Loan returnLoan(Loan loan);
+    public void giveBack(Loan loan);
 }
