@@ -16,7 +16,7 @@ public class BookDaoImpl implements BookDAO {
         return livro;}
 
     @Override
-    public List<Book> findAll() { //retorna uma lista de livros
+    public List<Book> findAll() { //retorna a lista de todos livros em bookmap
         return new ArrayList<>(bookmap.values());}
 
     @Override
@@ -33,46 +33,37 @@ public class BookDaoImpl implements BookDAO {
         int id = obj.getISBN();
         bookmap.remove(id);}
 
-    /*
-    public Book findByTitle(String titulo) {
-        for (Book livro : this.list) {
-            if (livro.getTitulo().equalsIgnoreCase(titulo)) {
-                return livro;
+    public void deleteAll(){
+        bookmap.clear(); //a função clear vai apagar tudo no bookmap
+    }
+    //as funções de pesquisas abaixo vão iterar pelo map e criar uma lista de livro de acordo com oq se pesquisa.
+    public List<Book> findByTitulo(String title) {
+        List<Book> result = new ArrayList<>();
+        for (Book livro : bookmap.values()) {
+            if (livro.getTitle().equalsIgnoreCase(title)) {
+                result.add(livro);
             }
         }
-        return null;
+        return result;
     }
-    public Book findByAutor(String autor) {
-        for (Book livro : this.list) {
-            if (livro.getAutor().equalsIgnoreCase(autor)) {
-                return livro;
+
+    public List<Book> findByAutor(String author) {
+        List<Book> result = new ArrayList<>();
+        for (Book livro : bookmap.values()) {
+            if (livro.getAuthor().equalsIgnoreCase(author)) {
+                result.add(livro);
             }
         }
-        return null;
+        return result;
     }
-    public Book findByCategoria(String categoria) {
-        for (Book livro : this.list) {
-            if (livro.getCategoria().equalsIgnoreCase(categoria)) {
-                return livro;
+
+    public List<Book> findByCategoria(String category) {
+        List<Book> result = new ArrayList<>();
+        for (Book livro : bookmap.values()) {
+            if (livro.getCategory().equalsIgnoreCase(category)) {
+                result.add(livro);
             }
         }
-        return null;
+        return result;
     }
-    @Override
-    public Book atualizar(Book livro) {
-        int indice = list.indexOf(livro);
-        this.list.set(indice, livro);
-        return livro;
-    }
-
-    @Override
-    public void apagar(Book livro) {
-        this.list.remove(livro);
-    }
-
-    public void apagarTodos() {
-        this.list.clear();
-    }
-
-     */
 }
