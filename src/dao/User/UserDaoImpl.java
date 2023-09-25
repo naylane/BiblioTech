@@ -1,5 +1,4 @@
 package dao.User;
-import model.Book;
 import model.User;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,4 +29,9 @@ public class UserDaoImpl implements UserDAO { //to make the CRUD of interface
     public void delete(User user) {
         int id = user.getId();
         usermap.remove(id);}
+
+    @Override
+    public void deleteAll() {
+        usermap.clear();
+    }
 }

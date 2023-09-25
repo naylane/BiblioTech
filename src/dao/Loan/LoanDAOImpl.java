@@ -49,4 +49,8 @@ public class LoanDAOImpl implements LoanDAO{
         loanmap.remove(id);
     }
 
+    public void deleteAll() {
+        loanmap.clear();
+    }
+
 }

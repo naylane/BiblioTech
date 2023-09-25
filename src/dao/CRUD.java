@@ -14,4 +14,6 @@ public interface CRUD<T> {
     public T update(T obj);
 
     public void delete(T obj);
+
+    public void deleteAll();
 }
