@@ -8,6 +8,8 @@ import dao.Loan.LoanDAO;
 import dao.Loan.LoanDAOImpl;
 import dao.adm.AdmDAO;
 import dao.adm.AdmDAOImpl;
+import dao.librarian.LibrarianDAO;
+import dao.librarian.LibrarianDAOImpl;
 
 //os metodos get abaixo são para obter o objeto DAO para uma classe
 
@@ -16,6 +18,7 @@ public class DAO {
     private static UserDAO userDAO;
     private static LoanDAO loanDAO;
     private static AdmDAO admDAO;
+    private static LibrarianDAO librarianDAO;
 
     public static BookDAO getBookDAO(){
         if (bookDAO == null) {
@@ -44,5 +47,11 @@ public class DAO {
         }
         return admDAO;
     }
-
+    
+    public static LibrarianDAO librarianDAO() {
+        if(librarianDAO == null) {
+            librarianDAO = new LibrarianDAOImpl();
+        }
+        return librarianDAO;
+    }
 }
