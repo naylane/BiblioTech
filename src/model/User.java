@@ -1,15 +1,19 @@
 package model;
-import java.util.Date;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import static dao.DAO.bookDAO;
+
 public class User {
     private String name;
     private int id;
     private String pin;
     private int age;
     private int phone;
-    private Date registration_date;
+    private LocalDate registration_date;
     private Residence address;
-    private Boolean block; // diz se o user está bloqueado ou não: false - não e true - sim
-    public User(String name, String pin, String s, int age, int phone, Date registration_date, Residence address, Boolean block){  //construtor
+    public User(String name, String pin, String s, int age, int phone, LocalDate registration_date, Residence address){  //construtor
         this.name = name;
         this.id = -1;  //esse id é alterado na classe UserDAOimpl
         this.pin = pin;
@@ -17,8 +21,6 @@ public class User {
         this.phone = phone;
         this.registration_date = registration_date;
         this.address = address;
-        this.block = false;
-
     }
     // Métodos Get
     public String getName() {
@@ -36,17 +38,12 @@ public class User {
     public int getPhone() {
         return phone;
     }
-    public Date getRegistration_date() {
+    public LocalDate getRegistration_date() {
         return registration_date;
     }
     public Residence getAddress() {
         return address;
     }
-    public String getBlock(){
-        if(block){ //block == true
-            return "Blocked";
-        }else{
-            return "active";}}
     // Métodos Set
     public void setName(String name) {
         this.name = name;
@@ -63,7 +60,7 @@ public class User {
     public void setPhone(int phone) {
         this.phone = phone;
     }
-    public void setRegistration_date(Date registration_date) {
+    public void setRegistration_date(LocalDate registration_date) {
         this.registration_date = registration_date;
     }
     public void setAddress(Residence address) {
@@ -83,11 +80,15 @@ public class User {
         }
         User user = (User) o;
         return id == user.id;}
-    public void block_User(User user){
-        user.block = true;}
-    public void unlock_User(User user){
-        user.block = false;}
-    public void search_Book(){ // a fazer
-    }
+    //abaixo tem as pesquisas que o usuario pode fazer
+    public List<Book> search_Bookbytitle(String title){
+        // Chama o método de pesquisa por título no DAO de livros
+        return bookDAO.findByTitulo(title);}
+    public List<Book> searchBooksByAutor(String autor) {
+        // Chama o método de pesquisa por autor no DAO de livros
+        return bookDAO.findByAutor(autor);}
+    public List<Book> searchBooksByCategoria(String categoria) {
+        // Chama o método de pesquisa por categoria no DAO de livros
+        return bookDAO.findByCategoria(categoria);}
 }
 
