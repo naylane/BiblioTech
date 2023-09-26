@@ -1,7 +1,13 @@
 package dao;
 
+import dao.Adm.AdmDAO;
+import dao.Adm.AdmDAOImpl;
 import dao.Book.BookDAO;
 import dao.Book.BookDaoImpl;
+import dao.Librarian.LibrarianDAO;
+import dao.Librarian.LibrarianDAOImpl;
+import dao.Reader.ReaderDAO;
+import dao.Reader.ReaderDAOImpl;
 import dao.User.UserDAO;
 import dao.User.UserDaoImpl;
 import dao.Loan.LoanDAO;
@@ -14,6 +20,9 @@ public class DAO {
     public static BookDAO bookDAO;
     private static UserDAO userDAO;
     private static LoanDAO loanDAO;
+    private static LibrarianDAO librarianDAO;
+    private static AdmDAO admDAO;
+    private static ReaderDAO readerDAO;
 
     public static BookDAO getBookDAO(){
         if (bookDAO == null) {
@@ -34,6 +43,27 @@ public class DAO {
             loanDAO = new LoanDAOImpl();
         }
         return loanDAO;
+    }
+
+    public static LibrarianDAO getLibrarianDAO() {
+        if(librarianDAO == null) {
+            librarianDAO = new LibrarianDAOImpl();
+        }
+        return librarianDAO;
+    }
+
+    public static ReaderDAO getReaderDAO(){
+        if(readerDAO == null){
+            readerDAO = new ReaderDAOImpl();
+        }
+        return readerDAO;
+    }
+
+    public static AdmDAO getAdmDAO(){
+        if(admDAO == null){
+            admDAO = new AdmDAOImpl();
+        }
+        return admDAO;
     }
 
 }
