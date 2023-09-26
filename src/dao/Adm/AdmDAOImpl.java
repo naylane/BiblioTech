@@ -36,4 +36,8 @@ public class AdmDAOImpl implements AdmDAO {
     @Override
     public void delete(Adm obj) {
     }
+
+    @Override
+    public void deleteAll() {
+        admMap.clear();}
 }
