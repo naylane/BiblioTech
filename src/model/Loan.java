@@ -1,24 +1,22 @@
 package model;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Loan {
-    private int idLoan;
+    private int idLoan; //esse id muda dps
     private int idUser;
     private Book book;
-    private LocalDate dateLoan;
-    private LocalDate dateDevolution; //vai ser de 10 dias
+    private LocalDate dateLoan; //vai adicionar a data de hoje a data do emprestimo
+    private LocalDate dateDevolution; //vai ser de 10 dias e chama a função que soma +10 dias a data do emprestimo
     private int renovationQuantity; //limite de 3 renovacoes do livro
-    private boolean active; // boolean que diz se o empréstimo já foi devolvido ou não
+    private boolean active = true; // boolean que diz se o empréstimo já foi devolvido ou não (false = sim, true - não)
 
-    public Loan(int idLoan, int idUser, Book book, LocalDate dateLoan, LocalDate dateDevolution, int renovationQuantity, boolean active) {
+    public Loan(int idLoan,int idUser, Book book, LocalDate dateLoan, LocalDate dateDevolution, int renovationQuantity) {
         this.idLoan = idLoan;
         this.idUser = idUser;
         this.book = book;
-        this.dateLoan = dateLoan; //vai adicionar a data de hoje a data do emprestimo
-        this.dateDevolution = dateDevolution; //chama a função que vai somar +10 dias a data do emprestimo
+        this.dateLoan = dateLoan;
+        this.dateDevolution = dateDevolution;
         this.renovationQuantity = renovationQuantity;
-        this.active = active;
     }
 
     // Métodos get e set para idLoan

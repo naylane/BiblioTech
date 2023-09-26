@@ -25,6 +25,9 @@ public class Book {
     }
     public void addReservationQueue(Reader reader){  // Adicionando leitores à fila do livro
         reservationQueue.offer(reader);}
+    public void removeReservationQueue(Reader reader){ // removendo leitores da fila
+        reservationQueue.remove(reader);
+    }
     public String getTitle() {
         return title;
     }
@@ -88,6 +91,8 @@ public class Book {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+    public Queue<Reader> getResevationQueue(){return reservationQueue;}
+    public void setReservationQueue(Queue<Reader> list){this.reservationQueue = list;}
     
     @Override
     public String toString() {
