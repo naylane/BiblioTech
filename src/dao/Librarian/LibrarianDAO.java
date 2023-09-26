@@ -1,4 +1,4 @@
-package dao.librarian;
+package dao.Librarian;
 
 import dao.CRUD;
 import model.Librarian;

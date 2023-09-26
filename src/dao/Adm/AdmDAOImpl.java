@@ -1,4 +1,4 @@
-package dao.adm;
+package dao.Adm;
 
 import model.Adm;
 
