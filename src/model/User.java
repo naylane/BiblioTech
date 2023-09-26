@@ -7,15 +7,15 @@ import static dao.DAO.bookDAO;
 
 public class User {
     private String name;
-    private int id;
+    private int id = 0;
     private String pin;
     private int age;
     private int phone;
     private LocalDate registration_date;
     private Residence address;
-    public User(String name, String pin, String s, int age, int phone, LocalDate registration_date, Residence address){  //construtor
+    public User(String name, int id, String pin, int age, int phone, LocalDate registration_date, Residence address){  //construtor
         this.name = name;
-        this.id = -1;  //esse id é alterado na classe UserDAOimpl
+        this.id = id;  //esse id é alterado posteriomente nas classes que criam um user
         this.pin = pin;
         this.age = age;
         this.phone = phone;

@@ -9,7 +9,7 @@ public class Reader extends User {
     //public List<Emprestimo> loan_history;
 
     // Construtor para a classe Reader
-    public Reader(String name, String id, String pin, int age, int phone, LocalDate registration_date, Residence address) {
+    public Reader(String name, int id, String pin, int age, int phone, LocalDate registration_date, Residence address) {
         super(name, id, pin, age, phone, registration_date, address);
         this.block = block;
         this.fineDeadline = null;}

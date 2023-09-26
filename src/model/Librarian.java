@@ -19,8 +19,8 @@ public class Librarian extends User{
         librarian.block = false;}
     public int generateId(int idLoan){ //gerar automaticamente o id do emprestimo
         return idLoan +=1;}
-    public Librarian(String name, String pin, String s, int age, int phone, LocalDate registration_date, Residence address) {
-        super(name, pin, s, age, phone, registration_date, address);}
+    public Librarian(String name, int id, String pin, int age, int phone, LocalDate registration_date, Residence address) {
+        super(name, id, pin, age, phone, registration_date, address);}
     public LocalDate dateToday(){
         return LocalDate.now();} //pega a data de hoje
     public LocalDate dateEnd(LocalDate datetoday){ //data final com prazo de 10 dias
