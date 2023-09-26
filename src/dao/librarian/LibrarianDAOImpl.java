@@ -57,4 +57,9 @@ public class LibrarianDAOImpl implements LibrarianDAO {
         int id = librarian.getId();
         librarianMap.remove(id);
     }
+
+    @Override
+    public void deleteAll() {
+        librarianMap.clear();
+    }
 }
