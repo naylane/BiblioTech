@@ -7,11 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 public class ReserveDAOImpl implements ReserveDAO {
-    private final Map<Integer, Reserve> reserveMap = new HashMap<>();
+    private final Map<Long, Reserve> reserveMap = new HashMap<>();
 
     @Override
     public Reserve creat(Reserve reserve) {
-        int id = reserve.getId();
+        long id = reserve.getId();
         reserveMap.put(id, reserve);
         return reserve;
     }
@@ -22,7 +22,7 @@ public class ReserveDAOImpl implements ReserveDAO {
     }
 
     @Override
-    public Reserve findById(int id) {
+    public Reserve findById(long id) {
         return reserveMap.get(id);
     }
 

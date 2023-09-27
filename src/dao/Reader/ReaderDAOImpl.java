@@ -7,13 +7,22 @@ import java.util.List;
 import java.util.Map;
 
 public class ReaderDAOImpl implements ReaderDAO {
-    private final Map<Integer, Reader> readerMap = new HashMap<>();
+    private final Map<Long, Reader> readerMap = new HashMap<>();
+    private long nextId = 0;
+
+    private long getNextId() {
+        /*
+         * A++ -> usa o valor de A e depois incrementa A
+         * ++A -> incrementa o valor de A e depois utiliza o valor de A
+         */
+        return this.nextId++; // retorna ID para o objeto atual e define o próximo ID
+    }
 
     @Override
-    public Reader creat(Reader reader) {
-        int id = reader.getId();
-        readerMap.put(id, reader);
-        return reader;
+    public Reader creat(Reader obj){
+        obj.setId(getNextId());
+        readerMap.put(obj.getId(), obj);
+        return obj;
     }
 
     @Override
@@ -22,19 +31,19 @@ public class ReaderDAOImpl implements ReaderDAO {
     }
 
     @Override
-    public Reader findById(int id) {
+    public Reader findById(long id) {
         return readerMap.get(id);
     }
 
     @Override
-    public Reader update(Reader reader) {
-        readerMap.put(reader.getId(), reader);
-        return reader;
+    public Reader update(Reader obj) {
+        readerMap.put(obj.getId(), obj);
+        return obj;
     }
 
     @Override
-    public void delete(Reader reader) {
-        readerMap.remove(reader.getId());
+    public void delete(Reader obj) {
+        readerMap.remove(obj.getId());
     }
 
     @Override
