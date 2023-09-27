@@ -9,6 +9,7 @@ import java.util.Map;
 
 public class BookDaoImpl implements BookDAO {
     private final Map<Long, Book> bookMap = new HashMap<>(); //map para gaurdar os livros numa estrutura Isbn:livro
+    
     @Override
     public Book creat(Book obj){ //criando um livro e colocando no map
         long id = obj.getISBN(); //o id do livro vai ser o proprio isbn
@@ -39,7 +40,7 @@ public class BookDaoImpl implements BookDAO {
     }
     //as funções de pesquisas abaixo vão iterar pelo map e criar uma lista de livro de acordo com oq se pesquisa.
 
-    public List<Book> findByTitulo(String title) {
+    public List<Book> findByTitle(String title) {
         List<Book> result = new ArrayList<>();
         for (Book book : bookMap.values()) {
             if (book.getTitle().equalsIgnoreCase(title)) {
@@ -49,7 +50,7 @@ public class BookDaoImpl implements BookDAO {
         return result;
     }
 
-    public List<Book> findByAutor(String author) {
+    public List<Book> findByAuthor(String author) {
         List<Book> result = new ArrayList<>();
         for (Book book : bookMap.values()) {
             if (book.getAuthor().equalsIgnoreCase(author)) {
@@ -59,7 +60,7 @@ public class BookDaoImpl implements BookDAO {
         return result;
     }
 
-    public List<Book> findByCategoria(String category) {
+    public List<Book> findByCategory(String category) {
         List<Book> result = new ArrayList<>();
         for (Book book : bookMap.values()) {
             if (book.getCategory().equalsIgnoreCase(category)) {
