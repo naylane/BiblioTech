@@ -8,7 +8,7 @@ public class Reader extends User {
     public LocalDate fineDeadline;
     //public List<Emprestimo> loan_history;
 
-    public Reader(long id, String name, String pin, int phone, Residence address) {
+    public Reader(long id, String name, String pin, String phone, Residence address) {
         super(id, name, pin, phone, address);
         this.fineDeadline = null;
     }
