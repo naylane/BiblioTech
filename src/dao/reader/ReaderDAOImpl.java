@@ -1,4 +1,4 @@
-package dao.Reader;
+package dao.reader;
 
 import model.Reader;
 import java.util.ArrayList;

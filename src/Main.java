@@ -1,5 +1,5 @@
 import dao.DAO;
-import dao.Book.BookDAO;
+import dao.book.BookDAO;
 import model.Book;
 import model.BookLocation;
 

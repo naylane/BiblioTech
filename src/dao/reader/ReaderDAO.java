@@ -1,4 +1,4 @@
-package dao.Reader;
+package dao.reader;
 
 import dao.CRUD;
 import model.Reader;

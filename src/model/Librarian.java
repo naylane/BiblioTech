@@ -1,8 +1,8 @@
 package model;
 
-import dao.Book.BookDAO;
+import dao.book.BookDAO;
 import dao.DAO;
-import dao.Loan.LoanDAO;
+import dao.loan.LoanDAO;
 import java.time.LocalDate;
 
 public class Librarian extends User{

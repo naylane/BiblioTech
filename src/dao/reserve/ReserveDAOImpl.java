@@ -1,4 +1,4 @@
-package dao.Reserve;
+package dao.reserve;
 
 import model.Reserve;
 import java.util.ArrayList;

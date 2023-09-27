@@ -1,4 +1,4 @@
-package dao.Reserve;
+package dao.reserve;
 
 import dao.CRUD;
 import model.Reserve;

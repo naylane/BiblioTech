@@ -1,4 +1,4 @@
-package dao.Loan;
+package dao.loan;
 
 import dao.CRUD;
 import model.Loan;

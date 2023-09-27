@@ -2,14 +2,14 @@ package dao;
 
 import dao.adm.AdmDAO;
 import dao.adm.AdmDAOImpl;
-import dao.Book.BookDAO;
-import dao.Book.BookDaoImpl;
+import dao.book.BookDAO;
+import dao.book.BookDaoImpl;
 import dao.librarian.LibrarianDAO;
 import dao.librarian.LibrarianDAOImpl;
-import dao.Reader.ReaderDAO;
-import dao.Reader.ReaderDAOImpl;
-import dao.Loan.LoanDAO;
-import dao.Loan.LoanDAOImpl;
+import dao.reader.ReaderDAO;
+import dao.reader.ReaderDAOImpl;
+import dao.loan.LoanDAO;
+import dao.loan.LoanDAOImpl;
 
 //A classe DAO é um ponto de entrada para acessar os objetos DAO das classes específicas de domínio.
 //O objetivo é facilitar o acesso a esses objetos e tornar o código mais legível e fácil de manter.

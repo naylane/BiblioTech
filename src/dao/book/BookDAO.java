@@ -1,4 +1,4 @@
-package dao.Book;
+package dao.book;
 
 import dao.CRUD;
 import model.Book;
