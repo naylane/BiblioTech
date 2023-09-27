@@ -1,6 +1,5 @@
 package model;
 
-import dao.book.BookDAO;
 import dao.DAO;
 import dao.loan.LoanDAO;
 import java.time.LocalDate;
@@ -9,7 +8,7 @@ public class Librarian extends User{
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim
     private long idLoan = 0;
 
-    public Librarian(long id, String name, String pin, int phone, Residence address) {
+    public Librarian(long id, String name, String pin, String phone, Residence address) {
         super(id, name, pin, phone, address);
     }
 
@@ -78,10 +77,19 @@ public class Librarian extends User{
         }
     }
 
-    public void registerBook(int isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity){
-        Book book = new Book(isbn, title, author, publishing_company, year_publication, category, location, quantity);
-        BookDAO bookDao = DAO.getBookDAO(); //Usando o DAO para adicionar o livro ao banco de dados
-        bookDao.creat(book); //criou o book no banco de dados e armazenou no map tendo o seu isbn como id
+    public void registerBook(long isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity){
+        Book newBook = new Book(isbn, title, author, publishing_company, year_publication, category, location, quantity);
+
+        for (Book book : DAO.getBookDAO().findAll()) {
+            if (book.equals(newBook)) {
+                // já existe esse livro cadastrado logo só se soma a quantidade existente do livro
+                book.setQuantity(book.getQuantity() + newBook.getQuantity());
+                DAO.getBookDAO().update(book); // atualizando os dados no DAO
+                System.out.println("\nsuccessfully registered book!");
+                return; // sai do método pois o livro já foi cadastrado
+            }
+        }
+        DAO.getBookDAO().creat(newBook); // criou o livro e o armazenou no map tendo o seu isbn como id
         System.out.println("\nsuccessfully registered book!");
     }
 
