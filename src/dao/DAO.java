@@ -52,7 +52,7 @@ public class DAO {
     }
 
     public static AdmDAO getAdmDAO(){
-        if(admDAO == null){
+        if (admDAO == null){
             admDAO = new AdmDAOImpl();
         }
         return admDAO;
