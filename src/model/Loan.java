@@ -2,15 +2,15 @@ package model;
 import java.time.LocalDate;
 
 public class Loan {
-    private int idLoan; //esse id muda dps
-    private int idUser;
+    private long idLoan; //esse id muda dps
+    private long idUser;
     private Book book;
     private LocalDate dateLoan; //vai adicionar a data de hoje a data do emprestimo
     private LocalDate dateDevolution; //vai ser de 10 dias e chama a função que soma +10 dias a data do emprestimo
     private int renovationQuantity; //limite de 3 renovacoes do livro
     private boolean active = true; // boolean que diz se o empréstimo já foi devolvido ou não (false = sim, true - não)
 
-    public Loan(int idLoan,int idUser, Book book, LocalDate dateLoan, LocalDate dateDevolution, int renovationQuantity) {
+    public Loan(long idLoan, long idUser, Book book, LocalDate dateLoan, LocalDate dateDevolution, int renovationQuantity) {
         this.idLoan = idLoan;
         this.idUser = idUser;
         this.book = book;
@@ -20,12 +20,12 @@ public class Loan {
     }
 
     // Métodos get e set para idLoan
-    public int getIdLoan() {return idLoan;}
+    public long getIdLoan() {return idLoan;}
     public void setIdLoan(int idLoan) {this.idLoan = idLoan;}
 
     // Métodos get e set para idUser
-    public int getIdUser() {return idUser;}
-    public void setIdUser(int idUser) {this.idUser = idUser;}
+    public long getIdUser() {return idUser;}
+    public void setIdUser(long idUser) {this.idUser = idUser;}
 
     // Métodos get e set para book
     public Book getBook() {return book;}

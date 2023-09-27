@@ -3,7 +3,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class Book {
-    private int isbn;
+    private long isbn;
     private String title;
     private String author;
     private String publishing_company;
@@ -13,7 +13,7 @@ public class Book {
     private int quantity;
     private Queue<Reader> reservationQueue = new LinkedList<>(); //Queue: fila em java
 
-    public Book(int isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
+    public Book(long isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -23,11 +23,14 @@ public class Book {
         this.location = location;
         this.quantity = quantity;
     }
+
     public void addReservationQueue(Reader reader){  // Adicionando leitores à fila do livro
         reservationQueue.offer(reader);}
+
     public void removeReservationQueue(Reader reader){ // removendo leitores da fila
         reservationQueue.remove(reader);
     }
+
     public String getTitle() {
         return title;
     }
@@ -52,11 +55,11 @@ public class Book {
         this.publishing_company = publishing_company;
     }
 
-    public int getISBN() {
+    public long getISBN() {
         return isbn;
     }
 
-    public void setISBN(int isbn) {
+    public void setISBN(long isbn) {
         this.isbn = isbn;
     }
 
@@ -91,7 +94,9 @@ public class Book {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
     public Queue<Reader> getResevationQueue(){return reservationQueue;}
+
     public void setReservationQueue(Queue<Reader> list){this.reservationQueue = list;}
     
     @Override

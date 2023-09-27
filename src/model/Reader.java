@@ -8,20 +8,23 @@ public class Reader extends User {
     public LocalDate fineDeadline;
     //public List<Emprestimo> loan_history;
 
-    // Construtor para a classe Reader
-    public Reader(String name, int id, String pin, int age, int phone, LocalDate registration_date, Residence address) {
-        super(name, id, pin, age, phone, registration_date, address);
-        this.block = block;
-        this.fineDeadline = null;}
+    public Reader(long id, String name, String pin, int phone, Residence address) {
+        super(id, name, pin, phone, address);
+        this.fineDeadline = null;
+    }
+
     public String getBlock(){
         if(block){ //block == true
             return "Blocked";
         }else{
             return "Active";}}
+
     public void block_reader(Reader reader){
         reader.block = true;}
+
     public void unlock_reader(Reader reader){
         reader.block = false;}
+
     /**
      * Método que realiza a devolução de um empréstimo, se o mesmo estiver ativo, e multa o leitor se a data de devolução passa da data esperada.
      * @param loan empréstimo

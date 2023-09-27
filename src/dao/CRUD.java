@@ -7,9 +7,9 @@ public interface CRUD<T> {
 
     public T creat(T obj);
 
-    public List<T> findAll(); //retorna uma lista de obj
+    public List<T> findAll();
 
-    public T findById(int id); //retorna um objeto
+    public T findById(long id);
 
     public T update(T obj);
 

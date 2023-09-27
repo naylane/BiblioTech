@@ -8,40 +8,42 @@ import java.util.List;
 import java.util.Map;
 
 public class BookDaoImpl implements BookDAO {
-    private final Map<Integer, Book> bookmap = new HashMap<>(); //map para gaurdar os livros numa estrutura Isbn:livro
+    private final Map<Long, Book> bookMap = new HashMap<>(); //map para gaurdar os livros numa estrutura Isbn:livro
     @Override
-    public Book creat(Book livro){ //criando um livro e colocando no map
-        int idbook = livro.getISBN(); //o id do livro vai ser o proprio isbn
-        bookmap.put(idbook, livro);
-        return livro;}
+    public Book creat(Book obj){ //criando um livro e colocando no map
+        long id = obj.getISBN(); //o id do livro vai ser o proprio isbn
+        bookMap.put(id, obj);
+        return obj;
+    }
 
     @Override
     public List<Book> findAll() { //retorna a lista de todos livros em bookmap
-        return new ArrayList<>(bookmap.values());}
+        return new ArrayList<>(bookMap.values());}
 
     @Override
-    public Book findById(int id) {  //retorna um livro pelo Id (lembrando q o id é o isbn)
-        return bookmap.get(id);}
+    public Book findById(long id) {  //retorna um livro pelo Id (lembrando q o id é o isbn)
+        return bookMap.get(id);}
 
     @Override
-    public Book update(Book livro) {
-        bookmap.put(livro.getISBN(), livro);
+    public Book update(Book obj) {
+        bookMap.put(obj.getISBN(), obj);
         return null;}
 
     @Override
     public void delete(Book obj) {
-        int id = obj.getISBN();
-        bookmap.remove(id);}
+        long id = obj.getISBN();
+        bookMap.remove(id);}
 
     public void deleteAll(){
-        bookmap.clear(); //a função clear vai apagar tudo no bookmap
+        bookMap.clear(); //a função clear vai apagar tudo no bookmap
     }
     //as funções de pesquisas abaixo vão iterar pelo map e criar uma lista de livro de acordo com oq se pesquisa.
+
     public List<Book> findByTitulo(String title) {
         List<Book> result = new ArrayList<>();
-        for (Book livro : bookmap.values()) {
-            if (livro.getTitle().equalsIgnoreCase(title)) {
-                result.add(livro);
+        for (Book book : bookMap.values()) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
+                result.add(book);
             }
         }
         return result;
@@ -49,9 +51,9 @@ public class BookDaoImpl implements BookDAO {
 
     public List<Book> findByAutor(String author) {
         List<Book> result = new ArrayList<>();
-        for (Book livro : bookmap.values()) {
-            if (livro.getAuthor().equalsIgnoreCase(author)) {
-                result.add(livro);
+        for (Book book : bookMap.values()) {
+            if (book.getAuthor().equalsIgnoreCase(author)) {
+                result.add(book);
             }
         }
         return result;
@@ -59,9 +61,9 @@ public class BookDaoImpl implements BookDAO {
 
     public List<Book> findByCategoria(String category) {
         List<Book> result = new ArrayList<>();
-        for (Book livro : bookmap.values()) {
-            if (livro.getCategory().equalsIgnoreCase(category)) {
-                result.add(livro);
+        for (Book book : bookMap.values()) {
+            if (book.getCategory().equalsIgnoreCase(category)) {
+                result.add(book);
             }
         }
         return result;

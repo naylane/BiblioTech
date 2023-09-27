@@ -7,31 +7,47 @@ import java.time.LocalDate;
 
 public class Librarian extends User{
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim
-    private int idLoan = 0;
+    private long idLoan = 0;
+
+    public Librarian(long id, String name, String pin, int phone, Residence address) {
+        super(id, name, pin, phone, address);
+    }
+
     public String getBlock(){
         if(block){ //block == true
             return "Blocked";
         }else{
-            return "Active";}}
-    public void block_reader(Librarian librarian){
-        librarian.block = true;}
-    public void unlock_reader(Librarian librarian){
-        librarian.block = false;}
-    public int generateId(int idLoan){ //gerar automaticamente o id do emprestimo
-        return idLoan +=1;}
-    public Librarian(String name, int id, String pin, int age, int phone, LocalDate registration_date, Residence address) {
-        super(name, id, pin, age, phone, registration_date, address);}
-    public LocalDate dateToday(){
-        return LocalDate.now();} //pega a data de hoje
+            return "Active";
+        }
+    }
+
+    public void blockReader(Librarian librarian){
+        librarian.block = true;
+    }
+
+    public void unlockReader(Librarian librarian){
+        librarian.block = false;
+    }
+
+    public long generateId(long idLoan){ //gerar automaticamente o id do emprestimo
+        return idLoan +=1;
+    }
+
+    public LocalDate dateToday(){ // pega a data de hoje
+        return LocalDate.now();
+    }
+
     public LocalDate dateEnd(LocalDate datetoday){ //data final com prazo de 10 dias
-        return datetoday.plusDays(10);}
-    public void register_loan(Reader reader, Book book){ //registrar emprestimo de leitor
+        return datetoday.plusDays(10);
+    }
+
+    public void registerLoan(Reader reader, Book book){ // registrar emprestimo de leitor
         if(book.getQuantity() == 0){
             System.out.println("This book is not currently available");}
         else{
             if(book.getResevationQueue().isEmpty()){  //retorna true se a fila estiver vazia e false se tiver um elemento ao menos
-                // Gere automaticamente o ID do empréstimo
-                int loanId = generateId(idLoan);
+                // Gera automaticamente o ID do empréstimo
+                long loanId = generateId(idLoan);
                 LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
                 // Calcule a data de devolução (10 dias a partir da data de empréstimo)
                 LocalDate dateDevolution = dateEnd(dateLoan);
@@ -44,7 +60,7 @@ public class Librarian extends User{
             }else{ //aq no caso de ter elementos na fila
                 if(book.getResevationQueue().element() == reader){  //no caso de o leitor ser o primeiro da fila, realiza o emprestimo
                     // Gere automaticamente o ID do empréstimo
-                    int loanId = generateId(idLoan);
+                    long loanId = generateId(idLoan);
                     LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
                     // Calcule a data de devolução (10 dias a partir da data de empréstimo)
                     LocalDate dateDevolution = dateEnd(dateLoan);
@@ -57,14 +73,20 @@ public class Librarian extends User{
                     book.getResevationQueue().remove(); //removendo o primeiro elemento após concluir o emprestimo
                 }else{
                     System.out.println("unfortunately this book is already reserved");
-                }}}}
-    public void register_book(int isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity){
+                }
+            }
+        }
+    }
+
+    public void registerBook(int isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity){
         Book book = new Book(isbn, title, author, publishing_company, year_publication, category, location, quantity);
         BookDAO bookDao = DAO.getBookDAO(); //Usando o DAO para adicionar o livro ao banco de dados
         bookDao.creat(book); //criou o book no banco de dados e armazenou no map tendo o seu isbn como id
         System.out.println("\nsuccessfully registered book!");
     }
-    public void register_devolution(Reader reader, Book book){ //a fazer
+
+    public void registerDevolution(Reader reader, Book book){ //a fazer
+
     }
 
 }
