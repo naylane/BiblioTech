@@ -48,13 +48,8 @@ public class AdmDAOImpl implements AdmDAO {
         long id = obj.getId();
         admMap.remove(id);
     }
-
     @Override
     public void deleteAll() {
         admMap.clear();
     }
-
-    @Override
-    public void deleteAll() {
-        admMap.clear();}
 }
