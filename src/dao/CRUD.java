@@ -10,7 +10,6 @@ public interface CRUD<T> {
     public List<T> findAll();
 
     public T findById(long id);
-
     public T update(T obj);
 
     public void delete(T obj);
