@@ -1,7 +1,6 @@
 package dao.adm;
 
 import model.Adm;
-import model.Librarian;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,7 +20,7 @@ public class AdmDAOImpl implements AdmDAO {
     }
 
     @Override
-    public Adm creat(Adm obj){
+    public Adm creat(Adm obj) {
         obj.setId(getNextId());
         admMap.put(obj.getId(), obj);
         return obj;

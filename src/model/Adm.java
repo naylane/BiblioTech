@@ -5,8 +5,9 @@ import dao.DAO;
 import dao.librarian.LibrarianDAO;
 import dao.reader.ReaderDAO;
 
+//é repsonsavel pela criação dos usuarios e block dos usuarios
 public class Adm extends Librarian { //o adm é responsavel pela criação dos user
-    private long idReader = 0; // cada tipo de usuario tem um id diferente
+    private long idReader = 0; // cada tipo de usuario tem um id diferente, e essas variveis são responsaveis por gerar od id automaticamente
     public long idLibrarian = 0;
     public long idAdm = 0;
 
