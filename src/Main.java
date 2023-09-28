@@ -9,7 +9,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args){
         //criando livro e adicionando as informações na classe
-        Book book = new Book(123456, "Título do Livro", "Autor do Livro",  //o bookdao é uma classe que ira mexer com o banco de dados
+        Book book = new Book("0123450123", "Título do Livro", "Autor do Livro",  //o bookdao é uma classe que ira mexer com o banco de dados
                 "Editora XYZ", 2023, "Ficção",
                 new BookLocation("1", "2", "XXX"), 3);
 

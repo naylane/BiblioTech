@@ -1,14 +1,18 @@
 package model;
 
+import dao.reader.ReaderDAOImpl;
+import exceptions.BookException;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Reader extends User {
+    ReaderDAOImpl readerDAO = new ReaderDAOImpl(); //se quiser usar as opreções do DAO, uma das formas é criar um objeto
     public Boolean block; // diz se o leitor está bloqueado ou não: false - não e true - sim
-    public LocalDate fineDeadline;
+    public LocalDate fineDeadline; //data final que o leitor está bloqueado
     //public List<Emprestimo> loan_history;
 
-    public Reader(long id, String name, String pin, String phone, Residence address) {
+    public Reader(long id, String name, String pin, String phone, Residence address) { //construtor reader
         super(id, name, pin, phone, address);
         this.fineDeadline = null;
     }
@@ -25,37 +29,7 @@ public class Reader extends User {
     public void unlock_reader(Reader reader){
         reader.block = false;}
 
-    /**
-     * Método que realiza a devolução de um empréstimo, se o mesmo estiver ativo, e multa o leitor se a data de devolução passa da data esperada.
-     * @param loan empréstimo
-     * @param reader leitor
-     */
-    public void giveBack(Loan loan, Reader reader) {
-        if(loan.getActive()) {
-            // verificar se a data de devolução condiz com o esperado
-            LocalDate now = LocalDate.now();
-            if (now.isAfter(loan.getDateDevolution())) { // se a data de devolução passou do esperado
-                // leitor é multado
-                long days = ChronoUnit.DAYS.between(loan.getDateDevolution(), now) * 2; // dobro de dias de atraso
-                reader.fineDeadline = LocalDate.now().plusDays(days);
-                reader.block = true;
-            }
-            // devolve o livro
-            loan.setActive(false); // mudando o estado de ativo do emprestimo para falso
-            Book book = loan.getBook();
-            book.setQuantity(book.getQuantity() + 1); // atualizando a quantidade de determinado livro disponível
-        }
-    }
-
-    /*public void renew_loan(Loan loan) throws BlockException {
-
-        if (loan.getBook().getReservationQueue().isEmpty()) { // caso a fila de reserva esteja vazia
-            loan.setRenovationQuantity(loan.getRenovationQuantity() + 1); // atualizando a quantidade de renovações
-            loan.setDateDevolution();
-        }
-    }*/
-
-    public void update_history(){ //faltar ser construido
+    public void updateHistory(){ //faltar ser construido
     }
 
     /**
@@ -71,4 +45,22 @@ public class Reader extends User {
         }
         return reader.block;
     }
-}
+    /**
+     * Método que adiciona um leitor a fila de reserva de determinado livro.
+     * @param reader leitor
+     * @param book livro
+     **/
+    public void makeReservation(Reader reader, Book book) throws BookException { //verefica se tem livro disponivel
+        if(book.getQuantityAvailable() > 0){
+            throw new BookException(BookException.Available); //logo, vc pode ir fazer o emprestimo com o bibliotecario
+        }
+        else{
+            book.addReservationQueue(reader); }} //entra na fila de reserva
+    /**
+     * Método que retira um leitor a fila de reserva de determinado livro.
+     * @param reader leitor
+     * @param book livro
+     **/
+    public void removeToQueue(Reader reader, Book book){
+        book.removeReservationQueue(reader); //tirando leitor da fila para reservar o livro
+    }}

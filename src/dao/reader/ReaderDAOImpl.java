@@ -51,4 +51,6 @@ public class ReaderDAOImpl implements ReaderDAO {
         readerMap.clear();
     }
 
+    public Map<Long, Reader> getReaderMap() { //pega o banco de dados com todos leitores cadastrados
+        return readerMap;}
 }

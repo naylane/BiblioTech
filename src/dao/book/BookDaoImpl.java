@@ -10,7 +10,7 @@ import java.util.Map;
 public class BookDaoImpl implements BookDAO {
     private final Map<String, Book> bookMap = new HashMap<>(); //map para gaurdar os livros numa estrutura Isbn:livro
 
-    public Map<String, Book> getBookMap() { //para retornar o banco de dados com todos livros cadastrados
+    public Map<String, Book> getBookMap() { //para retornar o banco de dados com todos livros cadastrados em  formato map
         return bookMap;
     }
 

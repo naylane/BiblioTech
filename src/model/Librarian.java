@@ -2,23 +2,23 @@ package model;
 
 import dao.DAO;
 import dao.loan.LoanDAO;
+import exceptions.BookException;
+
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Librarian extends User{
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim
     private long idLoan = 0;
-
     public Librarian(long id, String name, String pin, String phone, Residence address) {
-        super(id, name, pin, phone, address);
-    }
+        super(id, name, pin, phone, address);}
 
     public String getBlock(){
         if(block){ //block == true
             return "Blocked";
         }else{
             return "Active";
-        }
-    }
+        }}
 
     public void blockReader(Librarian librarian){
         librarian.block = true;
@@ -40,9 +40,10 @@ public class Librarian extends User{
         return datetoday.plusDays(10);
     }
 
-    public void registerLoan(Reader reader, Book book){ // registrar emprestimo de leitor
-        if(book.getQuantity() == 0){
-            System.out.println("This book is not currently available");}
+    public void registerLoan(Reader reader, Book book) throws BookException{ // registrar emprestimo de leitor
+        if(book.getQuantityAvailable() == 0){
+            throw new BookException(BookException.NotAvailable);
+        }
         else{
             if(book.getResevationQueue().isEmpty()){  //retorna true se a fila estiver vazia e false se tiver um elemento ao menos
                 // Gera automaticamente o ID do empréstimo
@@ -57,7 +58,7 @@ public class Librarian extends User{
                 loandao.creat(loan);
                 System.out.println("successfully registered loan!");
             }else{ //aq no caso de ter elementos na fila
-                if(book.getResevationQueue().element() == reader){  //no caso de o leitor ser o primeiro da fila, realiza o emprestimo
+                if(book.getResevationQueue().element() == reader){  //no caso de o leitor ser o primeiro da fila, realiza o emprestimo, se não ele tem que reservar o livro
                     // Gere automaticamente o ID do empréstimo
                     long loanId = generateId(idLoan);
                     LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
@@ -67,34 +68,48 @@ public class Librarian extends User{
                     Loan loan = new Loan(loanId, reader.getId(), book, dateLoan, dateDevolution, 0);
                     //Usando o DAO para adicionar o emprestimo ao banco de dados
                     LoanDAO loandao = DAO.getLoanDAO();
-                    loandao.creat(loan);
-                    System.out.println("successfully registered loan!");
+                    loandao.creat(loan); //adicionando no banco de dados
+                    //System.out.println("successfully registered loan!");
                     book.getResevationQueue().remove(); //removendo o primeiro elemento após concluir o emprestimo
                 }else{
-                    System.out.println("unfortunately this book is already reserved");
-                }
-            }
-        }
-    }
+                    throw new BookException(BookException.NotAvailable);}}}}
 
-    public void registerBook(long isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity){
+    public void registerBook(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
         Book newBook = new Book(isbn, title, author, publishing_company, year_publication, category, location, quantity);
 
         for (Book book : DAO.getBookDAO().findAll()) {
             if (book.equals(newBook)) {
                 // já existe esse livro cadastrado logo só se soma a quantidade existente do livro
-                book.setQuantity(book.getQuantity() + newBook.getQuantity());
+                book.setQuantityAvailable(book.getQuantityAvailable() + newBook.getQuantityAvailable());
                 DAO.getBookDAO().update(book); // atualizando os dados no DAO
-                System.out.println("\nsuccessfully registered book!");
+                //System.out.println("\nsuccessfully registered book!");
                 return; // sai do método pois o livro já foi cadastrado
             }
         }
         DAO.getBookDAO().creat(newBook); // criou o livro e o armazenou no map tendo o seu isbn como id
-        System.out.println("\nsuccessfully registered book!");
+        //System.out.println("\nsuccessfully registered book!");
     }
 
-    public void registerDevolution(Reader reader, Book book){ //a fazer
-
+    /**
+     * Método que realiza a devolução de um empréstimo, se o mesmo estiver ativo, e multa o leitor se a data de devolução passa da data esperada.
+     * @param loan empréstimo
+     * @param reader leitor
+     */
+    public void registerDevolution(Loan loan, Reader reader){
+        if(loan.getActive()) { //se o emprestimo estiver ativo
+            // verificar se a data de devolução condiz com o esperado
+            LocalDate now = LocalDate.now();
+            if (now.isAfter(loan.getDateDevolution())) { // se a data de devolução passou do esperado
+                // leitor é multado
+                long days = ChronoUnit.DAYS.between(loan.getDateDevolution(), now) * 2; // dobro de dias de atraso
+                reader.fineDeadline = LocalDate.now().plusDays(days);
+                reader.block = true;
+            }
+            // devolve o livro
+            loan.setActive(false); // mudando o estado de ativo do emprestimo para falso
+            Book book = loan.getBook();
+            book.setQuantityAvailable(book.getQuantityAvailable() + 1); // atualizando a quantidade de determinado livro disponível
+        }
     }
 
 }

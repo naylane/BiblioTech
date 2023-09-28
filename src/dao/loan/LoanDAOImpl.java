@@ -14,7 +14,7 @@ public class LoanDAOImpl implements LoanDAO{
     @Override
     public Loan creat(Loan loan) {
         Book book = loan.getBook();
-        book.setQuantity(book.getQuantity() - 1); // atualizando a quantidade de determinado livro disponível
+        book.setQuantityAvailable(book.getQuantityAvailable() - 1); // atualizando a quantidade de determinado livro disponível
 
         long id = loan.getIdLoan(); //aq guarda no map todos emprestimos, e a chave é o id do emprestimo
         loanMap.put(id, loan);
