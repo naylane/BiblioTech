@@ -1,19 +1,27 @@
 package model;
+import dao.book.BookDaoImpl;
+import exceptions.BookException;
+
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class Book {
-    private long isbn;
+    private String isbn;
     private String title;
     private String author;
     private String publishing_company;
     private int year_publication; // depois alterar para data
     private String category;
     private BookLocation location;
-    private int quantity;
+    private int quantityAvailable; //essa quantidade indica a quantidade desse livro disponivel em um dado momento
+    private int quantityTotal;   //essa quantidade indica a quantidade desse livro total no sistema
     private Queue<Reader> reservationQueue = new LinkedList<>(); //Queue: fila em java
+    //BookDaoImpl bookdaoimpl = new BookDaoImpl();
 
-    public Book(long isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
+    public Book(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
+        //chekIsbn(isbn); //aq vai checar se já existe um livro com mesmo isbn no banco de dados
+        //chekQuantity(quantity);
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -21,12 +29,26 @@ public class Book {
         this.year_publication = year_publication;
         this.category = category;
         this.location = location;
-        this.quantity = quantity;
+        this.quantityAvailable = quantity;
+        this.quantityTotal = quantity;}
+    /*
+    public void chekIsbn(String isbn) throws BookException {
+        if(bookdaoimpl.getBookMap() != null){
+            if(bookdaoimpl.getBookMap().containsKey(isbn)){
+                throw new BookException(BookException.AlreadyCreated);}}
+        String isbnString = Long.toString(isbn); //para verificar s quantidade de numeros em um long precisa transforma em string
+        int numberofDgits = isbnString.length();
+        if(isbn == 0 || numberofDgits < 13){ //se o isbn for zero ou menor que 13 digitos, ele está incorreto
+            throw new BookException(BookException.IsbnErro);}}
+
+    public void chekQuantity(int quantity) throws BookException{
+        if(quantity < 1){
+            throw new BookException(BookException.QuantityErro);}
     }
 
+     */
     public void addReservationQueue(Reader reader){  // Adicionando leitores à fila do livro
         reservationQueue.offer(reader);}
-
     public void removeReservationQueue(Reader reader){ // removendo leitores da fila
         reservationQueue.remove(reader);
     }
@@ -55,11 +77,11 @@ public class Book {
         this.publishing_company = publishing_company;
     }
 
-    public long getISBN() {
+    public String getISBN() {
         return isbn;
     }
 
-    public void setISBN(long isbn) {
+    public void setISBN(String isbn) {
         this.isbn = isbn;
     }
 
@@ -87,14 +109,21 @@ public class Book {
         this.location = location;
     }
     
-    public int getQuantity() {
-        return quantity;
+    public int getQuantityAvailable() {
+        return quantityAvailable;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantityAvailable(int quantityAvailable) {
+        this.quantityAvailable = quantityAvailable;
     }
 
+    public int getQuantityTotal() {
+        return quantityTotal;
+    }
+
+    public void setQuantityTotal(int quantityTotal) {
+        this.quantityTotal = quantityTotal;
+    }
     public Queue<Reader> getResevationQueue(){return reservationQueue;}
 
     public void setReservationQueue(Queue<Reader> list){this.reservationQueue = list;}

@@ -10,5 +10,6 @@ public interface BookDAO extends CRUD<Book> {
     public List<Book> findByTitle(String title);
     public List<Book> findByAuthor(String author);
     public List<Book> findByCategory(String categoria);
+    public Book findById(String id);
 
 }

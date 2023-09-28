@@ -8,11 +8,15 @@ import java.util.List;
 import java.util.Map;
 
 public class BookDaoImpl implements BookDAO {
-    private final Map<Long, Book> bookMap = new HashMap<>(); //map para gaurdar os livros numa estrutura Isbn:livro
-    
+    private final Map<String, Book> bookMap = new HashMap<>(); //map para gaurdar os livros numa estrutura Isbn:livro
+
+    public Map<String, Book> getBookMap() { //para retornar o banco de dados com todos livros cadastrados
+        return bookMap;
+    }
+
     @Override
     public Book creat(Book obj){ //criando um livro e colocando no map
-        long id = obj.getISBN(); //o id do livro vai ser o proprio isbn
+        String id = obj.getISBN(); //o id do livro vai ser o proprio isbn
         bookMap.put(id, obj);
         return obj;
     }
@@ -22,7 +26,12 @@ public class BookDaoImpl implements BookDAO {
         return new ArrayList<>(bookMap.values());}
 
     @Override
-    public Book findById(long id) {  //retorna um livro pelo Id (lembrando q o id é o isbn)
+    public Book findById(long id) { //não vai ser utilizavél aqui
+        return null;
+    }
+
+    @Override
+    public Book findById(String id) {  //retorna um livro pelo Id (lembrando q o id é o isbn)
         return bookMap.get(id);}
 
     @Override
@@ -32,7 +41,7 @@ public class BookDaoImpl implements BookDAO {
 
     @Override
     public void delete(Book obj) {
-        long id = obj.getISBN();
+        String id = obj.getISBN();
         bookMap.remove(id);}
 
     public void deleteAll(){
