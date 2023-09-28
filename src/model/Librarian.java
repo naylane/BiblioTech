@@ -78,9 +78,11 @@ public class Librarian extends User{
         Book newBook = new Book(isbn, title, author, publishing_company, year_publication, category, location, quantity);
 
         for (Book book : DAO.getBookDAO().findAll()) {
-            if (book.equals(newBook)) {
+            if (book.getISBN() == newBook.getISBN()) { // se o isbn dos livros forem iguais
                 // já existe esse livro cadastrado logo só se soma a quantidade existente do livro
+
                 book.setQuantityAvailable(book.getQuantityAvailable() + newBook.getQuantityAvailable());
+
                 DAO.getBookDAO().update(book); // atualizando os dados no DAO
                 //System.out.println("\nsuccessfully registered book!");
                 return; // sai do método pois o livro já foi cadastrado
