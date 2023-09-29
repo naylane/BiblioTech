@@ -10,12 +10,13 @@ import java.util.Map;
 
 public class LoanDAOImpl implements LoanDAO{
     private final Map<Long, Loan> loanMap = new HashMap<>(); //map para guardar todos emprestimos feitos
-
+    public Map<Long, Loan> getLoanMap() { //para retornar o banco de dados com todos livros cadastrados em  formato map
+        return loanMap;
+    }
     @Override
     public Loan creat(Loan loan) {
         Book book = loan.getBook();
         book.setQuantityAvailable(book.getQuantityAvailable() - 1); // atualizando a quantidade de determinado livro disponível
-
         long id = loan.getIdLoan(); //aq guarda no map todos emprestimos, e a chave é o id do emprestimo
         loanMap.put(id, loan);
 

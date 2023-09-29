@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Librarian extends User{
+    Report report = new Report();
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim
     private long idLoan = 0;
     public String cargo = "Bibliotecario";
@@ -63,7 +64,8 @@ public class Librarian extends User{
                     //Usando o DAO para adicionar o emprestimo ao banco de dados
                     LoanDAO loandao = DAO.getLoanDAO();
                     loandao.creat(loan);
-                    System.out.println("successfully registered loan!");}
+                    report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
+                }
             }else{ //aq no caso de ter elementos na fila
                 if(book.getResevationQueue().element() == reader){  //no caso de o leitor ser o primeiro da fila, realiza o emprestimo, se não ele tem que reservar o livro
                     // Gere automaticamente o ID do empréstimo
@@ -76,7 +78,7 @@ public class Librarian extends User{
                     //Usando o DAO para adicionar o emprestimo ao banco de dados
                     LoanDAO loandao = DAO.getLoanDAO();
                     loandao.creat(loan); //adicionando no banco de dados
-                    //System.out.println("successfully registered loan!");
+                    report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
                     book.getResevationQueue().remove(); //removendo o primeiro elemento após concluir o emprestimo
                 }else{
                     throw new BookException(BookException.NotAvailable);}}}}
@@ -116,7 +118,7 @@ public class Librarian extends User{
             loan.setActive(false); // mudando o estado de ativo do emprestimo para falso
             Book book = loan.getBook();
             book.setQuantityAvailable(book.getQuantityAvailable() + 1); // atualizando a quantidade de determinado livro disponível
-        }
-    }
+            report.takeOutBorrowedBook(book); //remove da lista de livros emprestados no momento
+        }}
 
 }
