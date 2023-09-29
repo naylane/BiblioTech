@@ -41,7 +41,7 @@ public class Loan {
 
     // Métodos get e set para renovationQuantity
     public int getRenovationQuantity() {return renovationQuantity;}
-    public void setRenovationQuantity(int renovationQuantity) {this.renovationQuantity = renovationQuantity;}
+    public void setRenovationQuantity(int renovationQuantity) {this.renovationQuantity += renovationQuantity;}
 
     // Métodos get e set para active
     public boolean getActive() {return active;}
