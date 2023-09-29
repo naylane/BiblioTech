@@ -2,7 +2,10 @@ package model;
 
 import dao.DAO;
 import dao.loan.LoanDAO;
+import dao.reader.ReaderDAOImpl;
 import exceptions.BookException;
+import exceptions.LoanException;
+import exceptions.UsersException;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -10,21 +13,23 @@ import java.time.temporal.ChronoUnit;
 public class Librarian extends User{
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim
     private long idLoan = 0;
+    public String cargo = "Bibliotecario";
+
     public Librarian(long id, String name, String pin, String phone, Residence address) {
         super(id, name, pin, phone, address);}
 
-    public String getBlock(){
+    public Boolean getBlock(){
         if(block){ //block == true
-            return "Blocked";
+            return true;
         }else{
-            return "Active";
+            return false;
         }}
 
-    public void blockReader(Librarian librarian){
+    public void blockLibrarian(Librarian librarian) throws UsersException {
         librarian.block = true;
     }
 
-    public void unlockReader(Librarian librarian){
+    public void unlockLibrarian(Librarian librarian) throws UsersException {
         librarian.block = false;
     }
 
@@ -40,23 +45,25 @@ public class Librarian extends User{
         return datetoday.plusDays(10);
     }
 
-    public void registerLoan(Reader reader, Book book) throws BookException{ // registrar emprestimo de leitor
-        if(book.getQuantityAvailable() == 0){
-            throw new BookException(BookException.NotAvailable);
-        }
+    public void registerLoan(Reader reader, Book book) throws BookException, LoanException { // registrar emprestimo de leitor
+        if(book.getQuantityAvailable() == 0){ //se tem livro disponivel
+            throw new BookException(BookException.NotAvailable);}
         else{
-            if(book.getResevationQueue().isEmpty()){  //retorna true se a fila estiver vazia e false se tiver um elemento ao menos
-                // Gera automaticamente o ID do empréstimo
-                long loanId = generateId(idLoan);
-                LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
-                // Calcule a data de devolução (10 dias a partir da data de empréstimo)
-                LocalDate dateDevolution = dateEnd(dateLoan);
-                // Criando um emprestimo
-                Loan loan = new Loan(loanId, reader.getId(), book, dateLoan, dateDevolution, 0);
-                //Usando o DAO para adicionar o emprestimo ao banco de dados
-                LoanDAO loandao = DAO.getLoanDAO();
-                loandao.creat(loan);
-                System.out.println("successfully registered loan!");
+            if(book.getResevationQueue().isEmpty()){  //retorna true se a fila estiver vazia e false se tiver um elemento ao menos tiver uma pessoa
+                if(reader.getBlock()){ //retorna true se estiver block
+                    throw new LoanException(LoanException.UserBlock);}
+                else{
+                    // Gera automaticamente o ID do empréstimo
+                    long loanId = generateId(idLoan);
+                    LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
+                    // Calcule a data de devolução (10 dias a partir da data de empréstimo)
+                    LocalDate dateDevolution = dateEnd(dateLoan);
+                    // Criando um emprestimo
+                    Loan loan = new Loan(loanId, reader.getId(), book, dateLoan, dateDevolution, 0);
+                    //Usando o DAO para adicionar o emprestimo ao banco de dados
+                    LoanDAO loandao = DAO.getLoanDAO();
+                    loandao.creat(loan);
+                    System.out.println("successfully registered loan!");}
             }else{ //aq no caso de ter elementos na fila
                 if(book.getResevationQueue().element() == reader){  //no caso de o leitor ser o primeiro da fila, realiza o emprestimo, se não ele tem que reservar o livro
                     // Gere automaticamente o ID do empréstimo
@@ -80,9 +87,7 @@ public class Librarian extends User{
         for (Book book : DAO.getBookDAO().findAll()) {
             if (book.getISBN() == newBook.getISBN()) { // se o isbn dos livros forem iguais
                 // já existe esse livro cadastrado logo só se soma a quantidade existente do livro
-
                 book.setQuantityAvailable(book.getQuantityAvailable() + newBook.getQuantityAvailable());
-
                 DAO.getBookDAO().update(book); // atualizando os dados no DAO
                 //System.out.println("\nsuccessfully registered book!");
                 return; // sai do método pois o livro já foi cadastrado

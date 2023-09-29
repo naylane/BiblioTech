@@ -2,11 +2,14 @@ package model;
 
 import dao.reader.ReaderDAOImpl;
 import exceptions.BookException;
+import exceptions.LoanException;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Reader extends User {
+
     ReaderDAOImpl readerDAO = new ReaderDAOImpl(); //se quiser usar as opreções do DAO, uma das formas é criar um objeto
     public Boolean block; // diz se o leitor está bloqueado ou não: false - não e true - sim
     public LocalDate fineDeadline; //data final que o leitor está bloqueado
@@ -17,16 +20,16 @@ public class Reader extends User {
         this.fineDeadline = null;
     }
 
-    public String getBlock(){
+    public Boolean getBlock(){
         if(block){ //block == true
-            return "Blocked";
+            return true;
         }else{
-            return "Active";}}
+            return false;}}
 
-    public void block_reader(Reader reader){
+    public void blockReader(Reader reader){
         reader.block = true;}
 
-    public void unlock_reader(Reader reader){
+    public void unlockReader(Reader reader){
         reader.block = false;}
 
     public void updateHistory(){ //faltar ser construido
@@ -63,4 +66,21 @@ public class Reader extends User {
      **/
     public void removeToQueue(Reader reader, Book book){
         book.removeReservationQueue(reader); //tirando leitor da fila para reservar o livro
-    }}
+    }
+    public LocalDate dateEnd(LocalDate date){ //data final com prazo de 10 dias
+        return date.plusDays(10);}
+    public void renewLoan(Loan loan, Book book) throws LoanException {
+        Reader reader = readerDAO.findById(loan.getIdUser()); //retorna o leitor do banco de dados de acordo com o Id
+        if(!loan.getActive()){ //se for falso
+            throw new LoanException(LoanException.FinalizedLoan);}
+        else if(book.getResevationQueue().isEmpty()){ //se contém elementos na fila, logo contém pessoas
+            throw new LoanException(LoanException.ContainsPeople);}
+        else if(reader.getBlock()){
+            throw new LoanException(LoanException.UserBlock);}
+        else if(loan.getRenovationQuantity() == 3){
+            throw new LoanException(LoanException.RenewalExceeded);
+        }else{
+            loan.setRenovationQuantity(1); //soma uma renovação
+            loan.setDateDevolution(dateEnd(loan.getDateDevolution())); //pega a data final e soma + 10 dias, e fica sendo a nova data devolução
+        }}
+}
