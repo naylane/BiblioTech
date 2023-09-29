@@ -17,11 +17,8 @@ public class Book {
     private int quantityAvailable; //essa quantidade indica a quantidade desse livro disponivel em um dado momento
     private int quantityTotal;   //essa quantidade indica a quantidade desse livro total no sistema
     private Queue<Reader> reservationQueue = new LinkedList<>(); //Queue: fila em java
-    //BookDaoImpl bookdaoimpl = new BookDaoImpl();
-
+    private int quantityLoan=0; //quantidade de emprestimos
     public Book(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
-        //chekIsbn(isbn); //aq vai checar se já existe um livro com mesmo isbn no banco de dados
-        //chekQuantity(quantity);
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -31,22 +28,6 @@ public class Book {
         this.location = location;
         this.quantityAvailable = quantity;
         this.quantityTotal = quantity;}
-    /*
-    public void chekIsbn(String isbn) throws BookException {
-        if(bookdaoimpl.getBookMap() != null){
-            if(bookdaoimpl.getBookMap().containsKey(isbn)){
-                throw new BookException(BookException.AlreadyCreated);}}
-        String isbnString = Long.toString(isbn); //para verificar s quantidade de numeros em um long precisa transforma em string
-        int numberofDgits = isbnString.length();
-        if(isbn == 0 || numberofDgits < 13){ //se o isbn for zero ou menor que 13 digitos, ele está incorreto
-            throw new BookException(BookException.IsbnErro);}}
-
-    public void chekQuantity(int quantity) throws BookException{
-        if(quantity < 1){
-            throw new BookException(BookException.QuantityErro);}
-    }
-
-     */
     public void addReservationQueue(Reader reader){  // Adicionando leitores à fila do livro
         reservationQueue.offer(reader);}
     public void removeReservationQueue(Reader reader){ // removendo leitores da fila
@@ -123,6 +104,12 @@ public class Book {
 
     public void setQuantityTotal(int quantityTotal) {
         this.quantityTotal = quantityTotal;
+    }
+    public int getQuantityLoan() {
+        return quantityLoan;
+    }
+    public void setQuantityLoan(int quantityLoan) {
+        this.quantityLoan += quantityLoan;
     }
     public Queue<Reader> getResevationQueue(){return reservationQueue;}
 

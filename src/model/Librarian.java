@@ -64,6 +64,7 @@ public class Librarian extends User{
                     //Usando o DAO para adicionar o emprestimo ao banco de dados
                     LoanDAO loandao = DAO.getLoanDAO();
                     loandao.creat(loan);
+                    book.setQuantityLoan(1); //soma a variavel da quantidade de emprestimo
                     report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
                 }
             }else{ //aq no caso de ter elementos na fila
