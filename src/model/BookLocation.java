@@ -1,3 +1,13 @@
+/**
+ * Esta classe contém atributos para armazenar o local de
+ * um livro. Portanto ela contém atributos como
+ * prateleira, sessão e corredor. Além disso, ela contém
+ * um construtor para criar o objeto e métodos getters
+ * e setters para pegar e alterar os atributos privados.
+ *
+ * @author Sara Souza e Nayalane Ribeiro
+ */
+
 package model;
 
 public class BookLocation {
@@ -5,6 +15,13 @@ public class BookLocation {
     private String hall;
     private String section;
 
+    /**
+     * Construtor da classe BookLocation.
+     *
+     * @param shelf    O número da prateleira onde o livro está localizado.
+     * @param hall     O corredor onde o livro está localizado.
+     * @param section  A seção específica onde o livro está localizado.
+     */
     public BookLocation(String shelf, String hall, String section) {
         this.shelf = shelf;
         this.hall = hall;

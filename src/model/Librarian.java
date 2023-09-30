@@ -1,9 +1,24 @@
+/**
+ * A classe Librarian é uma subclasse da classe User.
+ * Portando, ela herda os atributos e métodos da
+ * superclasse User, e contém atributos como block,
+ * que indica se o bibliotecario está bloqueado.
+ * Além disso, contém um construtor para criar o
+ * objeto e métodos getters e setters para pegar e
+ * alterar os atributos privados. Contém também
+ * metódos que são especificos para as funcionalidades
+ * de um bibliotecario, como fazer emprestimo,
+ * registrar devolução, registrar livro, bloquear
+ * e desbloquear bibliotecario.
+ *
+ * @author Sara Souza e Nayalane Ribeiro
+ */
+
 package model;
 
 import dao.DAO;
 import dao.loan.LoanDAO;
 import dao.loan.LoanDAOImpl;
-import dao.reader.ReaderDAOImpl;
 import exceptions.BookException;
 import exceptions.LoanException;
 import exceptions.UsersException;
@@ -15,34 +30,77 @@ public class Librarian extends User{
     Report report = new Report();
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim
     LoanDAOImpl loanDAO = new LoanDAOImpl();
-    public String cargo = "Bibliotecario";
 
+    /**
+     * Construtor da classe Librarian para criar um novo bibliotecário.
+     *
+     * @param id      O ID do bibliotecário.
+     * @param name    O nome do bibliotecário.
+     * @param pin     A senha do bibliotecário.
+     * @param phone   O número de telefone do bibliotecário.
+     * @param address O endereço do bibliotecário.
+     */
     public Librarian(long id, String name, String pin, String phone, Residence address) {
         super(id, name, pin, phone, address);}
 
+    /**
+     * Obtém o status de bloqueio do bibliotecário.
+     *
+     * @return true se o bibliotecário estiver bloqueado, false se não estiver bloqueado.
+     */
     public Boolean getBlock(){
         if(block){ //block == true
             return true;
         }else{
             return false;
         }}
-
+    /**
+     * Bloqueia o bibliotecário.
+     *
+     * @param librarian O bibliotecário a ser bloqueado.
+     * @throws UsersException se ocorrer um erro durante o bloqueio do bibliotecário.
+     */
     public void blockLibrarian(Librarian librarian) throws UsersException {
         librarian.block = true;
     }
 
+    /**
+     * Desbloqueia o bibliotecário.
+     *
+     * @param librarian O bibliotecário a ser desbloqueado.
+     * @throws UsersException se ocorrer um erro durante o desbloqueio do bibliotecário.
+     */
     public void unlockLibrarian(Librarian librarian) throws UsersException {
         librarian.block = false;
     }
 
+    /**
+     * Obtém a data atual.
+     *
+     * @return A data atual.
+     */
     public LocalDate dateToday(){ // pega a data de hoje
         return LocalDate.now();
     }
 
+    /**
+     * Calcula a data final com um prazo de 10 dias a partir de uma data fornecida.
+     *
+     * @param datetoday A data inicial.
+     * @return A data final com um prazo de 10 dias.
+     */
     public LocalDate dateEnd(LocalDate datetoday){ //data final com prazo de 10 dias
         return datetoday.plusDays(10);
     }
 
+    /**
+     * Registra um empréstimo para um leitor.
+     *
+     * @param reader O leitor que está fazendo o empréstimo.
+     * @param book   O livro a ser emprestado.
+     * @throws BookException se ocorrer um erro relacionado ao livro.
+     * @throws LoanException se ocorrer um erro relacionado ao empréstimo.
+     */
     public void registerLoan(Reader reader, Book book) throws BookException, LoanException { // registrar emprestimo de leitor
         if(book.getQuantityAvailable() == 0){ //se tem livro disponivel
             throw new BookException(BookException.NotAvailable);}
@@ -81,6 +139,18 @@ public class Librarian extends User{
                 }else{
                     throw new BookException(BookException.NotAvailable);}}}}
 
+    /**
+     * Registra um novo livro no sistema.
+     *
+     * @param isbn              O número ISBN do livro.
+     * @param title             O título do livro.
+     * @param author            O autor do livro.
+     * @param publishing_company A editora do livro.
+     * @param year_publication  O ano de publicação do livro.
+     * @param category          A categoria à qual o livro pertence.
+     * @param location          O local onde o livro está armazenado.
+     * @param quantity          A quantidade inicial de cópias disponíveis do livro.
+     */
     public void registerBook(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
         Book newBook = new Book(isbn, title, author, publishing_company, year_publication, category, location, quantity);
 
@@ -118,5 +188,4 @@ public class Librarian extends User{
             book.setQuantityAvailable(book.getQuantityAvailable() + 1); // atualizando a quantidade de determinado livro disponível
             report.takeOutBorrowedBook(book); //remove da lista de livros emprestados no momento
         }}
-
 }

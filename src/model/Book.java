@@ -1,10 +1,23 @@
+/**
+ * Esta classe contém atributos para armazenar os
+ * dados de um livro. Portanto ela contém os atributos
+ * de um livro como nome, isbn, autor, ano de publicação
+ * categoria, localização na biblioteca, quantidade total
+ * de livros desse tipo, quantidade no momento de livros
+ * desse tipo, uma fila de reserva e quantidade de vezes
+ * que aquele livro já teve emprestimo. Além disso, ela
+ * contém um construtor para criar o objeto e métodos getters
+ * e setters para pegar e alterar os atributos privados.
+ * Contém outros métodos uteis para classe livro como
+ * entrar e sair da fila de reserva.
+ *
+ * @author Sara Souza e Nayalane Ribeiro
+ */
+
 package model;
-import dao.book.BookDaoImpl;
-import exceptions.BookException;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
 
 public class Book {
     private String isbn;
@@ -18,6 +31,19 @@ public class Book {
     private int quantityTotal;   //essa quantidade indica a quantidade desse livro total no sistema
     private Queue<Reader> reservationQueue = new LinkedList<>(); //Queue: fila em java
     private int quantityLoan=0; //quantidade de emprestimos
+
+    /**
+     * Construtor da classe Book para criar um novo livro.
+     *
+     * @param isbn              O número ISBN do livro.
+     * @param title             O título do livro.
+     * @param author            O autor do livro.
+     * @param publishing_company A editora do livro.
+     * @param year_publication  O ano de publicação do livro.
+     * @param category          A categoria à qual o livro pertence.
+     * @param location          O local onde o livro está armazenado.
+     * @param quantity          A quantidade inicial de cópias disponíveis do livro.
+     */
     public Book(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
         this.isbn = isbn;
         this.title = title;
@@ -28,8 +54,20 @@ public class Book {
         this.location = location;
         this.quantityAvailable = quantity;
         this.quantityTotal = quantity;}
+
+    /**
+     * Adiciona um leitor à fila de reserva deste livro.
+     *
+     * @param reader O leitor a ser adicionado à fila de reserva.
+     */
     public void addReservationQueue(Reader reader){  // Adicionando leitores à fila do livro
         reservationQueue.offer(reader);}
+
+    /**
+     * Remove um leitor da fila de reserva deste livro.
+     *
+     * @param reader O leitor a ser removido da fila de reserva.
+     */
     public void removeReservationQueue(Reader reader){ // removendo leitores da fila
         reservationQueue.remove(reader);
     }

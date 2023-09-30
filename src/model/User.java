@@ -1,3 +1,16 @@
+/**
+ * Esta classe é uma superclasse que implementa o
+ * comportamento de um usuario. Portanto ela contém
+ * os atributos de um usuario como nome, id, senha,
+ * endereço e telefone. Além disso, ela contém um
+ * construtor para criar o objeto e métodos getters e
+ * setters para pegar e alterar os atributos privados.
+ * Contém também metódos que são utlizados para
+ * fazer pesquisas de livros.
+ *
+ * @author Sara Souza e Nayalane Ribeiro
+ */
+
 package model;
 
 import java.util.List;
@@ -11,13 +24,21 @@ public class User {
     private String phone;
     private Residence address;
 
+    /**
+     * Construtor da classe User.
+     *
+     * @param id      O ID do usuário.
+     * @param name    O nome do usuário.
+     * @param pin     A senha do usuário.
+     * @param phone   O telefone do usuário.
+     * @param address O endereço do usuário.
+     */
     public User(long id, String name, String pin, String phone, Residence address){
         this.id = id;
         this.name = name;
         this.pin = pin;
         this.phone = phone;
-        this.address = address;
-    }
+        this.address = address;}
 
     // Métodos Get
     public String getName() {
@@ -41,7 +62,6 @@ public class User {
     }
 
     // Métodos Set
-
     public void setId(long id) {
         this.id = id;
     }
@@ -67,7 +87,12 @@ public class User {
         return "[User]: " + id + "\n -Informations-\n" + "name: " + name  + "phone: " + phone;
     }
 
-    // o metodo equals visa verificar se os pins de dois objetos são iguais
+    /**
+     * Método que compara um objeto com outro para verificar se seus IDs são iguais.
+     *
+     * @param o O objeto a ser comparado.
+     * @return true se os IDs forem iguais, false caso contrário.
+     */
     public boolean equals(Object o){
         if (this == o){
             return true;
@@ -79,18 +104,34 @@ public class User {
         return id == user.id;
     }
 
-    // abaixo tem as pesquisas que o usuario pode fazer
-
-    public List<Book> searchBookbytitle(String title){
+    /**
+     * Método para pesquisar livros por título.
+     *
+     * @param title O título do livro a ser pesquisado.
+     * @return Uma lista de livros encontrados com o título especificado.
+     */
+    public List<Book> searchBookByTitle(String title) {
         // Chama o método de pesquisa por título no DAO de livros
         return bookDAO.findByTitle(title);
     }
 
+    /**
+     * Método para pesquisar livros por autor.
+     *
+     * @param author O autor do livro a ser pesquisado.
+     * @return Uma lista de livros encontrados com o autor especificado.
+     */
     public List<Book> searchBooksByAuthor(String author) {
         // Chama o método de pesquisa por autor no DAO de livros
         return bookDAO.findByAuthor(author);
     }
 
+    /**
+     * Método para pesquisar livros por categoria.
+     *
+     * @param category A categoria do livro a ser pesquisada.
+     * @return Uma lista de livros encontrados na categoria especificada.
+     */
     public List<Book> searchBooksByCategory(String category) {
         // Chama o método de pesquisa por categoria no DAO de livros
         return bookDAO.findByCategory(category);

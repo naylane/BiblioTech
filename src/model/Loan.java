@@ -1,3 +1,17 @@
+/**
+ * Esta classe contém atributos para a realização de um
+ * emprestimo. Portanto ela contém atributos como
+ * id de usuario, id do emprestimo, livro, data de
+ * devolução, data de emprestimo, quantidade de
+ * renovações e por fim, uma variavel booleana que
+ * indica se o emprestimo está ativo ou não.
+ * Além disso, ela contém um construtor para criar o
+ * objeto e métodos getters e setters para pegar e alterar
+ * os atributos privados.
+ *
+ * @author Sara Souza e Nayalane Ribeiro
+ */
+
 package model;
 import java.time.LocalDate;
 
@@ -10,6 +24,16 @@ public class Loan {
     private int renovationQuantity; //limite de 3 renovacoes do livro
     private boolean active = true; // boolean que diz se o empréstimo já foi devolvido ou não (false = sim, true - não)
 
+    /**
+     * Construtor da classe Loan.
+     *
+     * @param idLoan           O ID do empréstimo.
+     * @param idUser           O ID do usuário associado ao empréstimo.
+     * @param book             O livro emprestado.
+     * @param dateLoan         A data de empréstimo.
+     * @param dateDevolution   A data de devolução prevista.
+     * @param renovationQuantity A quantidade de renovações permitidas para o empréstimo.
+     */
     public Loan(long idLoan, long idUser, Book book, LocalDate dateLoan, LocalDate dateDevolution, int renovationQuantity) {
         this.idLoan = idLoan;
         this.idUser = idUser;

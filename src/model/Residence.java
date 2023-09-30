@@ -1,3 +1,14 @@
+/**
+ * Esta classe contém atributos para armazenar o endereço de
+ * um usuario. Portanto ela contém os atributos de um
+ * endereço como rua, cidade, bairro, rua, cep e numero.
+ * Além disso, ela contém um construtor para criar o
+ * objeto e métodos getters e setters para pegar e alterar
+ * os atributos privados.
+ *
+ * @author Sara Souza e Nayalane Ribeiro
+ */
+
 package model;
 
 public class Residence {
@@ -7,7 +18,16 @@ public class Residence {
     private String street;
     private int number;
     private int cep;
-    // Construtor
+    /**
+     * Construtor da classe Residence.
+     *
+     * @param state       O estado do endereço.
+     * @param city        A cidade do endereço.
+     * @param neighborhood O bairro do endereço.
+     * @param street      A rua do endereço.
+     * @param number      O número do endereço.
+     * @param cep         O CEP do endereço.
+     */
     public Residence(String state, String city, String neighborhood, String street, int number, int cep) {
         this.state = state;
         this.city = city;

@@ -1,3 +1,20 @@
+/**
+ * A classe Reader é uma subclasse da classe User.
+ * Portando, ela herda os atributos e métodos da
+ * superclasse User, e contém atributos como block,
+ * que indica se o leitor está bloqueado, e prazo
+ * final, que armazena a data final que o leitor
+ * está bloqueado. Além disso, contém um construtor
+ * para criar o objeto e métodos getters e setters
+ * para pegar e alterar os atributos privados.
+ * Contém também metódos que são especificos para
+ * as funcionalidades de um leitor, como fazer uma
+ * reserva, renovar um emprestimo, sair da fila de
+ * reserva e verificar se ele está com multa ativa.
+ *
+ * @author Sara Souza e Nayalane Ribeiro
+ */
+
 package model;
 
 import dao.reader.ReaderDAOImpl;
@@ -13,27 +30,51 @@ public class Reader extends User {
     ReaderDAOImpl readerDAO = new ReaderDAOImpl(); //se quiser usar as opreções do DAO, uma das formas é criar um objeto
     public Boolean block; // diz se o leitor está bloqueado ou não: false - não e true - sim
     public LocalDate fineDeadline; //data final que o leitor está bloqueado
-    //public List<Emprestimo> loan_history;
 
+    /**
+     * Construtor da classe Reader que cria um novo leitor com os atributos
+     * fornecidos e inicializa o estado de bloqueio como falso (não bloqueado).
+     *
+     * @param id      O ID do leitor.
+     * @param name    O nome do leitor.
+     * @param pin     O código PIN do leitor.
+     * @param phone   O número de telefone do leitor.
+     * @param address O endereço do leitor.
+     */
     public Reader(long id, String name, String pin, String phone, Residence address) { //construtor reader
         super(id, name, pin, phone, address);
         this.fineDeadline = null;
     }
 
+    /**
+     * Obtém o estado de bloqueio do leitor.
+     *
+     * @return True se o leitor estiver bloqueado, False caso contrário.
+     */
     public Boolean getBlock(){
         if(block){ //block == true
             return true;
-        }else{
-            return false;}}
-
-    public void blockReader(Reader reader){
-        reader.block = true;}
-
-    public void unlockReader(Reader reader){
-        reader.block = false;}
-
-    public void updateHistory(){ //faltar ser construido
+        } else {
+            return false;
+        }
     }
+
+    /**
+     * Bloqueia um leitor, definindo seu estado de bloqueio como verdadeiro.
+     *
+     * @param reader O leitor que será bloqueado.
+     */
+    public void blockReader(Reader reader) {
+        reader.block = true;
+    }
+
+    /**
+     * Desbloqueia um leitor, definindo seu estado de bloqueio como falso.
+     *
+     * @param reader O leitor que será desbloqueado.
+     */
+    public void unlockReader(Reader reader) {
+        reader.block = false;}
 
     /**
      * Método que verifica se um leitor está com multa ativa.
@@ -67,8 +108,24 @@ public class Reader extends User {
     public void removeToQueue(Reader reader, Book book){
         book.removeReservationQueue(reader); //tirando leitor da fila para reservar o livro
     }
+
+    /**
+     * Calcula a data final com prazo de 10 dias a partir de uma data inicial.
+     *
+     * @param date A data inicial.
+     * @return A data final após adicionar 10 dias.
+     */
     public LocalDate dateEnd(LocalDate date){ //data final com prazo de 10 dias
         return date.plusDays(10);}
+
+    /**
+     * Renova um empréstimo, estendendo sua data de devolução.
+     *
+     * @param loan O empréstimo a ser renovado.
+     * @param book O livro emprestado.
+     * @throws LoanException Se o empréstimo já foi finalizado, a fila de reserva contém pessoas,
+     * o leitor está bloqueado, ou o limite de renovações foi excedido.
+     */
     public void renewLoan(Loan loan, Book book) throws LoanException {
         Reader reader = readerDAO.findById(loan.getIdUser()); //retorna o leitor do banco de dados de acordo com o Id
         if(!loan.getActive()){ //se for falso
