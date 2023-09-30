@@ -20,6 +20,7 @@ import exceptions.BookException;
 import exceptions.LoanException;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,12 @@ public class Report {
     private List<Book> borrowedBooks; //armazena todos livros que estão emprestados no momento
     private List<Book> lateBooks; //armazena todos livros que estão atrasados no momento
     private List<Book> reservedBooks; //armazena todos livros que já estão reservados no momento
+
+    public Report() {
+        this.borrowedBooks = new ArrayList<>();
+        this.lateBooks = new ArrayList<>();
+        this.reservedBooks = new ArrayList<>();
+    }
 
     //BORROWED BOOKS
     /**
