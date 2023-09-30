@@ -1,3 +1,9 @@
+package model;
+
+import java.util.List;
+
+import static dao.DAO.bookDAO;
+
 /**
  * Esta classe é uma superclasse que implementa o
  * comportamento de um usuario. Portanto ela contém
@@ -8,15 +14,8 @@
  * Contém também metódos que são utlizados para
  * fazer pesquisas de livros.
  *
- * @author Sara Souza e Nayalane Ribeiro
+ * @author Sara Souza e Naylane Ribeiro
  */
-
-package model;
-
-import java.util.List;
-
-import static dao.DAO.bookDAO;
-
 public class User {
     private long id;
     private String name;

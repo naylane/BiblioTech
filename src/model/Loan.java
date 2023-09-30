@@ -1,3 +1,7 @@
+package model;
+
+import java.time.LocalDate;
+
 /**
  * Esta classe contém atributos para a realização de um
  * emprestimo. Portanto ela contém atributos como
@@ -9,12 +13,8 @@
  * objeto e métodos getters e setters para pegar e alterar
  * os atributos privados.
  *
- * @author Sara Souza e Nayalane Ribeiro
+ * @author Sara Souza e Naylane Ribeiro
  */
-
-package model;
-import java.time.LocalDate;
-
 public class Loan {
     private long idLoan; //esse id muda dps
     private long idUser;

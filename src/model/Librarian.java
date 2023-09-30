@@ -1,3 +1,15 @@
+package model;
+
+import dao.DAO;
+import dao.loan.LoanDAO;
+import dao.loan.LoanDAOImpl;
+import exceptions.BookException;
+import exceptions.LoanException;
+import exceptions.UsersException;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 /**
  * A classe Librarian é uma subclasse da classe User.
  * Portando, ela herda os atributos e métodos da
@@ -11,21 +23,8 @@
  * registrar devolução, registrar livro, bloquear
  * e desbloquear bibliotecario.
  *
- * @author Sara Souza e Nayalane Ribeiro
+ * @author Sara Souza e Naylane Ribeiro
  */
-
-package model;
-
-import dao.DAO;
-import dao.loan.LoanDAO;
-import dao.loan.LoanDAOImpl;
-import exceptions.BookException;
-import exceptions.LoanException;
-import exceptions.UsersException;
-
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-
 public class Librarian extends User{
     Report report = DAO.getReportDAO().getReport();
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim

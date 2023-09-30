@@ -1,3 +1,11 @@
+package model;
+
+import dao.reader.ReaderDAOImpl;
+import exceptions.BookException;
+import exceptions.LoanException;
+
+import java.time.LocalDate;
+
 /**
  * A classe Reader é uma subclasse da classe User.
  * Portando, ela herda os atributos e métodos da
@@ -12,19 +20,8 @@
  * reserva, renovar um emprestimo, sair da fila de
  * reserva e verificar se ele está com multa ativa.
  *
- * @author Sara Souza e Nayalane Ribeiro
+ * @author Sara Souza e Naylane Ribeiro
  */
-
-package model;
-
-import dao.reader.ReaderDAOImpl;
-import exceptions.BookException;
-import exceptions.LoanException;
-
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-
 public class Reader extends User {
 
     ReaderDAOImpl readerDAO = new ReaderDAOImpl(); //se quiser usar as opreções do DAO, uma das formas é criar um objeto

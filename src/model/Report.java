@@ -1,17 +1,3 @@
-/**
- * Esta classe serve para armazenar dados para
- * gerar um relatorio do sistema. Portanto ela contém
- * atributos como livros emprestados, livros atrasados,
- * e livros reservados, atrivutos esses que foram
- * formulados de acordo com o que foi pedido no problema.
- * Além disso, ela contém métodos para gerar os dados dos
- * livros que estão emprestados, atrasados e reservados, e
- * métodos para gerar o historico de um usuario especifico
- * e pegar o livro mais popular.
- *
- * @author Sara Souza e Nayalane Ribeiro
- */
-
 package model;
 
 import dao.book.BookDaoImpl;
@@ -24,6 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Esta classe serve para armazenar dados para
+ * gerar um relatorio do sistema. Portanto ela contém
+ * atributos como livros emprestados, livros atrasados,
+ * e livros reservados, atrivutos esses que foram
+ * formulados de acordo com o que foi pedido no problema.
+ * Além disso, ela contém métodos para gerar os dados dos
+ * livros que estão emprestados, atrasados e reservados, e
+ * métodos para gerar o historico de um usuario especifico
+ * e pegar o livro mais popular.
+ *
+ * @author Sara Souza e Naylane Ribeiro
+ */
 public class Report {
     BookDaoImpl books = new BookDaoImpl();
     LoanDAOImpl loans = new LoanDAOImpl();

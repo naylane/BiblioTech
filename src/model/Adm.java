@@ -1,17 +1,3 @@
-/**
- * A classe Reader é uma subclasse da classe
- * Librarian. Portando, ela herda os atributos e
- * métodos da superclasse Librarian. Além disso,
- * contém um construtor para criar o objeto e
- * métodos getters e setters para pegar e alterar
- * os atributos privados. Contém também metódos que
- * são especificos para as funcionalidades de um adm,
- * como criar novos usuarios, operações para usuarios
- * e gerenciamento do acervo.
- *
- * @author Sara Souza e Nayalane Ribeiro
- */
-
 package model;
 
 import dao.adm.AdmDAO;
@@ -24,6 +10,19 @@ import dao.reader.ReaderDAO;
 import dao.reader.ReaderDAOImpl;
 import exceptions.UsersException;
 
+/**
+ * A classe Adm é uma subclasse da classe
+ * Librarian. Portando, ela herda os atributos e
+ * métodos da superclasse Librarian. Além disso,
+ * contém um construtor para criar o objeto e
+ * métodos getters e setters para pegar e alterar
+ * os atributos privados. Contém também metódos que
+ * são especificos para as funcionalidades de um adm,
+ * como criar novos usuarios, operações para usuarios
+ * e gerenciamento do acervo.
+ *
+ * @author Sara Souza e Nayalane Ribeiro
+ */
 public class Adm extends Librarian { //o adm é responsavel pela criação dos user
     ReaderDAOImpl readerDAO = new ReaderDAOImpl();
     LibrarianDAOImpl librarianDAO = new LibrarianDAOImpl();

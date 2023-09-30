@@ -1,3 +1,8 @@
+package model;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Esta classe contém atributos para armazenar os
  * dados de um livro. Portanto ela contém os atributos
@@ -11,14 +16,8 @@
  * Contém outros métodos uteis para classe livro como
  * entrar e sair da fila de reserva.
  *
- * @author Sara Souza e Nayalane Ribeiro
+ * @author Sara Souza e Naylane Ribeiro
  */
-
-package model;
-
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class Book {
     private String isbn;
     private String title;

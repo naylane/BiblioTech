@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Esta classe contém atributos para armazenar o local de
  * um livro. Portanto ela contém atributos como
@@ -5,11 +7,8 @@
  * um construtor para criar o objeto e métodos getters
  * e setters para pegar e alterar os atributos privados.
  *
- * @author Sara Souza e Nayalane Ribeiro
+ * @author Sara Souza e Naylane Ribeiro
  */
-
-package model;
-
 public class BookLocation {
     private String shelf;
     private String hall;

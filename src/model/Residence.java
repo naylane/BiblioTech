@@ -1,3 +1,5 @@
+package model;
+
 /**
  * Esta classe contém atributos para armazenar o endereço de
  * um usuario. Portanto ela contém os atributos de um
@@ -6,11 +8,8 @@
  * objeto e métodos getters e setters para pegar e alterar
  * os atributos privados.
  *
- * @author Sara Souza e Nayalane Ribeiro
+ * @author Sara Souza e Naylane Ribeiro
  */
-
-package model;
-
 public class Residence {
     private String state;
     private String city;
