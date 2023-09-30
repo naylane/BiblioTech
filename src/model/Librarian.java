@@ -35,10 +35,6 @@ public class Librarian extends User{
         librarian.block = false;
     }
 
-    public long generateId(long idLoan){ //gerar automaticamente o id do emprestimo
-        return idLoan +=1;
-    }
-
     public LocalDate dateToday(){ // pega a data de hoje
         return LocalDate.now();
     }
