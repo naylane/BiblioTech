@@ -65,5 +65,15 @@ public class LibrarianTest {
         assertEquals(0, book.getQuantityAvailable()); // verificando que o livro não está mais disponível
     }
 
-    
+    @Test
+    public void testRegisterDevolution() {
+        // Configurando um empréstimo ativo
+        Loan activeLoan = new Loan(1, reader.getId(), book, LocalDate.now(), LocalDate.now().plusDays(10), 0);
+        activeLoan.setActive(true);
+        book.setQuantityAvailable(book.getQuantityAvailable() - 1);
+
+        librarian.registerDevolution(activeLoan, reader);
+
+        assertFalse(activeLoan.getActive()); // Verificando que o empréstimo não está mais ativo
+    }
 }
