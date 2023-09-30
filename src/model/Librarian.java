@@ -27,7 +27,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 public class Librarian extends User{
-    Report report = new Report();
+    Report report = DAO.getReportDAO().getReport();
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim
     LoanDAOImpl loanDAO = new LoanDAOImpl();
 
@@ -120,7 +120,9 @@ public class Librarian extends User{
                     LoanDAO loandao = DAO.getLoanDAO();
                     loandao.creat(loan);
                     book.setQuantityLoan(1); //soma a variavel da quantidade de emprestimo
+                    book.setQuantityAvailable(book.getQuantityAvailable() - 1); // atualizando a quantidade disponível do livro
                     report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
+                    DAO.getReportDAO().save(report); // salva o relatório
                 }
             }else{ //aq no caso de ter elementos na fila
                 if(book.getResevationQueue().element() == reader){  //no caso de o leitor ser o primeiro da fila, realiza o emprestimo, se não ele tem que reservar o livro
@@ -134,7 +136,10 @@ public class Librarian extends User{
                     //Usando o DAO para adicionar o emprestimo ao banco de dados
                     LoanDAO loandao = DAO.getLoanDAO();
                     loandao.creat(loan); //adicionando no banco de dados
+                    book.setQuantityLoan(1); //soma a variavel da quantidade de emprestimo
+                    book.setQuantityAvailable(book.getQuantityAvailable() - 1); // atualizando a quantidade disponível do livro
                     report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
+                    DAO.getReportDAO().save(report); // salva o relatório
                     book.getResevationQueue().remove(); //removendo o primeiro elemento após concluir o emprestimo
                 }else{
                     throw new BookException(BookException.NotAvailable);}}}}
