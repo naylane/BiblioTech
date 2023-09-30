@@ -10,6 +10,8 @@ import dao.reader.ReaderDAO;
 import dao.reader.ReaderDAOImpl;
 import dao.loan.LoanDAO;
 import dao.loan.LoanDAOImpl;
+import dao.report.ReportDAO;
+import dao.report.ReportDAOImpl;
 
 //A classe DAO é um ponto de entrada para acessar os objetos DAO das classes específicas de domínio.
 //O objetivo é facilitar o acesso a esses objetos e tornar o código mais legível e fácil de manter.
@@ -22,6 +24,7 @@ public class DAO {
     private static LibrarianDAO librarianDAO;
     private static AdmDAO admDAO;
     private static ReaderDAO readerDAO;
+    private static ReportDAO reportDAO;
 
     public static BookDAO getBookDAO(){
         if (bookDAO == null) {
@@ -58,4 +61,10 @@ public class DAO {
         return admDAO;
     }
 
+    public static ReportDAO getReportDAO(){
+        if (reportDAO == null){
+            reportDAO = new ReportDAOImpl();
+        }
+        return reportDAO;
+    }
 }
