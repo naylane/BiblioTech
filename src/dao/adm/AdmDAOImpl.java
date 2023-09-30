@@ -11,7 +11,7 @@ public class AdmDAOImpl implements AdmDAO {
     private final Map<Long, Adm> admMap = new HashMap<>();
     private long nextId = 0;
 
-    private long getNextId() {
+    public long getNextId() {
         /*
          * A++ -> usa o valor de A e depois incrementa A
          * ++A -> incrementa o valor de A e depois utiliza o valor de A

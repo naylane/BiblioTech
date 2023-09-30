@@ -5,7 +5,7 @@ import java.util.List;
 import static dao.DAO.bookDAO;
 
 public class User {
-    private long id = 0;
+    private long id;
     private String name;
     private String pin;
     private String phone;

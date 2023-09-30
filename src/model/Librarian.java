@@ -2,6 +2,7 @@ package model;
 
 import dao.DAO;
 import dao.loan.LoanDAO;
+import dao.loan.LoanDAOImpl;
 import dao.reader.ReaderDAOImpl;
 import exceptions.BookException;
 import exceptions.LoanException;
@@ -13,7 +14,7 @@ import java.time.temporal.ChronoUnit;
 public class Librarian extends User{
     Report report = new Report();
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim
-    private long idLoan = 0;
+    LoanDAOImpl loanDAO = new LoanDAOImpl();
     public String cargo = "Bibliotecario";
 
     public Librarian(long id, String name, String pin, String phone, Residence address) {
@@ -55,7 +56,7 @@ public class Librarian extends User{
                     throw new LoanException(LoanException.UserBlock);}
                 else{
                     // Gera automaticamente o ID do empréstimo
-                    long loanId = generateId(idLoan);
+                    long loanId = loanDAO.getNextId();
                     LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
                     // Calcule a data de devolução (10 dias a partir da data de empréstimo)
                     LocalDate dateDevolution = dateEnd(dateLoan);
@@ -70,7 +71,7 @@ public class Librarian extends User{
             }else{ //aq no caso de ter elementos na fila
                 if(book.getResevationQueue().element() == reader){  //no caso de o leitor ser o primeiro da fila, realiza o emprestimo, se não ele tem que reservar o livro
                     // Gere automaticamente o ID do empréstimo
-                    long loanId = generateId(idLoan);
+                    long loanId = loanDAO.getNextId();
                     LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
                     // Calcule a data de devolução (10 dias a partir da data de empréstimo)
                     LocalDate dateDevolution = dateEnd(dateLoan);

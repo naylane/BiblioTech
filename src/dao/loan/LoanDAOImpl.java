@@ -13,6 +13,15 @@ public class LoanDAOImpl implements LoanDAO{
     public Map<Long, Loan> getLoanMap() { //para retornar o banco de dados com todos livros cadastrados em  formato map
         return loanMap;
     }
+    private long nextId = 0;
+
+    public long getNextId() {
+        /**
+         * A++ -> usa o valor de A e depois incrementa A
+         * ++A -> incrementa o valor de A e depois utiliza o valor de A
+         */
+        return this.nextId++; // retorna ID para o objeto atual e define o próximo ID
+    }
     @Override
     public Loan creat(Loan loan) {
         Book book = loan.getBook();

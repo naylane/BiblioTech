@@ -10,8 +10,10 @@ import java.util.Map;
 public class LibrarianDAOImpl implements LibrarianDAO {
     private final Map<Long, Librarian> librarianMap = new HashMap<>();
     private long nextId = 0;
+    public Map<Long, Librarian> getLibrarianMap(){
+        return librarianMap;}
 
-    private long getNextId() {
+    public long getNextId() {
         /**
          * A++ -> usa o valor de A e depois incrementa A
          * ++A -> incrementa o valor de A e depois utiliza o valor de A

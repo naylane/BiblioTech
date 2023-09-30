@@ -7,4 +7,5 @@ import java.util.Map;
 
 public interface LoanDAO extends CRUD<Loan> {
     public Map<Long, Loan> getLoanMap();
+    public long getNextId();
 }

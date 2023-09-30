@@ -10,7 +10,7 @@ public class ReaderDAOImpl implements ReaderDAO {
     private final Map<Long, Reader> readerMap = new HashMap<>();
     private long nextId = 0;
 
-    private long getNextId() {
+    public long getNextId() {
         /*
          * A++ -> usa o valor de A e depois incrementa A
          * ++A -> incrementa o valor de A e depois utiliza o valor de A
