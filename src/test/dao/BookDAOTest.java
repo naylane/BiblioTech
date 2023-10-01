@@ -1,4 +1,4 @@
-package test;
+package test.dao;
 
 import dao.DAO;
 import model.*;
@@ -6,7 +6,7 @@ import org.junit.*;
 
 import static org.junit.Assert.*;
 
-public class BookTest {
+public class BookDAOTest {
     private final BookLocation location = new BookLocation("1", "4", "12");
     private final Book book = new Book("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
             "HarperCollins", 2018, "Romance", location, 1);

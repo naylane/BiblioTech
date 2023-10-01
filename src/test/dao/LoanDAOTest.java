@@ -1,4 +1,4 @@
-package test;
+package test.dao;
 
 import dao.DAO;
 import model.*;
@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 import static org.junit.Assert.*;
 
-public class LoanTest {
+public class LoanDAOTest {
     private BookLocation location;
     private Book book;
     private Loan loan1;
