@@ -63,7 +63,7 @@ public class LibrarianTest {
     @Test
     public void testRegisterDevolution() {
         // Configurando um empréstimo ativo
-        Loan activeLoan = new Loan(1, reader.getId(), book, LocalDate.now(), LocalDate.now().plusDays(10), 0);
+        Loan activeLoan = new Loan(1, reader.getId(), book, LocalDate.now(), LocalDate.now().plusDays(10));
         activeLoan.setActive(true);
         book.setQuantityAvailable(book.getQuantityAvailable() - 1);
 

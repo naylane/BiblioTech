@@ -27,20 +27,18 @@ public class Loan {
     /**
      * Construtor da classe Loan.
      *
-     * @param idLoan           O ID do empréstimo.
-     * @param idUser           O ID do usuário associado ao empréstimo.
-     * @param book             O livro emprestado.
-     * @param dateLoan         A data de empréstimo.
-     * @param dateDevolution   A data de devolução prevista.
-     * @param renovationQuantity A quantidade de renovações permitidas para o empréstimo.
+     * @param idLoan         O ID do empréstimo.
+     * @param idUser         O ID do usuário associado ao empréstimo.
+     * @param book           O livro emprestado.
+     * @param dateLoan       A data de empréstimo.
+     * @param dateDevolution A data de devolução prevista.
      */
-    public Loan(long idLoan, long idUser, Book book, LocalDate dateLoan, LocalDate dateDevolution, int renovationQuantity) {
+    public Loan(long idLoan, long idUser, Book book, LocalDate dateLoan, LocalDate dateDevolution) {
         this.idLoan = idLoan;
         this.idUser = idUser;
         this.book = book;
         this.dateLoan = dateLoan;
         this.dateDevolution = dateDevolution;
-        this.renovationQuantity = renovationQuantity;
     }
 
     // Métodos get e set para idLoan
