@@ -34,8 +34,8 @@ public class BookDAOTest {
     @Test
     public void findByAuthor(){
         // verifica se o livro adicionando é o mesmo que foi encontrado pelo autor
-        for (Book books : DAO.getBookDAO().findByTitle("O Pequeno Príncipe")) {
-            assertEquals(books.getTitle(), this.book.getTitle());
+        for (Book books : DAO.getBookDAO().findByAuthor("Antoine de Saint-Exupéry")) {
+            assertEquals(books.getAuthor(), this.book.getAuthor());
         }
     }
 
