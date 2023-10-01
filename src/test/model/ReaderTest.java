@@ -20,14 +20,13 @@ public class ReaderTest {
     @BeforeEach
     public void setUp() {
         address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, 40000000);
-        reader = new Reader(2, "Nome do Leitor", "123", "xx xxxxx-xxxx", address);
+        reader = new Reader(1, "Nome do Leitor", "123", "xx xxxxx-xxxx", address);
         location = new BookLocation("Estante", "Corredor", "Seção");
         book = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
         dateLoan = LocalDate.now();
         dateDevolution = dateLoan.plusDays(10);
     }
-
-    // Caso de teste com multa vencida
+    
     @Test
     public void testAreFinedWithExpiredFine() {
         reader.blockReader(reader); // definindo leitor previamente como bloqueado
@@ -37,7 +36,6 @@ public class ReaderTest {
         assertFalse(isBlocked); // Deve retornar false após a chamada ao método
     }
 
-    // Caso de teste com multa válida
     @Test
     public void testAreFinedWithValidFine() {
         reader.blockReader(reader); // definindo leitor previamente como bloqueado
@@ -47,7 +45,6 @@ public class ReaderTest {
         assertTrue(isBlocked); // Deve retornar true após a chamada ao método
     }
 
-    // Caso de teste do leitor sem multa
     @Test
     public void testAreFinedWithoutFine() {
         reader.fineDeadline = null; // Sem data de vencimento da multa
@@ -56,29 +53,58 @@ public class ReaderTest {
         assertFalse(isBlocked); // Deve retornar false após a chamada ao método
     }
 
-    // Teste com um empréstimo finalizado
     @Test
-    public void renewFinalizedLoan() throws LoanException {
-        Loan loan = new Loan(1, 1, book, dateLoan, dateDevolution, 0);
+    public void testRenewFinalizedLoan() throws LoanException {
+        Loan loan = new Loan(1, 1, book, dateLoan, dateDevolution);
+        loan.setActive(false);
 
+        try {
+            reader.renewLoan(reader, loan, book);
+        } catch (LoanException e) {
+            // Verifique se a exceção tem a mensagem correta.
+            assertEquals(LoanException.FinalizedLoan, e.getMessage());
+        }
     }
 
-    // Teste com uma fila de reserva vazia
     @Test
-    public void testRenewWithEmptyReservationQueue() {
+    public void testRenewWithReservationQueue() {
+        Loan loan = new Loan(1, 1, book, dateLoan, dateDevolution);
+        loan.setActive(true);
 
+        // Garantindo que a fila não está vazia
+        Reader r = new Reader(2, "Nome", "Senha123", "xx xxxxx-xxxx", address);
+        book.getResevationQueue().add(r);
+
+        try {
+            reader.renewLoan(reader,loan, book);
+        } catch (Exception e) {
+            assertEquals(LoanException.ContainsPeople, e.getMessage());
+        }
     }
 
-    // Teste com um leitor bloqueado
     @Test
     public void testRenewWithBlockedReader() {
+        Loan loan = new Loan(1, 1, book, dateLoan, dateDevolution);
+        loan.setActive(true);
 
+        reader.blockReader(reader); // Garantindo que o leitor está bloqueado
+
+        try {
+            reader.renewLoan(reader, loan, book);
+        } catch (Exception e) {
+            assertEquals(LoanException.UserBlock, e.getMessage());
+        }
     }
 
-    // Teste com quantidade máxima de renovações atingida
     @Test
     public void testWithMaxRenewalsReached() {
-
+        Loan loan = new Loan(1, 1, book, dateLoan, dateDevolution);
+        loan.setActive(true);
+        loan.setRenovationQuantity(3); // Garantindo que o limite de renovações foi atingido
+        try {
+            reader.renewLoan(reader, loan, book);
+        } catch (Exception e) {
+            assertEquals(LoanException.RenewalExceeded, e.getMessage());
+        }
     }
-
 }
