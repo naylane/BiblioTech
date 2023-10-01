@@ -7,7 +7,7 @@ import org.junit.*;
 import static org.junit.Assert.*;
 
 public class AdmTest {
-    Residence address = new Residence("Bahia", "Feira de Santana", "Feira VI", "A", 14,44000000);
+    Residence address = new Residence("Bahia", "Feira de Santana", "Feira VI", "A", 14,"44000000");
     Adm adm = new Adm(0, "Garcia", "123", "75 94002-8922", address);
 
     @Test

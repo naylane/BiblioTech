@@ -137,6 +137,19 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
         if(!librarian.getBlock()){throw new UsersException(UsersException.AlreadyUserUnlock);}
         else{librarian.unlockLibrarian(librarian);}}
 
+    /**
+     * Proucura um leitor no sistema.
+     *
+     * @param reader O leitor a ser pesquisado.
+     * @return Leitor retornado.
+     * @throws UsersException Caso o leitor não seja encontrado, lança uma execeção.
+     */
+    public Reader readerSearch(Reader reader) throws UsersException{
+        if(readerDAO.findById(reader.getId()) == null){
+            throw new UsersException(UsersException.ReaderNotFound);}
+        else{
+            return readerDAO.findById(reader.getId());}}
+
     //GERENCIAMENTO DO ACERVO - a adição de livros o adm herda do bibliotecario
 
     /**
