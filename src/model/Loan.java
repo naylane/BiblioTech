@@ -1,5 +1,7 @@
 package model;
 
+import dao.loan.LoanDAOImpl;
+
 import java.time.LocalDate;
 
 /**
@@ -23,19 +25,18 @@ public class Loan {
     private LocalDate dateDevolution; //vai ser de 10 dias e chama a função que soma +10 dias a data do emprestimo
     private int renovationQuantity; //limite de 3 renovacoes do livro
     private boolean active = true; // boolean que diz se o empréstimo já foi devolvido ou não (false = sim, true - não)
-
+    LoanDAOImpl loanDAO = new LoanDAOImpl();
     /**
      * Construtor da classe Loan.
      *
-     * @param idLoan           O ID do empréstimo.
      * @param idUser           O ID do usuário associado ao empréstimo.
      * @param book             O livro emprestado.
      * @param dateLoan         A data de empréstimo.
      * @param dateDevolution   A data de devolução prevista.
      * @param renovationQuantity A quantidade de renovações permitidas para o empréstimo.
      */
-    public Loan(long idLoan, long idUser, Book book, LocalDate dateLoan, LocalDate dateDevolution, int renovationQuantity) {
-        this.idLoan = idLoan;
+    public Loan(long idUser, Book book, LocalDate dateLoan, LocalDate dateDevolution, int renovationQuantity) {
+        this.idLoan = loanDAO.getNextId(); //gera o id automaticamente
         this.idUser = idUser;
         this.book = book;
         this.dateLoan = dateLoan;

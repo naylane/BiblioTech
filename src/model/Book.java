@@ -31,7 +31,7 @@ public class Book {
     private int quantityAvailable; //essa quantidade indica a quantidade desse livro disponivel em um dado momento
     private int quantityTotal;   //essa quantidade indica a quantidade desse livro total no sistema
     private Queue<Reader> reservationQueue = new LinkedList<>(); //Queue: fila em java
-    private int quantityLoan=0; //quantidade de emprestimos
+    private int quantityLoan; //quantidade de emprestimos
 
     /**
      * Construtor da classe Book para criar um novo livro.
@@ -55,7 +55,9 @@ public class Book {
         this.category = category;
         this.location = location;
         this.quantityAvailable = quantity;
-        this.quantityTotal = quantity;}
+        this.quantityTotal = quantity;
+        this.quantityLoan = 0;
+    }
 
     public void chekQuantity(int quantity)  throws BookException{
         if(quantity<=0){throw new BookException(BookException.QuantityErro);}

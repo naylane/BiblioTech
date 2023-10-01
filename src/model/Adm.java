@@ -101,54 +101,42 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
      * Bloqueia um leitor no sistema.
      *
      * @param reader O leitor a ser bloqueado.
-     * @throws UsersException se ocorrer um erro durante o bloqueio do leitor.
      */
-    public void blockReader(Reader reader) throws UsersException{
-        if(reader.getBlock()){throw new UsersException(UsersException.AlreadyUserBlock);}
-        else{reader.blockReader(reader);}}
+    public void blockReader(Reader reader) {
+        reader.blockReader(reader);}
 
     /**
      * Desbloqueia um leitor no sistema.
      *
      * @param reader O leitor a ser desbloqueado.
-     * @throws UsersException se ocorrer um erro durante o desbloqueio do leitor.
      */
-    public void unlockReader(Reader reader) throws UsersException {
-        if(!reader.getBlock()){throw new UsersException(UsersException.AlreadyUserUnlock);}
-        else{reader.unlockReader(reader);}}
+    public void unlockReader(Reader reader) {
+        reader.unlockReader(reader);}
 
     /**
      * Bloqueia um bibliotecário no sistema.
      *
      * @param librarian O bibliotecário a ser bloqueado.
-     * @throws UsersException se ocorrer um erro durante o bloqueio do bibliotecário.
      */
-    public void blockLibrarian(Librarian librarian) throws UsersException {
-        if(librarian.getBlock()){throw new UsersException(UsersException.AlreadyUserBlock);}
-        else{librarian.blockLibrarian(librarian);}}
+    public void blockLibrarian(Librarian librarian) {
+        librarian.blockLibrarian(librarian);}
 
     /**
      * Desbloqueia um bibliotecário no sistema.
      *
      * @param librarian O bibliotecário a ser desbloqueado.
-     * @throws UsersException se ocorrer um erro durante o desbloqueio do bibliotecário.
      */
-    public void unlockLibrarian(Librarian librarian) throws UsersException{
-        if(!librarian.getBlock()){throw new UsersException(UsersException.AlreadyUserUnlock);}
-        else{librarian.unlockLibrarian(librarian);}}
+    public void unlockLibrarian(Librarian librarian) {
+        librarian.unlockLibrarian(librarian);}
 
     /**
      * Proucura um leitor no sistema.
      *
      * @param reader O leitor a ser pesquisado.
      * @return Leitor retornado.
-     * @throws UsersException Caso o leitor não seja encontrado, lança uma execeção.
      */
-    public Reader readerSearch(Reader reader) throws UsersException{
-        if(readerDAO.findById(reader.getId()) == null){
-            throw new UsersException(UsersException.ReaderNotFound);}
-        else{
-            return readerDAO.findById(reader.getId());}}
+    public Reader readerSearch(Reader reader) {
+            return readerDAO.findById(reader.getId());}
 
     //GERENCIAMENTO DO ACERVO - a adição de livros o adm herda do bibliotecario
 

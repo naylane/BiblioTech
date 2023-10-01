@@ -26,8 +26,10 @@ import java.time.LocalDate;
 public class Reader extends User {
 
     ReaderDAOImpl readerDAO = new ReaderDAOImpl(); //se quiser usar as opreções do DAO, uma das formas é criar um objeto
-    public Boolean block; // diz se o leitor está bloqueado ou não: false - não e true - sim
-    public LocalDate fineDeadline; //data final que o leitor está bloqueado
+    private Boolean block; // diz se o leitor está bloqueado ou não: false - não e true - sim
+    private LocalDate fineDeadline; //data final que o leitor está bloqueado
+    private int loanLimit; //limite de emprestimos no momento
+
 
     /**
      * Construtor da classe Reader que cria um novo leitor com os atributos
@@ -42,6 +44,7 @@ public class Reader extends User {
     public Reader(long id, String name, String pin, String phone, Residence address) { //construtor reader
         super(id, name, pin, phone, address);
         this.fineDeadline = null;
+        this.loanLimit = 3;
     }
 
     /**
@@ -50,11 +53,35 @@ public class Reader extends User {
      * @return True se o leitor estiver bloqueado, False caso contrário.
      */
     public Boolean getBlock(){
-        if(block){ //block == true
-            return true;
-        } else {
-            return false;
-        }
+        return block;
+    }
+    public void setBlock(Boolean block){
+        this.block = block;
+    }
+    public LocalDate getFineDeadline(){
+        return fineDeadline;
+    }
+    public void setFineDeadline(LocalDate fineDeadline){
+        this.fineDeadline = fineDeadline;
+    }
+    public int getLoanLimit(){
+        return loanLimit;
+    }
+
+    /**
+     * decrementa o limite de emprestimo.
+     *
+     */
+    public void drecreaseLoanLimit(){
+        this.loanLimit -= 1;
+    }
+
+    /**
+     * incrementa o limite de emprestimo.
+     *
+     */
+    public void increaseLoanLimit(){
+        this.loanLimit += 1;
     }
 
     /**
@@ -92,12 +119,16 @@ public class Reader extends User {
      * @param reader leitor
      * @param book livro
      **/
-    public void makeReservation(Reader reader, Book book) throws BookException { //verefica se tem livro disponivel
+    public void makeReservation(Reader reader, Book book) throws BookException, UsersException { //verefica se tem livro disponivel
         if(book.getQuantityAvailable() > 0){
             throw new BookException(BookException.Available); //logo, vc pode ir fazer o emprestimo com o bibliotecario
         }
         else{
-            book.addReservationQueue(reader); }} //entra na fila de reserva
+            if(reader.block){
+                throw new UsersException(UsersException.UserBlock);
+            }else{
+            book.addReservationQueue(reader); }}} //entra na fila de reserva
+
     /**
      * Método que retira um leitor a fila de reserva de determinado livro.
      * @param reader leitor

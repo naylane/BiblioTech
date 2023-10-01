@@ -59,7 +59,7 @@ public class Librarian extends User{
      * @param librarian O bibliotecário a ser bloqueado.
      * @throws UsersException se ocorrer um erro durante o bloqueio do bibliotecário.
      */
-    public void blockLibrarian(Librarian librarian) throws UsersException {
+    public void blockLibrarian(Librarian librarian) {
         librarian.block = true;
     }
 
@@ -69,7 +69,7 @@ public class Librarian extends User{
      * @param librarian O bibliotecário a ser desbloqueado.
      * @throws UsersException se ocorrer um erro durante o desbloqueio do bibliotecário.
      */
-    public void unlockLibrarian(Librarian librarian) throws UsersException {
+    public void unlockLibrarian(Librarian librarian) {
         librarian.block = false;
     }
 
@@ -108,40 +108,41 @@ public class Librarian extends User{
                 if(reader.getBlock()){ //retorna true se estiver block
                     throw new LoanException(UsersException.UserBlock);}
                 else{
-                    // Gera automaticamente o ID do empréstimo
-                    long loanId = loanDAO.getNextId();
-                    LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
-                    // Calcule a data de devolução (10 dias a partir da data de empréstimo)
-                    LocalDate dateDevolution = dateEnd(dateLoan);
-                    // Criando um emprestimo
-                    Loan loan = new Loan(loanId, reader.getId(), book, dateLoan, dateDevolution, 0);
-                    //Usando o DAO para adicionar o emprestimo ao banco de dados
-                    LoanDAO loandao = DAO.getLoanDAO();
-                    loandao.creat(loan);
-                    book.setQuantityLoan(1); //soma a variavel da quantidade de emprestimo
-                    book.setQuantityAvailable(book.getQuantityAvailable() - 1); // atualizando a quantidade disponível do livro
-                    report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
-                    DAO.getReportDAO().save(report); // salva o relatório
+                    if(reader.getLoanLimit() == 0){throw new LoanException(LoanException.LoanLimit);
+                    }else{creatLoan(reader, book);}
                 }
             }else{ //aq no caso de ter elementos na fila
                 if(book.getResevationQueue().element() == reader){  //no caso de o leitor ser o primeiro da fila, realiza o emprestimo, se não ele tem que reservar o livro
-                    // Gere automaticamente o ID do empréstimo
-                    long loanId = loanDAO.getNextId();
-                    LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
-                    // Calcule a data de devolução (10 dias a partir da data de empréstimo)
-                    LocalDate dateDevolution = dateEnd(dateLoan);
-                    // Criando um emprestimo
-                    Loan loan = new Loan(loanId, reader.getId(), book, dateLoan, dateDevolution, 0);
-                    //Usando o DAO para adicionar o emprestimo ao banco de dados
-                    LoanDAO loandao = DAO.getLoanDAO();
-                    loandao.creat(loan); //adicionando no banco de dados
-                    book.setQuantityLoan(1); //soma a variavel da quantidade de emprestimo
-                    book.setQuantityAvailable(book.getQuantityAvailable() - 1); // atualizando a quantidade disponível do livro
-                    report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
-                    DAO.getReportDAO().save(report); // salva o relatório
-                    book.getResevationQueue().remove(); //removendo o primeiro elemento após concluir o emprestimo
+                    if(reader.getBlock()){ //retorna true se estiver block
+                        throw new LoanException(UsersException.UserBlock);}
+                    else{
+                        if(reader.getLoanLimit() == 0){throw new LoanException(LoanException.LoanLimit);
+                        }else{creatLoan(reader, book);}}
                 }else{
                     throw new BookException(BookException.NotAvailable);}}}}
+
+    /**
+     * Cria um novo leitor no sistema.
+     *
+     * @param reader   O leitor do emprestimo.
+     * @param book     O livro do emprestimo.
+     *
+     */
+    public Loan creatLoan(Reader reader, Book book){
+        LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
+        // Calcule a data de devolução (10 dias a partir da data de empréstimo)
+        LocalDate dateDevolution = dateEnd(dateLoan);
+        // Criando um emprestimo
+        Loan loan = new Loan(reader.getId(), book, dateLoan, dateDevolution, 0);
+        //Usando o DAO para adicionar o emprestimo ao banco de dados
+        LoanDAO loandao = DAO.getLoanDAO();
+        loandao.creat(loan);
+        book.setQuantityLoan(1); //soma a variavel da quantidade de emprestimo
+        book.setQuantityAvailable(book.getQuantityAvailable() - 1); // atualizando a quantidade disponível do livro
+        report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
+        reader.increaseLoanLimit();
+        DAO.getReportDAO().save(report); // salva o relatório
+        return loan;}
 
     /**
      * Registra um novo livro no sistema.
@@ -183,13 +184,14 @@ public class Librarian extends User{
             if (now.isAfter(loan.getDateDevolution())) { // se a data de devolução passou do esperado
                 // leitor é multado
                 long days = ChronoUnit.DAYS.between(loan.getDateDevolution(), now) * 2; // dobro de dias de atraso
-                reader.fineDeadline = LocalDate.now().plusDays(days);
-                reader.block = true;
+                reader.setFineDeadline(LocalDate.now().plusDays(days));
+                reader.setBlock(true);
             }
             // devolve o livro
             loan.setActive(false); // mudando o estado de ativo do emprestimo para falso
             Book book = loan.getBook();
             book.setQuantityAvailable(book.getQuantityAvailable() + 1); // atualizando a quantidade de determinado livro disponível
             report.takeOutBorrowedBook(book); //remove da lista de livros emprestados no momento
+            reader.increaseLoanLimit();
         }}
 }

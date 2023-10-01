@@ -59,25 +59,17 @@ public class Report {
      * @return A quantidade de livros emprestados.
      * @throws BookException Se não houver livros emprestados no momento.
      */
-    public int quantityBorrowedBooks() throws BookException {
-        if (borrowedBooks.isEmpty()) {
-            throw new BookException(BookException.NoBorrowedBooks);
-        } else {
-            return borrowedBooks.size();
-        }
-    }
+    public int quantityBorrowedBooks() {
+            return borrowedBooks.size();}
+
     /**
      * Gera uma lista dos livros atualmente emprestados.
      *
      * @return Uma lista dos livros emprestados.
      * @throws BookException Se não houver livros emprestados no momento.
      */
-    public List<Book> generatesBorrowedBooks() throws BookException {
-        if (borrowedBooks.isEmpty()) {
-            throw new BookException(BookException.NoBorrowedBooks);
-        } else {
-            return borrowedBooks;
-        }
+    public List<Book> generatesBorrowedBooks() {
+        return borrowedBooks;
     }
 
     //LATE BOOKS
@@ -87,33 +79,22 @@ public class Report {
      * @return Uma lista dos livros atrasados.
      * @throws BookException Se não houver livros atrasados no momento.
      */
-    public List<Book> generatesLateBooks() throws BookException {
+    public List<Book> generatesLateBooks() {
         Map<Long, Loan> LoanMap = loans.getLoanMap();
         for (Loan loan : LoanMap.values()) {
             LocalDate now = LocalDate.now();
             if (now.isAfter(loan.getDateDevolution())) {
                 lateBooks.add(loan.getBook());
             }
-        }
-        if (lateBooks.isEmpty()) {
-            throw new BookException(BookException.NoLateBooks);
-        } else {
-            return lateBooks;
-        }
+        }return lateBooks;
     }
     /**
      * Retorna a quantidade de livros atrasados no momento.
      *
      * @return A quantidade de livros atrasados.
-     * @throws BookException Se não houver livros atrasados no momento.
      */
-    public int quantityLateBooks() throws BookException {
-        if (lateBooks.isEmpty()) {
-            throw new BookException(BookException.NoLateBooks);
-        } else {
-            return lateBooks.size();
-        }
-    }
+    public int quantityLateBooks() {
+        return lateBooks.size();}
 
     //RESERVED BOOKS
     /**
@@ -134,24 +115,17 @@ public class Report {
      * Retorna a quantidade de livros reservados no momento.
      *
      * @return A quantidade de livros reservados.
-     * @throws BookException Se não houver livros reservados no momento.
      */
-    public int quantityReservedBooks() throws BookException {
-        if (reservedBooks.isEmpty()) {
-            throw new BookException(BookException.NoReservedBooks);
-        } else {
-            return reservedBooks.size();
-        }
-    }
+    public int quantityReservedBooks() {
+        return reservedBooks.size();}
 
     //POPULAR BOOK
     /**
      * Retorna uma lista dos livros mais populares, ou seja, aqueles com a maior quantidade de empréstimos.
      *
      * @return Uma lista dos livros mais populares.
-     * @throws LoanException Se não houver empréstimos registrados no momento.
      */
-    public List<Book> generateBookHighestPopular() throws LoanException {
+    public List<Book> generateBookHighestPopular() {
         int highestValue = 0;
         List<Book> bookPopular = null;
         Map<String, Book> BookMap = books.getBookMap();
@@ -163,12 +137,7 @@ public class Report {
                 highestValue = value;
                 bookPopular.add(book);
             }
-        }
-        if (bookPopular == null) {
-            throw new LoanException(LoanException.NoLoan);
-        } else {
-            return bookPopular;
-        }
+        }return bookPopular;
     }
 
     //LOAN HISTORY
@@ -177,9 +146,8 @@ public class Report {
      *
      * @param reader O leitor para o qual o histórico de empréstimos será gerado.
      * @return Uma lista de empréstimos realizados pelo usuário.
-     * @throws LoanException Se o usuário não tiver histórico de empréstimo registrado.
      */
-    public List<Loan> genareteUserLoan(Reader reader) throws LoanException {
+    public List<Loan> genareteUserLoan(Reader reader) {
         List<Loan> loanHistory = null;
         Map<Long, Loan> LoanMap = loans.getLoanMap();
         Long idReader = reader.getId();
@@ -187,12 +155,8 @@ public class Report {
             if (idReader == loan.getIdUser()) {
                 loanHistory.add(loan);
             }
+        }return loanHistory;
         }
-        if (loanHistory == null) {
-            throw new LoanException(LoanException.NoUserLoan);
-        } else {
-            return loanHistory;
-        }}
 }
 
 
