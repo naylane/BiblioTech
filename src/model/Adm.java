@@ -32,14 +32,14 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
     /**
      * Construtor da classe Adm para criar um novo administrador.
      *
-     * @param id      O ID do administrador.
      * @param name    O nome do administrador.
      * @param pin     A senha do administrador.
      * @param phone   O número de telefone do administrador.
      * @param address O endereço do administrador.
      */
-    public Adm(long id, String name, String pin, String phone, Residence address) {
-        super(id, name, pin, phone, address);
+    public Adm(String name, String pin, String phone, Residence address) {
+        super(name, pin, phone, address);
+        this.setId(readerDAO.getNextId());
     }
 
     //CRIAÇÃO DE USERS
@@ -55,7 +55,7 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
      */
     public Reader creatReader(String name, String pin, String phone, Residence address){
         long id = readerDAO.getNextId();
-        Reader reader = new Reader(id, name, pin, phone, address);
+        Reader reader = new Reader(name, pin, phone, address);
         //adicionar o reader ao banco de dados - falta fazer o dao reader
         ReaderDAO readerDao = DAO.getReaderDAO();
         readerDao.creat(reader); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
@@ -72,7 +72,7 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
      */
     public Librarian creatLibrariam(String name, String pin, String phone, Residence address){ //bibliotecario não tem id
         long id = librarianDAO.getNextId();
-        Librarian librarian = new Librarian(id, name, pin, phone, address);
+        Librarian librarian = new Librarian(name, pin, phone, address);
         //adicionar o reader ao banco de dados
         LibrarianDAO librarianDao = DAO.getLibrarianDAO();
         librarianDao.creat(librarian); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
@@ -89,7 +89,7 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
      */
     public Adm creatAdm(String name, String pin, String phone, Residence address){
         long id = admDAO.getNextId();
-        Adm adm = new Adm(id, name, pin, phone, address);
+        Adm adm = new Adm(name, pin, phone, address);
 
         AdmDAO admDao = DAO.getAdmDAO();
         admDao.creat(adm); //criou o book no banco de dados e armazenou no map tendo o seu id como chave

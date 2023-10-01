@@ -28,14 +28,12 @@ public class User {
     /**
      * Construtor da classe User.
      *
-     * @param id      O ID do usuário.
      * @param name    O nome do usuário.
      * @param pin     A senha do usuário.
      * @param phone   O telefone do usuário.
      * @param address O endereço do usuário.
      */
-    public User(long id, String name, String pin, String phone, Residence address){
-        this.id = id;
+    public User(String name, String pin, String phone, Residence address){
         this.name = name;
         this.pin = pin;
         this.phone = phone;

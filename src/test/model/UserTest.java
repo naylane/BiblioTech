@@ -17,7 +17,7 @@ public class UserTest {
     public void setUp() {
         // Configurando objetos para teste
         address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, 40000000);
-        user = new User(2, "Nome do Usuário", "Senha123", "xx xxxxx-xxxx", address);
+        user = new User("Nome do Usuário", "Senha123", "xx xxxxx-xxxx", address);
         location = new BookLocation("Estante", "Corredor", "Seção");
         book = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
         //DAO.getBookDAO().creat(book);

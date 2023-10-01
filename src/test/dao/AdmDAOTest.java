@@ -19,9 +19,9 @@ public class AdmDAOTest {
     @BeforeEach
     public void setUp() {
         admDAO = DAO.getAdmDAO();
-        Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, 40000000);
-        adm0 = new Adm(0, "Nome do ADM 0", "Senha123", "xx xxxxx-xxxx", address);
-        adm1 = new Adm(0, "Nome do ADM 1", "Senha456", "xx xxxxx-xxxx", address);
+        Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
+        adm0 = new Adm("Nome do ADM 0", "Senha123", "xx xxxxx-xxxx", address);
+        adm1 = new Adm("Nome do ADM 1", "Senha456", "xx xxxxx-xxxx", address);
     }
 
     @AfterEach

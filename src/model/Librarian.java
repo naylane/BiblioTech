@@ -33,14 +33,15 @@ public class Librarian extends User{
     /**
      * Construtor da classe Librarian para criar um novo bibliotecário.
      *
-     * @param id      O ID do bibliotecário.
      * @param name    O nome do bibliotecário.
      * @param pin     A senha do bibliotecário.
      * @param phone   O número de telefone do bibliotecário.
      * @param address O endereço do bibliotecário.
      */
-    public Librarian(long id, String name, String pin, String phone, Residence address) {
-        super(id, name, pin, phone, address);}
+    public Librarian(String name, String pin, String phone, Residence address) {
+        super(name, pin, phone, address);
+        this.setId(loanDAO.getNextId());
+    }
 
     /**
      * Obtém o status de bloqueio do bibliotecário.
@@ -57,7 +58,6 @@ public class Librarian extends User{
      * Bloqueia o bibliotecário.
      *
      * @param librarian O bibliotecário a ser bloqueado.
-     * @throws UsersException se ocorrer um erro durante o bloqueio do bibliotecário.
      */
     public void blockLibrarian(Librarian librarian) {
         librarian.block = true;
@@ -67,7 +67,6 @@ public class Librarian extends User{
      * Desbloqueia o bibliotecário.
      *
      * @param librarian O bibliotecário a ser desbloqueado.
-     * @throws UsersException se ocorrer um erro durante o desbloqueio do bibliotecário.
      */
     public void unlockLibrarian(Librarian librarian) {
         librarian.block = false;

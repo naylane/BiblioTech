@@ -35,14 +35,14 @@ public class Reader extends User {
      * Construtor da classe Reader que cria um novo leitor com os atributos
      * fornecidos e inicializa o estado de bloqueio como falso (não bloqueado).
      *
-     * @param id      O ID do leitor.
      * @param name    O nome do leitor.
      * @param pin     O código PIN do leitor.
      * @param phone   O número de telefone do leitor.
      * @param address O endereço do leitor.
      */
-    public Reader(long id, String name, String pin, String phone, Residence address) { //construtor reader
-        super(id, name, pin, phone, address);
+    public Reader(String name, String pin, String phone, Residence address) { //construtor reader
+        super(name, pin, phone, address);
+        this.setId(readerDAO.getNextId());
         this.fineDeadline = null;
         this.loanLimit = 3;
     }
