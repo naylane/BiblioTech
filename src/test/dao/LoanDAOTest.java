@@ -29,17 +29,14 @@ public class LoanDAOTest {
 
     @Test
     public void testAddLoan() {
-        LocalDate dateLoan = LocalDate.now(); //diz a data do dia atual ou seja, a data do emprestimo
-        LocalDate dateDevolution = dateLoan.plusDays(10); // Calcule a data de devolução (10 dias a partir da data de empréstimo)
-        Loan loan = new Loan(9, book, dateLoan, dateDevolution);
-
-        DAO.getLoanDAO().creat(loan);
+        DAO.getLoanDAO().creat(loan1);
         assertFalse(DAO.getLoanDAO().findAll().isEmpty()); // verifica se a lista está vazia
     }
 
     @Test
     public void testFindById() {
-        assertNotNull(DAO.getLoanDAO().findById(9)); // verifica se é encontrado um livro pelo isbn
+        DAO.getLoanDAO().creat(loan1);
+        assertNotNull(DAO.getLoanDAO().findById(0)); // verifica se é encontrado um livro pelo isbn
     }
 
     @Test
