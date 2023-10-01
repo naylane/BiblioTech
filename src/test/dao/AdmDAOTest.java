@@ -8,7 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AdmDAOTest {
     private AdmDAO admDAO;
@@ -20,6 +20,8 @@ public class AdmDAOTest {
     public void setUp() {
         admDAO = DAO.getAdmDAO();
         Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
+        adm0 = new Adm("Nome do ADM 0", "Senha123", "xx xxxxx-xxxx", address);
+        adm1 = new Adm("Nome do ADM 1", "Senha456", "xx xxxxx-xxxx", address);
         adm0 = new Adm("Nome do ADM 0", "Senha123", "xx xxxxx-xxxx", address);
         adm1 = new Adm("Nome do ADM 1", "Senha456", "xx xxxxx-xxxx", address);
     }
@@ -52,11 +54,12 @@ public class AdmDAOTest {
         assertTrue(qntAfter > qntBefore);
     }
 
+    @Test
     public void testUpdate() {
         // Adicionando um adm
         admDAO.creat(adm0);
         // Criando adm com informações diferentes ao adm 0
-        Adm editedAdm = new Adm(0, "Nome Alterado", "Senha alterada", "xx xxxxx-xxxx", address);
+        Adm editedAdm = new Adm("Nome Alterado", "Senha alterada", "xx xxxxx-xxxx", address);
         // Editando
         admDAO.update(editedAdm);
 

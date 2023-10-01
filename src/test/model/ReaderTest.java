@@ -1,13 +1,15 @@
 package test.model;
 
+import exceptions.BookException;
 import exceptions.LoanException;
+import exceptions.UsersException;
 import model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ReaderTest {
     private Residence address;
@@ -18,9 +20,9 @@ public class ReaderTest {
     private LocalDate dateDevolution;
 
     @BeforeEach
-    public void setUp() {
-        address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, 40000000);
-        reader = new Reader(1, "Nome do Leitor", "123", "xx xxxxx-xxxx", address);
+    public void setUp() throws BookException {
+        address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
+        reader = new Reader("Nome do Leitor", "123", "xx xxxxx-xxxx", address);
         location = new BookLocation("Estante", "Corredor", "Seção");
         book = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
         dateLoan = LocalDate.now();
@@ -30,7 +32,7 @@ public class ReaderTest {
     @Test
     public void testAreFinedWithExpiredFine() {
         reader.blockReader(reader); // definindo leitor previamente como bloqueado
-        reader.fineDeadline = LocalDate.now().minusDays(1); // Data de vencimento expirada
+        reader.setFineDeadline(LocalDate.now().minusDays(1)); // Data de vencimento expirada
         boolean isBlocked = reader.areFined(reader);
 
         assertFalse(isBlocked); // Deve retornar false após a chamada ao método
@@ -39,7 +41,7 @@ public class ReaderTest {
     @Test
     public void testAreFinedWithValidFine() {
         reader.blockReader(reader); // definindo leitor previamente como bloqueado
-        reader.fineDeadline = LocalDate.now().plusDays(1); // Data de vencimento futura
+        reader.setFineDeadline(LocalDate.now().plusDays(1)); // Data de vencimento futura
         boolean isBlocked = reader.areFined(reader);
 
         assertTrue(isBlocked); // Deve retornar true após a chamada ao método
@@ -47,7 +49,7 @@ public class ReaderTest {
 
     @Test
     public void testAreFinedWithoutFine() {
-        reader.fineDeadline = null; // Sem data de vencimento da multa
+        reader.setFineDeadline(null); // Sem data de vencimento da multa
         boolean isBlocked = reader.areFined(reader);
 
         assertFalse(isBlocked); // Deve retornar false após a chamada ao método
@@ -55,12 +57,12 @@ public class ReaderTest {
 
     @Test
     public void testRenewFinalizedLoan() throws LoanException {
-        Loan loan = new Loan(1, 1, book, dateLoan, dateDevolution);
+        Loan loan = new Loan(reader.getId(), book, dateLoan, dateDevolution);
         loan.setActive(false);
 
         try {
-            reader.renewLoan(reader, loan, book);
-        } catch (LoanException e) {
+            reader.renewLoan(loan, book);
+        } catch (LoanException | UsersException e) {
             // Verifique se a exceção tem a mensagem correta.
             assertEquals(LoanException.FinalizedLoan, e.getMessage());
         }
@@ -68,15 +70,15 @@ public class ReaderTest {
 
     @Test
     public void testRenewWithReservationQueue() {
-        Loan loan = new Loan(1, 1, book, dateLoan, dateDevolution);
+        Loan loan = new Loan(1, book, dateLoan, dateDevolution);
         loan.setActive(true);
 
         // Garantindo que a fila não está vazia
-        Reader r = new Reader(2, "Nome", "Senha123", "xx xxxxx-xxxx", address);
+        Reader r = new Reader("Nome", "Senha123", "xx xxxxx-xxxx", address);
         book.getResevationQueue().add(r);
 
         try {
-            reader.renewLoan(reader,loan, book);
+            reader.renewLoan(loan, book);
         } catch (Exception e) {
             assertEquals(LoanException.ContainsPeople, e.getMessage());
         }
@@ -84,25 +86,25 @@ public class ReaderTest {
 
     @Test
     public void testRenewWithBlockedReader() {
-        Loan loan = new Loan(1, 1, book, dateLoan, dateDevolution);
+        Loan loan = new Loan(1, book, dateLoan, dateDevolution);
         loan.setActive(true);
 
         reader.blockReader(reader); // Garantindo que o leitor está bloqueado
 
         try {
-            reader.renewLoan(reader, loan, book);
+            reader.renewLoan(loan, book);
         } catch (Exception e) {
-            assertEquals(LoanException.UserBlock, e.getMessage());
+            assertEquals(UsersException.UserBlock, e.getMessage());
         }
     }
 
     @Test
     public void testWithMaxRenewalsReached() {
-        Loan loan = new Loan(1, 1, book, dateLoan, dateDevolution);
+        Loan loan = new Loan(1, book, dateLoan, dateDevolution);
         loan.setActive(true);
         loan.setRenovationQuantity(3); // Garantindo que o limite de renovações foi atingido
         try {
-            reader.renewLoan(reader, loan, book);
+            reader.renewLoan(loan, book);
         } catch (Exception e) {
             assertEquals(LoanException.RenewalExceeded, e.getMessage());
         }

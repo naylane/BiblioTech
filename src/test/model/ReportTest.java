@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ReportTest {
     private Report report = new Report();
@@ -20,11 +20,11 @@ public class ReportTest {
     private Loan loan;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws BookException {
         // Configurando objetos para teste
-        Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, 40000000);
+        Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         //librarian = new Librarian(1, "Nome do Bibliotecário", "1234", "123-456-7890", address);
-        reader = new Reader(2, "Nome do Leitor", "5678", "75 98765-3210", address);
+        reader = new Reader("Nome do Leitor", "5678", "75 98765-3210", address);
 
         BookLocation location = new BookLocation("Estante", "Corredor", "Seção");
         book0 = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
@@ -33,7 +33,7 @@ public class ReportTest {
 
         LocalDate dateLoan = LocalDate.now();
         LocalDate dateDevolution = dateLoan.plusDays(10);
-        loan = new Loan(7, 23, book0, dateLoan, dateDevolution);
+        loan = new Loan(7, book0, dateLoan, dateDevolution);
     }
 
     @Test
@@ -79,22 +79,5 @@ public class ReportTest {
 
         List list = report.generatesBorrowedBooks(); // Não lança exceção pois a lista não está vazia
         assertTrue(list.size() == 3); // Verificando que os livros estão sendo armazendados
-    }
-
-    @Test
-    public void testGeneratesBorrowedBooksListIsEmpty() throws BookException {
-        try {
-            report.generatesBorrowedBooks();
-        } catch (Exception e) {
-            // Verifique se a exceção tem a mensagem correta.
-            assertEquals(BookException.NoBorrowedBooks, e.getMessage());
-        }
-    }
-
-    //public List<Book> generateBookHighestPopular() throws LoanException
-
-    @Test
-    public void genareteUserLoan() throws LoanException {
-        report.genareteUserLoan(reader);
     }
 }

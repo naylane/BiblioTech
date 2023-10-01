@@ -7,8 +7,7 @@ import model.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
-import static org.junit.Assert.*;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 
 public class LibrarianTest {
@@ -19,17 +18,17 @@ public class LibrarianTest {
     private Book book;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws BookException {
         // Configurando objetos para teste
-        address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, 40000000);
-        librarian = new Librarian(1, "Nome do Bibliotecário", "1234", "123-456-7890", address);
-        reader = new Reader(2, "Nome do Leitor", "5678", "75 98765-3210", address);
+        address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
+        librarian = new Librarian("Nome do Bibliotecário", "1234", "123-456-7890", address);
+        reader = new Reader("Nome do Leitor", "5678", "75 98765-3210", address);
         location = new BookLocation("Estante", "Corredor", "Seção");
         book = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
     }
 
     @Test
-    public void testRegisterBook() {
+    public void testRegisterBook() throws BookException {
         librarian.registerBook("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
                 "HarperCollins", 2018, "Romance", location, 4);
 
@@ -37,7 +36,7 @@ public class LibrarianTest {
     }
 
     @Test
-    public void testRegisterDuplicateBook() {
+    public void testRegisterDuplicateBook() throws BookException {
         librarian.registerBook("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
                 "HarperCollins", 2018, "Romance", location, 1);
 
@@ -63,7 +62,7 @@ public class LibrarianTest {
     @Test
     public void testRegisterDevolution() {
         // Configurando um empréstimo ativo
-        Loan activeLoan = new Loan(1, reader.getId(), book, LocalDate.now(), LocalDate.now().plusDays(10));
+        Loan activeLoan = new Loan(reader.getId(), book, LocalDate.now(), LocalDate.now().plusDays(10));
         activeLoan.setActive(true);
         book.setQuantityAvailable(book.getQuantityAvailable() - 1);
 

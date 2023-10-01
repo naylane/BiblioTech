@@ -1,10 +1,13 @@
 package test.model;
 
 import dao.DAO;
-import model.*;
-import org.junit.*;
+import model.Adm;
+import model.Librarian;
+import model.Reader;
+import model.Residence;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class AdmTest {
     Residence address = new Residence("Bahia", "Feira de Santana", "Feira VI", "A", 14,"44000000");

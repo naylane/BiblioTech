@@ -1,13 +1,14 @@
 package test.dao;
 
 import dao.DAO;
+import exceptions.BookException;
 import model.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.time.LocalDate;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class LoanDAOTest {
     private BookLocation location;
@@ -17,20 +18,20 @@ public class LoanDAOTest {
     private LocalDate dateDevolution;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws BookException {
         // Configurando objetos para teste
         location = new BookLocation("Estante", "Corredor", "Seção");
         book = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
         dateLoan = LocalDate.now();
         dateDevolution = dateLoan.plusDays(10);
-        loan1 = new Loan(7, 23, book, dateLoan, dateDevolution);
+        loan1 = new Loan(7, book, dateLoan, dateDevolution);
     }
 
     @Test
     public void testAddLoan() {
         LocalDate dateLoan = LocalDate.now(); //diz a data do dia atual ou seja, a data do emprestimo
         LocalDate dateDevolution = dateLoan.plusDays(10); // Calcule a data de devolução (10 dias a partir da data de empréstimo)
-        Loan loan = new Loan(9, 23, book, dateLoan, dateDevolution);
+        Loan loan = new Loan(9, book, dateLoan, dateDevolution);
 
         DAO.getLoanDAO().creat(loan);
         assertFalse(DAO.getLoanDAO().findAll().isEmpty()); // verifica se a lista está vazia
@@ -47,7 +48,7 @@ public class LoanDAOTest {
         DAO.getLoanDAO().creat(loan1);
 
         // Atualizando o empréstimo cujo número de identificação é igual a 7
-        Loan loan2 = new Loan(7, 23, book, dateLoan, dateDevolution);
+        Loan loan2 = new Loan(7, book, dateLoan, dateDevolution);
         DAO.getLoanDAO().update(loan2);
 
         // Pegando o retorno que a busca por ID retorna para fins de comparação

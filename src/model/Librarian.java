@@ -132,7 +132,7 @@ public class Librarian extends User{
         // Calcule a data de devolução (10 dias a partir da data de empréstimo)
         LocalDate dateDevolution = dateEnd(dateLoan);
         // Criando um emprestimo
-        Loan loan = new Loan(reader.getId(), book, dateLoan, dateDevolution, 0);
+        Loan loan = new Loan(reader.getId(), book, dateLoan, dateDevolution);
         //Usando o DAO para adicionar o emprestimo ao banco de dados
         LoanDAO loandao = DAO.getLoanDAO();
         loandao.creat(loan);

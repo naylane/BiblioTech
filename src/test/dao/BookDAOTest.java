@@ -1,15 +1,24 @@
 package test.dao;
 
 import dao.DAO;
-import model.*;
-import org.junit.*;
+import exceptions.BookException;
+import model.Book;
+import model.BookLocation;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BookDAOTest {
-    private final BookLocation location = new BookLocation("1", "4", "12");
-    private final Book book = new Book("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
-            "HarperCollins", 2018, "Romance", location, 1);
+    private BookLocation location;
+    private Book book;
+
+    @BeforeEach
+    public void setUp() throws BookException {
+        location = new BookLocation("1", "4", "12");
+        book = new Book("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
+                "HarperCollins", 2018, "Romance", location, 1);
+    }
 
     @Test
     public void testAddBook() {
@@ -48,7 +57,7 @@ public class BookDAOTest {
     }
 
     @Test
-    public void testUpdateBook() {
+    public void testUpdateBook() throws BookException {
         // CRIANDO LIVRO DIFERENTE
         Book alteredBook = new Book("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
                 "HarperCollins", 2018, "Romance", location, 2);
