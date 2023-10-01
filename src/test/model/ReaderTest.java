@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ReaderTest {
     private Residence address;
     private Reader reader;
-    private BookLocation location;
     private Book book;
     private LocalDate dateLoan;
     private LocalDate dateDevolution;
@@ -23,7 +22,7 @@ public class ReaderTest {
     public void setUp() throws BookException {
         address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         reader = new Reader("Nome do Leitor", "123", "xx xxxxx-xxxx", address);
-        location = new BookLocation("Estante", "Corredor", "Seção");
+        BookLocation location = new BookLocation("Estante", "Corredor", "Seção");
         book = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
         dateLoan = LocalDate.now();
         dateDevolution = dateLoan.plusDays(10);
@@ -56,12 +55,12 @@ public class ReaderTest {
     }
 
     @Test
-    public void testRenewFinalizedLoan() throws LoanException {
+    public void testRenewFinalizedLoan() {
         Loan loan = new Loan(reader.getId(), book, dateLoan, dateDevolution);
         loan.setActive(false);
 
         try {
-            reader.renewLoan(loan, book);
+            reader.renewLoan(reader, loan, book);
         } catch (LoanException | UsersException e) {
             // Verifique se a exceção tem a mensagem correta.
             assertEquals(LoanException.FinalizedLoan, e.getMessage());
@@ -78,7 +77,7 @@ public class ReaderTest {
         book.getResevationQueue().add(r);
 
         try {
-            reader.renewLoan(loan, book);
+            reader.renewLoan(reader, loan, book);
         } catch (Exception e) {
             assertEquals(LoanException.ContainsPeople, e.getMessage());
         }
@@ -92,7 +91,7 @@ public class ReaderTest {
         reader.blockReader(reader); // Garantindo que o leitor está bloqueado
 
         try {
-            reader.renewLoan(loan, book);
+            reader.renewLoan(reader, loan, book);
         } catch (Exception e) {
             assertEquals(UsersException.UserBlock, e.getMessage());
         }
@@ -104,7 +103,7 @@ public class ReaderTest {
         loan.setActive(true);
         loan.setRenovationQuantity(3); // Garantindo que o limite de renovações foi atingido
         try {
-            reader.renewLoan(loan, book);
+            reader.renewLoan(reader, loan, book);
         } catch (Exception e) {
             assertEquals(LoanException.RenewalExceeded, e.getMessage());
         }
