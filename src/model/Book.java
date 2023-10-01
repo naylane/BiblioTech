@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.BookException;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -43,7 +45,8 @@ public class Book {
      * @param location          O local onde o livro está armazenado.
      * @param quantity          A quantidade inicial de cópias disponíveis do livro.
      */
-    public Book(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
+    public Book(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) throws BookException {
+        chekQuantity(quantity);
         this.isbn = isbn;
         this.title = title;
         this.author = author;
@@ -53,6 +56,10 @@ public class Book {
         this.location = location;
         this.quantityAvailable = quantity;
         this.quantityTotal = quantity;}
+
+    public void chekQuantity(int quantity)  throws BookException{
+        if(quantity<=0){throw new BookException(BookException.QuantityErro);}
+    }
 
     /**
      * Adiciona um leitor à fila de reserva deste livro.
