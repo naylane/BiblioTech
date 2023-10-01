@@ -59,12 +59,15 @@ public class Report {
      * @return A quantidade de livros emprestados.
      * @throws BookException Se não houver livros emprestados no momento.
      */
-    public int quantityBorrowedBooks() throws BookException {
+    public int quantityBorrowedBooks() { // throws BookException
+        /*
         if (borrowedBooks.isEmpty()) {
             throw new BookException(BookException.NoBorrowedBooks);
         } else {
             return borrowedBooks.size();
         }
+         */
+        return borrowedBooks.size();
     }
     /**
      * Gera uma lista dos livros atualmente emprestados.
