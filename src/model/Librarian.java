@@ -106,7 +106,7 @@ public class Librarian extends User{
         else{
             if(book.getResevationQueue().isEmpty()){  //retorna true se a fila estiver vazia e false se tiver um elemento ao menos tiver uma pessoa
                 if(reader.getBlock()){ //retorna true se estiver block
-                    throw new LoanException(LoanException.UserBlock);}
+                    throw new LoanException(UsersException.UserBlock);}
                 else{
                     // Gera automaticamente o ID do empréstimo
                     long loanId = loanDAO.getNextId();
@@ -155,7 +155,7 @@ public class Librarian extends User{
      * @param location          O local onde o livro está armazenado.
      * @param quantity          A quantidade inicial de cópias disponíveis do livro.
      */
-    public void registerBook(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
+    public void registerBook(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) throws BookException {
         Book newBook = new Book(isbn, title, author, publishing_company, year_publication, category, location, quantity);
 
         for (Book book : DAO.getBookDAO().findAll()) {
