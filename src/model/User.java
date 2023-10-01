@@ -1,5 +1,6 @@
 package model;
 
+import dao.DAO;
 import exceptions.BookException;
 
 import java.util.List;
@@ -104,6 +105,18 @@ public class User {
     }
 
     /**
+     * Método para pesquisar livros por ISBN.
+     *
+     * @param isbn O ISBN do livro a ser pesquisado.
+     * @return O livro encontrado com o ISBN especificado.
+     * @throws BookException lança execeção caso o livro não seja encontrado.
+     */
+    public Book searchBookByIsbn(String isbn) throws BookException {
+        if (DAO.getBookDAO().findById(isbn) == null) { throw new BookException(BookException.BookNotFound);
+        } else { return DAO.getBookDAO().findById(isbn); }
+    }
+
+    /**
      * Método para pesquisar livros por título.
      *
      * @param title O título do livro a ser pesquisado.
@@ -137,6 +150,6 @@ public class User {
      */
     public List<Book> searchBooksByCategory(String category) throws BookException{
         // Chama o método de pesquisa por categoria no DAO de livros
-        if(bookDAO.findByAuthor(category).isEmpty()){throw new BookException(BookException.BookNotFound);}
+        if(bookDAO.findByCategory(category).isEmpty()){throw new BookException(BookException.BookNotFound);}
         else{return bookDAO.findByCategory(category);}}
 }
