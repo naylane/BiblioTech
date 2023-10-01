@@ -58,7 +58,7 @@ public class LibrarianTest {
         // Garantindo que o livro está disponível
         book.setQuantityAvailable(1);
         // Garantindo de que o leitor não está bloqueado
-        reader.block = false;
+        reader.setBlock(false);
         // Bibliotecário registra o empréstimo
         librarian.registerLoan(reader, book);
 
@@ -68,7 +68,7 @@ public class LibrarianTest {
     @Test
     public void testRegisterDevolution() {
         // Configurando um empréstimo ativo
-        Loan activeLoan = new Loan(1, reader.getId(), book, LocalDate.now(), LocalDate.now().plusDays(10), 0);
+        Loan activeLoan = new Loan(1, reader.getId(), book, LocalDate.now(), LocalDate.now().plusDays(10));
         activeLoan.setActive(true);
         book.setQuantityAvailable(book.getQuantityAvailable() - 1);
 

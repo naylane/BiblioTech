@@ -16,7 +16,7 @@ public class Residence {
     private String neighborhood; //bairro
     private String street;
     private int number;
-    private int cep;
+    private String cep;
     /**
      * Construtor da classe Residence.
      *
@@ -27,13 +27,14 @@ public class Residence {
      * @param number      O número do endereço.
      * @param cep         O CEP do endereço.
      */
-    public Residence(String state, String city, String neighborhood, String street, int number, int cep) {
+    public Residence(String state, String city, String neighborhood, String street, int number, String cep){
         this.state = state;
         this.city = city;
         this.neighborhood = neighborhood;
         this.street = street;
         this.number = number;
         this.cep = cep;}
+
     // Métodos Get
     public String getState() {
         return state;
@@ -50,7 +51,7 @@ public class Residence {
     public int getNumber() {
         return number;
     }
-    public int getCep() {
+    public String getCep() {
         return cep;
     }
     // Métodos Set
@@ -69,7 +70,7 @@ public class Residence {
     public void setNumber(int number) {
         this.number = number;
     }
-    public void setCep(int cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 }

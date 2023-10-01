@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.BookException;
+
 import java.util.List;
 
 import static dao.DAO.bookDAO;
@@ -108,31 +110,35 @@ public class User {
      *
      * @param title O título do livro a ser pesquisado.
      * @return Uma lista de livros encontrados com o título especificado.
+     * @throws BookException lança execeção caso o livro não seja encontrado.
      */
-    public List<Book> searchBookByTitle(String title) {
+    public List<Book> searchBookByTitle(String title) throws BookException{
         // Chama o método de pesquisa por título no DAO de livros
-        return bookDAO.findByTitle(title);
-    }
+        if(bookDAO.findByTitle(title).isEmpty()){throw new BookException(BookException.BookNotFound);}
+        else{return bookDAO.findByTitle(title);}}
 
     /**
      * Método para pesquisar livros por autor.
      *
      * @param author O autor do livro a ser pesquisado.
      * @return Uma lista de livros encontrados com o autor especificado.
+     * @throws BookException lança execeção caso o livro não seja encontrado.
      */
-    public List<Book> searchBooksByAuthor(String author) {
+    public List<Book> searchBooksByAuthor(String author) throws BookException{
         // Chama o método de pesquisa por autor no DAO de livros
-        return bookDAO.findByAuthor(author);
-    }
+        if(bookDAO.findByAuthor(author).isEmpty()){throw new BookException(BookException.BookNotFound);}
+        else{return bookDAO.findByAuthor(author);
+        }}
 
     /**
      * Método para pesquisar livros por categoria.
      *
      * @param category A categoria do livro a ser pesquisada.
      * @return Uma lista de livros encontrados na categoria especificada.
+     * @throws BookException lanaça execeção caso o livro não seja encontrado.
      */
-    public List<Book> searchBooksByCategory(String category) {
+    public List<Book> searchBooksByCategory(String category) throws BookException{
         // Chama o método de pesquisa por categoria no DAO de livros
-        return bookDAO.findByCategory(category);
-    }
+        if(bookDAO.findByAuthor(category).isEmpty()){throw new BookException(BookException.BookNotFound);}
+        else{return bookDAO.findByCategory(category);}}
 }

@@ -99,49 +99,48 @@ public class Librarian extends User{
      * @param book   O livro a ser emprestado.
      * @throws BookException se ocorrer um erro relacionado ao livro.
      * @throws LoanException se ocorrer um erro relacionado ao empréstimo.
+     * @throws UsersException se ocorrer um erro relacionado ao leitor.
      */
-    public void registerLoan(Reader reader, Book book) throws BookException, LoanException { // registrar emprestimo de leitor
+    public void registerLoan(Reader reader, Book book) throws BookException, LoanException, UsersException { // registrar emprestimo de leitor
         if(book.getQuantityAvailable() == 0){ //se tem livro disponivel
             throw new BookException(BookException.NotAvailable);}
         else{
             if(book.getResevationQueue().isEmpty()){  //retorna true se a fila estiver vazia e false se tiver um elemento ao menos tiver uma pessoa
                 if(reader.getBlock()){ //retorna true se estiver block
-                    throw new LoanException(LoanException.UserBlock);}
+                    throw new LoanException(UsersException.UserBlock);}
                 else{
-                    // Gera automaticamente o ID do empréstimo
-                    long loanId = loanDAO.getNextId();
-                    LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
-                    // Calcule a data de devolução (10 dias a partir da data de empréstimo)
-                    LocalDate dateDevolution = dateEnd(dateLoan);
-                    // Criando um emprestimo
-                    Loan loan = new Loan(loanId, reader.getId(), book, dateLoan, dateDevolution, 0);
-                    //Usando o DAO para adicionar o emprestimo ao banco de dados
-                    LoanDAO loandao = DAO.getLoanDAO();
-                    loandao.creat(loan);
-                    book.setQuantityLoan(1); //soma a variavel da quantidade de emprestimo
-                    book.setQuantityAvailable(book.getQuantityAvailable() - 1); // atualizando a quantidade disponível do livro
-                    report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
-                    DAO.getReportDAO().save(report); // salva o relatório
-                }
+                    if(reader.getLoanLimit() == 0){
+                        throw new UsersException(UsersException.LoanLimit);}
+                    else{
+                        creatLoan(book, reader);}} //aq manda para a função que de fato vai criar o emprestimo
             }else{ //aq no caso de ter elementos na fila
                 if(book.getResevationQueue().element() == reader){  //no caso de o leitor ser o primeiro da fila, realiza o emprestimo, se não ele tem que reservar o livro
-                    // Gere automaticamente o ID do empréstimo
-                    long loanId = loanDAO.getNextId();
-                    LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
-                    // Calcule a data de devolução (10 dias a partir da data de empréstimo)
-                    LocalDate dateDevolution = dateEnd(dateLoan);
-                    // Criando um emprestimo
-                    Loan loan = new Loan(loanId, reader.getId(), book, dateLoan, dateDevolution, 0);
-                    //Usando o DAO para adicionar o emprestimo ao banco de dados
-                    LoanDAO loandao = DAO.getLoanDAO();
-                    loandao.creat(loan); //adicionando no banco de dados
-                    book.setQuantityLoan(1); //soma a variavel da quantidade de emprestimo
-                    book.setQuantityAvailable(book.getQuantityAvailable() - 1); // atualizando a quantidade disponível do livro
-                    report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
-                    DAO.getReportDAO().save(report); // salva o relatório
-                    book.getResevationQueue().remove(); //removendo o primeiro elemento após concluir o emprestimo
+                    creatLoan(book, reader);
                 }else{
                     throw new BookException(BookException.NotAvailable);}}}}
+
+    /**
+     * criação de um empréstimo para um leitor.
+     *
+     * @param reader O leitor que está fazendo o empréstimo.
+     * @param book   O livro a ser emprestado.
+     */
+    public void creatLoan(Book book, Reader reader){
+        // Gera automaticamente o ID do empréstimo
+        long loanId = loanDAO.getNextId();
+        LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
+        // Calcule a data de devolução (10 dias a partir da data de empréstimo)
+        LocalDate dateDevolution = dateEnd(dateLoan);
+        // Criando um emprestimo
+        Loan loan = new Loan(loanId, reader.getId(), book, dateLoan, dateDevolution);
+        //Usando o DAO para adicionar o emprestimo ao banco de dados
+        LoanDAO loandao = DAO.getLoanDAO();
+        loandao.creat(loan);
+        book.setQuantityLoan(1); //soma a variavel da quantidade de emprestimo
+        book.setQuantityAvailable(book.getQuantityAvailable() - 1); // atualizando a quantidade disponível do livro
+        report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
+        reader.decreaseLoanLimit(); //diminuir o limite de emprestimo do leitor
+        DAO.getReportDAO().save(report);} // salva o relatório
 
     /**
      * Registra um novo livro no sistema.
@@ -155,9 +154,8 @@ public class Librarian extends User{
      * @param location          O local onde o livro está armazenado.
      * @param quantity          A quantidade inicial de cópias disponíveis do livro.
      */
-    public void registerBook(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) {
+    public void registerBook(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) throws BookException {
         Book newBook = new Book(isbn, title, author, publishing_company, year_publication, category, location, quantity);
-
         for (Book book : DAO.getBookDAO().findAll()) {
             if (book.getISBN() == newBook.getISBN()) { // se o isbn dos livros forem iguais
                 // já existe esse livro cadastrado logo só se soma a quantidade existente do livro
@@ -184,12 +182,13 @@ public class Librarian extends User{
                 // leitor é multado
                 long days = ChronoUnit.DAYS.between(loan.getDateDevolution(), now) * 2; // dobro de dias de atraso
                 reader.fineDeadline = LocalDate.now().plusDays(days);
-                reader.block = true;
+                reader.setBlock(true);
             }
             // devolve o livro
             loan.setActive(false); // mudando o estado de ativo do emprestimo para falso
             Book book = loan.getBook();
             book.setQuantityAvailable(book.getQuantityAvailable() + 1); // atualizando a quantidade de determinado livro disponível
             report.takeOutBorrowedBook(book); //remove da lista de livros emprestados no momento
+            reader.increaseLoanLimit(); //aumenta a quantidade de limite de emprestimo
         }}
 }
