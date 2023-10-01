@@ -32,14 +32,15 @@ public class Loan {
      * @param book             O livro emprestado.
      * @param dateLoan         A data de empréstimo.
      * @param dateDevolution   A data de devolução prevista.
+     * @param renovationQuantity A quantidade de renovações permitidas para o empréstimo.
      */
-    public Loan(long idLoan, long idUser, Book book, LocalDate dateLoan, LocalDate dateDevolution) {
+    public Loan(long idLoan, long idUser, Book book, LocalDate dateLoan, LocalDate dateDevolution, int renovationQuantity) {
         this.idLoan = idLoan;
         this.idUser = idUser;
         this.book = book;
         this.dateLoan = dateLoan;
         this.dateDevolution = dateDevolution;
-        this.renovationQuantity = 0;
+        this.renovationQuantity = renovationQuantity;
     }
 
     // Métodos get e set para idLoan

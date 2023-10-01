@@ -1,4 +1,4 @@
-package test;
+package test.model;
 
 import dao.DAO;
 import model.*;

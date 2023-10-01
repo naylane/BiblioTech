@@ -1,4 +1,4 @@
-package test;
+package test.model;
 
 import dao.DAO;
 import exceptions.BookException;
@@ -26,11 +26,6 @@ public class LibrarianTest {
         reader = new Reader(2, "Nome do Leitor", "5678", "75 98765-3210", address);
         location = new BookLocation("Estante", "Corredor", "Seção");
         book = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
-    }
-
-    @Test
-    public void testGenerateId() {
-
     }
 
     @Test
