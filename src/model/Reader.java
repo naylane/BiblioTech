@@ -129,11 +129,10 @@ public class Reader extends User {
      * @throws LoanException Se o empréstimo já foi finalizado, a fila de reserva contém pessoas,
      * o leitor está bloqueado, ou o limite de renovações foi excedido.
      */
-    public void renewLoan(Loan loan, Book book) throws LoanException {
-        Reader reader = readerDAO.findById(loan.getIdUser()); //retorna o leitor do banco de dados de acordo com o Id
-        if (!loan.getActive()) { //se for falso
+    public void renewLoan(Reader reader, Loan loan, Book book) throws LoanException {
+        if (!loan.getActive()) { // se for falso
             throw new LoanException(LoanException.FinalizedLoan); }
-        else if (book.getResevationQueue().isEmpty()){ //se contém elementos na fila, logo contém pessoas
+        else if (!book.getResevationQueue().isEmpty()){ //se contém elementos na fila, logo contém pessoas
             throw new LoanException(LoanException.ContainsPeople); }
         else if (reader.getBlock()){
             throw new LoanException(LoanException.UserBlock); }
