@@ -8,6 +8,9 @@ import dao.librarian.LibrarianDAO;
 import dao.librarian.LibrarianDAOImpl;
 import dao.reader.ReaderDAO;
 import dao.reader.ReaderDAOImpl;
+import dao.report.ReportDAOImpl;
+
+import java.util.List;
 
 /**
  * A classe Adm é uma subclasse da classe
@@ -26,7 +29,8 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
     ReaderDAOImpl readerDAO = new ReaderDAOImpl();
     LibrarianDAOImpl librarianDAO = new LibrarianDAOImpl();
     AdmDAOImpl admDAO = new AdmDAOImpl();
-    BookDaoImpl books = new BookDaoImpl();
+    BookDaoImpl bookDAO = new BookDaoImpl();
+    ReportDAOImpl reportDAO = new ReportDAOImpl();
 
     /**
      * Construtor da classe Adm para criar um novo administrador.
@@ -131,11 +135,80 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
     /**
      * Proucura um leitor no sistema.
      *
-     * @param reader O leitor a ser pesquisado.
+     * @param id O Id do leitor a ser pesquisado.
      * @return Leitor retornado.
      */
-    public Reader readerSearch(Reader reader) {
-            return readerDAO.findById(reader.getId());}
+    public Reader readerSearch(long id) {
+            return readerDAO.findById(id);}
+
+    /**
+     * Proucura um bibliotecario no sistema.
+     *
+     * @param id O Id do bibliotecario a ser pesquisado.
+     * @return bibliotecario retornado.
+     */
+    public Librarian librarianSearch(long id) {
+        return librarianDAO.findById(id);}
+
+    /**
+     * Retorna todos os leitores do sistema.
+     *
+     * @return Lista com todos leitores existentes.
+     */
+    public List<Reader> AllReader(){
+        return readerDAO.findAll();
+    }
+
+    /**
+     * Retorna todos bibliotecarios do sistema.
+     *
+     * @return Lista com todos bibliotecarios existentes.
+     */
+    public List<Librarian> AllLibrarian(){
+        return librarianDAO.findAll();
+    }
+
+    /**
+     * Deleta todos leitores no sistema.
+     *
+     */
+    public void deleteAllReader() {
+        readerDAO.deleteAll();}
+
+    /**
+     * Deleta todos bibliotecarios no sistema.
+     *
+     */
+    public void deleteAllLibrarian() {
+        librarianDAO.deleteAll();}
+
+    /**
+     * Deleta um leitor no sistema.
+     *
+     */
+    public void deleteReader(Reader reader) {
+        readerDAO.delete(reader);}
+
+    /**
+     * Deleta um bibliotecario no sistema.
+     *
+     */
+    public void deleteLibrarian(Librarian librarian) {
+        librarianDAO.delete(librarian);}
+
+    /**
+     * Atualiza um leitor no sistema.
+     *
+     */
+    public void updateReader(Reader reader) {
+        readerDAO.update(reader);}
+
+    /**
+     * Atualiza um bibliotecario no sistema.
+     *
+     */
+    public void updateLibrarian(Librarian librarian) {
+        librarianDAO.update(librarian);}
 
     //GERENCIAMENTO DO ACERVO - a adição de livros o adm herda do bibliotecario
 
@@ -144,17 +217,119 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
      *
      * @param book O livro a ser removido.
      */
-    public void removeBook(Book book){books.delete(book);}
+    public void removeBook(Book book){
+        bookDAO.delete(book);}
 
     /**
      * Atualiza as informações de um livro no sistema.
      *
      * @param book O livro a ser atualizado.
      */
-    public void updateBook(Book book){books.update(book);}
+    public void updateBook(Book book){
+        bookDAO.update(book);}
 
     /**
      * Obtém a quantidade total de livros no sistema.
      */
-    public void quantityBooks(){books.QuantityBooks();}
+    public void quantityBooks(){
+        bookDAO.QuantityBooks();}
+
+    /**
+     * Obtém todos os livros no sistema.
+     */
+    public void AllBook(){
+        bookDAO.findAll();}
+
+    /**
+     * Delete todos os livros no sistema.
+     */
+    public void deleteAllBook(){
+        bookDAO.deleteAll();}
+
+    //GERAR RELATÓRIOS
+
+    /**
+     * Criar relatorio no sistema.
+     */
+    public void genareteReport(){
+        Report report = new Report();
+        reportDAO.save(report);
+    }
+
+    /**
+     * Gerar os livros/o livro mais popular(es).
+     * @return uma lista de livros.
+     */
+    public List<Book> genareteHighestPopular(){
+        if(reportDAO.getReport() == null){
+            genareteReport();
+            return null;
+        }else{
+            Report report = reportDAO.getReport();
+            List<Book> BookHighest = report.generateBookHighestPopular();
+            reportDAO.save(report);
+            return BookHighest; //retornando uma lista pois pode ter mais de um livro popular
+        }
+    }
+
+    /**
+     * Gerar os livros que estão emprestados.
+     * @return uma lista de livros.
+     */
+    public List<Book> genareteBoorowedBooks(){
+        if(reportDAO.getReport() == null){
+            genareteReport();
+            return null;
+        }else{
+            Report report = reportDAO.getReport();
+            List<Book> BooksBorrowed = report.generatesBorrowedBooks();
+            reportDAO.save(report);
+            return BooksBorrowed; //retornando uma lista com os livros emprestados
+        }
+    }
+
+    /**
+     * Gerar os livros que estão atrasados.
+     * @return uma lista de livros.
+     */
+    public List<Book> genareteLateBooks(){
+        if(reportDAO.getReport() == null){
+            genareteReport();
+            return null;
+        }else{
+            Report report = reportDAO.getReport();
+            List<Book> BooksLate = report.generatesLateBooks();
+            reportDAO.save(report);
+            return BooksLate; //retornando uma lista com os livros atrasados
+    }}
+
+    /**
+     * Gerar os livros que estão reservados.
+     * @return uma lista de livros.
+     */
+    public List<Book> genareteReservedBooks(){
+        if(reportDAO.getReport() == null){
+            genareteReport();
+            return null;
+        }else{
+            Report report = reportDAO.getReport();
+            List<Book> BooksReserved = report.generatesReservedBooks();
+            reportDAO.save(report);
+            return BooksReserved; //retornando uma lista com os livros reservados
+    }}
+
+    /**
+     * Gerar o histórico de emprestimo de um usuario especifico.
+     * @param reader leitor a ser retornado o historico de emprestimo.
+     * @return uma lista de emprestimos.
+     */
+    public List<Loan> genareteUserLoan(Reader reader){
+        if(reportDAO.getReport() == null){
+            genareteReport();
+            return null;
+        }else{
+            Report report = reportDAO.getReport();
+            List<Loan> UserLoan = report.genareteUserLoan(reader);
+            return UserLoan; //retornando uma lista com o historico de emprestimo de um leitor
+    }}
 }
