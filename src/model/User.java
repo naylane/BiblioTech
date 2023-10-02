@@ -109,11 +109,9 @@ public class User {
      *
      * @param isbn O ISBN do livro a ser pesquisado.
      * @return O livro encontrado com o ISBN especificado.
-     * @throws BookException lança execeção caso o livro não seja encontrado.
      */
-    public Book searchBookByIsbn(String isbn) throws BookException {
-        if (DAO.getBookDAO().findById(isbn) == null) { throw new BookException(BookException.BookNotFound);
-        } else { return DAO.getBookDAO().findById(isbn); }
+    public Book searchBookByIsbn(String isbn) {
+         return DAO.getBookDAO().findById(isbn);
     }
 
     /**
@@ -121,35 +119,28 @@ public class User {
      *
      * @param title O título do livro a ser pesquisado.
      * @return Uma lista de livros encontrados com o título especificado.
-     * @throws BookException lança execeção caso o livro não seja encontrado.
      */
-    public List<Book> searchBookByTitle(String title) throws BookException{
+    public List<Book> searchBookByTitle(String title) {
         // Chama o método de pesquisa por título no DAO de livros
-        if(bookDAO.findByTitle(title).isEmpty()){throw new BookException(BookException.BookNotFound);}
-        else{return bookDAO.findByTitle(title);}}
+        return bookDAO.findByTitle(title);}
 
     /**
      * Método para pesquisar livros por autor.
      *
      * @param author O autor do livro a ser pesquisado.
      * @return Uma lista de livros encontrados com o autor especificado.
-     * @throws BookException lança execeção caso o livro não seja encontrado.
      */
-    public List<Book> searchBooksByAuthor(String author) throws BookException{
-        // Chama o método de pesquisa por autor no DAO de livros
-        if(bookDAO.findByAuthor(author).isEmpty()){throw new BookException(BookException.BookNotFound);}
-        else{return bookDAO.findByAuthor(author);
-        }}
+    public List<Book> searchBooksByAuthor(String author) {
+        return bookDAO.findByAuthor(author);
+    }
 
     /**
      * Método para pesquisar livros por categoria.
      *
      * @param category A categoria do livro a ser pesquisada.
      * @return Uma lista de livros encontrados na categoria especificada.
-     * @throws BookException lanaça execeção caso o livro não seja encontrado.
      */
-    public List<Book> searchBooksByCategory(String category) throws BookException{
+    public List<Book> searchBooksByCategory(String category) {
         // Chama o método de pesquisa por categoria no DAO de livros
-        if(bookDAO.findByCategory(category).isEmpty()){throw new BookException(BookException.BookNotFound);}
-        else{return bookDAO.findByCategory(category);}}
+        return bookDAO.findByCategory(category);}
 }

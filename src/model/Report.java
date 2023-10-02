@@ -62,7 +62,6 @@ public class Report {
      * Retorna a quantidade de livros emprestados no momento.
      *
      * @return A quantidade de livros emprestados.
-     * @throws BookException Se não houver livros emprestados no momento.
      */
     public int quantityBorrowedBooks() {
             return borrowedBooks.size();}
@@ -71,7 +70,6 @@ public class Report {
      * Gera uma lista dos livros atualmente emprestados.
      *
      * @return Uma lista dos livros emprestados.
-     * @throws BookException Se não houver livros emprestados no momento.
      */
     public List<Book> generatesBorrowedBooks() {
         return borrowedBooks;
@@ -82,7 +80,6 @@ public class Report {
      * Gera uma lista dos livros atualmente atrasados.
      *
      * @return Uma lista dos livros atrasados.
-     * @throws BookException Se não houver livros atrasados no momento.
      */
     public List<Book> generatesLateBooks() {
         Map<Long, Loan> LoanMap = loans.getLoanMap();

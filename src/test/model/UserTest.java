@@ -1,5 +1,7 @@
 package test.model;
 
+import dao.DAO;
+import exceptions.BookException;
 import model.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,26 +23,26 @@ public class UserTest {
     }
 
     @Test
-    public void testFindBookByIsbn() throws BookException {
+    public void testFindBookByIsbn() {
         assertNotNull(user.searchBookByIsbn("ISBN123")); // verifica se é encontrado um livro pelo isbn
     }
 
     @Test
-    public void testFindBookByTitle() throws BookException {
+    public void testFindBookByTitle() {
         for (Book bookFound : user.searchBookByTitle("Título do Livro")) {
             assertEquals(bookFound.getTitle(), book.getTitle());
         }
     }
 
     @Test
-    public void testFindByAuthor() throws BookException {
+    public void testFindByAuthor(){
         for (Book bookFound : user.searchBooksByAuthor("Autor do Livro")) {
             assertEquals(bookFound.getAuthor(), this.book.getAuthor());
         }
     }
 
     @Test
-    public void testFindByCategory() throws BookException {
+    public void testFindByCategory() {
         // verifica se o livro adicionando é o mesmo que foi encontrado pelo autor
         for (Book bookFound : user.searchBooksByCategory("Categoria")) {
             assertEquals(bookFound.getCategory(), this.book.getCategory());
