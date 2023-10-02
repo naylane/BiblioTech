@@ -1,14 +1,12 @@
 # Library Project 📚
 Alunas: Sara e Naylane | Classe: Algoritmos 2
 
-## Topicos ✅
+## Tópicos ✅
 1. Objetivo
-2. Diagrama de Casos de Uso
-3. Diagrama de Classes
-4. Divisão dos pacotes 
-5. Classes DAO
-6. Exceções
-7. Testes
+2. Divisão dos pacotes 
+3. Classes DAO
+4. Exceções
+5. Testes
 
 ## Objetivo 📝
 O objetivo desse problema foi construir um sistema de gerenciamento de uma biblioteca utilizando a linguagem java e
@@ -18,12 +16,6 @@ projeto DAO e por fim, os testes de unidade e integração.
 [PERSONAL DOCS](https://docs.google.com/document/d/1mNysGljSI1wn0CKSz9MCoo9DC_7ymS4rivhGJET128w/edit)
 - Docs que contém a descrição e detalhamento do projeto
 [PROJECT DOCS](https://docs.google.com/document/d/1K5wVcqw1sJ4_HRGZKCJ5lyudzDCfvsqBEtBueskVJrQ/edit)
-
-## Diagrama de Casos de Uso
-![Diagrama de Casos de Uso](/Diagramas/casos_de_uso.jpg)
-
-## Diagrama de Classes
-
 
 ## Divisão dos pacotes 📦
 - Model: Contém todas classes do sistema e métodos principais a serem usados.
@@ -48,3 +40,8 @@ O foco foi criar exceções personalizadas para serem usadas em situações do s
 conta de algum erro. 
 
 ## Testes 🧪
+
+
+## Construído com
+
+* [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/) - IDE utilizado para codificação
