@@ -22,7 +22,7 @@ public class LoanDAOImpl implements LoanDAO{
         return this.nextId++; // retorna ID para o objeto atual e define o próximo ID
     }
     @Override
-    public Loan creat(Loan loan) {
+    public Loan create(Loan loan) {
         long id = loan.getIdLoan(); //aq guarda no map todos emprestimos, e a chave é o id do emprestimo
         loanMap.put(id, loan);
 

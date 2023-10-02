@@ -20,7 +20,7 @@ public class AdmDAOImpl implements AdmDAO {
     }
 
     @Override
-    public Adm creat(Adm obj) {
+    public Adm create(Adm obj) {
         obj.setId(getNextId());
         admMap.put(obj.getId(), obj);
         return obj;

@@ -15,7 +15,7 @@ public class BookDaoImpl implements BookDAO {
     }
     public long QuantityBooks(){ return (long)bookMap.size();} //retorna a quantidade de livros
     @Override
-    public Book creat(Book obj){ //criando um livro e colocando no map
+    public Book create(Book obj){ //criando um livro e colocando no map
         String id = obj.getISBN(); //o id do livro vai ser o proprio isbn
         bookMap.put(id, obj);
         return obj;

@@ -19,7 +19,7 @@ public class ReaderDAOImpl implements ReaderDAO {
     }
 
     @Override
-    public Reader creat(Reader obj){
+    public Reader create(Reader obj){
         obj.setId(getNextId());
         readerMap.put(obj.getId(), obj);
         return obj;

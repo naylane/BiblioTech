@@ -29,20 +29,20 @@ public class LoanDAOTest {
 
     @Test
     public void testAddLoan() {
-        DAO.getLoanDAO().creat(loan1);
+        DAO.getLoanDAO().create(loan1);
         assertFalse(DAO.getLoanDAO().findAll().isEmpty()); // verifica se a lista está vazia
     }
 
     @Test
     public void testFindById() {
-        DAO.getLoanDAO().creat(loan1);
+        DAO.getLoanDAO().create(loan1);
         assertNotNull(DAO.getLoanDAO().findById(0)); // verifica se é encontrado um livro pelo isbn
     }
 
     @Test
     public void testUpdateLoan() {
         // Salvando um empréstimo no DAO
-        DAO.getLoanDAO().creat(loan1);
+        DAO.getLoanDAO().create(loan1);
 
         // Atualizando o empréstimo cujo número de identificação é igual a 7
         Loan loan2 = new Loan(7, book, dateLoan, dateDevolution);
@@ -57,7 +57,7 @@ public class LoanDAOTest {
     @Test
     public void testDeleteLoan() {
         // Salvando um empréstimo no DAO
-        DAO.getLoanDAO().creat(loan1);
+        DAO.getLoanDAO().create(loan1);
 
         // Deletando empréstimo
         DAO.getLoanDAO().delete(loan1);
@@ -70,7 +70,7 @@ public class LoanDAOTest {
     @Test
     public void testDeleteAll() {
         // Salvando um empréstimo no DAO
-        DAO.getLoanDAO().creat(loan1);
+        DAO.getLoanDAO().create(loan1);
         // Deletando toda a lista de empréstimos
         DAO.getLoanDAO().deleteAll();
 

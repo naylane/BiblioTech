@@ -1,6 +1,5 @@
 package test.dao;
 
-import dao.reader.ReaderDAO;
 import dao.reader.ReaderDAOImpl;
 import model.Reader;
 import model.Residence;
@@ -32,29 +31,29 @@ public class ReaderDAOTest {
 
     @Test
     public void testAddReader() {
-        readerDAO.creat(reader1);
+        readerDAO.create(reader1);
         Reader readerExpected = readerDAO.findById(reader1.getId());
         assertEquals(reader1, readerExpected);
     }
 
     @Test
     public void testFindReader() {
-        readerDAO.creat(reader1);
+        readerDAO.create(reader1);
         assertSame(reader1, readerDAO.findById(reader1.getId()));
     }
 
     @Test
     public void testFindAll() {
-        readerDAO.creat(reader1);
-        readerDAO.creat(reader2);
-        readerDAO.creat(reader3);
+        readerDAO.create(reader1);
+        readerDAO.create(reader2);
+        readerDAO.create(reader3);
 
         assertEquals(3, readerDAO.findAll().size());
     }
 
     @Test
     public void testUpdate() {
-        readerDAO.creat(reader1);
+        readerDAO.create(reader1);
 
         Reader editedReader = new Reader("Nome Alterado", "Senha alterada", "xx xxxxx-xxxx", address);
         readerDAO.update(editedReader);
@@ -64,8 +63,8 @@ public class ReaderDAOTest {
 
     @Test
     public void testDelete() {
-        readerDAO.creat(reader1);
-        readerDAO.creat(reader2);
+        readerDAO.create(reader1);
+        readerDAO.create(reader2);
 
         int qntBefore = readerDAO.findAll().size();
         readerDAO.delete(reader1);

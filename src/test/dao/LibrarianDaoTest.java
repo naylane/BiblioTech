@@ -32,22 +32,22 @@ public class LibrarianDaoTest {
 
     @Test
     public void testAddLibrarian() {
-        librarianDAO.creat(lib1);
+        librarianDAO.create(lib1);
         Librarian libExpected = librarianDAO.findById(lib1.getId());
         assertEquals(lib1, libExpected); // verifica se os objetos são iguais
     }
 
     @Test
     public void testFindLibrarian() {
-        librarianDAO.creat(lib1);
+        librarianDAO.create(lib1);
         assertSame(lib1, librarianDAO.findById(0));
     }
 
     @Test
     public void testFindAll() {
-        librarianDAO.creat(lib1); // Adicionando bibliotecarios
-        librarianDAO.creat(lib2);
-        librarianDAO.creat(lib3);
+        librarianDAO.create(lib1); // Adicionando bibliotecarios
+        librarianDAO.create(lib2);
+        librarianDAO.create(lib3);
 
         assertEquals(3, librarianDAO.findAll().size()); //se add 3 elementos, logo tem que ter 3 elementos na lista
     }
@@ -55,7 +55,7 @@ public class LibrarianDaoTest {
     @Test
     public void testUpdate() {
         // Adicionando um adm
-        librarianDAO.creat(lib1);
+        librarianDAO.create(lib1);
         // Criando bibliotecario com informações diferentes ao lib1
         Librarian editedLibrarian = new Librarian("Nome Alterado", "Senha alterada", "xx xxxxx-xxxx", address);
         // Editando
@@ -67,8 +67,8 @@ public class LibrarianDaoTest {
     @Test
     public void testDelete() {
         // Adicionando dois bibliotecarios na lista
-        librarianDAO.creat(lib1);
-        librarianDAO.creat(lib2);
+        librarianDAO.create(lib1);
+        librarianDAO.create(lib2);
         int qntBefore = librarianDAO.findAll().size();
         // Removendo um bibliotecario
         librarianDAO.delete(lib1);

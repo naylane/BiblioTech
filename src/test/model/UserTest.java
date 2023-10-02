@@ -19,7 +19,7 @@ public class UserTest {
         user = new User("Nome do Usuário", "Senha123", "xx xxxxx-xxxx", address);
         BookLocation location = new BookLocation("Estante", "Corredor", "Seção");
         book = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
-        DAO.getBookDAO().creat(book);
+        DAO.getBookDAO().create(book);
     }
 
     @Test

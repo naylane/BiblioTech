@@ -22,7 +22,7 @@ public class BookDAOTest {
 
     @Test
     public void testAddBook() {
-        DAO.getBookDAO().creat(this.book);
+        DAO.getBookDAO().create(this.book);
 
         assertFalse(DAO.getBookDAO().findAll().isEmpty()); // verifica se a lista de livros está vazia
     }

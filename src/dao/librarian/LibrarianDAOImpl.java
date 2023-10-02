@@ -22,7 +22,7 @@ public class LibrarianDAOImpl implements LibrarianDAO {
     }
 
     @Override
-    public Librarian creat(Librarian obj){
+    public Librarian create(Librarian obj){
         obj.setId(getNextId());
         librarianMap.put(obj.getId(), obj);
         return obj;

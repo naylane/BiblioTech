@@ -33,14 +33,14 @@ public class AdmDAOTest {
 
     @Test
     public void testAddAdm() {
-        admDAO.creat(adm0);
+        admDAO.create(adm0);
 
         assertFalse(admDAO.findAll().isEmpty()); // verifica se a lista de ADM's está vazia
     }
 
     @Test
     public void testFindAdm() {
-        admDAO.creat(adm0);
+        admDAO.create(adm0);
 
         assertSame(adm0, admDAO.findById(0));
     }
@@ -48,7 +48,7 @@ public class AdmDAOTest {
     @Test
     public void testFindAll() {
         int qntBefore = admDAO.findAll().size();
-        admDAO.creat(adm1); // Adicionando um adm
+        admDAO.create(adm1); // Adicionando um adm
         int qntAfter = admDAO.findAll().size();
 
         assertTrue(qntAfter > qntBefore);
@@ -57,7 +57,7 @@ public class AdmDAOTest {
     @Test
     public void testUpdate() {
         // Adicionando um adm
-        admDAO.creat(adm0);
+        admDAO.create(adm0);
         // Criando adm com informações diferentes ao adm 0
         Adm editedAdm = new Adm("Nome Alterado", "Senha alterada", "xx xxxxx-xxxx", address);
         // Editando
@@ -69,8 +69,8 @@ public class AdmDAOTest {
     @Test
     public void testDelete() {
         // Adicionando dois ADMs na lista
-        admDAO.creat(adm0);
-        admDAO.creat(adm1);
+        admDAO.create(adm0);
+        admDAO.create(adm1);
         int qntBefore = admDAO.findAll().size();
         // Removendo um adm
         admDAO.delete(adm1);

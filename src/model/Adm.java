@@ -8,7 +8,6 @@ import dao.librarian.LibrarianDAO;
 import dao.librarian.LibrarianDAOImpl;
 import dao.reader.ReaderDAO;
 import dao.reader.ReaderDAOImpl;
-import exceptions.UsersException;
 
 /**
  * A classe Adm é uma subclasse da classe
@@ -58,7 +57,7 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
         Reader reader = new Reader(name, pin, phone, address);
         //adicionar o reader ao banco de dados - falta fazer o dao reader
         ReaderDAO readerDao = DAO.getReaderDAO();
-        readerDao.creat(reader); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
+        readerDao.create(reader); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
         return reader;}
 
     /**
@@ -75,7 +74,7 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
         Librarian librarian = new Librarian(name, pin, phone, address);
         //adicionar o reader ao banco de dados
         LibrarianDAO librarianDao = DAO.getLibrarianDAO();
-        librarianDao.creat(librarian); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
+        librarianDao.create(librarian); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
         return librarian;}
 
     /**
@@ -92,7 +91,7 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
         Adm adm = new Adm(name, pin, phone, address);
 
         AdmDAO admDao = DAO.getAdmDAO();
-        admDao.creat(adm); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
+        admDao.create(adm); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
         return adm;}
 
     //OPERAÇÕES DE USERS

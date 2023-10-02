@@ -135,7 +135,7 @@ public class Librarian extends User{
         Loan loan = new Loan(reader.getId(), book, dateLoan, dateDevolution);
         //Usando o DAO para adicionar o emprestimo ao banco de dados
         LoanDAO loandao = DAO.getLoanDAO();
-        loandao.creat(loan);
+        loandao.create(loan);
         book.setQuantityLoan(1); //soma a variavel da quantidade de emprestimo
         book.setQuantityAvailable(book.getQuantityAvailable() - 1); // atualizando a quantidade disponível do livro
         report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
@@ -167,7 +167,7 @@ public class Librarian extends User{
                 return; // sai do método pois o livro já foi cadastrado
             }
         }
-        DAO.getBookDAO().creat(newBook); // criou o livro e o armazenou no map tendo o seu isbn como id
+        DAO.getBookDAO().create(newBook); // criou o livro e o armazenou no map tendo o seu isbn como id
         //System.out.println("\nsuccessfully registered book!");
     }
 

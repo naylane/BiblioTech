@@ -29,7 +29,7 @@ public class ReportTest {
 
         Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         reader = new Reader("Nome do Leitor", "5678", "75 98765-3210", address);
-        DAO.getReaderDAO().creat(reader);
+        DAO.getReaderDAO().create(reader);
 
         BookLocation location = new BookLocation("Estante", "Corredor", "Seção");
         book0 = new Book("ISBN123", "Título do Livro 0", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
@@ -92,9 +92,9 @@ public class ReportTest {
         book1.setQuantityLoan(9);
         book2.setQuantityLoan(0);
 
-        bookDAO.creat(book0);
-        bookDAO.creat(book1);
-        bookDAO.creat(book2);
+        bookDAO.create(book0);
+        bookDAO.create(book1);
+        bookDAO.create(book2);
 
         assertTrue(report.generateBookHighestPopular().contains(book1));
     }
@@ -105,9 +105,9 @@ public class ReportTest {
         book1.setQuantityLoan(0);
         book2.setQuantityLoan(0);
 
-        bookDAO.creat(book0);
-        bookDAO.creat(book1);
-        bookDAO.creat(book2);
+        bookDAO.create(book0);
+        bookDAO.create(book1);
+        bookDAO.create(book2);
 
         assertTrue(report.generateBookHighestPopular().isEmpty()); // Lista dos mais populares deve estar vazia
     }
@@ -122,9 +122,9 @@ public class ReportTest {
         Loan loan1 = new Loan(reader.getId(), book1, dateLoan, dateDevolution);
         Loan loan2 = new Loan(2, book2, dateLoan, dateDevolution); // Empréstimo não relacionado ao leitor
 
-        loanDAO.creat(loan0);
-        loanDAO.creat(loan1);
-        loanDAO.creat(loan2);
+        loanDAO.create(loan0);
+        loanDAO.create(loan1);
+        loanDAO.create(loan2);
 
         List<Loan> userLoans = report.genareteUserLoan(reader);
         //System.out.println(userLoans);
