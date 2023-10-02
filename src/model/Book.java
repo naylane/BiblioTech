@@ -163,8 +163,7 @@ public class Book {
     
     @Override
     public String toString() {
-        return "\n[BOOK]: " + title + "\n \n" +
-                "-informations-" + '\n' +
+        return "\n[LIVRO]: " + title + "\n" +
                 "autor:" + author + '\n' +
                 "editora:" + publishing_company + '\n' +
                 "isbn:" + isbn + '\n' +

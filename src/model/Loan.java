@@ -45,7 +45,7 @@ public class Loan {
 
     // Métodos get e set para idLoan
     public long getIdLoan() {return idLoan;}
-    public void setIdLoan(int idLoan) {this.idLoan = idLoan;}
+    public void setIdLoan(long idLoan) {this.idLoan = idLoan;}
 
     // Métodos get e set para idUser
     public long getIdUser() {return idUser;}
@@ -70,4 +70,15 @@ public class Loan {
     // Métodos get e set para active
     public boolean getActive() {return active;}
     public void setActive(boolean active) {this.active = active;}
+
+    @Override
+    public String toString() {
+        return "\n[ID]: " + idLoan + "\n" +
+                "ID do leitor: " + idUser + '\n' +
+                "livro: " + book + '\n' +
+                "data do empréstimo: " + dateLoan + '\n' +
+                "data de devolução: " + dateDevolution + '\n' +
+                "renovações:" + renovationQuantity + '\n' +
+                "ativo?: " + active;
+    }
 }
