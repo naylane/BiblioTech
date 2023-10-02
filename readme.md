@@ -1,8 +1,7 @@
 # Library Project 📚
-Alunas: Sara e Naylane 
-Classe: Algoritmos 2
+Alunas: Sara e Naylane | Classe: Algoritmos 2
 
-## Topics ✅
+## Topicos ✅
 1. Objetivo 
 2. Divisão dos pacotes 
 3. Classes DAO
