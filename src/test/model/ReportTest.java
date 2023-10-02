@@ -20,12 +20,11 @@ public class ReportTest {
     private Book book1;
     private Book book2;
     private Reader reader;
-    private Loan loan;
 
     @BeforeEach
     public void setUp() throws BookException {
         // Configurando objetos para teste
-        bookDAO = DAO.getBookDAO();
+        bookDAO = report.getBooks();
 
         Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         reader = new Reader("Nome do Leitor", "5678", "75 98765-3210", address);
@@ -35,10 +34,6 @@ public class ReportTest {
         book0 = new Book("ISBN123", "Título do Livro 0", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
         book1 = new Book("ISBN456", "Título do Livro 1", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
         book2 = new Book("ISBN789", "Título do Livro 2", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
-
-        LocalDate dateLoan = LocalDate.now();
-        LocalDate dateDevolution = dateLoan.plusDays(10);
-        loan = new Loan(7, book0, dateLoan, dateDevolution);
     }
 
     @Test
@@ -127,7 +122,6 @@ public class ReportTest {
         loanDAO.create(loan2);
 
         List<Loan> userLoans = report.genareteUserLoan(reader);
-        //System.out.println(userLoans);
 
         assertEquals(2, userLoans.size()); // Verifica se a lista contém 2 empréstimos.
     }
