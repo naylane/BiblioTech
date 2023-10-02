@@ -28,6 +28,17 @@ public class BookDAOTest {
     }
 
     @Test
+    public void testFailAddBook() throws BookException {
+        try {
+            Book booktest = new Book("9788595081512", "O Pequeno Príncipe", "Antoine de Saint-Exupéry",
+                    "HarperCollins", 2018, "Romance", location, 0);
+            fail("Uma exceção deveria ser gerada!!");
+        }catch (BookException e){
+            assertEquals(BookException.QuantityErro, e.getMessage());
+        }
+    }
+
+    @Test
     public void testFindBookByIsbn() {
         assertNotNull(DAO.getBookDAO().findById("9788595081512")); // verifica se é encontrado um livro pelo isbn
     }
