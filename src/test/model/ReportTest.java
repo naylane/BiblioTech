@@ -1,6 +1,8 @@
 package test.model;
 
-import exceptions.LoanException;
+import dao.DAO;
+import dao.book.BookDAO;
+import dao.loan.LoanDAO;
 import model.*;
 import exceptions.BookException;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,7 +14,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ReportTest {
-    private Report report = new Report();
+    private final Report report = new Report();
+    private BookDAO bookDAO;
     private Book book0;
     private Book book1;
     private Book book2;
@@ -22,14 +25,16 @@ public class ReportTest {
     @BeforeEach
     public void setUp() throws BookException {
         // Configurando objetos para teste
+        bookDAO = DAO.getBookDAO();
+
         Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
-        //librarian = new Librarian(1, "Nome do Bibliotecário", "1234", "123-456-7890", address);
         reader = new Reader("Nome do Leitor", "5678", "75 98765-3210", address);
+        DAO.getReaderDAO().creat(reader);
 
         BookLocation location = new BookLocation("Estante", "Corredor", "Seção");
-        book0 = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
-        book1 = new Book("ISBN456", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
-        book2 = new Book("ISBN789", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
+        book0 = new Book("ISBN123", "Título do Livro 0", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
+        book1 = new Book("ISBN456", "Título do Livro 1", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
+        book2 = new Book("ISBN789", "Título do Livro 2", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
 
         LocalDate dateLoan = LocalDate.now();
         LocalDate dateDevolution = dateLoan.plusDays(10);
@@ -71,13 +76,59 @@ public class ReportTest {
     }
 
     @Test
-    public void testGeneratesBorrowedBooks() throws BookException {
+    public void testGeneratesBorrowedBooks() {
         // Armazenando livros na lista de livros emprestados
         report.storesBorrowedBooks(book0);
         report.storesBorrowedBooks(book1);
         report.storesBorrowedBooks(book2);
 
         List list = report.generatesBorrowedBooks(); // Não lança exceção pois a lista não está vazia
-        assertTrue(list.size() == 3); // Verificando que os livros estão sendo armazendados
+        assertEquals(3, list.size()); // Verificando que os livros estão sendo armazendados
+    }
+
+    @Test
+    public void testHighestPopularBookWithManyBooks() {  // Teste com vários livros
+        book0.setQuantityLoan(2);
+        book1.setQuantityLoan(9);
+        book2.setQuantityLoan(0);
+
+        bookDAO.creat(book0);
+        bookDAO.creat(book1);
+        bookDAO.creat(book2);
+
+        assertTrue(report.generateBookHighestPopular().contains(book1));
+    }
+
+    @Test
+    public void testHighestPopularBookWithManyBooksAndZeroLoan() {  // Teste com todos os livros com quantidade de empréstimos igual a zero
+        book0.setQuantityLoan(0);
+        book1.setQuantityLoan(0);
+        book2.setQuantityLoan(0);
+
+        bookDAO.creat(book0);
+        bookDAO.creat(book1);
+        bookDAO.creat(book2);
+
+        assertTrue(report.generateBookHighestPopular().isEmpty()); // Lista dos mais populares deve estar vazia
+    }
+
+    @Test
+    public void testGenerateUserLoanSuccess() {
+        LoanDAO loanDAO = report.getLoans();
+
+        LocalDate dateLoan = LocalDate.now();
+        LocalDate dateDevolution = dateLoan.plusDays(10);
+        Loan loan0 = new Loan(reader.getId(), book0, dateLoan, dateDevolution);
+        Loan loan1 = new Loan(reader.getId(), book1, dateLoan, dateDevolution);
+        Loan loan2 = new Loan(2, book2, dateLoan, dateDevolution); // Empréstimo não relacionado ao leitor
+
+        loanDAO.creat(loan0);
+        loanDAO.creat(loan1);
+        loanDAO.creat(loan2);
+
+        List<Loan> userLoans = report.genareteUserLoan(reader);
+        //System.out.println(userLoans);
+
+        assertEquals(2, userLoans.size()); // Verifica se a lista contém 2 empréstimos.
     }
 }

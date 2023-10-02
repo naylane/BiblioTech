@@ -1,6 +1,9 @@
 package model;
 
+import dao.DAO;
+import dao.book.BookDAO;
 import dao.book.BookDaoImpl;
+import dao.loan.LoanDAO;
 import dao.loan.LoanDAOImpl;
 import exceptions.BookException;
 import exceptions.LoanException;
@@ -9,6 +12,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static dao.DAO.getLoanDAO;
 
 /**
  * Esta classe serve para armazenar dados para
@@ -24,8 +29,8 @@ import java.util.Map;
  * @author Sara Souza e Naylane Ribeiro
  */
 public class Report {
-    BookDaoImpl books = new BookDaoImpl();
-    LoanDAOImpl loans = new LoanDAOImpl();
+    private BookDAO books = DAO.getBookDAO();
+    private LoanDAO loans = DAO.getLoanDAO();
     private List<Book> borrowedBooks; //armazena todos livros que estão emprestados no momento
     private List<Book> lateBooks; //armazena todos livros que estão atrasados no momento
     private List<Book> reservedBooks; //armazena todos livros que já estão reservados no momento
@@ -103,8 +108,8 @@ public class Report {
      * @return Uma lista dos livros reservados.
      */
     public List<Book> generatesReservedBooks() {
-        Map<String, Book> BookMap = books.getBookMap();
-        for (Book book : BookMap.values()) {
+        List<Book> BookMap = books.findAll();
+        for (Book book : BookMap) {
             if (!book.getResevationQueue().isEmpty()) {
                 reservedBooks.add(book);
             }
@@ -126,16 +131,16 @@ public class Report {
      * @return Uma lista dos livros mais populares.
      */
     public List<Book> generateBookHighestPopular() {
+        List<Book> bookPopular = new ArrayList<>();
+        List<Book> bookList = books.findAll();
         int highestValue = 0;
-        List<Book> bookPopular = null;
-        Map<String, Book> BookMap = books.getBookMap();
-        for (Book book : BookMap.values()) {
-            int value = book.getQuantityLoan();
+        for (Book bookFound : bookList) {
+            int value = bookFound.getQuantityLoan();
             if (value == 0) {
                 highestValue = 0;
             } else if (value >= highestValue) {
                 highestValue = value;
-                bookPopular.add(book);
+                bookPopular.add(bookFound);
             }
         }return bookPopular;
     }
@@ -148,15 +153,20 @@ public class Report {
      * @return Uma lista de empréstimos realizados pelo usuário.
      */
     public List<Loan> genareteUserLoan(Reader reader) {
-        List<Loan> loanHistory = null;
-        Map<Long, Loan> LoanMap = loans.getLoanMap();
+        List<Loan> loanHistory = new ArrayList<>();
+        List<Loan> LoanList = loans.findAll();
         Long idReader = reader.getId();
-        for (Loan loan : LoanMap.values()) {
-            if (idReader == loan.getIdUser()) {
-                loanHistory.add(loan);
+
+        for (Loan loanFound : LoanList) {
+            if (idReader == loanFound.getIdUser()) {
+                loanHistory.add(loanFound);
             }
-        }return loanHistory;
         }
+        System.out.println(loanHistory);
+        return loanHistory;
+    }
+
+    public BookDAO getBooks() { return books; }
+
+    public LoanDAO getLoans() { return loans; }
 }
-
-
