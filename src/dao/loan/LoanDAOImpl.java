@@ -21,17 +21,16 @@ public class LoanDAOImpl implements LoanDAO{
          */
         return this.nextId++; // retorna ID para o objeto atual e define o próximo ID
     }
+
     @Override
     public Loan create(Loan loan) {
-        long id = loan.getIdLoan(); //aq guarda no map todos emprestimos, e a chave é o id do emprestimo
-        loanMap.put(id, loan);
-
+        loan.setIdLoan(getNextId());
+        loanMap.put(loan.getIdLoan(), loan);
         return loan;
     }
 
     @Override
     public List<Loan> findAll() {
-        //retorna uma lista de emprestimos
         return new ArrayList<>(loanMap.values());}
 
     @Override
@@ -42,7 +41,7 @@ public class LoanDAOImpl implements LoanDAO{
             System.out.println("Emprestimo não encontrado.");
             return null;
         }
-    } //retorna o emprestimo pelo id
+    }
 
     @Override
     public Loan update(Loan loan) {
