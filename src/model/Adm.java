@@ -252,8 +252,7 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
      * Criar relatorio no sistema.
      */
     public void genareteReport(){
-        Report report = new Report();
-        reportDAO.save(report);
+        Report report = reportDAO.getReport();
     }
 
     /**

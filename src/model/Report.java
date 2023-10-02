@@ -111,7 +111,7 @@ public class Report {
         }
         return reservedBooks;
     }
-    
+
     /**
      * Retorna a quantidade de livros reservados no momento.
      *

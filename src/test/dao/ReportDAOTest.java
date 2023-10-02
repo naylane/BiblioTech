@@ -6,8 +6,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ReportDAOTest {
     ReportDAOImpl reportDAO = new ReportDAOImpl();
@@ -33,9 +32,10 @@ public class ReportDAOTest {
 
     @Test
     public void testDeleteReport(){
-        Report expectedReport = reportDAO.save(report);
-        reportDAO.delete(expectedReport);
+        reportDAO.save(report);
+        reportDAO.delete(report);
+        Report actualReport = reportDAO.getReport();
 
-        assertNull(reportDAO.getReport());
+        assertNotSame(report, actualReport);
     }
 }
