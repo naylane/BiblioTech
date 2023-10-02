@@ -10,9 +10,6 @@ public class ReportDAOImpl implements ReportDAO {
      * @return relatório
      */
     public Report getReport() {
-        if (report == null) {
-            report = new Report();
-        }
         return this.report;
     }
 
@@ -33,7 +30,7 @@ public class ReportDAOImpl implements ReportDAO {
      */
     @Override
     public void delete(Report report) {
-        this.report = new Report();
+        this.report = null;
     }
 
 }
