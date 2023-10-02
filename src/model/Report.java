@@ -2,18 +2,13 @@ package model;
 
 import dao.DAO;
 import dao.book.BookDAO;
-import dao.book.BookDaoImpl;
 import dao.loan.LoanDAO;
-import dao.loan.LoanDAOImpl;
-import exceptions.BookException;
-import exceptions.LoanException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static dao.DAO.getLoanDAO;
 
 /**
  * Esta classe serve para armazenar dados para
@@ -50,6 +45,7 @@ public class Report {
     public void storesBorrowedBooks(Book book) {
         borrowedBooks.add(book);
     }
+
     /**
      * Remove um livro da lista de livros emprestados na hora da devolução.
      *
@@ -58,6 +54,7 @@ public class Report {
     public void takeOutBorrowedBook(Book book) {
         borrowedBooks.remove(book);
     }
+
     /**
      * Retorna a quantidade de livros emprestados no momento.
      *
@@ -90,6 +87,7 @@ public class Report {
             }
         }return lateBooks;
     }
+
     /**
      * Retorna a quantidade de livros atrasados no momento.
      *
@@ -113,6 +111,7 @@ public class Report {
         }
         return reservedBooks;
     }
+    
     /**
      * Retorna a quantidade de livros reservados no momento.
      *
@@ -159,7 +158,7 @@ public class Report {
                 loanHistory.add(loanFound);
             }
         }
-        System.out.println(loanHistory);
+
         return loanHistory;
     }
 
