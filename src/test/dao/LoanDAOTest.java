@@ -30,13 +30,13 @@ public class LoanDAOTest {
     @Test
     public void testAddLoan() {
         DAO.getLoanDAO().create(loan1);
-        assertFalse(DAO.getLoanDAO().findAll().isEmpty()); // verifica se a lista está vazia
+        assertEquals(loan1, DAO.getLoanDAO().findById(loan1.getIdLoan())); // Verifica que o empréstimo encontrado é o mesmo do adicionado na lista
     }
 
     @Test
     public void testFindById() {
         DAO.getLoanDAO().create(loan1);
-        assertNotNull(DAO.getLoanDAO().findById(0)); // verifica se é encontrado um livro pelo isbn
+        assertNotNull(DAO.getLoanDAO().findById(0));
     }
 
     @Test
