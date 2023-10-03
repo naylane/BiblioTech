@@ -11,8 +11,8 @@ Alunas: Sara e Naylane | Classe: Algoritmos 2
 7. Testes
 
 ## Objetivo 📝
-O objetivo desse problema foi construir um sistema de gerenciamento de uma biblioteca utilizando a linguagem java e
-o método DAO. Nesse primeira estapa foram solicitadas o Diagrama de casos de Uso, o Diagrama de Classes, o padrão de 
+O objetivo desse problema foi construir um sistema de gerenciamento de uma biblioteca utilizando a linguagem Java e
+a Programação Orientada a Objeto (POO). Nesse primeira etapa foram solicitadas o Diagrama de casos de Uso, o Diagrama de Classes, o padrão de 
 projeto DAO e por fim, os testes de unidade e integração.
 - Docs que contém anotações e decisões de projeto:
 [PERSONAL DOCS](https://docs.google.com/document/d/1mNysGljSI1wn0CKSz9MCoo9DC_7ymS4rivhGJET128w/edit)
