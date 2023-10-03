@@ -20,10 +20,10 @@ projeto DAO e por fim, os testes de unidade e integração.
 [PROJECT DOCS](https://docs.google.com/document/d/1K5wVcqw1sJ4_HRGZKCJ5lyudzDCfvsqBEtBueskVJrQ/edit)
 
 ## Diagrama de Casos de Uso
-![Diagrama de Casos de Uso](/diagrams/casos_de_uso.png)
+![Diagrama de Casos de Uso](/diagrams/casos_de_uso.jpg)
 
 ## Diagrama de Classes
-![Diagrama de Casos de Uso](/diagrams/diagrama_de_classes.png)
+![Diagrama de Casos de Uso](/diagrams/diagrama_de_classes.jpg)
 
 ## Divisão dos pacotes 📦
 - Model: Contém todas classes do sistema e métodos principais a serem usados.
