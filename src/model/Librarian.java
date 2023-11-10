@@ -28,7 +28,7 @@ import java.time.temporal.ChronoUnit;
 public class Librarian extends User{
     Report report = DAO.getReportDAO().getReport();
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim
-    LoanDAOImpl loanDAO = new LoanDAOImpl();
+    LoanDAO loanDAO = DAO.getLoanDAO();
 
     /**
      * Construtor da classe Librarian para criar um novo bibliotecário.

@@ -2,13 +2,10 @@ package model;
 
 import dao.adm.AdmDAO;
 import dao.DAO;
-import dao.adm.AdmDAOImpl;
-import dao.book.BookDaoImpl;
+import dao.book.BookDAO;
 import dao.librarian.LibrarianDAO;
-import dao.librarian.LibrarianDAOImpl;
 import dao.reader.ReaderDAO;
-import dao.reader.ReaderDAOImpl;
-import dao.report.ReportDAOImpl;
+import dao.report.ReportDAO;
 
 import java.util.List;
 
@@ -23,14 +20,14 @@ import java.util.List;
  * como criar novos usuarios, operações para usuarios
  * e gerenciamento do acervo.
  *
- * @author Sara Souza e Nayalane Ribeiro
+ * @author Sara Souza e Naylane Ribeiro
  */
-public class Adm extends Librarian { //o adm é responsavel pela criação dos user
-    ReaderDAOImpl readerDAO = new ReaderDAOImpl();
-    LibrarianDAOImpl librarianDAO = new LibrarianDAOImpl();
-    AdmDAOImpl admDAO = new AdmDAOImpl();
-    BookDaoImpl bookDAO = new BookDaoImpl();
-    ReportDAOImpl reportDAO = new ReportDAOImpl();
+public class Adm extends Librarian {
+    ReaderDAO readerDAO = DAO.getReaderDAO();
+    LibrarianDAO librarianDAO = DAO.getLibrarianDAO();
+    AdmDAO admDAO = DAO.getAdmDAO();
+    BookDAO bookDAO = DAO.getBookDAO();
+    ReportDAO reportDAO = DAO.getReportDAO();
 
     /**
      * Construtor da classe Adm para criar um novo administrador.
@@ -57,12 +54,12 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
      * @return O leitor recém-criado.
      */
     public Reader creatReader(String name, String pin, String phone, Residence address){
-        long id = readerDAO.getNextId();
         Reader reader = new Reader(name, pin, phone, address);
         //adicionar o reader ao banco de dados - falta fazer o dao reader
-        ReaderDAO readerDao = DAO.getReaderDAO();
-        readerDao.create(reader); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
-        return reader;}
+        readerDAO.create(reader); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
+
+        return reader;
+    }
 
     /**
      * Cria um novo bibliotecário no sistema.
@@ -73,13 +70,11 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
      * @param address O endereço do bibliotecário.
      * @return O bibliotecário recém-criado.
      */
-    public Librarian creatLibrariam(String name, String pin, String phone, Residence address){ //bibliotecario não tem id
-        long id = librarianDAO.getNextId();
+    public Librarian creatLibrariam(String name, String pin, String phone, Residence address){
         Librarian librarian = new Librarian(name, pin, phone, address);
-        //adicionar o reader ao banco de dados
-        LibrarianDAO librarianDao = DAO.getLibrarianDAO();
-        librarianDao.create(librarian); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
-        return librarian;}
+        librarianDAO.create(librarian);
+        return librarian;
+    }
 
     /**
      * Cria um novo administrador no sistema.
@@ -91,7 +86,6 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
      * @return O administrador recém-criado.
      */
     public Adm creatAdm(String name, String pin, String phone, Residence address){
-        long id = admDAO.getNextId();
         Adm adm = new Adm(name, pin, phone, address);
 
         AdmDAO admDao = DAO.getAdmDAO();
@@ -232,7 +226,8 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
      * Obtém a quantidade total de livros no sistema.
      */
     public void quantityBooks(){
-        bookDAO.QuantityBooks();}
+        bookDAO.quantityBooks();
+    }
 
     /**
      * Obtém todos os livros no sistema.
@@ -323,12 +318,13 @@ public class Adm extends Librarian { //o adm é responsavel pela criação dos u
      * @return uma lista de emprestimos.
      */
     public List<Loan> genareteUserLoan(Reader reader){
-        if(reportDAO.getReport() == null){
+        if (reportDAO.getReport() == null){
             genareteReport();
             return null;
-        }else{
+        } else {
             Report report = reportDAO.getReport();
-            List<Loan> UserLoan = report.genareteUserLoan(reader);
-            return UserLoan; //retornando uma lista com o historico de emprestimo de um leitor
-    }}
+            return report.genareteUserLoan(reader); //retornando uma lista com o historico de emprestimo de um leitor
+        }
+    }
+
 }
