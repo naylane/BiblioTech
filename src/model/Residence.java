@@ -73,4 +73,9 @@ public class Residence {
     public void setCep(String cep) {
         this.cep = cep;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s, %s, %s, %s, %d, %s\n", state, city, neighborhood, street, number, cep);
+    }
 }

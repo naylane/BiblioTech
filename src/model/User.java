@@ -84,7 +84,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "[User]: " + id + "\n -Informations-\n" + "name: " + name  + "phone: " + phone;
+        return "ID: " + id + "name: " + name;
     }
 
     /**
