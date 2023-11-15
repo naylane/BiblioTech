@@ -7,6 +7,8 @@ import model.BookLocation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BookDAOTest {
@@ -21,7 +23,7 @@ public class BookDAOTest {
     }
 
     @Test
-    public void testAddBook() {
+    public void testAddBook() throws IOException {
         DAO.getBookDAO().create(this.book);
 
         assertFalse(DAO.getBookDAO().findAll().isEmpty()); // verifica se a lista de livros está vazia

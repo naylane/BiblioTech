@@ -4,6 +4,8 @@ import dao.DAO;
 import model.*;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class AdmTest {
@@ -11,7 +13,7 @@ public class AdmTest {
     Adm adm = new Adm("Nome do Adm", "123", "75 94002-8922", address);
 
     @Test
-    public void registerReader() {
+    public void registerReader() throws IOException {
         // ADM REGISTRA O LEITOR
         Reader reader = adm.creatReader("Fernanda", "7752", "75 9 0000-0000", address);
 
@@ -19,7 +21,7 @@ public class AdmTest {
     }
 
     @Test
-    public void registerLibrarian() {
+    public void registerLibrarian() throws IOException {
         // ADM REGISTRA O BIBLIOTECÁRIO
         Librarian librarian = adm.creatLibrariam("Felipe", "81472", "75 9 0000-0000", address);
 
@@ -27,7 +29,7 @@ public class AdmTest {
     }
 
     @Test
-    public void registerAdm() {
+    public void registerAdm() throws IOException {
         // ADM REGISTRA UM ADM
         Adm newAdm = adm.creatAdm("Otávio", "97420", "75 9 0000-0000", address);
 

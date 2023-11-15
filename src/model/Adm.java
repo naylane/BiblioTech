@@ -7,6 +7,7 @@ import dao.librarian.LibrarianDAO;
 import dao.reader.ReaderDAO;
 import dao.report.ReportDAO;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -53,7 +54,7 @@ public class Adm extends Librarian {
      * @param address O endereço do leitor.
      * @return O leitor recém-criado.
      */
-    public Reader creatReader(String name, String pin, String phone, Residence address){
+    public Reader creatReader(String name, String pin, String phone, Residence address) throws IOException {
         Reader reader = new Reader(name, pin, phone, address);
         //adicionar o reader ao banco de dados - falta fazer o dao reader
         readerDAO.create(reader); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
@@ -70,7 +71,7 @@ public class Adm extends Librarian {
      * @param address O endereço do bibliotecário.
      * @return O bibliotecário recém-criado.
      */
-    public Librarian creatLibrariam(String name, String pin, String phone, Residence address){
+    public Librarian creatLibrariam(String name, String pin, String phone, Residence address) throws IOException {
         Librarian librarian = new Librarian(name, pin, phone, address);
         librarianDAO.create(librarian);
         return librarian;
@@ -85,7 +86,7 @@ public class Adm extends Librarian {
      * @param address O endereço do administrador.
      * @return O administrador recém-criado.
      */
-    public Adm creatAdm(String name, String pin, String phone, Residence address){
+    public Adm creatAdm(String name, String pin, String phone, Residence address) throws IOException {
         Adm adm = new Adm(name, pin, phone, address);
 
         AdmDAO admDao = DAO.getAdmDAO();

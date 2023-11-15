@@ -6,6 +6,8 @@ import model.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
@@ -13,7 +15,7 @@ public class UserTest {
     private Book book;
 
     @BeforeEach
-    public void setUp() throws BookException {
+    public void setUp() throws BookException, IOException {
         // Configurando objetos para teste
         Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         user = new User("Nome do Usuário", "Senha123", "xx xxxxx-xxxx", address);

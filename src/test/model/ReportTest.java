@@ -8,6 +8,7 @@ import exceptions.BookException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class ReportTest {
     private Reader reader;
 
     @BeforeEach
-    public void setUp() throws BookException {
+    public void setUp() throws BookException, IOException {
         // Configurando objetos para teste
         bookDAO = report.getBooks();
 
@@ -82,7 +83,7 @@ public class ReportTest {
     }
 
     @Test
-    public void testHighestPopularBookWithManyBooks() {  // Teste com vários livros
+    public void testHighestPopularBookWithManyBooks() throws IOException {  // Teste com vários livros
         book0.setQuantityLoan(2);
         book1.setQuantityLoan(9);
         book2.setQuantityLoan(0);
@@ -95,7 +96,7 @@ public class ReportTest {
     }
 
     @Test
-    public void testHighestPopularBookWithManyBooksAndZeroLoan() {  // Teste com todos os livros com quantidade de empréstimos igual a zero
+    public void testHighestPopularBookWithManyBooksAndZeroLoan() throws IOException {  // Teste com todos os livros com quantidade de empréstimos igual a zero
         book0.setQuantityLoan(0);
         book1.setQuantityLoan(0);
         book2.setQuantityLoan(0);
@@ -108,7 +109,7 @@ public class ReportTest {
     }
 
     @Test
-    public void testGenerateUserLoanSuccess() {
+    public void testGenerateUserLoanSuccess() throws IOException {
         LoanDAO loanDAO = report.getLoans();
 
         LocalDate dateLoan = LocalDate.now();

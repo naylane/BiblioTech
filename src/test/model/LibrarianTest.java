@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class LibrarianTest {
@@ -28,7 +30,7 @@ public class LibrarianTest {
     }
 
     @Test
-    public void testRegisterBook() throws BookException {
+    public void testRegisterBook() throws BookException, IOException {
         librarian.registerBook("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
                 "HarperCollins", 2018, "Romance", location, 4);
 
@@ -36,7 +38,7 @@ public class LibrarianTest {
     }
 
     @Test
-    public void testRegisterDuplicateBook() throws BookException {
+    public void testRegisterDuplicateBook() throws BookException, IOException {
         librarian.registerBook("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
                 "HarperCollins", 2018, "Romance", location, 1);
 
@@ -48,7 +50,7 @@ public class LibrarianTest {
     }
 
     @Test
-    public void testRegisterLoan() throws BookException, LoanException {
+    public void testRegisterLoan() throws BookException, LoanException, IOException {
         // Garantindo que o livro está disponível
         book.setQuantityAvailable(1);
         // Garantindo de que o leitor não está bloqueado

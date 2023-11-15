@@ -6,6 +6,7 @@ import model.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,19 +29,19 @@ public class LoanDAOTest {
     }
 
     @Test
-    public void testAddLoan() {
+    public void testAddLoan() throws IOException {
         DAO.getLoanDAO().create(loan1);
         assertEquals(loan1, DAO.getLoanDAO().findById(loan1.getIdLoan())); // Verifica que o empréstimo encontrado é o mesmo do adicionado na lista
     }
 
     @Test
-    public void testFindById() {
+    public void testFindById() throws IOException {
         DAO.getLoanDAO().create(loan1);
         assertNotNull(DAO.getLoanDAO().findById(0));
     }
 
     @Test
-    public void testUpdateLoan() {
+    public void testUpdateLoan() throws IOException {
         // Salvando um empréstimo no DAO
         DAO.getLoanDAO().create(loan1);
 
@@ -55,7 +56,7 @@ public class LoanDAOTest {
     }
 
     @Test
-    public void testDeleteLoan() {
+    public void testDeleteLoan() throws IOException {
         // Salvando um empréstimo no DAO
         DAO.getLoanDAO().create(loan1);
 
@@ -68,7 +69,7 @@ public class LoanDAOTest {
     }
 
     @Test
-    public void testDeleteAll() {
+    public void testDeleteAll() throws IOException {
         // Salvando um empréstimo no DAO
         DAO.getLoanDAO().create(loan1);
         // Deletando toda a lista de empréstimos

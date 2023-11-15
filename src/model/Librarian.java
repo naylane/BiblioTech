@@ -7,6 +7,7 @@ import exceptions.BookException;
 import exceptions.LoanException;
 import exceptions.UsersException;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -99,7 +100,7 @@ public class Librarian extends User{
      * @throws BookException se ocorrer um erro relacionado ao livro.
      * @throws LoanException se ocorrer um erro relacionado ao empréstimo.
      */
-    public void registerLoan(Reader reader, Book book) throws BookException, LoanException { // registrar emprestimo de leitor
+    public void registerLoan(Reader reader, Book book) throws BookException, LoanException, IOException { // registrar emprestimo de leitor
         if(book.getQuantityAvailable() == 0){ //se tem livro disponivel
             throw new BookException(BookException.NotAvailable);}
         else{
@@ -127,7 +128,7 @@ public class Librarian extends User{
      * @param book     O livro do emprestimo.
      *
      */
-    public Loan creatLoan(Reader reader, Book book){
+    public Loan creatLoan(Reader reader, Book book) throws IOException {
         LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
         // Calcule a data de devolução (10 dias a partir da data de empréstimo)
         LocalDate dateDevolution = dateEnd(dateLoan);
@@ -155,7 +156,7 @@ public class Librarian extends User{
      * @param location          O local onde o livro está armazenado.
      * @param quantity          A quantidade inicial de cópias disponíveis do livro.
      */
-    public void registerBook(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) throws BookException {
+    public void registerBook(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) throws BookException, IOException {
         Book newBook = new Book(isbn, title, author, publishing_company, year_publication, category, location, quantity);
 
         for (Book book : DAO.getBookDAO().findAll()) {

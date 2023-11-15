@@ -50,4 +50,7 @@ public class BookLocation {
     public void setSection(String section) {
         this.section = section;
     }
+    public String toString() {
+        return shelf + "," + hall + ',' + section;
+    }
 }
