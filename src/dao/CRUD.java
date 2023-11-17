@@ -1,11 +1,12 @@
 package dao;
 
+import java.io.IOException;
 import java.util.List;
 
 //aq é onde fica as assinaturas dos metodos para serem usadas nas interfaces DAO
 public interface CRUD<T> {
 
-    public T create(T obj);
+    public T create(T obj) throws IOException;
 
     public List<T> findAll();
 

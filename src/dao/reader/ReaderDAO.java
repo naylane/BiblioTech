@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface ReaderDAO extends CRUD<Reader> {
     public Map<Long, Reader> getReaderMap();
-    public long getNextId();
-    public void recoverData();
+    public long getNextId(long id);
+    public long recoverData();
 }

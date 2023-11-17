@@ -1,65 +1,38 @@
 package dao.reader;
 import model.Reader;
 import model.Residence;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
 public class ReaderDAOImpl implements ReaderDAO {
     private Map<Long, Reader> readerMap = new HashMap<>();
     private long nextId = 0;
 
-    public long getNextId() {
-        //Primeiro ele faz a verificação se existe elementos no arquivo, caso exista, ele proucura o maior ID
-        long biggerId = 0;
-        Path path = Paths.get("./data/reader.csv");
-        try {
-            long fileSize = Files.size(path); // Se o tamanho for maior que zero, o arquivo contém dados
-            if (fileSize > 0) { //se for maior que 0, vai pegar o maior ID do arquivo
-                try (Scanner scanner = new Scanner(new File("./data/reader.csv"))) { //caminho do arquivo
-                    while (scanner.hasNext()) {
-                        String line = scanner.nextLine(); //le a linha
-                        String[] parts = line.split(","); //divide em partes
-                        if (parts.length >= 10) {
-                            long id = Long.parseLong(parts[0].trim());
-                            if (id > biggerId) { //para pegar o maior id do arquivo
-                                biggerId = id;
-                            }
-                        }
-                    }
-                } catch (FileNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-        if(biggerId!=0){nextId = biggerId;
-        return this.nextId+1;}
-        else{return this.nextId++;}
+    public long getNextId(long id) {
+        if(id == 0){this.nextId++;} //se não tiver nenhum elemento no arquivo
+        else{this.nextId = id + 1;} //se tiver algum elemento no arquivo
         /*
          * A++ -> usa o valor de A e depois incrementa A
          * ++A -> incrementa o valor de A e depois utiliza o valor de A
          */
+        return this.nextId;
     }
 
     public void saveData() {
         String csvFilePath = "./data/reader.csv"; // caminho do arquivo CSV
-        try (FileWriter writter = new FileWriter(csvFilePath, true)) { // O segundo argumento true no construtor do FileWriter indica que você está abrindo o arquivo no modo de anexação
-
+        try (FileWriter writter = new FileWriter(csvFilePath)) {
             for (Map.Entry<Long, Reader> entry : readerMap.entrySet()) {
                 Reader reader = entry.getValue();
+                long key = entry.getKey();
+                Reader value = entry.getValue();
 
                 String line = String.format("%d, %s, %s, %s, %s",
                         reader.getId(),
@@ -75,10 +48,19 @@ public class ReaderDAOImpl implements ReaderDAO {
         }
     }
 
-    public void recoverData() { //sempre antes de inciar o codigo é importante fazer a recuperação de dados
-        Map<Long, Reader> mapRecovered = new HashMap<>(); //hashmap temporario
-        try (Scanner scanner = new Scanner(new File("./data/reader.csv"))) { //caminho do arquivo
-            while (scanner.hasNext()) {
+    public long recoverData() { //sempre antes de inciar o codigo é importante fazer a recuperação de dados
+        String path = "./data/reader.csv";
+        int lineCount = 0;
+        long biggerId=0;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            while (reader.readLine() != null) { //serve para contar a quantidade de linhas de um arquivo
+                lineCount++;}
+        } catch (IOException e) {throw new RuntimeException(e);}
+
+        if(path.length()>0){
+            try (Scanner scanner = new Scanner(new File(path))) { //caminho do arquivo
+            while (lineCount>0) {
                 String line = scanner.nextLine(); //le a linha
                 String[] parts = line.split(","); //divide em partes
                 if (parts.length >= 10) {
@@ -94,22 +76,24 @@ public class ReaderDAOImpl implements ReaderDAO {
                     String cep = parts[9].trim();
                     Residence address = new Residence(state, city, neighbourhood, street, number, cep);
                     Reader reader = new Reader(name, pin, phone, address); //cria novos objetos
-                    mapRecovered.put(id, reader);
+                    reader.setId(id);
+                    readerMap.put(id, reader);
+                    lineCount-=1;
+                    if(id>biggerId){biggerId=id;} //aq pega o maior Id
                 }
             }
-
         } catch (FileNotFoundException ex) {
-            throw new RuntimeException(ex);
-        }
-        this.readerMap = mapRecovered;
+            throw new RuntimeException(ex);}}
+
+        return biggerId; //retorna o maior Id
     }
 
     @Override
     public Reader create(Reader obj) {
-        recoverData();
-        obj.setId(getNextId());
+        long biggerId = recoverData(); //faz a recuperação dos dado no map e retorna o maior Id
+        obj.setId(getNextId(biggerId));
         readerMap.put(obj.getId(), obj);
-        saveData();
+        saveData(); //salva o Hashmap novamento no arquivo
         return obj;
     }
 

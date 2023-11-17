@@ -42,7 +42,6 @@ public class Reader extends User {
      */
     public Reader(String name, String pin, String phone, Residence address) { //construtor reader
         super(name, pin, phone, address);
-        this.setId(readerDAO.getNextId());
         this.fineDeadline = null;
         this.loanLimit = 3;
         this.block = false;

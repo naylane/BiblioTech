@@ -40,7 +40,7 @@ public class Adm extends Librarian {
      */
     public Adm(String name, String pin, String phone, Residence address) {
         super(name, pin, phone, address);
-        this.setId(readerDAO.getNextId());
+        this.setId(admDAO.getNextId());
     }
 
     //CRIAÇÃO DE USERS
