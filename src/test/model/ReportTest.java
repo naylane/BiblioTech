@@ -3,6 +3,8 @@ package test.model;
 import dao.DAO;
 import dao.book.BookDAO;
 import dao.loan.LoanDAO;
+import exceptions.LoanException;
+import exceptions.UsersException;
 import model.*;
 import exceptions.BookException;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +24,11 @@ public class ReportTest {
     private Book book2;
     private Reader reader;
 
+    public ReportTest() throws LoanException {
+    }
+
     @BeforeEach
-    public void setUp() throws BookException, IOException {
+    public void setUp() throws BookException, IOException, UsersException {
         // Configurando objetos para teste
         bookDAO = report.getBooks();
 

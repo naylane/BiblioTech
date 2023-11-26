@@ -1,6 +1,7 @@
 package test.model;
 
 import dao.DAO;
+import exceptions.UsersException;
 import model.*;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +13,11 @@ public class AdmTest {
     Residence address = new Residence("Bahia", "Feira de Santana", "Feira VI", "A", 14,"44000000");
     Adm adm = new Adm("Nome do Adm", "123", "75 94002-8922", address);
 
+    public AdmTest() throws Exception {
+    }
+
     @Test
-    public void registerReader() throws IOException {
+    public void registerReader() throws IOException, UsersException {
         // ADM REGISTRA O LEITOR
         Reader reader = adm.creatReader("Fernanda", "7752", "75 9 0000-0000", address);
 
@@ -29,7 +33,7 @@ public class AdmTest {
     }
 
     @Test
-    public void registerAdm() throws IOException {
+    public void registerAdm() throws IOException, UsersException {
         // ADM REGISTRA UM ADM
         Adm newAdm = adm.creatAdm("Otávio", "97420", "75 9 0000-0000", address);
 

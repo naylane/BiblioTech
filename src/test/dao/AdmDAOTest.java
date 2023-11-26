@@ -2,6 +2,7 @@ package test.dao;
 
 import dao.DAO;
 import dao.adm.AdmDAO;
+import exceptions.UsersException;
 import model.Adm;
 import model.Residence;
 import org.junit.jupiter.api.AfterEach;
@@ -19,7 +20,7 @@ public class AdmDAOTest {
     Residence address;
 
     @BeforeEach
-    public void setUp() {
+    public void setUp() throws Exception {
         admDAO = DAO.getAdmDAO();
         Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         adm0 = new Adm("Nome do ADM 0", "Senha123", "xx xxxxx-xxxx", address);
@@ -55,7 +56,7 @@ public class AdmDAOTest {
     }
 
     @Test
-    public void testUpdate() throws IOException {
+    public void testUpdate() throws Exception {
         // Adicionando um adm
         admDAO.create(adm0);
         // Criando adm com informações diferentes ao adm 0

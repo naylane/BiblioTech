@@ -1,6 +1,7 @@
 package test.dao;
 
 import dao.reader.ReaderDAOImpl;
+import exceptions.UsersException;
 import model.Reader;
 import model.Residence;
 import org.junit.jupiter.api.AfterEach;
@@ -15,6 +16,9 @@ public class ReaderDAOTest {
     private Reader reader2;
     private Reader reader3;
     Residence address;
+
+    public ReaderDAOTest() throws UsersException {
+    }
 
     @BeforeEach
     public void setUp(){
