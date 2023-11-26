@@ -6,6 +6,7 @@ import dao.book.BookDAO;
 import dao.librarian.LibrarianDAO;
 import dao.reader.ReaderDAO;
 import dao.report.ReportDAO;
+import exceptions.LoanException;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,7 +27,6 @@ import java.util.List;
 public class Adm extends Librarian {
     ReaderDAO readerDAO = DAO.getReaderDAO();
     LibrarianDAO librarianDAO = DAO.getLibrarianDAO();
-    AdmDAO admDAO = DAO.getAdmDAO();
     BookDAO bookDAO = DAO.getBookDAO();
     ReportDAO reportDAO = DAO.getReportDAO();
 
@@ -38,9 +38,8 @@ public class Adm extends Librarian {
      * @param phone   O número de telefone do administrador.
      * @param address O endereço do administrador.
      */
-    public Adm(String name, String pin, String phone, Residence address) {
+    public Adm(String name, String pin, String phone, Residence address) throws Exception {
         super(name, pin, phone, address);
-        this.setId(admDAO.getNextId());
     }
 
     //CRIAÇÃO DE USERS
@@ -56,9 +55,7 @@ public class Adm extends Librarian {
      */
     public Reader creatReader(String name, String pin, String phone, Residence address) throws IOException {
         Reader reader = new Reader(name, pin, phone, address);
-        //adicionar o reader ao banco de dados - falta fazer o dao reader
-        readerDAO.create(reader); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
-
+        readerDAO.create(reader);
         return reader;
     }
 
@@ -71,7 +68,7 @@ public class Adm extends Librarian {
      * @param address O endereço do bibliotecário.
      * @return O bibliotecário recém-criado.
      */
-    public Librarian creatLibrariam(String name, String pin, String phone, Residence address) throws IOException {
+    public Librarian creatLibrariam(String name, String pin, String phone, Residence address) throws Exception {
         Librarian librarian = new Librarian(name, pin, phone, address);
         librarianDAO.create(librarian);
         return librarian;
@@ -86,7 +83,7 @@ public class Adm extends Librarian {
      * @param address O endereço do administrador.
      * @return O administrador recém-criado.
      */
-    public Adm creatAdm(String name, String pin, String phone, Residence address) throws IOException {
+    public Adm creatAdm(String name, String pin, String phone, Residence address) throws Exception {
         Adm adm = new Adm(name, pin, phone, address);
 
         AdmDAO admDao = DAO.getAdmDAO();
@@ -105,7 +102,6 @@ public class Adm extends Librarian {
 
     /**
      * Desbloqueia um leitor no sistema.
-     *
      * @param reader O leitor a ser desbloqueado.
      */
     public void unlockReader(Reader reader) {
@@ -134,7 +130,7 @@ public class Adm extends Librarian {
      * @return Leitor retornado.
      */
     public Reader readerSearch(long id) {
-            return readerDAO.findById(id);}
+        return readerDAO.findById(id);}
 
     /**
      * Proucura um bibliotecario no sistema.
@@ -242,90 +238,63 @@ public class Adm extends Librarian {
     public void deleteAllBook(){
         bookDAO.deleteAll();}
 
-    //GERAR RELATÓRIOS
+    // RELATÓRIOS
 
     /**
      * Criar relatorio no sistema.
+     * @return Relatório
      */
-    public void genareteReport(){
-        Report report = reportDAO.getReport();
+    public Report genareteReport() throws LoanException {
+        return reportDAO.getReport();
     }
 
     /**
      * Gerar os livros/o livro mais popular(es).
      * @return uma lista de livros.
      */
-    public List<Book> genareteHighestPopular(){
-        if(reportDAO.getReport() == null){
-            genareteReport();
-            return null;
-        }else{
-            Report report = reportDAO.getReport();
-            List<Book> BookHighest = report.generateBookHighestPopular();
-            reportDAO.save(report);
-            return BookHighest; //retornando uma lista pois pode ter mais de um livro popular
-        }
+    public List<Book> genareteHighestPopular(Report report) {
+        List<Book> highestPopular = report.generateBookHighestPopular();
+        reportDAO.save(report);
+        return highestPopular;
     }
 
     /**
      * Gerar os livros que estão emprestados.
      * @return uma lista de livros.
      */
-    public List<Book> genareteBoorowedBooks(){
-        if(reportDAO.getReport() == null){
-            genareteReport();
-            return null;
-        }else{
-            Report report = reportDAO.getReport();
-            List<Book> BooksBorrowed = report.generatesBorrowedBooks();
-            reportDAO.save(report);
-            return BooksBorrowed; //retornando uma lista com os livros emprestados
-        }
+    public List<Book> genareteBoorowedBooks(Report report) {
+        List<Book> borrowedBooks = report.generatesBorrowedBooks();
+        reportDAO.save(report);
+        return borrowedBooks;
     }
 
     /**
      * Gerar os livros que estão atrasados.
      * @return uma lista de livros.
      */
-    public List<Book> genareteLateBooks(){
-        if(reportDAO.getReport() == null){
-            genareteReport();
-            return null;
-        }else{
-            Report report = reportDAO.getReport();
-            List<Book> BooksLate = report.generatesLateBooks();
-            reportDAO.save(report);
-            return BooksLate; //retornando uma lista com os livros atrasados
-    }}
+    public List<Book> genareteLateBooks(Report report) {
+        List<Book> booksLate = report.generatesLateBooks();
+        reportDAO.save(report);
+        return booksLate;
+    }
 
     /**
      * Gerar os livros que estão reservados.
      * @return uma lista de livros.
      */
-    public List<Book> genareteReservedBooks(){
-        if(reportDAO.getReport() == null){
-            genareteReport();
-            return null;
-        }else{
-            Report report = reportDAO.getReport();
-            List<Book> BooksReserved = report.generatesReservedBooks();
-            reportDAO.save(report);
-            return BooksReserved; //retornando uma lista com os livros reservados
-    }}
+    public List<Book> genareteReservedBooks(Report report){
+        List<Book> booksReserved = report.generatesReservedBooks();
+        reportDAO.save(report);
+        return booksReserved;
+    }
 
     /**
      * Gerar o histórico de emprestimo de um usuario especifico.
      * @param reader leitor a ser retornado o historico de emprestimo.
      * @return uma lista de emprestimos.
      */
-    public List<Loan> genareteUserLoan(Reader reader){
-        if (reportDAO.getReport() == null){
-            genareteReport();
-            return null;
-        } else {
-            Report report = reportDAO.getReport();
-            return report.genareteUserLoan(reader); //retornando uma lista com o historico de emprestimo de um leitor
-        }
+    public List<Loan> genareteUserLoan(Reader reader, Report report){
+        return report.genareteUserLoan(reader);
     }
 
 }

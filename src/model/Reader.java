@@ -1,6 +1,5 @@
 package model;
 
-import dao.reader.ReaderDAOImpl;
 import exceptions.BookException;
 import exceptions.LoanException;
 import exceptions.UsersException;
@@ -24,8 +23,6 @@ import java.time.LocalDate;
  * @author Sara Souza e Naylane Ribeiro
  */
 public class Reader extends User {
-
-    ReaderDAOImpl readerDAO = new ReaderDAOImpl(); //se quiser usar as opreções do DAO, uma das formas é criar um objeto
     private Boolean block; // diz se o leitor está bloqueado ou não: false - não e true - sim
     private LocalDate fineDeadline; //data final que o leitor está bloqueado
     private int loanLimit; //limite de emprestimos no momento
@@ -55,22 +52,25 @@ public class Reader extends User {
     public Boolean getBlock(){
         return block;
     }
+
     public void setBlock(Boolean block){
         this.block = block;
     }
+
     public LocalDate getFineDeadline(){
         return fineDeadline;
     }
+
     public void setFineDeadline(LocalDate fineDeadline){
         this.fineDeadline = fineDeadline;
     }
+
     public int getLoanLimit(){
         return loanLimit;
     }
 
     /**
      * decrementa o limite de emprestimo.
-     *
      */
     public void drecreaseLoanLimit(){
         this.loanLimit -= 1;
@@ -116,11 +116,13 @@ public class Reader extends User {
         }
         return reader.block;
     }
+
     /**
      * Método que adiciona um leitor a fila de reserva de determinado livro.
      * @param reader leitor
      * @param book livro
      **/
+
     public void makeReservation(Reader reader, Book book) throws BookException, UsersException { //verefica se tem livro disponivel
         if(book.getQuantityAvailable() > 0){
             throw new BookException(BookException.Available); //logo, vc pode ir fazer o emprestimo com o bibliotecario

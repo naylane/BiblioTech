@@ -27,9 +27,8 @@ import java.time.temporal.ChronoUnit;
  * @author Sara Souza e Naylane Ribeiro
  */
 public class Librarian extends User{
-    Report report = DAO.getReportDAO().getReport();
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim
-    LoanDAO loanDAO = DAO.getLoanDAO();
+    Report report = DAO.getReportDAO().getReport();
 
     /**
      * Construtor da classe Librarian para criar um novo bibliotecário.
@@ -39,9 +38,8 @@ public class Librarian extends User{
      * @param phone   O número de telefone do bibliotecário.
      * @param address O endereço do bibliotecário.
      */
-    public Librarian(String name, String pin, String phone, Residence address) {
+    public Librarian(String name, String pin, String phone, Residence address) throws Exception {
         super(name, pin, phone, address);
-        this.setId(loanDAO.getNextId());
     }
 
     /**
@@ -100,7 +98,7 @@ public class Librarian extends User{
      * @throws BookException se ocorrer um erro relacionado ao livro.
      * @throws LoanException se ocorrer um erro relacionado ao empréstimo.
      */
-    public void registerLoan(Reader reader, Book book) throws BookException, LoanException, IOException { // registrar emprestimo de leitor
+    public void registerLoan(Reader reader, Book book) throws Exception { // registrar emprestimo de leitor
         if(book.getQuantityAvailable() == 0){ //se tem livro disponivel
             throw new BookException(BookException.NotAvailable);}
         else{
@@ -128,21 +126,19 @@ public class Librarian extends User{
      * @param book     O livro do emprestimo.
      *
      */
-    public Loan creatLoan(Reader reader, Book book) throws IOException {
-        LocalDate dateLoan = dateToday(); //diz a data do dia atual ou seja, a data do emprestimo
-        // Calcule a data de devolução (10 dias a partir da data de empréstimo)
-        LocalDate dateDevolution = dateEnd(dateLoan);
-        // Criando um emprestimo
-        Loan loan = new Loan(reader.getId(), book, dateLoan, dateDevolution);
-        //Usando o DAO para adicionar o emprestimo ao banco de dados
-        LoanDAO loandao = DAO.getLoanDAO();
-        loandao.create(loan);
-        book.setQuantityLoan(1); //soma a variavel da quantidade de emprestimo
+    public Loan creatLoan(Reader reader, Book book) throws IOException, LoanException, Exception {
+        LocalDate dateLoan = dateToday(); // diz a data do dia atual ou seja, a data do emprestimo
+        LocalDate dateDevolution = dateEnd(dateLoan); // calcula a data de devolução (10 dias a partir da data de empréstimo)
+        Loan loan = new Loan(reader.getId(), book, dateLoan, dateDevolution); // cria emprestimo
+        book.setQuantityLoan(1); // soma a variavel da quantidade de emprestimo
         book.setQuantityAvailable(book.getQuantityAvailable() - 1); // atualizando a quantidade disponível do livro
-        report.storesBorrowedBooks(book); //add na lista de livros emprestados no momento
         reader.increaseLoanLimit();
-        DAO.getReportDAO().save(report); // salva o relatório
-        return loan;}
+        // persistência de dados
+        DAO.getLoanDAO().create(loan); // adiciona o emprestimo ao banco de dados
+        DAO.getReportDAO().getReport().storesBorrowedBooks(book); // adiciona na lista de livros emprestados no momento
+
+        return loan;
+    }
 
     /**
      * Registra um novo livro no sistema.
@@ -164,12 +160,11 @@ public class Librarian extends User{
                 // já existe esse livro cadastrado logo só se soma a quantidade existente do livro
                 book.setQuantityAvailable(book.getQuantityAvailable() + newBook.getQuantityAvailable());
                 DAO.getBookDAO().update(book); // atualizando os dados no DAO
-                //System.out.println("\nsuccessfully registered book!");
                 return; // sai do método pois o livro já foi cadastrado
             }
         }
         DAO.getBookDAO().create(newBook); // criou o livro e o armazenou no map tendo o seu isbn como id
-        //System.out.println("\nsuccessfully registered book!");
+        System.out.println("\nsuccessfully registered book!");
     }
 
     /**

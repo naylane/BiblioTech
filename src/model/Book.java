@@ -54,8 +54,8 @@ public class Book {
         this.year_publication = year_publication;
         this.category = category;
         this.location = location;
-        this.quantityAvailable = quantity;
         this.quantityTotal = quantity;
+        this.quantityAvailable = quantity;
         this.quantityLoan = 0;
     }
 
@@ -163,12 +163,9 @@ public class Book {
     
     @Override
     public String toString() {
-        return "\n[LIVRO]: " + title + "\n" +
-                "autor:" + author + '\n' +
-                "editora:" + publishing_company + '\n' +
-                "isbn:" + isbn + '\n' +
-                "ano de publicação:" + year_publication + '\n' +
-                "categoria:" + category + '\n' +
-                "localizacao:" + "corredor - " + location.getHall() + ", prateleira - " + location.getShelf() + ", sessao - " + location.getSection();
+        return String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s",
+                isbn, title, author, publishing_company, year_publication, category,
+                location.getShelf(), location.getHall(), location.getSection(), quantityTotal, quantityAvailable, quantityLoan);
     }
+
 }

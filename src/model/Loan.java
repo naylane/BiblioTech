@@ -1,7 +1,6 @@
 package model;
 
-import dao.loan.LoanDAOImpl;
-
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -17,15 +16,15 @@ import java.time.LocalDate;
  *
  * @author Sara Souza e Naylane Ribeiro
  */
-public class Loan {
-    private long idLoan; //esse id muda dps
+public class Loan implements Serializable {
+    private long idLoan;
     private long idUser;
     private Book book;
     private LocalDate dateLoan; //vai adicionar a data de hoje a data do emprestimo
     private LocalDate dateDevolution; //vai ser de 10 dias e chama a função que soma +10 dias a data do emprestimo
     private int renovationQuantity; //limite de 3 renovacoes do livro
     private boolean active = true; // boolean que diz se o empréstimo já foi devolvido ou não (false = sim, true - não)
-    LoanDAOImpl loanDAO = new LoanDAOImpl();
+
     /**
      * Construtor da classe Loan.
      *
@@ -35,7 +34,6 @@ public class Loan {
      * @param dateDevolution A data de devolução prevista.
      */
     public Loan(long idUser, Book book, LocalDate dateLoan, LocalDate dateDevolution) {
-        this.idLoan = loanDAO.getNextId(); //gera o id automaticamente
         this.idUser = idUser;
         this.book = book;
         this.dateLoan = dateLoan;

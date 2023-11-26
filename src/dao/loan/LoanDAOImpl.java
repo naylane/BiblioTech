@@ -1,31 +1,37 @@
 package dao.loan;
 
+import dao.FileControl;
+import exceptions.LoanException;
 import model.Loan;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class LoanDAOImpl implements LoanDAO{
-    private final Map<Long, Loan> loanMap = new HashMap<>(); //map para guardar todos emprestimos feitos
-    public Map<Long, Loan> getLoanMap() { //para retornar o banco de dados com todos livros cadastrados em  formato map
-        return loanMap;
+public class LoanDAOImpl implements LoanDAO {
+    private HashMap<Long, Loan> loanMap;
+    private long nextId;
+
+    public LoanDAOImpl() throws LoanException {
+        this.loanMap = FileControl.loadLoan();
+        this.nextId = loanMap.size();
     }
-    private long nextId = 0;
 
     public long getNextId() {
-        /**
+        /*
          * A++ -> usa o valor de A e depois incrementa A
          * ++A -> incrementa o valor de A e depois utiliza o valor de A
          */
-        return this.nextId++; // retorna ID para o objeto atual e define o próximo ID
+        return this.nextId++;
     }
+
+    public HashMap<Long, Loan> getLoanMap() { return loanMap; }
 
     @Override
     public Loan create(Loan loan) {
         loan.setIdLoan(getNextId());
         loanMap.put(loan.getIdLoan(), loan);
+        FileControl.saveLoan(this.loanMap);
         return loan;
     }
 
@@ -46,6 +52,7 @@ public class LoanDAOImpl implements LoanDAO{
     @Override
     public Loan update(Loan loan) {
         loanMap.put(loan.getIdLoan(), loan);
+        FileControl.saveLoan(this.loanMap);
         return null;
     }
 
@@ -53,10 +60,12 @@ public class LoanDAOImpl implements LoanDAO{
     public void delete(Loan loan) {
         long id = loan.getIdLoan();
         loanMap.remove(id);
+        FileControl.saveLoan(this.loanMap);
     }
 
     public void deleteAll() {
         loanMap.clear();
+        FileControl.saveLoan(this.loanMap);
     }
 
 }

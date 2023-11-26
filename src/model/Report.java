@@ -3,34 +3,30 @@ package model;
 import dao.DAO;
 import dao.book.BookDAO;
 import dao.loan.LoanDAO;
+import exceptions.LoanException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * Esta classe serve para armazenar dados para
- * gerar um relatorio do sistema. Portanto ela contém
- * atributos como livros emprestados, livros atrasados,
- * e livros reservados, atrivutos esses que foram
- * formulados de acordo com o que foi pedido no problema.
- * Além disso, ela contém métodos para gerar os dados dos
- * livros que estão emprestados, atrasados e reservados, e
- * métodos para gerar o historico de um usuario especifico
- * e pegar o livro mais popular.
- *
+ * gerar um relatorio do sistema. Portanto, ela contém atributos como livros emprestados, livros atrasados,
+ * e livros reservados, atributos esses formulados conforme o que foi pedido no problema.<br>
+ * Além disso, ela contém métodos para gerar os dados dos livros que estão emprestados, atrasados e reservados, e
+ * métodos para gerar o historico de um usuario específico e pegar o livro mais popular.<br>
+ * Padrão de Projeto Singleton.
  * @author Sara Souza e Naylane Ribeiro
  */
 public class Report {
     private BookDAO books = DAO.getBookDAO();
     private LoanDAO loans = DAO.getLoanDAO();
-    private List<Book> borrowedBooks; //armazena todos livros que estão emprestados no momento
-    private List<Book> lateBooks; //armazena todos livros que estão atrasados no momento
-    private List<Book> reservedBooks; //armazena todos livros que já estão reservados no momento
+    private List<Book> borrowedBooks; //armazena todos os livros que estão emprestados no momento
+    private List<Book> lateBooks; //armazena todos os livros que estão atrasados no momento
+    private List<Book> reservedBooks; //armazena todos os livros que estão reservados no momento
 
-    public Report() {
+    public Report() throws LoanException {
         this.borrowedBooks = new ArrayList<>();
         this.lateBooks = new ArrayList<>();
         this.reservedBooks = new ArrayList<>();

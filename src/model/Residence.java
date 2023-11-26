@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Esta classe contém atributos para armazenar o endereço de
  * um usuario. Portanto ela contém os atributos de um
@@ -10,13 +12,14 @@ package model;
  *
  * @author Sara Souza e Naylane Ribeiro
  */
-public class Residence {
+public class Residence implements Serializable {
     private String state;
     private String city;
-    private String neighborhood; //bairro
+    private String neighborhood;
     private String street;
     private int number;
     private String cep;
+
     /**
      * Construtor da classe Residence.
      *
@@ -33,7 +36,8 @@ public class Residence {
         this.neighborhood = neighborhood;
         this.street = street;
         this.number = number;
-        this.cep = cep;}
+        this.cep = cep;
+    }
 
     // Métodos Get
     public String getState() {
@@ -54,6 +58,7 @@ public class Residence {
     public String getCep() {
         return cep;
     }
+
     // Métodos Set
     public void setState(String state) {
         this.state = state;

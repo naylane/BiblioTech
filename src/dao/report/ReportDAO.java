@@ -1,5 +1,6 @@
 package dao.report;
 
+import exceptions.LoanException;
 import model.Report;
 
 public interface ReportDAO {
@@ -7,10 +8,10 @@ public interface ReportDAO {
      * Método que retorna o relatório já existente
      * @return relatório
      */
-    Report getReport();
+    public Report getReport() throws LoanException;
 
     /**
-     * Método que salva o relatório passado no parâmetro como atributo da classe ReportDAOImpl
+     * Método que salva o relatório passado no parâmetro.
      * @param report relatório a criar
      * @return relatório criado
      */
@@ -20,5 +21,5 @@ public interface ReportDAO {
      * Método que deleta o relatório previamente criado
      * @param report relatório a ser deletado
      */
-    void delete(Report report);
+    void delete(Report report) throws LoanException;
 }

@@ -1,8 +1,8 @@
 package model;
 
 import dao.DAO;
-import exceptions.BookException;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static dao.DAO.bookDAO;
@@ -19,7 +19,7 @@ import static dao.DAO.bookDAO;
  *
  * @author Sara Souza e Naylane Ribeiro
  */
-public class User {
+public class User implements Serializable {
     private long id;
     private String name;
     private String pin;
@@ -82,11 +82,6 @@ public class User {
         this.address = address;
     }
 
-    @Override
-    public String toString() {
-        return "ID: " + id + "name: " + name;
-    }
-
     /**
      * Método que compara um objeto com outro para verificar se seus IDs são iguais.
      *
@@ -143,4 +138,9 @@ public class User {
     public List<Book> searchBooksByCategory(String category) {
         // Chama o método de pesquisa por categoria no DAO de livros
         return bookDAO.findByCategory(category);}
+
+    @Override
+    public String toString() {
+        return "ID: " + id + " name: " + name;
+    }
 }
