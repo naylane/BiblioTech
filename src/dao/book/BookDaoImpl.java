@@ -1,28 +1,24 @@
 package dao.book;
 
+import dao.FileControl;
+import exceptions.UsersException;
+import model.Adm;
 import model.Book;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class BookDaoImpl implements BookDAO {
     private HashMap<String, Book> bookMap;
 
-    public BookDAOImpl() {
-        this.bookMap = FileControl.loadBook();}
+    public void BookDAOImpl() throws UsersException {
+        this.bookMap = FileControl.loadBook();
+    }
 
     @Override
     public Book create(Book book) {
-        bookMap.put(reader.getIsbn(), book);
+        bookMap.put(book.getISBN(), book);
         FileControl.saveBook(this.bookMap);
         return book;
     }
@@ -32,7 +28,12 @@ public class BookDaoImpl implements BookDAO {
         return new ArrayList<>(bookMap.values());}
 
     @Override
-    public Book findById(String id) {  //retorna um livro pelo Id (lembrando q o id é o isbn)
+    public Book findById(long id) {
+        return null;
+    }
+
+    @Override
+    public Book findByIsbn(String id) {  //retorna um livro pelo Id (lembrando q o id é o isbn)
         return bookMap.get(id);}
 
     @Override
@@ -85,4 +86,7 @@ public class BookDaoImpl implements BookDAO {
     }
 
     public long quantityBooks(){ return (long)bookMap.size();} //retorna a quantidade de livros
+
+    public HashMap<String, Book> getBookMap() { return bookMap; }
+
 }

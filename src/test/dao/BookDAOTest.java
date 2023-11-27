@@ -42,7 +42,7 @@ public class BookDAOTest {
 
     @Test
     public void testFindBookByIsbn() {
-        assertNotNull(DAO.getBookDAO().findById("9788595081512")); // verifica se é encontrado um livro pelo isbn
+        assertNotNull(DAO.getBookDAO().findByIsbn("9788595081512")); // verifica se é encontrado um livro pelo isbn
     }
 
     @Test
@@ -78,7 +78,7 @@ public class BookDAOTest {
         // ATUALIZANDO
         DAO.getBookDAO().update(alteredBook);
 
-        Book bookTest = DAO.getBookDAO().findById("9788595081512");
+        Book bookTest = DAO.getBookDAO().findByIsbn("9788595081512");
 
         assertNotEquals(this.book, bookTest); // asserta que os objetos são diferentes
     }

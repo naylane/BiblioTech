@@ -25,7 +25,7 @@ public class AdmTest {
     }
 
     @Test
-    public void registerLibrarian() throws IOException {
+    public void registerLibrarian() throws Exception {
         // ADM REGISTRA O BIBLIOTECÁRIO
         Librarian librarian = adm.creatLibrariam("Felipe", "81472", "75 9 0000-0000", address);
 
@@ -33,7 +33,7 @@ public class AdmTest {
     }
 
     @Test
-    public void registerAdm() throws IOException, UsersException {
+    public void registerAdm() throws Exception {
         // ADM REGISTRA UM ADM
         Adm newAdm = adm.creatAdm("Otávio", "97420", "75 9 0000-0000", address);
 

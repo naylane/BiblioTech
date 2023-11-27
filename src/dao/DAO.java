@@ -42,7 +42,7 @@ public class DAO {
         return loanDAO;
     }
 
-    public static LibrarianDAO getLibrarianDAO() {
+    public static LibrarianDAO getLibrarianDAO() throws UsersException {
         if(librarianDAO == null) {
             librarianDAO = new LibrarianDAOImpl();
         }
@@ -56,7 +56,7 @@ public class DAO {
         return readerDAO;
     }
 
-    public static AdmDAO getAdmDAO(){
+    public static AdmDAO getAdmDAO() throws UsersException {
         if (admDAO == null){
             admDAO = new AdmDAOImpl();
         }

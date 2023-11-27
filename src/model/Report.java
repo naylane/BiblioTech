@@ -5,6 +5,7 @@ import dao.book.BookDAO;
 import dao.loan.LoanDAO;
 import exceptions.LoanException;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.Map;
  * Padrão de Projeto Singleton.
  * @author Sara Souza e Naylane Ribeiro
  */
-public class Report {
+public class Report implements Serializable {
     private BookDAO books = DAO.getBookDAO();
     private LoanDAO loans = DAO.getLoanDAO();
     private List<Book> borrowedBooks; //armazena todos os livros que estão emprestados no momento

@@ -2,6 +2,7 @@ package model;
 
 import exceptions.BookException;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -20,7 +21,7 @@ import java.util.Queue;
  *
  * @author Sara Souza e Naylane Ribeiro
  */
-public class Book {
+public class Book implements Serializable {
     private String isbn;
     private String title;
     private String author;

@@ -3,6 +3,7 @@ package dao.book;
 import dao.CRUD;
 import model.Book;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface BookDAO extends CRUD<Book> {
@@ -10,6 +11,7 @@ public interface BookDAO extends CRUD<Book> {
     public List<Book> findByTitle(String title);
     public List<Book> findByAuthor(String author);
     public List<Book> findByCategory(String categoria);
-    public Book findById(String id);
+    public Book findByIsbn(String id);
+    public HashMap<String, Book> getBookMap();
 
 }

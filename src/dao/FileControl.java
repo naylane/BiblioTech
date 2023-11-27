@@ -2,11 +2,8 @@ package dao;
 
 import exceptions.LoanException;
 import exceptions.UsersException;
-import model.Loan;
+import model.*;
 import model.Reader;
-import model.Report;
-import model.Adm;
-import model.Librarian;
 
 import java.io.*;
 import java.util.HashMap;
@@ -55,11 +52,11 @@ public class FileControl {
     /**
      * Método que salva o objeto adm no arquivo binário.
      */
-    public static void saveAdm(Adm adm) {
+    public static void saveAdm(HashMap<Long, Adm> map) {
         try {
             FileOutputStream fs = new FileOutputStream("data\\adm.dat");
             ObjectOutputStream os = new ObjectOutputStream(fs);
-            os.writeObject(adm);
+            os.writeObject(map);
             os.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -69,11 +66,11 @@ public class FileControl {
     /**
      * Método que salva o objeto book no arquivo binário.
      */
-    public static void saveBook(Book book) {
+    public static void saveBook(HashMap<String, Book> map) {
         try {
             FileOutputStream fs = new FileOutputStream("data\\book.dat");
             ObjectOutputStream os = new ObjectOutputStream(fs);
-            os.writeObject(book);
+            os.writeObject(map);
             os.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -83,11 +80,11 @@ public class FileControl {
     /**
      * Método que salva o objeto librarian no arquivo binário.
      */
-    public static void saveLibrarian (Libraria lib) {
+    public static void saveLibrarian (HashMap<Long, Librarian> map) {
         try {
             FileOutputStream fs = new FileOutputStream("data\\librarian.dat");
             ObjectOutputStream os = new ObjectOutputStream(fs);
-            os.writeObject(lib);
+            os.writeObject(map);
             os.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());

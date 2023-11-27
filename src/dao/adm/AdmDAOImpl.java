@@ -1,5 +1,7 @@
 package dao.adm;
 
+import dao.FileControl;
+import exceptions.UsersException;
 import model.Adm;
 
 import java.util.ArrayList;
@@ -11,9 +13,9 @@ public class AdmDAOImpl implements AdmDAO {
     private HashMap<Long, Adm> admMap;
     private long nextId;
 
-    public AdmDAOImpl() {
-        this.admMap = FileControl.admLoan(); //recupa os dados
-        this.nextId = loanMap.size(); //vê o tamanho do map para encontrar o prox ID
+    public AdmDAOImpl() throws UsersException {
+        this.admMap = FileControl.loadAdm(); //recupa os dados
+        this.nextId = admMap.size(); //vê o tamanho do map para encontrar o prox ID
     }
 
     public long getNextId() {
@@ -28,7 +30,7 @@ public class AdmDAOImpl implements AdmDAO {
 
     @Override
     public Adm create(Adm adm) {
-        Adm.setId(getNextId());
+        adm.setId(getNextId());
         admMap.put(adm.getId(), adm);
         FileControl.saveAdm(this.admMap);
         return adm;

@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Esta classe contém atributos para armazenar o local de
  * um livro. Portanto ela contém atributos como
@@ -9,7 +11,7 @@ package model;
  *
  * @author Sara Souza e Naylane Ribeiro
  */
-public class BookLocation {
+public class BookLocation implements Serializable {
     private String shelf;
     private String hall;
     private String section;

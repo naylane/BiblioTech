@@ -106,7 +106,7 @@ public class User implements Serializable {
      * @return O livro encontrado com o ISBN especificado.
      */
     public Book searchBookByIsbn(String isbn) {
-         return DAO.getBookDAO().findById(isbn);
+         return DAO.getBookDAO().findByIsbn(isbn);
     }
 
     /**

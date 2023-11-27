@@ -20,7 +20,7 @@ public class LibrarianTest {
     private Book book;
 
     @BeforeEach
-    public void setUp() throws BookException {
+    public void setUp() throws Exception {
         // Configurando objetos para teste
         address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         librarian = new Librarian("Nome do Bibliotecário", "1234", "123-456-7890", address);
@@ -34,7 +34,7 @@ public class LibrarianTest {
         librarian.registerBook("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
                 "HarperCollins", 2018, "Romance", location, 4);
 
-        assertNotNull(DAO.getBookDAO().findById("9788595081512")); // verifica se o pesquisar por id retorna o livro cadastrado
+        assertNotNull(DAO.getBookDAO().findByIsbn("9788595081512")); // verifica se o pesquisar por id retorna o livro cadastrado
     }
 
     @Test
@@ -46,11 +46,11 @@ public class LibrarianTest {
         librarian.registerBook("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
                 "HarperCollins", 2018, "Romance", location, 5);
 
-        assertSame(6, DAO.getBookDAO().findById("9788595081512").getQuantityAvailable());
+        assertSame(6, DAO.getBookDAO().findByIsbn("9788595081512").getQuantityAvailable());
     }
 
     @Test
-    public void testRegisterLoan() throws BookException, LoanException, IOException {
+    public void testRegisterLoan() throws Exception {
         // Garantindo que o livro está disponível
         book.setQuantityAvailable(1);
         // Garantindo de que o leitor não está bloqueado

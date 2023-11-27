@@ -1,6 +1,7 @@
 package test.dao;
 
 import dao.librarian.LibrarianDAOImpl;
+import exceptions.UsersException;
 import model.Librarian;
 import model.Residence;
 import org.junit.jupiter.api.AfterEach;
@@ -17,8 +18,11 @@ public class LibrarianDaoTest {
     private Librarian lib3;
     Residence address;
 
+    public LibrarianDaoTest() throws UsersException {
+    }
+
     @BeforeEach
-    public void setUp(){
+    public void setUp() throws Exception {
         address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         lib1 = new Librarian("Nome do Bibliotecario 1", "senha123","xx xxxxx-xxxx", address);
         lib2 = new Librarian("Nome do Bibliotecario 2", "senha456","xx xxxxx-xxxx", address);
@@ -52,7 +56,7 @@ public class LibrarianDaoTest {
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws Exception {
         // Adicionando um adm
         librarianDAO.create(lib1);
         // Criando bibliotecario com informações diferentes ao lib1
