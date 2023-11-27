@@ -8,10 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 public class LibrarianDAOImpl implements LibrarianDAO {
-    private final Map<Long, Librarian> librarianMap = new HashMap<>();
-    private long nextId = 0;
-    public Map<Long, Librarian> getLibrarianMap(){
-        return librarianMap;}
+    private HashMap<Long, Librarian> librarianMap;
+    private long nextId;
+
+    public LibrarianDAOImpl() throws UsersException {
+        this.librarianMap = FileControl.loadLibrarian ();
+        this.nextId = librarianMap.size();
+    }
 
     public long getNextId() {
         /**
@@ -22,10 +25,11 @@ public class LibrarianDAOImpl implements LibrarianDAO {
     }
 
     @Override
-    public Librarian create(Librarian obj){
-        obj.setId(getNextId());
-        librarianMap.put(obj.getId(), obj);
-        return obj;
+    public Librarian create(Librarian lib) {
+        lib.setId(getNextId());
+        librarianMap.put(lib.getId(), lib);
+        FileControl.saveLibrarian(this.librarianMap);
+        return lib;
     }
 
     @Override
@@ -41,6 +45,7 @@ public class LibrarianDAOImpl implements LibrarianDAO {
     @Override
     public Librarian update(Librarian obj) {
         librarianMap.put(obj.getId(), obj);
+        FileControl.saveLibrarian(this.librarianMap);
         return null;
     }
 
@@ -48,10 +53,15 @@ public class LibrarianDAOImpl implements LibrarianDAO {
     public void delete(Librarian obj) {
         long id = obj.getId();
         librarianMap.remove(id);
+        FileControl.saveLibrarian(this.librarianMap);
     }
 
     @Override
     public void deleteAll() {
         librarianMap.clear();
+        FileControl.saveLibrarian(this.librarianMap);
     }
+
+    public Map<Long, Librarian> getLibrarianMap(){
+        return librarianMap;}
 }

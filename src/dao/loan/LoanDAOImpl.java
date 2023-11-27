@@ -29,8 +29,8 @@ public class LoanDAOImpl implements LoanDAO {
 
     @Override
     public Loan create(Loan loan) {
-        loan.setIdLoan(getNextId());
-        loanMap.put(loan.getIdLoan(), loan);
+        loan.setId(getNextId());
+        loanMap.put(loan.getId(), loan);
         FileControl.saveLoan(this.loanMap);
         return loan;
     }

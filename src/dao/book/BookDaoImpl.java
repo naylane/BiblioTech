@@ -15,52 +15,21 @@ import java.util.List;
 import java.util.Map;
 
 public class BookDaoImpl implements BookDAO {
-    private final Map<String, Book> bookMap = new HashMap<>(); //map para gaurdar os livros numa estrutura Isbn:livro
-    public Map<String, Book> getBookMap() { //para retornar o banco de dados com todos livros cadastrados em  formato map
-        return bookMap;
-    }
+    private HashMap<String, Book> bookMap;
 
-    public long quantityBooks(){ return (long)bookMap.size();} //retorna a quantidade de livros
+    public BookDAOImpl() {
+        this.bookMap = FileControl.loadBook();}
 
-
-    public void saveBooksToCSV()  {
-        String csvBooks = "./data/books.csv"; //File's name
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvBooks))) {
-            for (Map.Entry<String, Book> entry : bookMap.entrySet()) {
-                Book book = entry.getValue();
-                String line = String.format("%s,%s,%s,%s,%d,%s,%s,%d\n",
-                        book.getISBN(),
-                        book.getTitle(),
-                        book.getAuthor(),
-                        book.getPublishing_company(),
-                        book.getYear_publication(),
-                        book.getCategory(),
-                        book.getLocation().toString(), // pega o to String do BookLocation
-                        book.getQuantityTotal());
-                writer.write(line);}
-                System.out.println("Dados foram escritos no arquivo CSV.");
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public long QuantityBooks(){ return (long)bookMap.size();} //retorna a quantidade de livros
     @Override
-    public Book create(Book obj) throws IOException { //criando um livro e colocando no map
-        String id = obj.getISBN(); //o id do livro vai ser o proprio isbn
-        bookMap.put(id, obj);
-        saveBooksToCSV();
-        return obj;
+    public Book create(Book book) {
+        bookMap.put(reader.getIsbn(), book);
+        FileControl.saveBook(this.bookMap);
+        return book;
     }
 
     @Override
     public List<Book> findAll() { //retorna a lista de todos livros em bookmap
         return new ArrayList<>(bookMap.values());}
-
-    @Override
-    public Book findById(long id) { //não vai ser utilizavél aqui
-        return null;
-    }
 
     @Override
     public Book findById(String id) {  //retorna um livro pelo Id (lembrando q o id é o isbn)
@@ -69,18 +38,22 @@ public class BookDaoImpl implements BookDAO {
     @Override
     public Book update(Book obj) {
         bookMap.put(obj.getISBN(), obj);
+        FileControl.saveBook(this.bookMap);
         return null;}
 
     @Override
     public void delete(Book obj) {
         String id = obj.getISBN();
-        bookMap.remove(id);}
+        bookMap.remove(id);
+        FileControl.saveBook(this.bookMap);
+    }
 
     public void deleteAll(){
-        bookMap.clear(); //a função clear vai apagar tudo no bookmap
+        bookMap.clear();
+        FileControl.saveBook(this.bookMap);//a função clear vai apagar tudo no bookmap
     }
-    //as funções de pesquisas abaixo vão iterar pelo map e criar uma lista de livro de acordo com oq se pesquisa.
 
+    //as funções de pesquisas abaixo vão iterar pelo map e criar uma lista de livro de acordo com oq se pesquisa.
     public List<Book> findByTitle(String title) {
         List<Book> result = new ArrayList<>();
         for (Book book : bookMap.values()) {
@@ -110,4 +83,6 @@ public class BookDaoImpl implements BookDAO {
         }
         return result;
     }
+
+    public long quantityBooks(){ return (long)bookMap.size();} //retorna a quantidade de livros
 }

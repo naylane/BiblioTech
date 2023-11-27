@@ -8,8 +8,13 @@ import java.util.List;
 import java.util.Map;
 
 public class AdmDAOImpl implements AdmDAO {
-    private final Map<Long, Adm> admMap = new HashMap<>();
-    private long nextId = 0;
+    private HashMap<Long, Adm> admMap;
+    private long nextId;
+
+    public AdmDAOImpl() {
+        this.admMap = FileControl.admLoan(); //recupa os dados
+        this.nextId = loanMap.size(); //vê o tamanho do map para encontrar o prox ID
+    }
 
     public long getNextId() {
         /*
@@ -19,11 +24,14 @@ public class AdmDAOImpl implements AdmDAO {
         return this.nextId++; // retorna ID para o objeto atual e define o próximo ID
     }
 
+    public HashMap<Long, Adm> getAdmMap() { return admMap; }
+
     @Override
-    public Adm create(Adm obj) {
-        obj.setId(getNextId());
-        admMap.put(obj.getId(), obj);
-        return obj;
+    public Adm create(Adm adm) {
+        Adm.setId(getNextId());
+        admMap.put(adm.getId(), adm);
+        FileControl.saveAdm(this.admMap);
+        return adm;
     }
 
     @Override
@@ -39,6 +47,7 @@ public class AdmDAOImpl implements AdmDAO {
     @Override
     public Adm update(Adm obj) {
         admMap.put(obj.getId(), obj);
+        FileControl.saveAdm(this.admMap);
         return null;
     }
 
@@ -46,9 +55,12 @@ public class AdmDAOImpl implements AdmDAO {
     public void delete(Adm obj) {
         long id = obj.getId();
         admMap.remove(id);
+        FileControl.saveAdm(this.admMap);
     }
     @Override
     public void deleteAll() {
+        
         admMap.clear();
+        FileControl.saveAdm(this.admMap);
     }
 }
