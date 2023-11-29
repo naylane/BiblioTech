@@ -1,8 +1,6 @@
 package model;
 
 import dao.DAO;
-import dao.loan.LoanDAO;
-import dao.loan.LoanDAOImpl;
 import exceptions.BookException;
 import exceptions.LoanException;
 import exceptions.UsersException;
@@ -28,7 +26,6 @@ import java.time.temporal.ChronoUnit;
  */
 public class Librarian extends User{
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim
-    Report report = DAO.getReportDAO().getReport();
 
     /**
      * Construtor da classe Librarian para criar um novo bibliotecário.
@@ -135,7 +132,6 @@ public class Librarian extends User{
         reader.increaseLoanLimit();
         // persistência de dados
         DAO.getLoanDAO().create(loan); // adiciona o emprestimo ao banco de dados
-        DAO.getReportDAO().getReport().storesBorrowedBooks(book); // adiciona na lista de livros emprestados no momento
 
         return loan;
     }
@@ -186,7 +182,7 @@ public class Librarian extends User{
             loan.setActive(false); // mudando o estado de ativo do emprestimo para falso
             Book book = loan.getBook();
             book.setQuantityAvailable(book.getQuantityAvailable() + 1); // atualizando a quantidade de determinado livro disponível
-            report.takeOutBorrowedBook(book); //remove da lista de livros emprestados no momento
             reader.increaseLoanLimit();
-        }}
+        }
+    }
 }

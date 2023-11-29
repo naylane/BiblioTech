@@ -7,11 +7,13 @@ import model.Reader;
 
 import java.io.*;
 import java.util.HashMap;
+
 /**
- * Esta classe serve para poder realizar o intermédio entre o arquivo binário que esta salvo
- * na maquina, e as funcionalidades internas do sistema. Dessa forma, ele fica responsável por recuperar os dados
+ * Esta classe permite poder realizar o intermédio entre o arquivo binário que está salvo
+ * na máquina, e as funcionalidades internas do sistema. Dessa forma, ele fica responsável por recuperar os dados
  * nos arquivos e salvar dados nesses arquivos. Assim, ele mantém os dados salvos após mesmo após fechar o programa, 
  * ficando disponíveis para próxima abertura do programa.
+ * @author Sara Souza e Naylane Ribeiro
  */
 public class FileControl {
     /**
@@ -29,10 +31,6 @@ public class FileControl {
 
         if (!(new File("data\\loan.dat")).exists()){
             FileControl.saveLoan(new HashMap<Long, Loan>());
-        }
-
-        if (!(new File("data\\report.dat")).exists()){
-            FileControl.saveReport(new Report());
         }
 
         if (!(new File("data\\adm.dat")).exists()){
@@ -113,20 +111,6 @@ public class FileControl {
             FileOutputStream fs = new FileOutputStream("data\\loan.dat");
             ObjectOutputStream os = new ObjectOutputStream(fs);
             os.writeObject(map);
-            os.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    /**
-     * Método que salva o objeto report no arquivo binário.
-     */
-    public static void saveReport(Report report) {
-        try {
-            FileOutputStream fs = new FileOutputStream("data\\report.dat");
-            ObjectOutputStream os = new ObjectOutputStream(fs);
-            os.writeObject(report);
             os.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -237,21 +221,4 @@ public class FileControl {
         catch (ClassNotFoundException e) {
             throw new LoanException("Classe não encontrada."); }
     }
-
-    /**
-     * Método que recupera os dados do ReportDAO do arquivo binário.
-     */
-    public static Report loadReport() throws Exception {
-        try {
-            FileInputStream fs = new FileInputStream("data\\report.dat");
-            ObjectInputStream os = new ObjectInputStream(fs);
-            Report report = (Report) os.readObject();
-            os.close();
-            return report;
-        } catch (IOException e) {
-            throw new Exception(e.getMessage()); }
-        catch (ClassNotFoundException e) {
-            throw new Exception("Classe não encontrada."); }
-    }
-
 }

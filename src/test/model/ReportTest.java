@@ -18,7 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ReportTest {
     private final Report report = new Report();
-    private BookDAO bookDAO;
+    private final BookDAO bookDAO = DAO.getBookDAO();
+    private final LoanDAO loanDAO = DAO.getLoanDAO();
     private Book book0;
     private Book book1;
     private Book book2;
@@ -30,8 +31,6 @@ public class ReportTest {
     @BeforeEach
     public void setUp() throws BookException, IOException, UsersException {
         // Configurando objetos para teste
-        bookDAO = report.getBooks();
-
         Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         reader = new Reader("Nome do Leitor", "5678", "75 98765-3210", address);
         DAO.getReaderDAO().create(reader);
@@ -43,48 +42,47 @@ public class ReportTest {
     }
 
     @Test
-    public void testStoresBorrowedBooks() {
-        int qntBefore = report.quantityBorrowedBooks();
-        report.storesBorrowedBooks(book0);
-        int qntAfter = report.quantityBorrowedBooks();
+    public void testStoresBorrowedBooks() throws IOException {
+        long qntBefore = report.generatesBorrowedBooks();
+        bookDAO.create(book0);
+        long qntAfter = report.generatesBorrowedBooks();
 
         assertTrue(qntAfter > qntBefore); // Verifica que a quantidade após adicionar o livro é maior
     }
 
     @Test
-    public void takeOutBorrowedBook() {
+    public void takeOutBorrowedBook() throws IOException {
         // Armazenando dois livros na lista de livros emprestados
-        report.storesBorrowedBooks(book0);
-        report.storesBorrowedBooks(book1);
-        int qntBefore = report.quantityBorrowedBooks();
+        bookDAO.create(book0);
+        bookDAO.create(book1);
+        long qntBefore = report.generatesBorrowedBooks();
         // Retirando um livro da lista de livros emprestados
-        report.takeOutBorrowedBook(book0);
-        int qntAfter = report.quantityBorrowedBooks();
+        bookDAO.delete(book0);
+        long qntAfter = report.generatesBorrowedBooks();
 
         assertTrue(qntAfter < qntBefore);  // Verifica que a quantidade após adicionar o livro é menor
     }
 
     @Test
-    public void testNegativeQuantityBorrowedBooks() {
+    public void testNegativeQuantityBorrowedBooks() throws IOException {
         // Armazenando um livro na lista de livros emprestados
-        report.storesBorrowedBooks(book0);
+        bookDAO.create(book0);
         // Retirando o livro da lista de livros emprestados
-        report.takeOutBorrowedBook(book0);
+        bookDAO.delete(book0);
 
-        int qnt = report.quantityBorrowedBooks();
+        long qnt = report.generatesBorrowedBooks();
 
         assertTrue(qnt >= 0); // Verifica que a quantidade não fica negativa
     }
 
     @Test
-    public void testGeneratesBorrowedBooks() {
+    public void testGeneratesBorrowedBooks() throws IOException {
         // Armazenando livros na lista de livros emprestados
-        report.storesBorrowedBooks(book0);
-        report.storesBorrowedBooks(book1);
-        report.storesBorrowedBooks(book2);
+        bookDAO.create(book0);
+        bookDAO.create(book1);
+        bookDAO.create(book2);
 
-        List list = report.generatesBorrowedBooks(); // Não lança exceção pois a lista não está vazia
-        assertEquals(3, list.size()); // Verificando que os livros estão sendo armazendados
+        assertEquals(3, report.generatesBorrowedBooks()); // Verificando que os livros são armazendados
     }
 
     @Test
@@ -115,8 +113,6 @@ public class ReportTest {
 
     @Test
     public void testGenerateUserLoanSuccess() throws IOException {
-        LoanDAO loanDAO = report.getLoans();
-
         LocalDate dateLoan = LocalDate.now();
         LocalDate dateDevolution = dateLoan.plusDays(10);
         Loan loan0 = new Loan(reader.getId(), book0, dateLoan, dateDevolution);
