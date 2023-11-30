@@ -11,7 +11,7 @@ import java.util.HashMap;
 /**
  * Esta classe permite poder realizar o intermédio entre o arquivo binário que está salvo
  * na máquina, e as funcionalidades internas do sistema. Dessa forma, ele fica responsável por recuperar os dados
- * nos arquivos e salvar dados nesses arquivos. Assim, ele mantém os dados salvos após mesmo após fechar o programa,
+ * nos arquivos e salvar dados nesses arquivos. Assim, ele mantém os dados salvos após mesmo após fechar o programa, 
  * ficando disponíveis para próxima abertura do programa.
  * @author Sara Souza e Naylane Ribeiro
  */
@@ -25,15 +25,15 @@ public class FileControl {
             file.mkdirs();
         }
 
-        if (!(new File("data\\reader.dat")).exists()) {
+        if (!(new File("data\\reader.dat")).exists()){
             FileControl.saveReader(new HashMap<Long, Reader>());
         }
 
-        if (!(new File("data\\loan.dat")).exists()) {
+        if (!(new File("data\\loan.dat")).exists()){
             FileControl.saveLoan(new HashMap<Long, Loan>());
         }
 
-        if (!(new File("data\\adm.dat")).exists()) {
+        if (!(new File("data\\adm.dat")).exists()){
             FileControl.saveAdm(new HashMap<Long, Adm>());
 
         }
@@ -78,7 +78,7 @@ public class FileControl {
     /**
      * Método que salva o objeto librarian no arquivo binário.
      */
-    public static void saveLibrarian(HashMap<Long, Librarian> map) {
+    public static void saveLibrarian (HashMap<Long, Librarian> map) {
         try {
             FileOutputStream fs = new FileOutputStream("data\\librarian.dat");
             ObjectOutputStream os = new ObjectOutputStream(fs);
@@ -120,7 +120,7 @@ public class FileControl {
     /**
      * Método que recupera os dados do AdmDAO do arquivo binário.
      */
-    public static HashMap<Long, Adm> loadAdm() throws UsersException {
+        public static HashMap<Long, Adm> loadAdm() throws UsersException {
         try {
             FileInputStream fs = new FileInputStream("data\\adm.dat");
             ObjectInputStream os = new ObjectInputStream(fs);
@@ -133,10 +133,9 @@ public class FileControl {
             }
             return map;
         } catch (IOException e) {
-            throw new UsersException(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new UsersException("Classe não encontrada.");
-        }
+            throw new UsersException(e.getMessage()); }
+        catch (ClassNotFoundException e) {
+            throw new UsersException("Classe não encontrada."); }
     }
 
     /**
@@ -155,10 +154,9 @@ public class FileControl {
             }
             return map;
         } catch (IOException e) {
-            throw new UsersException(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new UsersException("Classe não encontrada.");
-        }
+            throw new UsersException(e.getMessage()); }
+        catch (ClassNotFoundException e) {
+            throw new UsersException("Classe não encontrada."); }
     }
 
     /**
@@ -177,10 +175,9 @@ public class FileControl {
             }
             return map;
         } catch (IOException e) {
-            throw new UsersException(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new UsersException("Classe não encontrada.");
-        }
+            throw new UsersException(e.getMessage()); }
+        catch (ClassNotFoundException e) {
+            throw new UsersException("Classe não encontrada."); }
     }
 
     /**
@@ -199,10 +196,9 @@ public class FileControl {
             }
             return map;
         } catch (IOException e) {
-            throw new UsersException(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new UsersException("Classe não encontrada.");
-        }
+            throw new UsersException(e.getMessage()); }
+        catch (ClassNotFoundException e) {
+            throw new UsersException("Classe não encontrada."); }
     }
 
     /**
@@ -221,9 +217,8 @@ public class FileControl {
             }
             return map;
         } catch (IOException e) {
-            throw new LoanException(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            throw new LoanException("Classe não encontrada.");
-        }
+            throw new LoanException(e.getMessage()); }
+        catch (ClassNotFoundException e) {
+            throw new LoanException("Classe não encontrada."); }
     }
 }

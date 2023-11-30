@@ -5,11 +5,9 @@ import dao.book.BookDAO;
 import dao.loan.LoanDAO;
 import exceptions.LoanException;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Esta classe serve para armazenar dados para
@@ -17,107 +15,61 @@ import java.util.Map;
  * e livros reservados, atributos esses formulados conforme o que foi pedido no problema.<br>
  * Além disso, ela contém métodos para gerar os dados dos livros que estão emprestados, atrasados e reservados, e
  * métodos para gerar o historico de um usuario específico e pegar o livro mais popular.<br>
- * Padrão de Projeto Singleton.
  * @author Sara Souza e Naylane Ribeiro
  */
-public class Report implements Serializable {
-    private BookDAO books = DAO.getBookDAO();
-    private LoanDAO loans = DAO.getLoanDAO();
-    private List<Book> borrowedBooks; //armazena todos os livros que estão emprestados no momento
-    private List<Book> lateBooks; //armazena todos os livros que estão atrasados no momento
-    private List<Book> reservedBooks; //armazena todos os livros que estão reservados no momento
+public class Report {
+    private final BookDAO bookDAO = DAO.getBookDAO();
+    private final LoanDAO loanDAO = DAO.getLoanDAO();
+    private long borrowedBooks; // quantidade de livros emprestados no momento
+    private long lateBooks; // quantidade de livros que estão atrasados no momento
+    private long reservedBooks; // quantidade de livros que estão reservados no momento
 
     public Report() throws LoanException {
-        this.borrowedBooks = new ArrayList<>();
-        this.lateBooks = new ArrayList<>();
-        this.reservedBooks = new ArrayList<>();
-    }
-
-    //BORROWED BOOKS
-    /**
-     * Armazena um livro na lista de livros emprestados na hora de um novo empréstimo.
-     *
-     * @param book O livro a ser armazenado na lista de livros emprestados.
-     */
-    public void storesBorrowedBooks(Book book) {
-        borrowedBooks.add(book);
+        this.borrowedBooks = 0;
+        this.lateBooks = 0;
+        this.reservedBooks = 0;
     }
 
     /**
-     * Remove um livro da lista de livros emprestados na hora da devolução.
-     *
-     * @param book O livro a ser removido da lista de livros emprestados.
+     * Percorre o hashmap de emprestimos em busca dos emprestimos que se encontram ativos.
+     * @return Quantidade de livros emprestados.
      */
-    public void takeOutBorrowedBook(Book book) {
-        borrowedBooks.remove(book);
-    }
-
-    /**
-     * Retorna a quantidade de livros emprestados no momento.
-     *
-     * @return A quantidade de livros emprestados.
-     */
-    public int quantityBorrowedBooks() {
-            return borrowedBooks.size();}
-
-    /**
-     * Gera uma lista dos livros atualmente emprestados.
-     *
-     * @return Uma lista dos livros emprestados.
-     */
-    public List<Book> generatesBorrowedBooks() {
+    public long generatesBorrowedBooks() {
+        for (Loan loan : loanDAO.findAll()) {
+            if (loan.getActive()) {
+                this.borrowedBooks++;
+            }
+        }
         return borrowedBooks;
     }
 
-    //LATE BOOKS
     /**
-     * Gera uma lista dos livros atualmente atrasados.
-     *
-     * @return Uma lista dos livros atrasados.
+     * Percorre o hashmap de emprestimos em busca dos emprestimos atualmente atrasados.
+     * @return Quantidade de livros atrasados.
      */
-    public List<Book> generatesLateBooks() {
-        Map<Long, Loan> LoanMap = loans.getLoanMap();
-        for (Loan loan : LoanMap.values()) {
+    public long generatesLateBooks() {
+        for (Loan loan : loanDAO.findAll()) {
             LocalDate now = LocalDate.now();
             if (now.isAfter(loan.getDateDevolution())) {
-                lateBooks.add(loan.getBook());
+                lateBooks++;
             }
-        }return lateBooks;
+        }
+        return lateBooks;
     }
 
     /**
-     * Retorna a quantidade de livros atrasados no momento.
-     *
-     * @return A quantidade de livros atrasados.
+     * Percorre o hashmap de livros em busca daqueles que estão atualmente reservados por algum usuário.
+     * @return Quantidade de livros reservados.
      */
-    public int quantityLateBooks() {
-        return lateBooks.size();}
-
-    //RESERVED BOOKS
-    /**
-     * Gera uma lista dos livros que estão atualmente reservados por algum usuário.
-     *
-     * @return Uma lista dos livros reservados.
-     */
-    public List<Book> generatesReservedBooks() {
-        List<Book> BookMap = books.findAll();
-        for (Book book : BookMap) {
+    public Long generatesReservedBooks() {
+        for (Book book : bookDAO.findAll()) {
             if (!book.getResevationQueue().isEmpty()) {
-                reservedBooks.add(book);
+                reservedBooks++;
             }
         }
         return reservedBooks;
     }
 
-    /**
-     * Retorna a quantidade de livros reservados no momento.
-     *
-     * @return A quantidade de livros reservados.
-     */
-    public int quantityReservedBooks() {
-        return reservedBooks.size();}
-
-    //POPULAR BOOK
     /**
      * Retorna uma lista dos livros mais populares, ou seja, aqueles com a maior quantidade de empréstimos.
      *
@@ -125,9 +77,8 @@ public class Report implements Serializable {
      */
     public List<Book> generateBookHighestPopular() {
         List<Book> bookPopular = new ArrayList<>();
-        List<Book> bookList = books.findAll();
         int highestValue = 0;
-        for (Book bookFound : bookList) {
+        for (Book bookFound : bookDAO.findAll()) {
             int value = bookFound.getQuantityLoan();
             if (value == 0) {
                 highestValue = 0;
@@ -135,10 +86,10 @@ public class Report implements Serializable {
                 highestValue = value;
                 bookPopular.add(bookFound);
             }
-        }return bookPopular;
+        }
+        return bookPopular;
     }
 
-    //LOAN HISTORY
     /**
      * Gera o histórico de empréstimos de um determinado usuário.
      *
@@ -147,19 +98,13 @@ public class Report implements Serializable {
      */
     public List<Loan> genareteUserLoan(Reader reader) {
         List<Loan> loanHistory = new ArrayList<>();
-        List<Loan> LoanList = loans.findAll();
-        Long idReader = reader.getId();
-
-        for (Loan loanFound : LoanList) {
+        long idReader = reader.getId();
+        for (Loan loanFound : loanDAO.findAll()) {
             if (idReader == loanFound.getIdUser()) {
                 loanHistory.add(loanFound);
             }
         }
-
         return loanHistory;
     }
 
-    public BookDAO getBooks() { return books; }
-
-    public LoanDAO getLoans() { return loans; }
 }

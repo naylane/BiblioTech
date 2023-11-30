@@ -10,8 +10,6 @@ import dao.reader.ReaderDAO;
 import dao.reader.ReaderDAOImpl;
 import dao.loan.LoanDAO;
 import dao.loan.LoanDAOImpl;
-import dao.report.ReportDAO;
-import dao.report.ReportDAOImpl;
 import exceptions.LoanException;
 import exceptions.UsersException;
 
@@ -26,7 +24,6 @@ public class DAO {
     private static LibrarianDAO librarianDAO;
     private static AdmDAO admDAO;
     private static ReaderDAO readerDAO;
-    private static ReportDAO reportDAO;
 
     public static BookDAO getBookDAO(){
         if (bookDAO == null) {
@@ -61,12 +58,5 @@ public class DAO {
             admDAO = new AdmDAOImpl();
         }
         return admDAO;
-    }
-
-    public static ReportDAO getReportDAO() throws Exception {
-        if (reportDAO == null){
-            reportDAO = new ReportDAOImpl();
-        }
-        return reportDAO;
     }
 }

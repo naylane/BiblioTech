@@ -5,8 +5,6 @@ import dao.DAO;
 import dao.book.BookDAO;
 import dao.librarian.LibrarianDAO;
 import dao.reader.ReaderDAO;
-import dao.report.ReportDAO;
-import exceptions.LoanException;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,7 +26,6 @@ public class Adm extends Librarian {
     ReaderDAO readerDAO = DAO.getReaderDAO();
     LibrarianDAO librarianDAO = DAO.getLibrarianDAO();
     BookDAO bookDAO = DAO.getBookDAO();
-    ReportDAO reportDAO = DAO.getReportDAO();
 
     /**
      * Construtor da classe Adm para criar um novo administrador.
@@ -241,51 +238,35 @@ public class Adm extends Librarian {
     // RELATÓRIOS
 
     /**
-     * Criar relatorio no sistema.
-     * @return Relatório
-     */
-    public Report genareteReport() throws LoanException {
-        return reportDAO.getReport();
-    }
-
-    /**
      * Gerar os livros/o livro mais popular(es).
      * @return uma lista de livros.
      */
     public List<Book> genareteHighestPopular(Report report) {
-        List<Book> highestPopular = report.generateBookHighestPopular();
-        reportDAO.save(report);
-        return highestPopular;
+        return report.generateBookHighestPopular();
     }
 
     /**
-     * Gerar os livros que estão emprestados.
-     * @return uma lista de livros.
+     * Gera o relatório contendo a quantidade de livros emprestados.
+     * @return Quantidade de livros emprestados.
      */
-    public List<Book> genareteBoorowedBooks(Report report) {
-        List<Book> borrowedBooks = report.generatesBorrowedBooks();
-        reportDAO.save(report);
-        return borrowedBooks;
+    public long generateBorrowedBooks(Report report) {
+        return report.generatesBorrowedBooks();
     }
 
     /**
-     * Gerar os livros que estão atrasados.
-     * @return uma lista de livros.
+     * Gera o relatório contendo a quantidade de livros que estão atrasados.
+     * @return Quantidade de livros atrasados
      */
-    public List<Book> genareteLateBooks(Report report) {
-        List<Book> booksLate = report.generatesLateBooks();
-        reportDAO.save(report);
-        return booksLate;
+    public long generateLateBooks(Report report) {
+        return report.generatesLateBooks();
     }
 
     /**
-     * Gerar os livros que estão reservados.
-     * @return uma lista de livros.
+     * Gera o relatório contendo a quantidade de livros que estão reservados.
+     * @return Quantidade de livros reservados.
      */
-    public List<Book> genareteReservedBooks(Report report){
-        List<Book> booksReserved = report.generatesReservedBooks();
-        reportDAO.save(report);
-        return booksReserved;
+    public long generateReservedBooks(Report report){
+        return report.generatesReservedBooks();
     }
 
     /**
