@@ -6,7 +6,6 @@ import dao.loan.LoanDAO;
 import exceptions.LoanException;
 import exceptions.UsersException;
 import model.*;
-import exceptions.BookException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,11 +24,11 @@ public class ReportTest {
     private Book book2;
     private Reader reader;
 
-    public ReportTest() throws LoanException {
+    public ReportTest() throws Exception {
     }
 
     @BeforeEach
-    public void setUp() throws BookException, IOException, UsersException {
+    public void setUp() throws Exception {
         // Configurando objetos para teste
         Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         reader = new Reader("Nome do Leitor", "5678", "75 98765-3210", address);
@@ -51,7 +50,7 @@ public class ReportTest {
     }
 
     @Test
-    public void takeOutBorrowedBook() throws IOException {
+    public void takeOutBorrowedBook() throws Exception {
         // Armazenando dois livros na lista de livros emprestados
         bookDAO.create(book0);
         bookDAO.create(book1);
@@ -64,7 +63,7 @@ public class ReportTest {
     }
 
     @Test
-    public void testNegativeQuantityBorrowedBooks() throws IOException {
+    public void testNegativeQuantityBorrowedBooks() throws Exception {
         // Armazenando um livro na lista de livros emprestados
         bookDAO.create(book0);
         // Retirando o livro da lista de livros emprestados
@@ -76,7 +75,7 @@ public class ReportTest {
     }
 
     @Test
-    public void testGeneratesBorrowedBooks() throws IOException {
+    public void testGeneratesBorrowedBooks() throws Exception {
         // Armazenando livros na lista de livros emprestados
         bookDAO.create(book0);
         bookDAO.create(book1);
@@ -86,7 +85,7 @@ public class ReportTest {
     }
 
     @Test
-    public void testHighestPopularBookWithManyBooks() throws IOException {  // Teste com vários livros
+    public void testHighestPopularBookWithManyBooks() throws Exception {  // Teste com vários livros
         book0.setQuantityLoan(2);
         book1.setQuantityLoan(9);
         book2.setQuantityLoan(0);
@@ -99,7 +98,7 @@ public class ReportTest {
     }
 
     @Test
-    public void testHighestPopularBookWithManyBooksAndZeroLoan() throws IOException {  // Teste com todos os livros com quantidade de empréstimos igual a zero
+    public void testHighestPopularBookWithManyBooksAndZeroLoan() throws Exception {  // Teste com todos os livros com quantidade de empréstimos igual a zero
         book0.setQuantityLoan(0);
         book1.setQuantityLoan(0);
         book2.setQuantityLoan(0);
@@ -112,7 +111,7 @@ public class ReportTest {
     }
 
     @Test
-    public void testGenerateUserLoanSuccess() throws IOException {
+    public void testGenerateUserLoanSuccess() throws Exception {
         LocalDate dateLoan = LocalDate.now();
         LocalDate dateDevolution = dateLoan.plusDays(10);
         Loan loan0 = new Loan(reader.getId(), book0, dateLoan, dateDevolution);

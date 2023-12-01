@@ -1,7 +1,6 @@
 package dao.reader;
 
 import dao.FileControl;
-import exceptions.UsersException;
 import model.Reader;
 
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ public class ReaderDAOImpl implements ReaderDAO {
     private HashMap<Long, Reader> readerMap;
     private long nextId;
 
-    public ReaderDAOImpl() throws UsersException {
+    public ReaderDAOImpl() throws Exception {
         this.readerMap = FileControl.loadReader();
         this.nextId = readerMap.size();
     }

@@ -1,7 +1,6 @@
 package dao.loan;
 
 import dao.FileControl;
-import exceptions.LoanException;
 import model.Loan;
 
 import java.util.ArrayList;
@@ -12,7 +11,7 @@ public class LoanDAOImpl implements LoanDAO {
     private HashMap<Long, Loan> loanMap;
     private long nextId;
 
-    public LoanDAOImpl() throws LoanException {
+    public LoanDAOImpl() throws Exception {
         this.loanMap = FileControl.loadLoan();
         this.nextId = loanMap.size();
     }

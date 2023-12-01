@@ -1,19 +1,17 @@
 package dao.adm;
 
 import dao.FileControl;
-import exceptions.UsersException;
 import model.Adm;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class AdmDAOImpl implements AdmDAO {
     private HashMap<Long, Adm> admMap;
     private long nextId;
 
-    public AdmDAOImpl() throws UsersException {
+    public AdmDAOImpl() throws Exception {
         this.admMap = FileControl.loadAdm(); //recupa os dados
         this.nextId = admMap.size(); //vê o tamanho do map para encontrar o prox ID
     }

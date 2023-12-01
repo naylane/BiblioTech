@@ -3,7 +3,6 @@ package model;
 import dao.DAO;
 import dao.book.BookDAO;
 import dao.loan.LoanDAO;
-import exceptions.LoanException;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,7 +23,7 @@ public class Report {
     private long lateBooks; // quantidade de livros que estão atrasados no momento
     private long reservedBooks; // quantidade de livros que estão reservados no momento
 
-    public Report() throws LoanException {
+    public Report() throws Exception {
         this.borrowedBooks = 0;
         this.lateBooks = 0;
         this.reservedBooks = 0;

@@ -21,11 +21,15 @@ public class UserTest {
         user = new User("Nome do Usuário", "Senha123", "xx xxxxx-xxxx", address);
         BookLocation location = new BookLocation("Estante", "Corredor", "Seção");
         book = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
-        DAO.getBookDAO().create(book);
+        try {
+            DAO.getBookDAO().create(book);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
-    public void testFindBookByIsbn() {
+    public void testFindBookByIsbn() throws Exception {
         assertNotNull(user.searchBookByIsbn("ISBN123")); // verifica se é encontrado um livro pelo isbn
     }
 

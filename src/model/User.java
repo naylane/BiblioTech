@@ -105,7 +105,7 @@ public class User implements Serializable {
      * @param isbn O ISBN do livro a ser pesquisado.
      * @return O livro encontrado com o ISBN especificado.
      */
-    public Book searchBookByIsbn(String isbn) {
+    public Book searchBookByIsbn(String isbn) throws Exception {
          return DAO.getBookDAO().findByIsbn(isbn);
     }
 

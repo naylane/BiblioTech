@@ -2,7 +2,7 @@ package test.model;
 
 import dao.DAO;
 import exceptions.BookException;
-import exceptions.LoanException;
+import exceptions.UsersException;
 import model.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +30,7 @@ public class LibrarianTest {
     }
 
     @Test
-    public void testRegisterBook() throws BookException, IOException {
+    public void testRegisterBook() throws Exception {
         librarian.registerBook("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
                 "HarperCollins", 2018, "Romance", location, 4);
 
@@ -38,7 +38,7 @@ public class LibrarianTest {
     }
 
     @Test
-    public void testRegisterDuplicateBook() throws BookException, IOException {
+    public void testRegisterDuplicateBook() throws Exception {
         librarian.registerBook("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
                 "HarperCollins", 2018, "Romance", location, 1);
 

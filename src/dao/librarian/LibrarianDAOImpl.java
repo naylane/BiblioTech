@@ -1,7 +1,6 @@
 package dao.librarian;
 
 import dao.FileControl;
-import exceptions.UsersException;
 import model.Librarian;
 
 import java.util.ArrayList;
@@ -10,10 +9,10 @@ import java.util.List;
 import java.util.Map;
 
 public class LibrarianDAOImpl implements LibrarianDAO {
-    private HashMap<Long, Librarian> librarianMap;
+    private final HashMap<Long, Librarian> librarianMap;
     private long nextId;
 
-    public LibrarianDAOImpl() throws UsersException {
+    public LibrarianDAOImpl() throws Exception {
         this.librarianMap = FileControl.loadLibrarian ();
         this.nextId = librarianMap.size();
     }

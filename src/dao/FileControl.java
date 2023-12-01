@@ -1,7 +1,5 @@
 package dao;
 
-import exceptions.LoanException;
-import exceptions.UsersException;
 import model.*;
 import model.Reader;
 
@@ -11,7 +9,7 @@ import java.util.HashMap;
 /**
  * Esta classe permite poder realizar o intermédio entre o arquivo binário que está salvo
  * na máquina, e as funcionalidades internas do sistema. Dessa forma, ele fica responsável por recuperar os dados
- * nos arquivos e salvar dados nesses arquivos. Assim, ele mantém os dados salvos após mesmo após fechar o programa, 
+ * nos arquivos e salvar dados nesses arquivos. Assim, ele mantém os dados salvos após mesmo após fechar o programa,
  * ficando disponíveis para próxima abertura do programa.
  * @author Sara Souza e Naylane Ribeiro
  */
@@ -19,7 +17,7 @@ public class FileControl {
     /**
      * Método que cria o diretório e arquivos binários caso os mesmos não sejam encontrados.
      */
-    public static void generateData() throws LoanException {
+    public static void generateData() {
         if (!(new File("data").exists())) {
             File file = new File("data");
             file.mkdirs();
@@ -120,49 +118,42 @@ public class FileControl {
     /**
      * Método que recupera os dados do AdmDAO do arquivo binário.
      */
-        public static HashMap<Long, Adm> loadAdm() throws UsersException {
+    public static HashMap<Long, Adm> loadAdm() throws Exception {
         try {
             FileInputStream fs = new FileInputStream("data\\adm.dat");
             ObjectInputStream os = new ObjectInputStream(fs);
-
             HashMap<Long, Adm> map = (HashMap<Long, Adm>) os.readObject();
             os.close();
-
             if (map.isEmpty()) {
-                return new HashMap<Long, Adm>();
+                return new HashMap<>();
             }
             return map;
         } catch (IOException e) {
-            throw new UsersException(e.getMessage()); }
-        catch (ClassNotFoundException e) {
-            throw new UsersException("Classe não encontrada."); }
+            throw new IOException(e.getMessage());
+        }
     }
 
     /**
      * Método que recupera os dados do BookDAO do arquivo binário.
      */
-    public static HashMap<String, Book> loadBook() throws UsersException {
+    public static HashMap<String, Book> loadBook() throws Exception {
         try {
             FileInputStream fs = new FileInputStream("data\\book.dat");
             ObjectInputStream os = new ObjectInputStream(fs);
-
             HashMap<String, Book> map = (HashMap<String, Book>) os.readObject();
             os.close();
-
             if (map.isEmpty()) {
                 return new HashMap<String, Book>();
             }
             return map;
         } catch (IOException e) {
-            throw new UsersException(e.getMessage()); }
-        catch (ClassNotFoundException e) {
-            throw new UsersException("Classe não encontrada."); }
+            throw new IOException(e.getMessage()); }
     }
 
     /**
      * Método que recupera os dados do LibrarianDAO do arquivo binário.
      */
-    public static HashMap<Long, Librarian> loadLibrarian() throws UsersException {
+    public static HashMap<Long, Librarian> loadLibrarian() throws Exception {
         try {
             FileInputStream fs = new FileInputStream("data\\librarian.dat");
             ObjectInputStream os = new ObjectInputStream(fs);
@@ -175,15 +166,13 @@ public class FileControl {
             }
             return map;
         } catch (IOException e) {
-            throw new UsersException(e.getMessage()); }
-        catch (ClassNotFoundException e) {
-            throw new UsersException("Classe não encontrada."); }
+            throw new IOException(e.getMessage()); }
     }
 
     /**
      * Método que recupera os dados do ReaderDAO do arquivo binário.
      */
-    public static HashMap<Long, Reader> loadReader() throws UsersException {
+    public static HashMap<Long, Reader> loadReader() throws Exception {
         try {
             FileInputStream fs = new FileInputStream("data\\reader.dat");
             ObjectInputStream os = new ObjectInputStream(fs);
@@ -196,15 +185,13 @@ public class FileControl {
             }
             return map;
         } catch (IOException e) {
-            throw new UsersException(e.getMessage()); }
-        catch (ClassNotFoundException e) {
-            throw new UsersException("Classe não encontrada."); }
+            throw new IOException(e.getMessage()); }
     }
 
     /**
      * Método que recupera os dados do LoanDAO do arquivo binário.
      */
-    public static HashMap<Long, Loan> loadLoan() throws LoanException {
+    public static HashMap<Long, Loan> loadLoan() throws Exception {
         try {
             FileInputStream fs = new FileInputStream("data\\loan.dat");
             ObjectInputStream os = new ObjectInputStream(fs);
@@ -217,8 +204,6 @@ public class FileControl {
             }
             return map;
         } catch (IOException e) {
-            throw new LoanException(e.getMessage()); }
-        catch (ClassNotFoundException e) {
-            throw new LoanException("Classe não encontrada."); }
+            throw new IOException(e.getMessage()); }
     }
 }

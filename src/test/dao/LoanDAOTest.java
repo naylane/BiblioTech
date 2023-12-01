@@ -30,19 +30,19 @@ public class LoanDAOTest {
     }
 
     @Test
-    public void testAddLoan() throws IOException, LoanException {
+    public void testAddLoan() throws Exception {
         DAO.getLoanDAO().create(loan1);
         assertEquals(loan1, DAO.getLoanDAO().findById(loan1.getIdLoan())); // Verifica que o empréstimo encontrado é o mesmo do adicionado na lista
     }
 
     @Test
-    public void testFindById() throws IOException, LoanException {
+    public void testFindById() throws Exception {
         DAO.getLoanDAO().create(loan1);
         assertNotNull(DAO.getLoanDAO().findById(0));
     }
 
     @Test
-    public void testUpdateLoan() throws IOException, LoanException {
+    public void testUpdateLoan() throws Exception {
         // Salvando um empréstimo no DAO
         DAO.getLoanDAO().create(loan1);
 
@@ -57,7 +57,7 @@ public class LoanDAOTest {
     }
 
     @Test
-    public void testDeleteLoan() throws IOException, LoanException {
+    public void testDeleteLoan() throws Exception {
         // Salvando um empréstimo no DAO
         DAO.getLoanDAO().create(loan1);
 
@@ -70,7 +70,7 @@ public class LoanDAOTest {
     }
 
     @Test
-    public void testDeleteAll() throws IOException, LoanException {
+    public void testDeleteAll() throws Exception {
         // Salvando um empréstimo no DAO
         DAO.getLoanDAO().create(loan1);
         // Deletando toda a lista de empréstimos

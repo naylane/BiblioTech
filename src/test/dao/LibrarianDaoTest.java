@@ -1,24 +1,26 @@
 package test.dao;
 
-import dao.librarian.LibrarianDAOImpl;
-import exceptions.UsersException;
+import dao.DAO;
+import dao.librarian.LibrarianDAO;
 import model.Librarian;
 import model.Residence;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LibrarianDaoTest {
-    private LibrarianDAOImpl librarianDAO = new LibrarianDAOImpl();
+    private LibrarianDAO librarianDAO = DAO.getLibrarianDAO();
     private Librarian lib1;
     private Librarian lib2;
     private Librarian lib3;
     Residence address;
 
-    public LibrarianDaoTest() throws UsersException {
+    public LibrarianDaoTest() throws Exception {
     }
 
     @BeforeEach
@@ -34,20 +36,20 @@ public class LibrarianDaoTest {
     }
 
     @Test
-    public void testAddLibrarian() {
+    public void testAddLibrarian() throws IOException {
         librarianDAO.create(lib1);
         Librarian libExpected = librarianDAO.findById(lib1.getId());
         assertEquals(lib1, libExpected); // verifica se os objetos são iguais
     }
 
     @Test
-    public void testFindLibrarian() {
+    public void testFindLibrarian() throws IOException {
         librarianDAO.create(lib1);
         assertSame(lib1, librarianDAO.findById(0));
     }
 
     @Test
-    public void testFindAll() {
+    public void testFindAll() throws IOException {
         librarianDAO.create(lib1); // Adicionando bibliotecarios
         librarianDAO.create(lib2);
         librarianDAO.create(lib3);
@@ -68,7 +70,7 @@ public class LibrarianDaoTest {
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws IOException {
         // Adicionando dois bibliotecarios na lista
         librarianDAO.create(lib1);
         librarianDAO.create(lib2);

@@ -2,14 +2,11 @@ package test.dao;
 
 import dao.DAO;
 import dao.adm.AdmDAO;
-import exceptions.UsersException;
 import model.Adm;
 import model.Residence;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-
-import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,21 +30,21 @@ public class AdmDAOTest {
     }
 
     @Test
-    public void testAddAdm() throws IOException {
+    public void testAddAdm() throws Exception {
         admDAO.create(adm0);
 
         assertFalse(admDAO.findAll().isEmpty()); // verifica se a lista de ADM's está vazia
     }
 
     @Test
-    public void testFindAdm() throws IOException {
+    public void testFindAdm() throws Exception {
         admDAO.create(adm0);
 
         assertSame(adm0, admDAO.findById(0));
     }
 
     @Test
-    public void testFindAll() throws IOException {
+    public void testFindAll() throws Exception {
         int qntBefore = admDAO.findAll().size();
         admDAO.create(adm1); // Adicionando um adm
         int qntAfter = admDAO.findAll().size();
@@ -68,7 +65,7 @@ public class AdmDAOTest {
     }
 
     @Test
-    public void testDelete() throws IOException {
+    public void testDelete() throws Exception {
         // Adicionando dois ADMs na lista
         admDAO.create(adm0);
         admDAO.create(adm1);

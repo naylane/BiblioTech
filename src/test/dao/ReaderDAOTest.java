@@ -17,7 +17,7 @@ public class ReaderDAOTest {
     private Reader reader3;
     Residence address;
 
-    public ReaderDAOTest() throws UsersException {
+    public ReaderDAOTest() throws Exception {
     }
 
     @BeforeEach

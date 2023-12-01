@@ -148,7 +148,7 @@ public class Librarian extends User{
      * @param location          O local onde o livro está armazenado.
      * @param quantity          A quantidade inicial de cópias disponíveis do livro.
      */
-    public void registerBook(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) throws BookException, IOException {
+    public void registerBook(String isbn, String title, String author, String publishing_company, int year_publication, String category, BookLocation location, int quantity) throws Exception {
         Book newBook = new Book(isbn, title, author, publishing_company, year_publication, category, location, quantity);
 
         for (Book book : DAO.getBookDAO().findAll()) {
