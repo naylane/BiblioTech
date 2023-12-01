@@ -12,6 +12,32 @@ public class Main {
     public static void main(String[] args) throws Exception {
         FileControl.generateData();
 
+        System.out.println("Printando ADM");
+        for (Map.Entry<Long, Adm> entry : DAO.getAdmDAO().getAdmMap().entrySet()) {
+            System.out.println(entry.getValue());
+        }
+        System.out.println("\n");
+        System.out.println("Printando Reader");
+        for (Map.Entry<Long, Reader> entry : DAO.getReaderDAO().getReaderMap().entrySet()) {
+            System.out.println("Chave: " + entry.getKey() + ", Valor: " + entry.getValue());
+        }
+        System.out.println("\n");
+        System.out.println("Printando Librarian");
+        for (Map.Entry<Long, Librarian> entry : DAO.getLibrarianDAO().getLibrarianMap().entrySet()) {
+            System.out.println("Chave: " + entry.getKey() + ", Valor: " + entry.getValue());
+        }
+        System.out.println("\n");
+        System.out.println("Printando Book");
+        for (Map.Entry<String, Book> entry : DAO.getBookDAO().getBookMap().entrySet()) {
+            System.out.println("Chave: " + entry.getKey() + ", Valor: " + entry.getValue());
+        }
+        System.out.println("\n");
+        System.out.println("Printando Loan");
+        for (Map.Entry<Long, Loan> entry : DAO.getLoanDAO().getLoanMap().entrySet()) {
+            System.out.println("Chave: " + entry.getKey() + ", Valor: " + entry.getValue());
+        }
+        /*
+
         //adicionando dados nor arquivos
         Residence address = new Residence("state", "city", "neighbourhood", "street", 0, "cep");
         Residence address1 = new Residence("state1", "city", "neighbourhood", "street", 44, "cep1");
@@ -54,6 +80,6 @@ public class Main {
         System.out.println("Printando Loan");
         for (Map.Entry<Long, Loan> entry : DAO.getLoanDAO().getLoanMap().entrySet()) {
             System.out.println("Chave: " + entry.getKey() + ", Valor: " + entry.getValue());
-        }
+        } */
     }
 }
