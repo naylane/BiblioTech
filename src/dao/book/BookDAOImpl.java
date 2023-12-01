@@ -1,18 +1,16 @@
 package dao.book;
 
 import dao.FileControl;
-import exceptions.UsersException;
-import model.Adm;
 import model.Book;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class BookDaoImpl implements BookDAO {
-    private HashMap<String, Book> bookMap;
+public class BookDAOImpl implements BookDAO {
+    private final HashMap<String, Book> bookMap;
 
-    public void BookDAOImpl() throws UsersException {
+    public BookDAOImpl() throws Exception {
         this.bookMap = FileControl.loadBook();
     }
 
@@ -24,8 +22,9 @@ public class BookDaoImpl implements BookDAO {
     }
 
     @Override
-    public List<Book> findAll() { //retorna a lista de todos livros em bookmap
-        return new ArrayList<>(bookMap.values());}
+    public List<Book> findAll() { // retorna a lista de todos os livros em bookmap
+        return new ArrayList<>(bookMap.values());
+    }
 
     @Override
     public Book findById(long id) {
@@ -33,7 +32,7 @@ public class BookDaoImpl implements BookDAO {
     }
 
     @Override
-    public Book findByIsbn(String id) {  //retorna um livro pelo Id (lembrando q o id é o isbn)
+    public Book findByIsbn(String id) {  // retorna um livro pelo isbn
         return bookMap.get(id);}
 
     @Override
@@ -51,10 +50,10 @@ public class BookDaoImpl implements BookDAO {
 
     public void deleteAll(){
         bookMap.clear();
-        FileControl.saveBook(this.bookMap);//a função clear vai apagar tudo no bookmap
+        FileControl.saveBook(this.bookMap);// a função “clear” vai apagar tudo no bookmap
     }
 
-    //as funções de pesquisas abaixo vão iterar pelo map e criar uma lista de livro de acordo com oq se pesquisa.
+    // as funções de pesquisas abaixo vão iterar pelo map e criar uma lista de livro conforme o que se pesquisa
     public List<Book> findByTitle(String title) {
         List<Book> result = new ArrayList<>();
         for (Book book : bookMap.values()) {
@@ -85,7 +84,7 @@ public class BookDaoImpl implements BookDAO {
         return result;
     }
 
-    public long quantityBooks(){ return (long)bookMap.size();} //retorna a quantidade de livros
+    public long quantityBooks(){ return bookMap.size();} // retorna a quantidade de livros
 
     public HashMap<String, Book> getBookMap() { return bookMap; }
 

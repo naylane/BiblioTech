@@ -17,7 +17,7 @@ public class AdmTest {
     }
 
     @Test
-    public void registerReader() throws IOException, UsersException {
+    public void registerReader() throws Exception {
         // ADM REGISTRA O LEITOR
         Reader reader = adm.creatReader("Fernanda", "7752", "75 9 0000-0000", address);
 
