@@ -6,6 +6,7 @@ import exceptions.LoanException;
 import exceptions.UsersException;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -24,7 +25,7 @@ import java.time.temporal.ChronoUnit;
  *
  * @author Sara Souza e Naylane Ribeiro
  */
-public class Librarian extends User{
+public class Librarian extends User implements Serializable {
     public Boolean block; // diz se o bibliotecario está bloqueado ou não: false - não e true - sim
 
     /**
@@ -152,7 +153,8 @@ public class Librarian extends User{
         Book newBook = new Book(isbn, title, author, publishing_company, year_publication, category, location, quantity);
 
         for (Book book : DAO.getBookDAO().findAll()) {
-            if (book.getISBN() == newBook.getISBN()) { // se o isbn dos livros forem iguais
+            // if (book.getISBN() == newBook.getISBN())
+            if (newBook.getISBN().equals(book.getISBN())) { // se o isbn dos livros forem iguais
                 // já existe esse livro cadastrado logo só se soma a quantidade existente do livro
                 book.setQuantityAvailable(book.getQuantityAvailable() + newBook.getQuantityAvailable());
                 DAO.getBookDAO().update(book); // atualizando os dados no DAO
@@ -160,7 +162,6 @@ public class Librarian extends User{
             }
         }
         DAO.getBookDAO().create(newBook); // criou o livro e o armazenou no map tendo o seu isbn como id
-        System.out.println("\nsuccessfully registered book!");
     }
 
     /**

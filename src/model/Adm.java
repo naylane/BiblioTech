@@ -1,12 +1,7 @@
 package model;
 
 import dao.DAO;
-import dao.adm.AdmDAO;
-import dao.book.BookDAO;
-import dao.librarian.LibrarianDAO;
-import dao.reader.ReaderDAO;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -23,11 +18,7 @@ import java.util.List;
  *
  * @author Sara Souza e Naylane Ribeiro
  */
-public class Adm extends Librarian {
-    ReaderDAO readerDAO = DAO.getReaderDAO();
-    LibrarianDAO librarianDAO = DAO.getLibrarianDAO();
-    BookDAO bookDAO = DAO.getBookDAO();
-
+public class Adm extends Librarian implements Serializable {
     /**
      * Construtor da classe Adm para criar um novo administrador.
      *
@@ -51,9 +42,9 @@ public class Adm extends Librarian {
      * @param address O endereço do leitor.
      * @return O leitor recém-criado.
      */
-    public Reader creatReader(String name, String pin, String phone, Residence address) throws IOException {
+    public Reader creatReader(String name, String pin, String phone, Residence address) throws Exception {
         Reader reader = new Reader(name, pin, phone, address);
-        readerDAO.create(reader);
+        DAO.getReaderDAO().create(reader);
         return reader;
     }
 
@@ -68,7 +59,7 @@ public class Adm extends Librarian {
      */
     public Librarian creatLibrariam(String name, String pin, String phone, Residence address) throws Exception {
         Librarian librarian = new Librarian(name, pin, phone, address);
-        librarianDAO.create(librarian);
+        DAO.getLibrarianDAO().create(librarian);
         return librarian;
     }
 
@@ -83,9 +74,7 @@ public class Adm extends Librarian {
      */
     public Adm creatAdm(String name, String pin, String phone, Residence address) throws Exception {
         Adm adm = new Adm(name, pin, phone, address);
-
-        AdmDAO admDao = DAO.getAdmDAO();
-        admDao.create(adm); //criou o book no banco de dados e armazenou no map tendo o seu id como chave
+        DAO.getAdmDAO().create(adm); // criou o book no banco de dados e armazenou no map tendo o seu id como chave
         return adm;}
 
     //OPERAÇÕES DE USERS
@@ -127,8 +116,8 @@ public class Adm extends Librarian {
      * @param id O Id do leitor a ser pesquisado.
      * @return Leitor retornado.
      */
-    public Reader readerSearch(long id) {
-        return readerDAO.findById(id);}
+    public Reader readerSearch(long id) throws Exception {
+        return DAO.getReaderDAO().findById(id);}
 
     /**
      * Proucura um bibliotecario no sistema.
@@ -136,16 +125,16 @@ public class Adm extends Librarian {
      * @param id O Id do bibliotecario a ser pesquisado.
      * @return bibliotecario retornado.
      */
-    public Librarian librarianSearch(long id) {
-        return librarianDAO.findById(id);}
+    public Librarian librarianSearch(long id) throws Exception {
+        return DAO.getLibrarianDAO().findById(id);}
 
     /**
      * Retorna todos os leitores do sistema.
      *
      * @return Lista com todos leitores existentes.
      */
-    public List<Reader> AllReader(){
-        return readerDAO.findAll();
+    public List<Reader> AllReader() throws Exception {
+        return DAO.getReaderDAO().findAll();
     }
 
     /**
@@ -153,51 +142,51 @@ public class Adm extends Librarian {
      *
      * @return Lista com todos bibliotecarios existentes.
      */
-    public List<Librarian> AllLibrarian(){
-        return librarianDAO.findAll();
+    public List<Librarian> AllLibrarian() throws Exception {
+        return DAO.getLibrarianDAO().findAll();
     }
 
     /**
      * Deleta todos leitores no sistema.
      *
      */
-    public void deleteAllReader() {
-        readerDAO.deleteAll();}
+    public void deleteAllReader() throws Exception {
+        DAO.getReaderDAO().deleteAll();}
 
     /**
      * Deleta todos bibliotecarios no sistema.
      *
      */
-    public void deleteAllLibrarian() {
-        librarianDAO.deleteAll();}
+    public void deleteAllLibrarian() throws Exception {
+        DAO.getLibrarianDAO().deleteAll();}
 
     /**
      * Deleta um leitor no sistema.
      *
      */
-    public void deleteReader(Reader reader) {
-        readerDAO.delete(reader);}
+    public void deleteReader(Reader reader) throws Exception {
+        DAO.getReaderDAO().delete(reader);}
 
     /**
      * Deleta um bibliotecario no sistema.
      *
      */
-    public void deleteLibrarian(Librarian librarian) {
-        librarianDAO.delete(librarian);}
+    public void deleteLibrarian(Librarian librarian) throws Exception {
+        DAO.getLibrarianDAO().delete(librarian);}
 
     /**
      * Atualiza um leitor no sistema.
      *
      */
-    public void updateReader(Reader reader) {
-        readerDAO.update(reader);}
+    public void updateReader(Reader reader) throws Exception {
+        DAO.getReaderDAO().update(reader);}
 
     /**
      * Atualiza um bibliotecario no sistema.
      *
      */
-    public void updateLibrarian(Librarian librarian) {
-        librarianDAO.update(librarian);}
+    public void updateLibrarian(Librarian librarian) throws Exception {
+        DAO.getLibrarianDAO().update(librarian);}
 
     //GERENCIAMENTO DO ACERVO - a adição de livros o adm herda do bibliotecario
 
@@ -206,35 +195,35 @@ public class Adm extends Librarian {
      *
      * @param book O livro a ser removido.
      */
-    public void removeBook(Book book){
-        bookDAO.delete(book);}
+    public void removeBook(Book book) throws Exception {
+        DAO.getBookDAO().delete(book);}
 
     /**
      * Atualiza as informações de um livro no sistema.
      *
      * @param book O livro a ser atualizado.
      */
-    public void updateBook(Book book){
-        bookDAO.update(book);}
+    public void updateBook(Book book) throws Exception {
+        DAO.getBookDAO().update(book);}
 
     /**
      * Obtém a quantidade total de livros no sistema.
      */
-    public void quantityBooks(){
-        bookDAO.quantityBooks();
+    public void quantityBooks() throws Exception {
+        DAO.getBookDAO().quantityBooks();
     }
 
     /**
      * Obtém todos os livros no sistema.
      */
-    public void AllBook(){
-        bookDAO.findAll();}
+    public void AllBook() throws Exception {
+        DAO.getBookDAO().findAll();}
 
     /**
      * Delete todos os livros no sistema.
      */
-    public void deleteAllBook(){
-        bookDAO.deleteAll();}
+    public void deleteAllBook() throws Exception {
+        DAO.getBookDAO().deleteAll();}
 
     // RELATÓRIOS
 

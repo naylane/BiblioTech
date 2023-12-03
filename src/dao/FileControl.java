@@ -125,12 +125,11 @@ public class FileControl {
             HashMap<Long, Adm> map = (HashMap<Long, Adm>) os.readObject();
             os.close();
             if (map.isEmpty()) {
-                return new HashMap<>();
+                return new HashMap<Long, Adm>();
             }
             return map;
         } catch (IOException e) {
-            throw new IOException(e.getMessage());
-        }
+            throw new IOException(e.getMessage()); }
     }
 
     /**
@@ -157,10 +156,8 @@ public class FileControl {
         try {
             FileInputStream fs = new FileInputStream("data\\librarian.dat");
             ObjectInputStream os = new ObjectInputStream(fs);
-
             HashMap<Long, Librarian> map = (HashMap<Long, Librarian>) os.readObject();
             os.close();
-
             if (map.isEmpty()) {
                 return new HashMap<Long, Librarian>();
             }
@@ -176,10 +173,8 @@ public class FileControl {
         try {
             FileInputStream fs = new FileInputStream("data\\reader.dat");
             ObjectInputStream os = new ObjectInputStream(fs);
-
             HashMap<Long, Reader> map = (HashMap<Long, Reader>) os.readObject();
             os.close();
-
             if (map.isEmpty()) {
                 return new HashMap<Long, Reader>();
             }
@@ -195,10 +190,8 @@ public class FileControl {
         try {
             FileInputStream fs = new FileInputStream("data\\loan.dat");
             ObjectInputStream os = new ObjectInputStream(fs);
-
             HashMap<Long, Loan> map = (HashMap<Long, Loan>) os.readObject();
             os.close();
-
             if (map.isEmpty()) {
                 return new HashMap<Long, Loan>();
             }
