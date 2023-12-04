@@ -17,8 +17,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-<<<<<<< Updated upstream
-=======
     <orderEntry type="module-library">
       <library name="JUnit5.8.1">
         <CLASSES>
@@ -35,6 +33,5 @@
         <SOURCES />
       </library>
     </orderEntry>
->>>>>>> Stashed changes
   </component>
 </module>
