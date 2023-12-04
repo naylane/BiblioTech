@@ -1,6 +1,7 @@
 package test.dao;
 
 import dao.DAO;
+import dao.FileControl;
 import dao.librarian.LibrarianDAO;
 import model.Librarian;
 import model.Residence;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LibrarianDaoTest {
-    private LibrarianDAO librarianDAO = DAO.getLibrarianDAO();
+    private LibrarianDAO librarianDAO;
     private Librarian lib1;
     private Librarian lib2;
     private Librarian lib3;
@@ -25,6 +26,8 @@ public class LibrarianDaoTest {
 
     @BeforeEach
     public void setUp() throws Exception {
+        FileControl.generateData();
+        librarianDAO = DAO.getLibrarianDAO();
         address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         lib1 = new Librarian("Nome do Bibliotecario 1", "senha123","xx xxxxx-xxxx", address);
         lib2 = new Librarian("Nome do Bibliotecario 2", "senha456","xx xxxxx-xxxx", address);

@@ -1,13 +1,12 @@
 package test.dao;
 
 import dao.DAO;
+import dao.FileControl;
 import exceptions.BookException;
-import exceptions.LoanException;
 import model.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,6 +20,7 @@ public class LoanDAOTest {
 
     @BeforeEach
     public void setUp() throws BookException {
+        FileControl.generateData();
         // Configurando objetos para teste
         location = new BookLocation("Estante", "Corredor", "Seção");
         book = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);

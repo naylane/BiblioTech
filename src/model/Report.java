@@ -19,14 +19,8 @@ import java.util.List;
 public class Report {
     private final BookDAO bookDAO = DAO.getBookDAO();
     private final LoanDAO loanDAO = DAO.getLoanDAO();
-    private long borrowedBooks; // quantidade de livros emprestados no momento
-    private long lateBooks; // quantidade de livros que estão atrasados no momento
-    private long reservedBooks; // quantidade de livros que estão reservados no momento
 
     public Report() throws Exception {
-        this.borrowedBooks = 0;
-        this.lateBooks = 0;
-        this.reservedBooks = 0;
     }
 
     /**
@@ -34,9 +28,10 @@ public class Report {
      * @return Quantidade de livros emprestados.
      */
     public long generatesBorrowedBooks() {
+        long borrowedBooks = 0;
         for (Loan loan : loanDAO.findAll()) {
             if (loan.getActive()) {
-                this.borrowedBooks++;
+                borrowedBooks++;
             }
         }
         return borrowedBooks;
@@ -47,6 +42,7 @@ public class Report {
      * @return Quantidade de livros atrasados.
      */
     public long generatesLateBooks() {
+        long lateBooks = 0;
         for (Loan loan : loanDAO.findAll()) {
             LocalDate now = LocalDate.now();
             if (now.isAfter(loan.getDateDevolution())) {
@@ -61,6 +57,7 @@ public class Report {
      * @return Quantidade de livros reservados.
      */
     public Long generatesReservedBooks() {
+        long reservedBooks = 0;
         for (Book book : bookDAO.findAll()) {
             if (!book.getResevationQueue().isEmpty()) {
                 reservedBooks++;

@@ -1,6 +1,7 @@
 package test.dao;
 
 import dao.DAO;
+import dao.FileControl;
 import dao.adm.AdmDAO;
 import model.Adm;
 import model.Residence;
@@ -18,6 +19,7 @@ public class AdmDAOTest {
 
     @BeforeEach
     public void setUp() throws Exception {
+        FileControl.generateData();
         admDAO = DAO.getAdmDAO();
         Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         adm0 = new Adm("Nome do ADM 0", "Senha123", "xx xxxxx-xxxx", address);

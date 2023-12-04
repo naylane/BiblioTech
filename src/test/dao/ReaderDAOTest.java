@@ -1,17 +1,20 @@
 package test.dao;
 
-import dao.reader.ReaderDAOImpl;
-import exceptions.UsersException;
+import dao.DAO;
+import dao.FileControl;
+import dao.reader.ReaderDAO;
 import model.Reader;
 import model.Residence;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ReaderDAOTest {
-    private ReaderDAOImpl readerDAO = new ReaderDAOImpl();
+    private ReaderDAO readerDAO;
     private Reader reader1;
     private Reader reader2;
     private Reader reader3;
@@ -21,7 +24,9 @@ public class ReaderDAOTest {
     }
 
     @BeforeEach
-    public void setUp(){
+    public void setUp() throws Exception {
+        FileControl.generateData();
+        readerDAO = DAO.getReaderDAO();
         address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
         reader1 = new Reader("Nome do leitor 1", "senha123","xx xxxxx-xxxx", address);
         reader2 = new Reader("Nome do leitor 1", "senha345","xx xxxxx-xxxx", address);
@@ -34,20 +39,20 @@ public class ReaderDAOTest {
     }
 
     @Test
-    public void testAddReader() {
+    public void testAddReader() throws IOException {
         readerDAO.create(reader1);
         Reader readerExpected = readerDAO.findById(reader1.getId());
         assertEquals(reader1, readerExpected);
     }
 
     @Test
-    public void testFindReader() {
+    public void testFindReader() throws IOException {
         readerDAO.create(reader1);
         assertSame(reader1, readerDAO.findById(reader1.getId()));
     }
 
     @Test
-    public void testFindAll() {
+    public void testFindAll() throws IOException {
         readerDAO.create(reader1);
         readerDAO.create(reader2);
         readerDAO.create(reader3);
@@ -56,7 +61,7 @@ public class ReaderDAOTest {
     }
 
     @Test
-    public void testUpdate() {
+    public void testUpdate() throws IOException {
         readerDAO.create(reader1);
 
         Reader editedReader = new Reader("Nome Alterado", "Senha alterada", "xx xxxxx-xxxx", address);
@@ -66,7 +71,7 @@ public class ReaderDAOTest {
     }
 
     @Test
-    public void testDelete() {
+    public void testDelete() throws IOException {
         readerDAO.create(reader1);
         readerDAO.create(reader2);
 

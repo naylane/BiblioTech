@@ -1,15 +1,12 @@
 package test.model;
 
 import dao.DAO;
-import exceptions.BookException;
-import exceptions.UsersException;
 import model.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
 public class LibrarianTest {

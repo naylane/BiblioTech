@@ -1,6 +1,7 @@
 package test.dao;
 
 import dao.DAO;
+import dao.FileControl;
 import exceptions.BookException;
 import exceptions.UsersException;
 import model.Book;
@@ -18,6 +19,7 @@ public class BookDAOTest {
 
     @BeforeEach
     public void setUp() throws BookException {
+        FileControl.generateData();
         location = new BookLocation("1", "4", "12");
         book = new Book("9788595081512","O Pequeno Príncipe", "Antoine de Saint-Exupéry",
                 "HarperCollins", 2018, "Romance", location, 1);

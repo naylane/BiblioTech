@@ -1,8 +1,10 @@
 package test.model;
 
 import dao.DAO;
+import dao.FileControl;
 import exceptions.UsersException;
 import model.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -14,6 +16,11 @@ public class AdmTest {
     Adm adm = new Adm("Nome do Adm", "123", "75 94002-8922", address);
 
     public AdmTest() throws Exception {
+    }
+
+    @BeforeEach
+    public void setUp() throws Exception {
+        FileControl.generateData();
     }
 
     @Test
