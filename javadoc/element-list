@@ -1,11 +1,11 @@
-unnamed package
-dao
-dao.adm
-dao.book
-dao.librarian
-dao.loan
-dao.reader
-exceptions
-model
-test.dao
-test.model
+main.java.com.example.library.dao
+main.java.com.example.library.dao.adm
+main.java.com.example.library.dao.book
+main.java.com.example.library.dao.librarian
+main.java.com.example.library.dao.loan
+main.java.com.example.library.dao.reader
+main.java.com.example.library.dao.report
+main.java.com.example.library.exceptions
+main.java.com.example.library.model
+test.main.java.com.example.library.dao
+test.main.java.com.example.library.model
