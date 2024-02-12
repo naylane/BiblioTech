@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.InfosController">
+   <children>
+      <ImageView fitHeight="250.0" fitWidth="900.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Rectangle01.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="553.0" prefWidth="900.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+         <children>
+            <ImageView fitHeight="435.0" fitWidth="419.0" layoutX="23.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/illustration02.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="82.0" fitWidth="247.0" layoutX="23.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo 1.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="buttonHome" layoutX="524.0" layoutY="31.0" mnemonicParsing="false" onAction="#openTelaHome" style="-fx-background-color: #8751B0; -fx-background-radius: 20;" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonLogin" layoutX="627.0" layoutY="32.0" mnemonicParsing="false" onAction="#openTelaLogin" style="-fx-background-color: #8751B0; -fx-background-radius: 20;" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonInfo" layoutX="725.0" layoutY="32.0" mnemonicParsing="false" onAction="#openTelaInfos" style="-fx-background-color: #8751B0; -fx-background-radius: 20;" text="+ informações" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
+            <Text layoutX="618.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Como Fazer o Cadastro?">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="436.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Para se cadastrar na nossa plataforma, proucure um administrador na Biblioteca local. Leve os documentos necessários: RG e Comprovante de Endereço." textAlignment="RIGHT" wrappingWidth="419.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="571.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Como Fazer um Empréstimo?">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="442.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Na nossa plataforma você pode navegar pela Biblioteca Digital e ver todos livros do nosso acervo. Porém para a realização do empréstimo de um livro deve ser feito manualmente por um Bibliotecário. Dessa forma, verifique a disponibilidade do livro pela plataforma ou então faça a reserva, pegue o livro na Biblioteca Local e Vá até o Bibliotecário." textAlignment="RIGHT" wrappingWidth="418.9999999999999">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="611.0" layoutY="428.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Esqueci meu ID ou Senha.">
+               <font>
+                  <Font name="Arial Bold" size="20.0" />
+               </font>
+            </Text>
+            <Text layoutX="436.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Para fazer a recuperação do seu ID ou Senha, leve seu RG físico ou digital até um administrador na Bivlioteca Local. Dessa forma, ele poderá recuperar seu ID ou Senha." textAlignment="RIGHT" wrappingWidth="419.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <Text fill="WHITE" layoutX="254.0" layoutY="609.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Para outras dúvidas, consulte um administrador na Biblioteca Local.">
+         <font>
+            <Font name="Arial Italic" size="13.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

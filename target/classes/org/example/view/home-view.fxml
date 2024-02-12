@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.HomeController">
+   <children>
+      <ImageView fitHeight="250.0" fitWidth="900.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Rectangle01.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="490.0" prefWidth="900.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+         <children>
+            <ImageView fitHeight="359.0" fitWidth="379.0" layoutX="480.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/illustration.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="82.0" fitWidth="247.0" layoutX="23.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo 1.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="buttonHome" layoutX="524.0" layoutY="31.0" mnemonicParsing="false" onAction="#openTelaHome" style="-fx-background-color: #8751B0; -fx-background-radius: 20;" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonLogin" layoutX="627.0" layoutY="32.0" mnemonicParsing="false" onAction="#openTelaLogin" style="-fx-background-color: #8751B0; -fx-background-radius: 20;" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonInfo" layoutX="725.0" layoutY="32.0" mnemonicParsing="false" onAction="#openTelaInfos" style="-fx-background-color: #8751B0; -fx-background-radius: 20;" text="+ informações" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
+            <Text layoutX="41.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seja Bem-Vindo, " wrappingWidth="240.0">
+               <font>
+                  <Font name="Arial Bold" size="28.0" />
+               </font>
+               <effect>
+                  <Bloom threshold="0.34" />
+               </effect>
+            </Text>
+            <Text layoutX="41.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sua biblioteca digitalizada, onde a paixão pela leitura encontra a conveniência da tecnologia. Com o Bibliotech, explorar novos mundos, descobrir conhecimentos e mergulhar em histórias emocionantes nunca foi tão fácil" wrappingWidth="404.6000366210935">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fill="#3b0b63" layoutX="41.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cadastre-se com um Administrator">
+               <font>
+                  <Font name="Arial Italic" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <TextField layoutX="196.0" layoutY="473.0" prefHeight="49.0" prefWidth="484.0" promptText="    Pesquise Um Livro" style="-fx-background-radius: 50; -fx-background-color: white;">
+         <effect>
+            <DropShadow height="46.07" offsetX="2.0" offsetY="8.0" radius="11.0175" width="0.0">
+               <color>
+                  <Color red="0.2357894778251648" green="0.1122807040810585" blue="0.3368421196937561" />
+               </color>
+               <input>
+                  <DropShadow height="2.0" radius="0.5" spread="1.0" width="2.0">
+                     <color>
+                        <Color red="0.529411792755127" green="0.3176470696926117" blue="0.6901960968971252" />
+                     </color>
+                  </DropShadow>
+               </input>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="buttonSearch" layoutX="632.0" layoutY="462.0" mnemonicParsing="false" onAction="#SearchBook" prefHeight="70.0" prefWidth="72.0" style="-fx-background-color: #8751B0; -fx-background-radius: 50;">
+         <graphic>
+            <ImageView fitHeight="54.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/lupa.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <effect>
+            <DropShadow height="18.66" offsetX="2.0" offsetY="6.0" radius="8.83" width="18.66">
+               <color>
+                  <Color red="0.23137255012989044" green="0.04313725605607033" blue="0.38823530077934265" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button fx:id="buttonTitulo" layoutX="246.0" layoutY="541.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: white;" />
+      <Text fill="WHITE" layoutX="276.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Título">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonISBN" layoutX="342.0" layoutY="541.0" mnemonicParsing="false" onAction="#SelectISBN" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: white;" />
+      <Text fill="WHITE" layoutX="372.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonAutor" layoutX="436.0" layoutY="541.0" mnemonicParsing="false" onAction="#SelectAutor" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: white;" />
+      <Text fill="WHITE" layoutX="467.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Autor">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonCategoria" layoutX="530.0" layoutY="541.0" mnemonicParsing="false" onAction="#SelectCategoria" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: white;" />
+      <Text fill="WHITE" layoutX="560.0" layoutY="560.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="320.0" layoutY="590.0" opacity="0.51" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione uma opção para pesquisar">
+         <font>
+            <Font name="Arial Italic" size="14.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

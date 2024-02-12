@@ -3,76 +3,41 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LoginController">
    <children>
-      <AnchorPane prefHeight="318.0" prefWidth="300.0" style="-fx-background-color: #65299B;" />
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #65299B;" GridPane.rowIndex="1">
+      <ImageView fitHeight="672.0" fitWidth="914.0" layoutX="-13.0" layoutY="-20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Rectangle02.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="393.0" layoutY="66.0" prefHeight="516.0" prefWidth="450.0" style="-fx-background-color: white; -fx-background-radius: 50;">
          <children>
-            <Label layoutX="48.0" layoutY="-5.0" prefHeight="164.0" prefWidth="205.0" text="BEM-VINDO(A) DE VOLTA!" textFill="WHITE" wrapText="true">
+            <Label alignment="CENTER" contentDisplay="TOP" layoutX="153.0" layoutY="47.0" prefHeight="59.0" prefWidth="144.0" text="LOGIN" textAlignment="CENTER" textFill="#8751b0">
                <font>
-                  <Font name="Berlin Sans FB" size="30.0" />
+                  <Font name="Arial Black" size="40.0" />
                </font>
             </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #65299B;" GridPane.rowIndex="2">
-         <children>
-            <Label layoutX="51.0" layoutY="-11.0" prefHeight="50.0" prefWidth="217.0" text="Transformando a Gestão Bibliográfica com Inovação e Facilidade." textFill="WHITE" wrapText="true">
+            <Label fx:id="ID" layoutX="47.0" layoutY="136.0" text="ID">
                <font>
-                  <Font name="System Italic" size="12.0" />
+                  <Font name="Arial" size="20.0" />
                </font>
             </Label>
-         </children></AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1">
-         <children>
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="44.0" prefWidth="81.0" text="LOGIN" textAlignment="CENTER" wrapText="true">
+            <TextField fx:id="idField" layoutX="46.0" layoutY="171.0" prefHeight="50.0" prefWidth="357.0" promptText="Digite Seu ID" style="-fx-background-radius: 50;" />
+            <Label fx:id="senha" layoutX="47.0" layoutY="249.0" text="Senha">
                <font>
-                  <Font name="Berlin Sans FB" size="25.0" />
+                  <Font name="Arial" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="58.0" prefHeight="38.0" prefWidth="261.0" text="Seja bem-vindo(a) de volta! Por favor, entre com seu login." wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="25.0">
-               <font>
-                  <Font name="Berlin Sans FB" size="12.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <children>
-            <Label fx:id="ID" layoutX="14.0" layoutY="6.0" text="ID" />
-            <Label layoutX="14.0" layoutY="76.0" text="Senha" />
-            <TextField fx:id="idField" layoutX="14.0" layoutY="23.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #4D008B;" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="25.0" />
-            <PasswordField fx:id="passField" layoutX="14.0" layoutY="93.0" prefHeight="27.0" prefWidth="261.0" style="-fx-border-color: #4D008B #4D008B;" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="25.0" />
-         </children>
-      </AnchorPane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-         <children>
-            <Button fx:id="bEntrar" layoutX="215.0" layoutY="94.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="67.0" style="-fx-background-color: #4D008B;" text="Entrar" textFill="WHITE" AnchorPane.rightAnchor="18.0">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Button fx:id="back" layoutX="14.0" layoutY="94.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="67.0" style="-fx-background-color: #4D008B;" text="Voltar" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Label fx:id="registerPage" layoutX="14.0" layoutY="48.0" prefHeight="38.0" prefWidth="261.0" text="*Não tem cadastro ainda? Clique aqui para se cadastrar" textFill="#65299b" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="25.0">
+            <TextField fx:id="SenhaField1" layoutX="46.0" layoutY="286.0" prefHeight="50.0" prefWidth="357.0" promptText="Digite Sua Senha" style="-fx-background-radius: 50;" />
+            <Label fx:id="registerPage" alignment="CENTER" layoutX="46.0" layoutY="356.0" prefHeight="38.0" prefWidth="358.0" text="*Esqueceu sua Senha ou ID? Consulte com um Administrador!" textAlignment="CENTER" textFill="#65299b" wrapText="true">
                <font>
                   <Font size="11.0" />
                </font>
@@ -80,12 +45,39 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Label fx:id="wrongLogin" layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="261.0" textFill="RED" wrapText="true">
+            <Button fx:id="buttonBackHome" layoutX="103.0" layoutY="426.0" mnemonicParsing="false" onAction="#backHome" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #8751B0; -fx-background-radius: 20;" text="Home" textFill="WHITE">
                <font>
-                  <Font size="11.0" />
+                  <Font name="Arial Bold" size="16.0" />
                </font>
-            </Label>
+            </Button>
+            <Button fx:id="ButtonEntrar" layoutX="247.0" layoutY="426.0" mnemonicParsing="false" onAction="#OpenSystem" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #8751B0; -fx-background-radius: 20;" text="Entrar" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Button>
          </children>
+         <effect>
+            <DropShadow height="105.22" radius="60.8825" spread="0.18" width="140.31">
+               <color>
+                  <Color red="0.2606600224971771" green="0.025800000876188278" blue="0.4300000071525574" />
+               </color>
+            </DropShadow>
+         </effect>
       </AnchorPane>
+      <Label layoutX="44.0" layoutY="214.0" prefHeight="164.0" prefWidth="298.0" text="BEM-VINDO(A) DE VOLTA!" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Arial Bold" size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="44.0" layoutY="353.0" prefHeight="50.0" prefWidth="218.0" text="Transformando a Gestão Bibliográfica com Inovação e Facilidade." textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Italic" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="67.0" fitWidth="218.0" layoutX="44.0" layoutY="539.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/logo 2.png" />
+         </image>
+      </ImageView>
    </children>
-</GridPane>
+</AnchorPane>
