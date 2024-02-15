@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="sceneHomeReader" prefHeight="656.0" prefWidth="652.0" style="-fx-background-color: white; -fx-background-radius: 90;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ReaderAccountController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="546.0" stroke="WHITE" strokeType="INSIDE" width="105.0" />
+      <TextField layoutX="74.0" layoutY="36.0" prefHeight="49.0" prefWidth="484.0" promptText="    Pesquise Um Livro" style="-fx-background-radius: 50; -fx-background-color: white;">
+         <effect>
+            <DropShadow height="39.42" offsetX="2.0" offsetY="8.0" radius="11.11" width="7.02">
+               <color>
+                  <Color red="0.7875555753707886" green="0.7733333110809326" blue="0.800000011920929" />
+               </color>
+               <input>
+                  <DropShadow height="2.0" radius="0.5" spread="1.0" width="2.0">
+                     <color>
+                        <Color red="0.529411792755127" green="0.3176470696926117" blue="0.6901960968971252" />
+                     </color>
+                  </DropShadow>
+               </input>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <Button fx:id="buttonSearch" layoutX="510.0" layoutY="25.0" mnemonicParsing="false" onAction="#SearchBook" prefHeight="70.0" prefWidth="72.0" style="-fx-background-color: #8751B0; -fx-background-radius: 50;">
+         <graphic>
+            <ImageView fitHeight="54.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/lupa.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <effect>
+            <DropShadow height="18.66" offsetX="2.0" offsetY="6.0" radius="8.83" width="18.66">
+               <color>
+                  <Color red="0.75789475440979" green="0.75789475440979" blue="0.75789475440979" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button fx:id="buttonTitulo" layoutX="136.0" layoutY="96.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
+      <Text fill="#773ea6" layoutX="165.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Título">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonTitulo1" layoutX="228.0" layoutY="97.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
+      <Text fill="#773ea6" layoutX="257.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonTitulo11" layoutX="314.0" layoutY="98.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
+      <Text fill="#773ea6" layoutX="342.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Autor">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonTitulo12" layoutX="399.0" layoutY="99.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
+      <Text fill="#773ea6" layoutX="429.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Text fill="#773ea6" layoutX="217.0" layoutY="142.0" opacity="0.47" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione uma opção para pesquisar" wrappingWidth="218.35040283203125">
+         <font>
+            <Font name="Arial Italic" size="13.0" />
+         </font>
+      </Text>
+      <Text fill="#47068a" layoutX="47.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Minha Conta">
+         <font>
+            <Font name="Arial Bold" size="32.0" />
+         </font>
+      </Text>
+      <Label layoutX="48.0" layoutY="206.0" text="nome do usuário" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="230.0" text="id do usuário" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="43.0" layoutY="539.0" prefHeight="66.0" prefWidth="378.0" style="-fx-background-color: #8751b0; -fx-background-radius: 50;" text="Situação da Conta" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <graphic>
+            <Label fx:id="accountStatus" alignment="CENTER" prefHeight="44.0" prefWidth="175.0" style="-fx-background-color: #eaeaea; -fx-background-radius: 50;" text="ATIVA">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+               </padding>
+            </Label>
+         </graphic>
+      </Label>
+      <Line endX="457.5999755859375" endY="3.0517578125E-5" layoutX="147.0" layoutY="443.0" startX="-100.10004425048828" stroke="#47068a" />
+      <Label layoutX="44.0" layoutY="459.0" prefHeight="65.0" prefWidth="469.0" style="-fx-background-color: #8751b0; -fx-background-radius: 50;" text="Quantidade de Empréstimo Ativos" textFill="WHITE">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <graphic>
+            <Label fx:id="ActivityLoan" alignment="CENTER" prefHeight="44.0" prefWidth="134.0" style="-fx-background-color: #eaeaea; -fx-background-radius: 50;" text="0">
+               <font>
+                  <Font name="Arial" size="25.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+               </padding>
+            </Label>
+         </graphic>
+      </Label>
+      <Label fx:id="phoneGap" alignment="CENTER" layoutX="385.0" layoutY="216.0" prefHeight="36.0" prefWidth="230.0" style="-fx-background-color: #eaeaea; -fx-background-radius: 50;" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+      <Label layoutX="384.0" layoutY="198.0" text="Telefone" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="275.0" text="Estado" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Text fill="#47068a" layoutX="482.0" layoutY="167.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Em caso de incorreções dos dados ou para mudança de senha, consulte um Administrador na Biblioteca!" wrappingWidth="132.00004882812493">
+         <font>
+            <Font name="Arial Italic" size="8.0" />
+         </font>
+      </Text>
+      <Label fx:id="stateGap" alignment="CENTER" layoutX="49.0" layoutY="292.0" prefHeight="44.0" prefWidth="179.0" style="-fx-background-color: #eaeaea; -fx-background-radius: 50;" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+      <Label layoutX="240.0" layoutY="274.0" text="Cidade" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="cityGap" alignment="CENTER" layoutX="241.0" layoutY="291.0" prefHeight="44.0" prefWidth="218.0" style="-fx-background-color: #eaeaea; -fx-background-radius: 50;" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+      <Label layoutX="473.0" layoutY="274.0" text="Cep" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="cepGap" alignment="CENTER" layoutX="474.0" layoutY="291.0" prefHeight="44.0" prefWidth="142.0" style="-fx-background-color: #eaeaea; -fx-background-radius: 50;" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+      <Label layoutX="48.0" layoutY="354.0" text="Bairro" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="neighborhoodGap" alignment="CENTER" layoutX="49.0" layoutY="371.0" prefHeight="44.0" prefWidth="179.0" style="-fx-background-color: #eaeaea; -fx-background-radius: 50;" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+      <Label layoutX="239.0" layoutY="353.0" text="Rua" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="streatGap" alignment="CENTER" layoutX="240.0" layoutY="370.0" prefHeight="44.0" prefWidth="218.0" style="-fx-background-color: #eaeaea; -fx-background-radius: 50;" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+      <Label layoutX="472.0" layoutY="353.0" text="Casa" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="numberHomeGap" alignment="CENTER" layoutX="473.0" layoutY="370.0" prefHeight="44.0" prefWidth="142.0" style="-fx-background-color: #eaeaea; -fx-background-radius: 50;" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="20.0" />
+         </font>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </Label>
+   </children>
+   <effect>
+      <DropShadow height="15.21" offsetX="-10.0" radius="24.942500000000003" width="86.56">
+         <color>
+            <Color red="0.31176120042800903" green="0.13439999520778656" blue="0.47999998927116394" />
+         </color>
+      </DropShadow>
+   </effect>
+</AnchorPane>
