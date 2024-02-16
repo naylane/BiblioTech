@@ -2,7 +2,6 @@ package org.example.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -63,7 +62,7 @@ public class HomeAdmController implements Initializable {
     private Button buttonTitulo12;
 
     @FXML
-    private AnchorPane paneDashBoard;
+    private AnchorPane sceneHomeAdm;
 
     @FXML
     private Pane paneReport;
@@ -127,20 +126,8 @@ public class HomeAdmController implements Initializable {
 
     // muda para a tela do relatório
     @FXML
-    void openReport(ActionEvent event) {
-        //paneReport.setStyle("-fx-background-color : #fffafa");
-        paneReport.toFront();
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/view/report-view.fxml"));
-            Pane pane1 = loader.load(); {
-                paneReport.getChildren().clear();
-                paneReport.getChildren().add(pane1);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    void openReport(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/report-view.fxml"); //trocar somente o anchopane
     }
 
     @FXML

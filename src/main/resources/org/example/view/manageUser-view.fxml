@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="sceneManageUser" prefHeight="656.0" prefWidth="652.0" style="-fx-background-color: white; -fx-background-radius: 90;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ManageUserController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="546.0" stroke="WHITE" strokeType="INSIDE" width="105.0" />
+      <Text fill="#47068a" layoutX="41.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gerenciamento de conta">
+         <font>
+            <Font name="Arial Bold" size="32.0" />
+         </font>
+      </Text>
+      <Label fx:id="userName" layoutX="48.0" layoutY="99.0" text="nome do usuário" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="idUser" layoutX="48.0" layoutY="123.0" text="id do usuário" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="331.0" layoutY="169.0" text="Telefone" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="246.0" text="Estado" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="244.0" layoutY="245.0" text="Cidade" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="479.0" layoutY="244.0" text="CEP" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="48.0" layoutY="327.0" text="Bairro" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="242.0" layoutY="326.0" text="Rua" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="478.0" layoutY="326.0" text="Casa" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="labelCep" layoutX="481.0" layoutY="267.0" prefHeight="33.0" prefWidth="127.0" style="-fx-background-radius: 50;" />
+      <TextField fx:id="labelNumber" layoutX="480.0" layoutY="349.0" prefHeight="33.0" prefWidth="127.0" style="-fx-background-radius: 50;" />
+      <TextField fx:id="labelCity" layoutX="244.0" layoutY="268.0" prefHeight="33.0" prefWidth="212.0" style="-fx-background-radius: 50;" />
+      <TextField fx:id="labelStreet" layoutX="244.0" layoutY="351.0" prefHeight="33.0" prefWidth="212.0" style="-fx-background-radius: 50;" />
+      <TextField fx:id="labelState" layoutX="47.0" layoutY="267.0" prefHeight="33.0" prefWidth="183.0" style="-fx-background-radius: 50;" />
+      <TextField fx:id="labelNeighborhood" layoutX="46.0" layoutY="351.0" prefHeight="33.0" prefWidth="183.0" style="-fx-background-radius: 50;" />
+      <TextField fx:id="labelPhone" layoutX="330.0" layoutY="192.0" prefHeight="33.0" prefWidth="280.0" style="-fx-background-radius: 50;" />
+      <CheckBox fx:id="checkBox" layoutX="49.0" layoutY="410.0" mnemonicParsing="false" text="Bloqueado(a)?" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </CheckBox>
+      <Label layoutX="49.0" layoutY="174.0" text="Senha" textFill="#8751b0">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="labelPin" layoutX="48.0" layoutY="195.0" prefHeight="33.0" prefWidth="244.0" style="-fx-background-radius: 50;" />
+      <Button fx:id="buttonConfirm" alignment="CENTER" graphicTextGap="0.0" layoutX="486.0" layoutY="579.0" mnemonicParsing="false" onAction="#confirmAction" prefHeight="49.0" prefWidth="131.0" style="-fx-background-color: #8751B0; -fx-background-radius: 25;" text="CONFIRMAR" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="13.0" />
+         </font>
+         <effect>
+            <DropShadow height="50.25" offsetX="5.0" offsetY="5.0" radius="22.575" spread="0.06" width="42.05">
+               <color>
+                  <Color red="0.5263158082962036" green="0.5146198868751526" blue="0.5146198868751526" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+   </children>
+   <effect>
+      <DropShadow height="15.21" offsetX="-10.0" radius="24.942500000000003" width="86.56">
+         <color>
+            <Color red="0.31176120042800903" green="0.13439999520778656" blue="0.47999998927116394" />
+         </color>
+      </DropShadow>
+   </effect>
+</AnchorPane>

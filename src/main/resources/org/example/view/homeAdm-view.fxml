@@ -31,7 +31,7 @@
       </ImageView>
       <VBox layoutX="94.0" layoutY="104.0" prefHeight="274.0" prefWidth="146.0" spacing="17.0">
          <children>
-            <Button fx:id="buttonHome" mnemonicParsing="false" onAction="#backHome" style="-fx-background-color: 000;" text="Home" textFill="WHITE">
+            <Button fx:id="buttonHome" mnemonicParsing="false" onAction="#backHome" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Home" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Insets top="5.0" />
                </padding>
             </Button>
-            <Button fx:id="buttonCount" mnemonicParsing="false" onAction="#openCount" style="-fx-background-color: 000;" text="Conta" textFill="WHITE">
+            <Button fx:id="buttonCount" mnemonicParsing="false" onAction="#openCount" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Conta" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
@@ -50,7 +50,7 @@
                   <Insets top="5.0" />
                </padding>
             </Button>
-            <Button fx:id="buttonGoOut2" mnemonicParsing="false" onAction="#goOut" style="-fx-background-color: 000;" text="Livros" textFill="WHITE">
+            <Button fx:id="buttonGoOut2" mnemonicParsing="false" onAction="#goOut" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Livros" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
@@ -58,7 +58,7 @@
                   <Insets top="5.0" />
                </padding>
             </Button>
-            <Button fx:id="buttonLoan" mnemonicParsing="false" onAction="#openLoan" style="-fx-background-color: 000;" text="Empréstimos" textFill="WHITE">
+            <Button fx:id="buttonLoan" mnemonicParsing="false" onAction="#openLoan" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Empréstimos" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
@@ -66,7 +66,7 @@
                   <Insets top="5.0" />
                </padding>
             </Button>
-            <Button fx:id="buttonGoOut" mnemonicParsing="false" onAction="#goOut" style="-fx-background-color: 000;" text="Devoluções" textFill="WHITE">
+            <Button fx:id="buttonGoOut" mnemonicParsing="false" onAction="#goOut" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Devoluções" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
@@ -74,7 +74,7 @@
                   <Insets top="5.0" />
                </padding>
             </Button>
-            <Button fx:id="buttonGoOut1" mnemonicParsing="false" onAction="#goOut" style="-fx-background-color: 000;" text="Sair" textFill="WHITE">
+            <Button fx:id="buttonGoOut1" mnemonicParsing="false" onAction="#goOut" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Sair" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
@@ -124,7 +124,7 @@
       <StackPane layoutX="248.0" layoutY="-1.0" prefHeight="652.0" prefWidth="652.0">
          <children>
             <Pane fx:id="paneReport" prefHeight="652.0" prefWidth="652.0" />
-            <AnchorPane fx:id="paneDashBoard" prefHeight="652.0" prefWidth="711.0" style="-fx-background-color: white; -fx-background-radius: 30;">
+            <AnchorPane fx:id="sceneHomeAdm" prefHeight="652.0" prefWidth="711.0" style="-fx-background-color: white; -fx-background-radius: 30;">
                <children>
                   <TextField layoutX="74.0" layoutY="28.0" prefHeight="49.0" prefWidth="484.0" promptText="    Pesquise Um Livro" style="-fx-background-radius: 50; -fx-background-color: white;">
                      <effect>
@@ -223,7 +223,7 @@
                         <Font name="Arial Bold" size="32.0" />
                      </font>
                   </Text>
-                  <HBox alignment="CENTER" layoutX="11.0" layoutY="521.0" prefHeight="122.0" prefWidth="622.0" spacing="20.0" style="-fx-background-color: 0; -fx-background-radius: 60;">
+                  <HBox alignment="CENTER" layoutX="11.0" layoutY="521.0" prefHeight="122.0" prefWidth="622.0" spacing="20.0" stylesheets="@css/styles.css">
                      <children>
                         <Button fx:id="buttonRegisterBook" alignment="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#openRegisterBook" prefHeight="77.0" prefWidth="151.0" style="-fx-background-color: #430187; -fx-background-radius: 25;" textAlignment="CENTER">
                            <font>
@@ -296,7 +296,7 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="13.0" layoutY="416.0" prefHeight="122.0" prefWidth="621.0" spacing="20.0" style="-fx-background-color: 0; -fx-background-radius: 60;">
+                  <HBox alignment="CENTER" layoutX="13.0" layoutY="416.0" prefHeight="122.0" prefWidth="621.0" spacing="20.0" stylesheets="@css/styles.css">
                      <children>
                         <Button fx:id="buttonRegisterUser" alignment="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#registerNewUser" prefHeight="102.0" prefWidth="131.0" style="-fx-background-color: #8751B0; -fx-background-radius: 25;" textAlignment="CENTER">
                            <font>

@@ -1,42 +1,37 @@
 package org.example.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ReportController {
+public class DevolutionController {
+
+    @FXML
+    private Button buttonRegisterDevolution;
 
     @FXML
     private ImageView goBack;
 
     @FXML
-    private Label labelBorrowedBooks;
+    private TextField labelLoan;
 
     @FXML
-    private Label labelLateBooks;
+    private TextField labelReader;
 
     @FXML
-    private TextField labelReaderID;
-
-    @FXML
-    private Label labelReservedBooks;
-
-    @FXML
-    private ListView<?> popularBookList;
-
-    @FXML
-    private ListView<?> readerLoanList;
+    void registerDevolution(ActionEvent event) {
+        // chamar o bibliotecario logando para registrar
+    }
 
     @FXML
     void toHomeAdm(MouseEvent event) throws IOException {
