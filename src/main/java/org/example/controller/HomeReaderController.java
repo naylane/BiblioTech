@@ -3,6 +3,7 @@ package org.example.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,7 +17,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class HomeReaderController {
+public class HomeReaderController implements Initializable {
 
     @FXML
     private Button buttonAccount;
@@ -43,13 +44,18 @@ public class HomeReaderController {
 
     }
 
-    public void initialize() throws IOException {
-        new SceneSwitch(sceneHomeReader, "view/readerHomeScreen-view.fxml"); //trocar somente o anchopane
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundl) { // !!!???
+        try {
+            new SceneSwitch(sceneHomeReader, "view/readerHomeScreen-view.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
     void backHome(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeReader, "view/readerHomeScreen-view.fxml"); //trocar somente o anchopane
+        new SceneSwitch(sceneHomeReader, "view/readerHomeScreen-view.fxml");
     }
 
     @FXML
@@ -84,14 +90,12 @@ public class HomeReaderController {
 
     @FXML
     void openAccount(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeReader, "view/readerAccount-view.fxml"); //trocar somente o anchopane
-
+        new SceneSwitch(sceneHomeReader, "view/readerAccount-view.fxml");
     }
-
 
     @FXML
     void openLoan(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeReader, "view/readerLoans-view.fxml"); //trocar somente o anchopane
+        new SceneSwitch(sceneHomeReader, "view/readerLoans-view.fxml"); 
 
     }
 

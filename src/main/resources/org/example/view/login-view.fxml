@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -10,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.LoginController">
    <children>
@@ -18,43 +20,55 @@
             <Image url="@images/Rectangle02.jpg" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="393.0" layoutY="66.0" prefHeight="516.0" prefWidth="450.0" style="-fx-background-color: white; -fx-background-radius: 50;">
+      <AnchorPane layoutX="393.0" layoutY="26.0" prefHeight="596.0" prefWidth="450.0" style="-fx-background-color: white; -fx-background-radius: 50;">
          <children>
             <Label alignment="CENTER" contentDisplay="TOP" layoutX="153.0" layoutY="47.0" prefHeight="59.0" prefWidth="144.0" text="LOGIN" textAlignment="CENTER" textFill="#8751b0">
                <font>
                   <Font name="Arial Black" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="ID" layoutX="47.0" layoutY="136.0" text="ID">
+            <Label fx:id="ID" layoutX="47.0" layoutY="129.0" text="ID">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="idField" layoutX="46.0" layoutY="171.0" prefHeight="50.0" prefWidth="357.0" promptText="Digite Seu ID" style="-fx-background-radius: 50;" />
-            <Label fx:id="senha" layoutX="47.0" layoutY="249.0" text="Senha">
+            <TextField fx:id="idField" layoutX="46.0" layoutY="164.0" prefHeight="50.0" prefWidth="357.0" promptText="Digite Seu ID" style="-fx-background-radius: 50;" />
+            <Label fx:id="senha" layoutX="47.0" layoutY="242.0" text="Senha">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="SenhaField1" layoutX="46.0" layoutY="286.0" prefHeight="50.0" prefWidth="357.0" promptText="Digite Sua Senha" style="-fx-background-radius: 50;" />
-            <Label fx:id="registerPage" alignment="CENTER" layoutX="46.0" layoutY="356.0" prefHeight="38.0" prefWidth="358.0" text="*Esqueceu sua Senha ou ID? Consulte com um Administrador!" textAlignment="CENTER" textFill="#65299b" wrapText="true">
+            <TextField fx:id="SenhaField1" layoutX="46.0" layoutY="279.0" prefHeight="50.0" prefWidth="357.0" promptText="Digite Sua Senha" style="-fx-background-radius: 50;" />
+            <Label fx:id="registerPage" alignment="CENTER" layoutX="46.0" layoutY="462.0" prefHeight="38.0" prefWidth="358.0" text="Esqueceu sua Senha ou ID? Consulte com um Administrador!" textAlignment="CENTER" textFill="#65299b" wrapText="true">
                <font>
                   <Font size="11.0" />
                </font>
                <cursor>
-                  <Cursor fx:constant="HAND" />
+                  <Cursor fx:constant="DEFAULT" />
                </cursor>
             </Label>
-            <Button fx:id="buttonBackHome" layoutX="103.0" layoutY="426.0" mnemonicParsing="false" onAction="#backHome" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #8751B0; -fx-background-radius: 20;" text="Home" textFill="WHITE">
+            <Button fx:id="buttonBackHome" layoutX="103.0" layoutY="519.0" mnemonicParsing="false" onAction="#backHome" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #8751B0; -fx-background-radius: 20;" text="Home" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="16.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button fx:id="ButtonEntrar" layoutX="247.0" layoutY="426.0" mnemonicParsing="false" onAction="#OpenSystem" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #8751B0; -fx-background-radius: 20;" text="Entrar" textFill="WHITE">
+            <Button fx:id="ButtonEntrar" layoutX="247.0" layoutY="519.0" mnemonicParsing="false" onAction="#openSystem" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #8751B0; -fx-background-radius: 20;" text="Entrar" textFill="WHITE">
                <font>
                   <Font name="Arial Bold" size="16.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
+            <ChoiceBox fx:id="choiceBox" layoutX="49.0" layoutY="385.0" prefHeight="25.0" prefWidth="351.0" />
+            <Text layoutX="47.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione seu tipo de conta:" wrappingWidth="337.5">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
          </children>
          <effect>
             <DropShadow height="105.22" radius="60.8825" spread="0.18" width="140.31">

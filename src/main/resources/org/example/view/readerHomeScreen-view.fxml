@@ -15,7 +15,7 @@
 <AnchorPane fx:id="sceneHomeReader" prefHeight="656.0" prefWidth="652.0" style="-fx-background-color: white; -fx-background-radius: 90;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ReaderHomeScreenController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="546.0" stroke="WHITE" strokeType="INSIDE" width="105.0" />
-      <TextField layoutX="74.0" layoutY="36.0" prefHeight="49.0" prefWidth="484.0" promptText="    Pesquise Um Livro" style="-fx-background-radius: 50; -fx-background-color: white;">
+      <TextField fx:id="searchField" layoutX="74.0" layoutY="36.0" prefHeight="49.0" prefWidth="484.0" promptText="    Pesquise Um Livro" style="-fx-background-radius: 50; -fx-background-color: white;">
          <effect>
             <DropShadow height="39.42" offsetX="2.0" offsetY="8.0" radius="11.11" width="7.02">
                <color>
@@ -34,7 +34,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <Button fx:id="buttonSearch" layoutX="510.0" layoutY="25.0" mnemonicParsing="false" onAction="#SearchBook" prefHeight="70.0" prefWidth="72.0" style="-fx-background-color: #8751B0; -fx-background-radius: 50;">
+      <Button fx:id="buttonSearch" layoutX="510.0" layoutY="25.0" mnemonicParsing="false" onAction="#searchBook" prefHeight="70.0" prefWidth="72.0" style="-fx-background-color: #8751B0; -fx-background-radius: 50;">
          <graphic>
             <ImageView fitHeight="54.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -50,25 +50,25 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button fx:id="buttonTitulo" layoutX="136.0" layoutY="96.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
+      <Button fx:id="buttonTitulo" layoutX="136.0" layoutY="96.0" mnemonicParsing="false" onAction="#selectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
       <Text fill="#773ea6" layoutX="165.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Título">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Text>
-      <Button fx:id="buttonTitulo1" layoutX="228.0" layoutY="97.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
+      <Button fx:id="buttonTitulo1" layoutX="228.0" layoutY="97.0" mnemonicParsing="false" onAction="#selectISBN" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
       <Text fill="#773ea6" layoutX="257.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Text>
-      <Button fx:id="buttonTitulo11" layoutX="314.0" layoutY="98.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
+      <Button fx:id="buttonTitulo11" layoutX="314.0" layoutY="98.0" mnemonicParsing="false" onAction="#selectAuthor" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
       <Text fill="#773ea6" layoutX="342.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Autor">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Text>
-      <Button fx:id="buttonTitulo12" layoutX="399.0" layoutY="99.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
+      <Button fx:id="buttonTitulo12" layoutX="399.0" layoutY="99.0" mnemonicParsing="false" onAction="#selectCategory" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
       <Text fill="#773ea6" layoutX="429.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria">
          <font>
             <Font name="Arial" size="16.0" />
@@ -89,7 +89,7 @@
             <Font name="Arial Bold" size="32.0" />
          </font>
       </Text>
-      <Label layoutX="50.0" layoutY="204.0" text="nome do usuário" textFill="#8751b0">
+      <Label fx:id="nameLabel" layoutX="50.0" layoutY="204.0" text="nome do usuário" textFill="#8751b0">
          <font>
             <Font name="Arial" size="20.0" />
          </font>

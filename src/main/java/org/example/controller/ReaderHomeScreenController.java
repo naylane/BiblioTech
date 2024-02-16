@@ -2,10 +2,16 @@ package org.example.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
-public class ReaderHomeScreenController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ReaderHomeScreenController implements Initializable {
 
     @FXML
     private Button buttonSearch;
@@ -23,15 +29,42 @@ public class ReaderHomeScreenController {
     private Button buttonTitulo12;
 
     @FXML
+    private Label nameLabel;
+
+    @FXML
     private AnchorPane sceneHomeReader;
 
     @FXML
-    void SearchBook(ActionEvent event) {
+    private TextField searchField;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.nameLabel.setText(ReaderHolder.getInstance().getReader().getName());
+    }
+
+    @FXML
+    void searchBook(ActionEvent event) {
 
     }
 
     @FXML
-    void SelectTitulo(ActionEvent event) {
+    void selectAuthor(ActionEvent event) {
 
     }
+
+    @FXML
+    void selectCategory(ActionEvent event) {
+
+    }
+
+    @FXML
+    void selectISBN(ActionEvent event) {
+
+    }
+
+    @FXML
+    void selectTitulo(ActionEvent event) {
+
+    }
+
 }

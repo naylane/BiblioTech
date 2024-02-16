@@ -1,33 +1,28 @@
 package org.example.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
-public class ReaderAccountController {
+import java.net.URL;
+import java.util.ResourceBundle;
+import org.example.model.Reader;
+import org.example.model.Residence;
+
+public class ReaderAccountController implements Initializable {
 
     @FXML
-    private Label ActivityLoan;
+    private Label nameLabel;
+
+    @FXML
+    private Label idLabel;
+
+    @FXML
+    private Label activityLoan;
 
     @FXML
     private Label accountStatus;
-
-    @FXML
-    private Button buttonSearch;
-
-    @FXML
-    private Button buttonTitulo;
-
-    @FXML
-    private Button buttonTitulo1;
-
-    @FXML
-    private Button buttonTitulo11;
-
-    @FXML
-    private Button buttonTitulo12;
 
     @FXML
     private Label cepGap;
@@ -51,16 +46,25 @@ public class ReaderAccountController {
     private Label stateGap;
 
     @FXML
-    private Label streatGap;
+    private Label streetGap;
 
-    @FXML
-    void SearchBook(ActionEvent event) {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        Reader reader = ReaderHolder.getInstance().getReader();
+        Residence address = reader.getAddress();
 
+        nameLabel.setText(reader.getName());
+        idLabel.setText(String.valueOf(reader.getId()));
+        phoneGap.setText(reader.getPhone());
+        stateGap.setText(address.getState());
+        cityGap.setText(address.getCity());
+        cepGap.setText(address.getCep());
+        neighborhoodGap.setText(address.getNeighborhood());
+        streetGap.setText(address.getStreet());
+        numberHomeGap.setText(String.valueOf(address.getNumber()));
+        activityLoan.setText(String.valueOf(reader.getLoanLimit()));
+        if (reader.getBlock()) {
+            accountStatus.setText("BLOQUEADA");
+        }
     }
-
-    @FXML
-    void SelectTitulo(ActionEvent event) {
-
-    }
-
 }
