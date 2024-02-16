@@ -95,7 +95,7 @@ public class HomeReaderController implements Initializable {
 
     @FXML
     void openLoan(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeReader, "view/readerLoans-view.fxml"); 
+        new SceneSwitch(sceneHomeReader, "view/readerLoans-view.fxml");
 
     }
 

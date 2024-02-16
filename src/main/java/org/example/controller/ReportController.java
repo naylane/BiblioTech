@@ -38,19 +38,4 @@ public class ReportController {
     @FXML
     private ListView<?> readerLoanList;
 
-    @FXML
-    void toHomeAdm(MouseEvent event) throws IOException {
-        // fecha a tela atual
-        Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        currentScreen.close();
-        // carrega nova tela
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/view/homeAdm-view.fxml"));
-        Parent login = loader.load();
-        Scene scene = new Scene(login);
-        Stage stage = new Stage();
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
-    }
-
 }

@@ -2,10 +2,16 @@ package org.example.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -71,8 +77,12 @@ public class HomeAdmController implements Initializable {
     private Button registerDevolution;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
+    public void initialize(URL url, ResourceBundle resourceBundle) { // !!!!???
+        try {
+            new SceneSwitch(sceneHomeAdm, "view/admHomeScreen-view.fxml");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -86,17 +96,32 @@ public class HomeAdmController implements Initializable {
     }
 
     @FXML
-    void backHome(ActionEvent event) {
-
+    void backHome(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/admHomeScreen-view.fxml");
     }
 
     @FXML
     void goOut(ActionEvent event) {
-    }
+        try {
+            // Este trecho obtém o palco atual a partir do evento gerado pelo botão
+            Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            currentScreen.close(); // fecha a tela atual
 
-    @FXML
-    void openAllUsers(ActionEvent event) {
-
+            // pegando o caminho
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/view/home-view.fxml"));
+            Parent login = loader.load(); // carregando o arquivo
+            Stage registerStage = new Stage();
+            Scene scene = new Scene(login); // cria cena
+            registerStage.setResizable(false); // não permite que a tela seja redmensionada
+            // exibição da tela
+            registerStage.setScene(scene);
+            registerStage.show();
+            //define um icone para tela login
+            registerStage.getIcons().add(new Image(getClass().getResourceAsStream("/org/example/view/images/symbol.png")));
+            registerStage.setTitle("BiblioTech Home");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -109,29 +134,5 @@ public class HomeAdmController implements Initializable {
 
     }
 
-    @FXML
-    void openRegisterBook(ActionEvent event) {
 
-    }
-
-    @FXML
-    void openRegisterDevolution(ActionEvent event) {
-
-    }
-
-    @FXML
-    void openRegisterLoan(ActionEvent event) {
-
-    }
-
-    // muda para a tela do relatório
-    @FXML
-    void openReport(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/report-view.fxml"); //trocar somente o anchopane
-    }
-
-    @FXML
-    void registerNewUser(ActionEvent event) {
-
-    }
 }
