@@ -30,9 +30,6 @@ public class RegisterBookController {
     private TextField publishField;
 
     @FXML
-    private AnchorPane sceneManageBook;
-
-    @FXML
     private TextField sectionField;
 
     @FXML
