@@ -45,7 +45,7 @@
                   <Insets top="5.0" />
                </padding>
             </Button>
-            <Button fx:id="buttonGoOut2" mnemonicParsing="false" onAction="#goOut" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Livros" textFill="WHITE">
+            <Button fx:id="buttonBooks" mnemonicParsing="false" onAction="#buttonBooks" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Livros" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
@@ -61,7 +61,7 @@
                   <Insets top="5.0" />
                </padding>
             </Button>
-            <Button fx:id="buttonGoOut" mnemonicParsing="false" onAction="#goOut" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Devoluções" textFill="WHITE">
+            <Button fx:id="buttonDevolutions" mnemonicParsing="false" onAction="#openDevolutions" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Devoluções" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>

@@ -76,23 +76,23 @@ public class HomeLibrarianController {
     }
 
     @FXML
-    void openBooks(ActionEvent event) {
-
+    void openBooks(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeLibrarian, "view/allBooks-view.fxml"); //trocar somente o anchopane
     }
 
     @FXML
-    void openCount(ActionEvent event) {
-
+    void openCount(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeLibrarian, "view/AdmAccount-view.fxml"); //trocar somente o anchopane
     }
 
     @FXML
-    void openDevolution(ActionEvent event) {
-
+    void openDevolution(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeLibrarian, "view/allDevolutions-view.fxml"); //trocar somente o anchopane
     }
 
     @FXML
-    void openLoan(ActionEvent event) {
-
+    void openLoan(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeLibrarian, "view/allLoans-view.fxml"); //trocar somente o anchopane
     }
 
 }

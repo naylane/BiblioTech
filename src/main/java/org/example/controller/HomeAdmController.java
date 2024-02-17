@@ -29,10 +29,10 @@ public class HomeAdmController implements Initializable {
     private Button buttonGoOut;
 
     @FXML
-    private Button buttonGoOut1;
+    private Button buttonDevolutions;
 
     @FXML
-    private Button buttonGoOut2;
+    private Button buttonBooks;
 
     @FXML
     private Button buttonHome;
@@ -77,7 +77,7 @@ public class HomeAdmController implements Initializable {
     private Button registerDevolution;
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) { // !!!!???
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             new SceneSwitch(sceneHomeAdm, "view/admHomeScreen-view.fxml");
         } catch (IOException e) {
@@ -125,12 +125,23 @@ public class HomeAdmController implements Initializable {
     }
 
     @FXML
-    void openCount(ActionEvent event) {
-
+    void openCount(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/admAccountController-view.fxml");
     }
 
     @FXML
-    void openLoan(ActionEvent event) {
+    void openLoan(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/allLoans-view.fxml");
+    }
+
+    @FXML
+    void openDevolutions(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/allDevolutions-view.fxml");
+    }
+
+    @FXML
+    void buttonBooks(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/allBooks-view.fxml");
 
     }
 

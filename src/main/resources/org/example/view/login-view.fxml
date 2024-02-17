@@ -27,18 +27,18 @@
                   <Font name="Arial Black" size="40.0" />
                </font>
             </Label>
-            <Label fx:id="ID" layoutX="47.0" layoutY="129.0" text="ID">
+            <Label layoutX="47.0" layoutY="129.0" text="ID">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
             </Label>
             <TextField fx:id="idField" layoutX="46.0" layoutY="164.0" prefHeight="50.0" prefWidth="357.0" promptText="Digite Seu ID" style="-fx-background-radius: 50;" />
-            <Label fx:id="senha" layoutX="47.0" layoutY="242.0" text="Senha">
+            <Label layoutX="47.0" layoutY="242.0" text="Senha">
                <font>
                   <Font name="Arial" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="SenhaField1" layoutX="46.0" layoutY="279.0" prefHeight="50.0" prefWidth="357.0" promptText="Digite Sua Senha" style="-fx-background-radius: 50;" />
+            <TextField fx:id="pinField" layoutX="46.0" layoutY="279.0" prefHeight="50.0" prefWidth="357.0" promptText="Digite Sua Senha" style="-fx-background-radius: 50;" />
             <Label fx:id="registerPage" alignment="CENTER" layoutX="46.0" layoutY="462.0" prefHeight="38.0" prefWidth="358.0" text="Esqueceu sua Senha ou ID? Consulte com um Administrador!" textAlignment="CENTER" textFill="#65299b" wrapText="true">
                <font>
                   <Font size="11.0" />
