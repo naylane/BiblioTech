@@ -5,12 +5,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import org.example.model.Book;
 import org.example.model.BookLocation;
-import org.example.model.Adm;
-import org.example.util.AdmHolder;
+import org.example.model.Librarian;
+import org.example.util.LibrarianHolder;
 
-public class ManageBookController {
+public class RegisterBookController {
 
     @FXML
     private TextField auhtorField;
@@ -20,9 +19,6 @@ public class ManageBookController {
 
     @FXML
     private TextField categoryField;
-
-    @FXML
-    private TextField dispField;
 
     @FXML
     private TextField hallField;
@@ -54,7 +50,7 @@ public class ManageBookController {
     @FXML
     void confirmAction(ActionEvent event) {
         try {
-            Adm adm = AdmHolder.getInstance().getAdm();
+            Librarian librarian = LibrarianHolder.getInstance().getLibrarian();
 
             String isbn = isbnField.getText();
             String title = titleField.getText();
@@ -68,14 +64,13 @@ public class ManageBookController {
             BookLocation location = new BookLocation(shelf, hall, section);
             int quantity = Integer.parseInt(totalField.getText());
 
-            Book book = new Book(isbn, title, author, publishingCompany, yearPublication, category, location, quantity);
-            adm.updateBook(book);
+            librarian.registerBook(isbn, title, author, publishingCompany, yearPublication, category, location, quantity);
 
             AlertMessageController alertMessageController = new AlertMessageController();
-            alertMessageController.setAlert("Edição concluida com sucesso!");
+            alertMessageController.setAlert("Cadastro concluido com sucesso!");
         } catch (Exception e) {
             AlertMessageController alertMessageController = new AlertMessageController();
-            alertMessageController.setAlert("Não foi possível concluir edição.");
+            alertMessageController.setAlert("Não foi possível concluir cadastro.");
             //throw new RuntimeException(e);
         }
     }

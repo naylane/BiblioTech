@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
+
 public class LibrarianHomeScreenController {
 
     @FXML
@@ -32,7 +34,7 @@ public class LibrarianHomeScreenController {
     private Button registerDevolution;
 
     @FXML
-    private AnchorPane sceneHomeReader;
+    private AnchorPane sceneHomeLibrarian;
 
     @FXML
     void SearchBook(ActionEvent event) {
@@ -45,18 +47,18 @@ public class LibrarianHomeScreenController {
     }
 
     @FXML
-    void openRegisterBook(ActionEvent event) {
-
+    void openRegisterBook(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeLibrarian, "view/registerBook-view.fxml");
     }
 
     @FXML
-    void openRegisterDevolution(ActionEvent event) {
-
+    void openRegisterDevolution(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeLibrarian, "view/registerDevolution-view.fxml");
     }
 
     @FXML
     void openRegisterLoan(ActionEvent event) {
-
+        
     }
 
 }

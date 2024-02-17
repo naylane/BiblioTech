@@ -69,8 +69,8 @@ public class AdmHomeScreenController implements Initializable {
     }
 
     @FXML
-    void openRegisterBook(ActionEvent event) {
-
+    void openRegisterBook(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/registerBook-view");
     }
 
     @FXML
