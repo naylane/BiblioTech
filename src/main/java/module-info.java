@@ -19,5 +19,7 @@ module Library {
     opens org.example.dao.loan;
     opens org.example.dao.reader;
     opens org.example.model;
+    exports org.example.util;
+    opens org.example.util to javafx.fxml;
 
 }

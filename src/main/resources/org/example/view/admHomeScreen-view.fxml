@@ -95,7 +95,7 @@
             <Font name="Arial Bold" size="32.0" />
          </font>
       </Text>
-      <Label layoutX="34.0" layoutY="201.0" text="nome do usuário" textFill="#672b9d">
+      <Label fx:id="nameLabel" layoutX="34.0" layoutY="201.0" text="nome do usuário" textFill="#672b9d">
          <font>
             <Font name="Arial" size="20.0" />
          </font>

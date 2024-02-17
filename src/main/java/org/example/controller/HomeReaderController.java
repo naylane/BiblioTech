@@ -45,7 +45,7 @@ public class HomeReaderController implements Initializable {
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundl) { // !!!???
+    public void initialize(URL url, ResourceBundle resourceBundl) {
         try {
             new SceneSwitch(sceneHomeReader, "view/readerHomeScreen-view.fxml");
         } catch (IOException e) {
@@ -96,7 +96,6 @@ public class HomeReaderController implements Initializable {
     @FXML
     void openLoan(ActionEvent event) throws IOException {
         new SceneSwitch(sceneHomeReader, "view/readerLoans-view.fxml");
-
     }
 
 }

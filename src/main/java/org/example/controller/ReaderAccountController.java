@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import org.example.model.Reader;
 import org.example.model.Residence;
+import org.example.util.ReaderHolder;
 
 public class ReaderAccountController implements Initializable {
 

@@ -14,17 +14,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.example.dao.DAO;
+import org.example.exceptions.UsersException;
 import org.example.model.Librarian;
 import org.example.model.Reader;
 import org.example.model.Adm;
-import org.example.model.Residence;
+import org.example.util.AdmHolder;
+import org.example.util.LibrarianHolder;
+import org.example.util.ReaderHolder;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-
 
     @FXML
     private TextField pinField;
@@ -82,42 +84,44 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    public void openSystem(ActionEvent event) throws Exception { //por enquanto ta abrindo a home do Reader
+    public void openSystem(ActionEvent event) throws Exception {
         long id = Long.parseLong(idField.getText());
         String pin = pinField.getText();
 
-
         if (choiceBox.getValue().equals("Leitor")) {
             Reader found = DAO.getReaderDAO().findById(id);
-            if((found != null) && (id==found.getId())) { // id e senha corretos, pode logar
-                ReaderHolder.getInstance().setReader(found); //salva os dados
+            if((found != null) && (id==found.getId())) {
+                ReaderHolder.getInstance().setReader(found);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/view/homeReader-view.fxml"));
                 openScreen(event, loader);
             } else {
-                // mensagem de erro
+                AlertMessageController alertMessageController = new AlertMessageController();
+                alertMessageController.showAlertMensage(UsersException.LoginError);
             }
         }
         else if (choiceBox.getValue().equals("Blibiotecário")) {
             Librarian found = DAO.getLibrarianDAO().findById(id);
-            System.out.println(found.getId());
-            if (found != null && found.getPin().equals(pin)) { // id e senha corretos, pode logar
-                //ReaderHolder.getInstance().setReader(found); //falta do bibliotecario
+            if ((found != null) && found.getPin().equals(pin)) {
+                LibrarianHolder.getInstance().setLibrarian(found);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/view/homeLibrarian-view.fxml"));
                 openScreen(event, loader);
             } else {
-                // mensagem de erro
+                AlertMessageController alertMessageController = new AlertMessageController();
+                alertMessageController.showAlertMensage(UsersException.LoginError);
             }
         }
         else if (choiceBox.getValue().equals("Administrador")) {
             Adm found = DAO.getAdmDAO().findById(id);
-            if (found != null && found.getPin().equals(pin)) { // id e senha corretos, pode logar
-                //ReaderHolder.getInstance().setReader(found); //falta do Adm
+            if (found != null && found.getPin().equals(pin)) {
+                AdmHolder.getInstance().setAdm(found);
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/view/homeAdm-view.fxml"));
                 openScreen(event, loader);
             } else {
-                // mensagem de erro
+                AlertMessageController alertMessageController = new AlertMessageController();
+                alertMessageController.showAlertMensage(UsersException.LoginError);
             }
-        }}
+        }
+    }
 
     public void openScreen(ActionEvent event, FXMLLoader loader){
         try {

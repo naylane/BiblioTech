@@ -2,12 +2,17 @@ package org.example.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Label;
+import org.example.util.AdmHolder;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AdmHomeScreenController {
+public class AdmHomeScreenController implements Initializable {
 
     @FXML
     private Button buttonAllUsers;
@@ -43,7 +48,15 @@ public class AdmHomeScreenController {
     private Button registerDevolution;
 
     @FXML
+    private Label nameLabel;
+
+    @FXML
     private AnchorPane sceneHomeAdm;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        this.nameLabel.setText(AdmHolder.getInstance().getAdm().getName());
+    }
 
     @FXML
     void SearchBook(ActionEvent event) {
@@ -84,5 +97,4 @@ public class AdmHomeScreenController {
     void openAllUsers(ActionEvent event) throws IOException {
         new SceneSwitch(sceneHomeAdm, "view/allUsers-view.fxml");
     }
-
 }
