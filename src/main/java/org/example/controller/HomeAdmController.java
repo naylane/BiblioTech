@@ -126,7 +126,7 @@ public class HomeAdmController implements Initializable {
 
     @FXML
     void openCount(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/admAccountController-view.fxml");
+        new SceneSwitch(sceneHomeAdm, "view/admAccount-view.fxml");
     }
 
     @FXML

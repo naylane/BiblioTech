@@ -14,52 +14,43 @@ import java.io.IOException;
 public class HomeController {
 
     @FXML
-    private Button buttonAutor;
-
-    @FXML
-    private Button buttonCategoria;
-
-    @FXML
     private Button buttonHome;
-
-    @FXML
-    private Button buttonISBN;
 
     @FXML
     private Button buttonInfo;
 
     @FXML
-    private Button buttonLogin;
-
-    @FXML
     private Button buttonSearch;
 
     @FXML
-    private Button buttonTitulo;
-
-    @FXML
     void SearchBook(ActionEvent event) {
+        try {
+            //Este trecho obtém o palco atual (tela de login) a partir do evento gerado pelo botão de login
+            Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            //fecha a tela home, que é a tela atual
+            currentScreen.close();
 
-    }
+            //pegando o caminho
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/view/bookResults-view.fxml"));
+            Parent login = loader.load(); //carregando o arquivo
 
-    @FXML
-    void SelectAutor(ActionEvent event) {
+            Stage registerStage = new Stage();
+            //cria cena
+            Scene scene = new Scene(login);
 
-    }
+            //não permite que a tela seja redmensionada
+            registerStage.setResizable(false);
+            //exibição da tela
+            registerStage.setScene(scene);
+            registerStage.show();
+            //define um icone para tela login
+            registerStage.getIcons().add(new Image(getClass().getResourceAsStream("/org/example/view/images/symbol.png")));
+            registerStage.setTitle("BiblioTech Search"); //nome da pag
 
-    @FXML
-    void SelectCategoria(ActionEvent event) {
-
-    }
-
-    @FXML
-    void SelectISBN(ActionEvent event) {
-
-    }
-
-    @FXML
-    void SelectTitulo(ActionEvent event) {
-
+        } catch (IOException e) {
+            e.printStackTrace();
+            //System.err.println("Erro ao carregar o arquivo FXML da tela de login: " + e.getMessage());
+        }
     }
 
     @FXML

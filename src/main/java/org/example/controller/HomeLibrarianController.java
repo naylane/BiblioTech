@@ -82,7 +82,7 @@ public class HomeLibrarianController {
 
     @FXML
     void openCount(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeLibrarian, "view/AdmAccount-view.fxml"); //trocar somente o anchopane
+        new SceneSwitch(sceneHomeLibrarian, "view/librarianAccount-view.fxml"); //trocar somente o anchopane
     }
 
     @FXML
