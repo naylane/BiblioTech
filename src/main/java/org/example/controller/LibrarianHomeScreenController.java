@@ -19,18 +19,6 @@ public class LibrarianHomeScreenController {
     private Button buttonSearch;
 
     @FXML
-    private Button buttonTitulo;
-
-    @FXML
-    private Button buttonTitulo1;
-
-    @FXML
-    private Button buttonTitulo11;
-
-    @FXML
-    private Button buttonTitulo12;
-
-    @FXML
     private Button registerDevolution;
 
     @FXML
@@ -38,11 +26,6 @@ public class LibrarianHomeScreenController {
 
     @FXML
     void SearchBook(ActionEvent event) {
-
-    }
-
-    @FXML
-    void SelectTitulo(ActionEvent event) {
 
     }
 
@@ -57,8 +40,8 @@ public class LibrarianHomeScreenController {
     }
 
     @FXML
-    void openRegisterLoan(ActionEvent event) {
-        
+    void openRegisterLoan(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeLibrarian, "view/registerLoan-view.fxml");
     }
 
 }

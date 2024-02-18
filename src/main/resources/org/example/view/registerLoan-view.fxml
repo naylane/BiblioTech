@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="sceneRegisterLoan" prefHeight="656.0" prefWidth="652.0" style="-fx-background-color: white; -fx-background-radius: 90;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.RegisterLoanController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="546.0" stroke="WHITE" strokeType="INSIDE" width="105.0" />
+      <Line endX="457.5999755859375" endY="3.0517578125E-5" layoutX="147.0" layoutY="332.0" startX="-100.10004425048828" stroke="#47068a" />
+      <VBox layoutX="45.0" layoutY="162.0" prefHeight="96.0" prefWidth="105.0" style="-fx-spacing: 60;">
+         <children>
+            <Text fill="#4d4d4d" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN DO LIVRO:" wrappingWidth="136.69187927246094">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Text>
+            <Text fill="#4d4d4d" strokeType="OUTSIDE" strokeWidth="0.0" text="ID DO LEITOR:" wrappingWidth="121.02520751953125">
+               <font>
+                  <Font name="Arial Bold" size="16.0" />
+               </font>
+            </Text>
+         </children>
+      </VBox>
+      <VBox layoutX="181.0" layoutY="160.0" prefHeight="100.0" prefWidth="430.0" style="-fx-spacing: 50;">
+         <children>
+            <TextField fx:id="isbnField" alignment="CENTER" prefHeight="25.0" prefWidth="421.0" promptText="ISBN DO LIVRO" />
+            <TextField fx:id="idField" alignment="CENTER" prefHeight="25.0" prefWidth="421.0" promptText="ID DO LEITOR" />
+         </children>
+      </VBox>
+      <Text fill="#8751b0" layoutX="38.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EMPRÉSTIMO" wrappingWidth="227.00001525878906">
+         <font>
+            <Font name="Arial Black" size="30.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonRegisterLoan" alignment="CENTER" graphicTextGap="0.0" layoutX="460.0" layoutY="559.0" mnemonicParsing="false" onAction="#confirmAction" prefHeight="52.0" prefWidth="130.0" style="-fx-background-color: #672B9D; -fx-background-radius: 25;" textAlignment="CENTER">
+         <font>
+            <Font size="36.0" />
+         </font>
+         <effect>
+            <DropShadow height="50.25" offsetX="5.0" offsetY="5.0" radius="22.575" spread="0.06" width="42.05">
+               <color>
+                  <Color red="0.5263158082962036" green="0.5146198868751526" blue="0.5146198868751526" />
+               </color>
+            </DropShadow>
+         </effect>
+         <graphic>
+            <ImageView fitHeight="32.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" rotate="-10.0">
+               <image>
+                  <Image url="@images/registerLoanIcon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label fx:id="messageAlert" layoutX="49.0" layoutY="353.0" prefHeight="72.0" prefWidth="559.0" textFill="#d10909">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+   <effect>
+      <DropShadow height="15.21" offsetX="-10.0" radius="24.942500000000003" width="86.56">
+         <color>
+            <Color red="0.31176120042800903" green="0.13439999520778656" blue="0.47999998927116394" />
+         </color>
+      </DropShadow>
+   </effect>
+</AnchorPane>

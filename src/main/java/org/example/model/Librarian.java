@@ -38,6 +38,7 @@ public class Librarian extends User implements Serializable {
      */
     public Librarian(String name, String pin, String phone, Residence address) throws Exception {
         super(name, pin, phone, address);
+        this.block = false;
     }
 
     /**
@@ -45,12 +46,10 @@ public class Librarian extends User implements Serializable {
      *
      * @return true se o bibliotecário estiver bloqueado, false se não estiver bloqueado.
      */
-    public Boolean getBlock(){
-        if(block){ //block == true
-            return true;
-        }else{
-            return false;
-        }}
+    public Boolean getBlock() {
+        return block;
+    }
+
     /**
      * Bloqueia o bibliotecário.
      *
@@ -97,15 +96,16 @@ public class Librarian extends User implements Serializable {
      * @throws LoanException se ocorrer um erro relacionado ao empréstimo.
      */
     public void registerLoan(Reader reader, Book book) throws Exception { // registrar emprestimo de leitor
-        if(book.getQuantityAvailable() == 0){ //se tem livro disponivel
-            throw new BookException(BookException.NotAvailable);}
+        if (book.getQuantityAvailable() == 0){ // se não tem livro disponivel
+            throw new LoanException(BookException.NotAvailable);}
         else{
             if(book.getResevationQueue().isEmpty()){  //retorna true se a fila estiver vazia e false se tiver um elemento ao menos tiver uma pessoa
-                if(reader.getBlock()){ //retorna true se estiver block
+                if(reader.getBlock()){ // retorna true se estiver bloqueado
                     throw new LoanException(UsersException.UserBlock);}
                 else{
-                    if(reader.getLoanLimit() == 0){throw new LoanException(LoanException.LoanLimit);
-                    }else{creatLoan(reader, book);}
+                    if(reader.getLoanLimit() == 0){
+                        throw new LoanException(LoanException.LoanLimit); }
+                    else{creatLoan(reader, book);}
                 }
             }else{ //aq no caso de ter elementos na fila
                 if(book.getResevationQueue().element() == reader){  //no caso de o leitor ser o primeiro da fila, realiza o emprestimo, se não ele tem que reservar o livro
@@ -115,7 +115,7 @@ public class Librarian extends User implements Serializable {
                         if(reader.getLoanLimit() == 0){throw new LoanException(LoanException.LoanLimit);
                         }else{creatLoan(reader, book);}}
                 }else{
-                    throw new BookException(BookException.NotAvailable);}}}}
+                    throw new LoanException(BookException.NotAvailable);}}}}
 
     /**
      * Cria um novo leitor no sistema.
@@ -124,7 +124,7 @@ public class Librarian extends User implements Serializable {
      * @param book     O livro do emprestimo.
      *
      */
-    public Loan creatLoan(Reader reader, Book book) throws IOException, LoanException, Exception {
+    public Loan creatLoan(Reader reader, Book book) throws Exception {
         LocalDate dateLoan = dateToday(); // diz a data do dia atual ou seja, a data do emprestimo
         LocalDate dateDevolution = dateEnd(dateLoan); // calcula a data de devolução (10 dias a partir da data de empréstimo)
         Loan loan = new Loan(reader.getId(), book, dateLoan, dateDevolution); // cria emprestimo
