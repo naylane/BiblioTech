@@ -52,6 +52,35 @@
             </DropShadow>
          </effect>
       </Button>
+      <Button fx:id="buttonTitulo" layoutX="136.0" layoutY="96.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
+      <Text fill="#773ea6" layoutX="165.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Título">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonTitulo1" layoutX="228.0" layoutY="97.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
+      <Text fill="#773ea6" layoutX="257.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ISBN">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonTitulo11" layoutX="314.0" layoutY="98.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
+      <Text fill="#773ea6" layoutX="342.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Autor">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="buttonTitulo12" layoutX="399.0" layoutY="99.0" mnemonicParsing="false" onAction="#SelectTitulo" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 50; -fx-background-color: #773EA6;" />
+      <Text fill="#773ea6" layoutX="429.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoria">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
+      <Text fill="#773ea6" layoutX="217.0" layoutY="142.0" opacity="0.47" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione uma opção para pesquisar" wrappingWidth="218.35040283203125">
+         <font>
+            <Font name="Arial Italic" size="13.0" />
+         </font>
+      </Text>
       <ImageView fitHeight="267.0" fitWidth="299.0" layoutX="362.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/illustration04.png" />

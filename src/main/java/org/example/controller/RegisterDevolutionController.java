@@ -2,24 +2,17 @@ package org.example.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 import org.example.dao.DAO;
 import org.example.model.Librarian;
 import org.example.model.Loan;
 import org.example.model.Reader;
 import org.example.util.LibrarianHolder;
 
-import java.io.IOException;
-
-public class DevolutionController {
+public class RegisterDevolutionController {
 
     @FXML
     private Button buttonRegisterDevolution;
@@ -31,6 +24,12 @@ public class DevolutionController {
     private TextField labelReader;
 
     @FXML
+    private Label messageAlert;
+
+    @FXML
+    private AnchorPane sceneRegisterDevolution;
+
+    @FXML
     void registerDevolution(ActionEvent event) {
         try {
             Librarian librarian = LibrarianHolder.getInstance().getLibrarian();
@@ -40,9 +39,9 @@ public class DevolutionController {
             if ((loan != null) && (reader != null)) {
                 librarian.registerDevolution(loan, reader);
             } else {
-                // mostrar mensagem
-                //AlertMessageController alertMessageController = new AlertMessageController();
-                //alertMessageController.setAlert("Leitor ou empréstimo ativo não encontrado.");
+                messageAlert.setText("Ocorreu um erro.");
+                AlertMessageController alertMessageController = new AlertMessageController();
+                alertMessageController.showAlertMensage("Leitor ou empréstimo ativo não encontrado.");
             }
         } catch (Exception e) {
             e.printStackTrace();

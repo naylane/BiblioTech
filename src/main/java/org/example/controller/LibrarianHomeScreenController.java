@@ -25,8 +25,8 @@ public class LibrarianHomeScreenController {
     private AnchorPane sceneHomeLibrarian;
 
     @FXML
-    void SearchBook(ActionEvent event) {
-
+    void SearchBook(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeLibrarian, "view/bookResults-view.fxml"); // ADAPTAR TAMANHO DA TELA
     }
 
     @FXML
