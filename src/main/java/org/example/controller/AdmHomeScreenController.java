@@ -33,18 +33,6 @@ public class AdmHomeScreenController implements Initializable {
     private Button buttonSearch;
 
     @FXML
-    private Button buttonTitulo;
-
-    @FXML
-    private Button buttonTitulo1;
-
-    @FXML
-    private Button buttonTitulo11;
-
-    @FXML
-    private Button buttonTitulo12;
-
-    @FXML
     private Button registerDevolution;
 
     @FXML
@@ -70,27 +58,27 @@ public class AdmHomeScreenController implements Initializable {
 
     @FXML
     void openRegisterBook(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/registerBook-view.fxml"); // VAI E NAO VOLTA
+        new SceneSwitch(sceneHomeAdm, "view/registerBook-view.fxml");
     }
 
     @FXML
     void openRegisterDevolution(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/registerDevolution-view.fxml"); // VAI
+        new SceneSwitch(sceneHomeAdm, "view/registerDevolution-view.fxml");
     }
 
     @FXML
-    void openRegisterLoan(ActionEvent event) {
-        // FAZER
+    void openRegisterLoan(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/registerLoan-view.fxml");
     }
 
     @FXML
     void openReport(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/report-view.fxml"); // VAI
+        new SceneSwitch(sceneHomeAdm, "view/report-view.fxml");
     }
 
     @FXML
     void registerNewUser(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/registerUser-view.fxml"); // VAI E NAO VOLTA
+        new SceneSwitch(sceneHomeAdm, "view/registerUser-view.fxml");
     }
 
     @FXML

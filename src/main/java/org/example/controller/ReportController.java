@@ -38,6 +38,9 @@ public class ReportController implements Initializable {
     @FXML
     private ListView<Loan> readerLoanList;
 
+    @FXML
+    private Label messageAlert;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -55,12 +58,19 @@ public class ReportController implements Initializable {
 
     @FXML
     void confirmAction(ActionEvent event) throws Exception {
-        Adm adm = AdmHolder.getInstance().getAdm();
-        Report report = new Report();
+        messageAlert.setText(""); // garatindo que uma mensagem de erro não permaneça após clicar o botão
+        try {
+            Adm adm = AdmHolder.getInstance().getAdm();
+            Report report = new Report();
 
-        Reader found = DAO.getReaderDAO().findById(Long.parseLong(idField.getText()));
-        if (found != null) {
-            readerLoanList.getItems().addAll(adm.genareteUserLoan(found, report));
+            Reader found = DAO.getReaderDAO().findById(Long.parseLong(idField.getText()));
+            if (found != null) { // dá pra lançar exceção
+                readerLoanList.getItems().addAll(adm.genareteUserLoan(found, report));
+            } else {
+                messageAlert.setText("Leitor não encontrado!");
+            }
+        } catch (Exception e) {
+            messageAlert.setText("Erro");
         }
     }
 }
