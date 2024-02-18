@@ -11,6 +11,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.example.dao.DAO;
+import org.example.model.Librarian;
+import org.example.model.Loan;
+import org.example.model.Reader;
+import org.example.util.LibrarianHolder;
 
 import java.io.IOException;
 
@@ -20,9 +25,6 @@ public class DevolutionController {
     private Button buttonRegisterDevolution;
 
     @FXML
-    private ImageView goBack;
-
-    @FXML
     private TextField labelLoan;
 
     @FXML
@@ -30,7 +32,21 @@ public class DevolutionController {
 
     @FXML
     void registerDevolution(ActionEvent event) {
-        // chamar o bibliotecario logando para registrar
+        try {
+            Librarian librarian = LibrarianHolder.getInstance().getLibrarian();
+
+            Loan loan = DAO.getLoanDAO().findById(Long.parseLong(labelLoan.getText()));
+            Reader reader = DAO.getReaderDAO().findById(Long.parseLong(labelReader.getText()));
+            if ((loan != null) && (reader != null)) {
+                librarian.registerDevolution(loan, reader);
+            } else {
+                // mostrar mensagem
+                //AlertMessageController alertMessageController = new AlertMessageController();
+                //alertMessageController.setAlert("Leitor ou empréstimo ativo não encontrado.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

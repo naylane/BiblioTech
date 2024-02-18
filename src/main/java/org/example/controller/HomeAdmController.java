@@ -142,7 +142,6 @@ public class HomeAdmController implements Initializable {
     @FXML
     void buttonBooks(ActionEvent event) throws IOException {
         new SceneSwitch(sceneHomeAdm, "view/allBooks-view.fxml");
-
     }
 
 

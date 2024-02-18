@@ -70,31 +70,31 @@ public class AdmHomeScreenController implements Initializable {
 
     @FXML
     void openRegisterBook(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/registerBook-view");
+        new SceneSwitch(sceneHomeAdm, "view/registerBook-view.fxml"); // VAI E NAO VOLTA
     }
 
     @FXML
     void openRegisterDevolution(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/registerDevolution-view.fxml");
+        new SceneSwitch(sceneHomeAdm, "view/registerDevolution-view.fxml"); // VAI
     }
 
     @FXML
     void openRegisterLoan(ActionEvent event) {
-
+        // FAZER
     }
 
     @FXML
     void openReport(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/report-view.fxml");
+        new SceneSwitch(sceneHomeAdm, "view/report-view.fxml"); // VAI
     }
 
     @FXML
-    void registerNewUser(ActionEvent event) {
-
+    void registerNewUser(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/registerUser-view.fxml"); // VAI E NAO VOLTA
     }
 
     @FXML
     void openAllUsers(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/allUsers-view.fxml");
+        new SceneSwitch(sceneHomeAdm, "view/allUsers-view.fxml"); // NAO VAI
     }
 }
