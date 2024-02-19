@@ -8,4 +8,5 @@ public class AllLoansController {
     @FXML
     private VBox loanPanelReader;
 
+
 }

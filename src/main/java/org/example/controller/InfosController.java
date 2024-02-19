@@ -54,6 +54,37 @@ public class InfosController {
     }
 
     @FXML
+    void SearchBook(ActionEvent event) {
+        try {
+            //Este trecho obtém o palco atual (tela de login) a partir do evento gerado pelo botão de login
+            Stage currentScreen = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            //fecha a tela home, que é a tela atual
+            currentScreen.close();
+
+            //pegando o caminho
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/view/bookResults-view.fxml"));
+            Parent login = loader.load(); //carregando o arquivo
+
+            Stage registerStage = new Stage();
+            //cria cena
+            Scene scene = new Scene(login);
+
+            //não permite que a tela seja redmensionada
+            registerStage.setResizable(false);
+            //exibição da tela
+            registerStage.setScene(scene);
+            registerStage.show();
+            //define um icone para tela login
+            registerStage.getIcons().add(new Image(getClass().getResourceAsStream("/org/example/view/images/symbol.png")));
+            registerStage.setTitle("BiblioTech Search"); //nome da pag
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            //System.err.println("Erro ao carregar o arquivo FXML da tela de login: " + e.getMessage());
+        }
+    }
+
+    @FXML
     void openTelaInfos(ActionEvent event) {
 
     }

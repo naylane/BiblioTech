@@ -17,27 +17,27 @@
 <AnchorPane fx:id="sceneHomeAdm" prefHeight="656.0" prefWidth="652.0" style="-fx-background-color: white; -fx-background-radius: 90;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AdmHomeScreenController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="557.0" stroke="WHITE" strokeType="INSIDE" width="105.0" />
-      <ImageView fitHeight="263.0" fitWidth="274.0" layoutX="381.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="292.0" fitWidth="294.0" layoutX="338.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/illustration05.png" />
          </image>
       </ImageView>
-      <Text fill="#672b9d" layoutX="32.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Olá Administrador,">
+      <Text fill="#672b9d" layoutX="38.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Olá Administrador,">
          <font>
             <Font name="Arial Bold" size="32.0" />
          </font>
       </Text>
-      <Label fx:id="nameLabel" layoutX="34.0" layoutY="189.0" text="nome do usuário" textFill="#672b9d">
+      <Label fx:id="nameLabel" layoutX="40.0" layoutY="80.0" text="nome do usuário" textFill="#672b9d">
          <font>
             <Font name="Arial" size="20.0" />
          </font>
       </Label>
-      <Text layoutX="35.0" layoutY="296.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aqui, você tem acesso a poderosas ferramentas e recursos para garantir que sua biblioteca digital funcione de maneira eficiente e eficaz." wrappingWidth="363.2846374511719">
+      <Text layoutX="40.0" layoutY="216.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aqui, você tem acesso a poderosas ferramentas e recursos para garantir que sua biblioteca digital funcione de maneira eficiente e eficaz." wrappingWidth="312.0846862792969">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
       </Text>
-      <Text layoutX="35.0" layoutY="242.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Este é o seu hub central para gerenciar e otimizar a experiência dos usuários no Bibliotech." wrappingWidth="363.2846374511719">
+      <Text layoutX="40.0" layoutY="141.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Este é o seu hub central para gerenciar e otimizar a experiência dos usuários no Bibliotech." wrappingWidth="288.04687499999994">
          <font>
             <Font name="Arial" size="16.0" />
          </font>
@@ -193,44 +193,33 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </HBox>
-      <Button fx:id="buttonSearch" alignment="BASELINE_LEFT" layoutX="112.0" layoutY="47.0" mnemonicParsing="false" onAction="#SearchBook" prefHeight="45.0" prefWidth="467.0" style="-fx-background-color: white; -fx-background-radius: 50;" text="CLIQUE AQUI E PESQUISE UM LIVRO" textAlignment="RIGHT" textFill="#8751b0">
-         <font>
-            <Font name="Arial Bold" size="15.0" />
-         </font>
-         <effect>
-            <DropShadow height="29.78" offsetY="8.0" radius="14.535" width="30.36">
-               <input>
-                  <DropShadow height="2.0" radius="0.5" spread="1.0" width="2.0">
-                     <color>
-                        <Color red="0.529411792755127" green="0.3176470696926117" blue="0.6901960968971252" />
-                     </color>
-                  </DropShadow>
-               </input>
-               <color>
-                  <Color red="0.23529411852359772" green="0.11372549086809158" blue="0.33725491166114807" />
-               </color>
-            </DropShadow>
-         </effect>
-         <padding>
-            <Insets left="30.0" />
-         </padding>
-      </Button>
-      <Button layoutX="516.0" layoutY="32.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="74.0" style="-fx-background-color: #8751B0; -fx-background-radius: 50;">
-         <graphic>
-            <ImageView fitHeight="38.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/lupa.png" />
-               </image>
-            </ImageView>
-         </graphic>
+      <Button fx:id="buttonSearch" alignment="CENTER" contentDisplay="RIGHT" layoutX="419.0" layoutY="45.0" mnemonicParsing="false" onAction="#SearchBook" prefHeight="53.0" prefWidth="210.0" style="-fx-background-color: #8751B0; -fx-background-radius: 50;" text="Pesquise Um Livro" textFill="WHITE">
          <effect>
             <DropShadow height="18.66" offsetX="2.0" offsetY="6.0" radius="8.83" width="18.66">
                <color>
-                  <Color red="0.23137255012989044" green="0.04313725605607033" blue="0.38823530077934265" />
+                  <Color red="0.7254902124404907" green="0.7254902124404907" blue="0.7254902124404907" />
                </color>
             </DropShadow>
          </effect>
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/lupa.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="NE_RESIZE" />
+               </cursor>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
       </Button>
+      <Text layoutX="40.0" layoutY="310.0" lineSpacing="4.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navegue pelo seu DashBoard e descubra as diversas funcionalidades da BiblioTech." wrappingWidth="294.4847717285156">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Text>
    </children>
    <effect>
       <DropShadow height="15.21" offsetX="-10.0" radius="24.942500000000003" width="86.56">
