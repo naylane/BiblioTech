@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.example.util.ReaderHolder;
 
@@ -28,13 +29,16 @@ public class ReaderHomeScreenController implements Initializable {
     @FXML
     private AnchorPane sceneHomeReader;
 
+    private Pane pane;
+
     @FXML
     private Button buttonSearch;
 
     @FXML
-    private TextField searchField;
-    private String[] position = {"Nome", "Autor", "Categoria", "ISBN"};
+    private Button renewButton;
 
+    @FXML
+    private Button reservationButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -71,4 +75,15 @@ public class ReaderHomeScreenController implements Initializable {
             //System.err.println("Erro ao carregar o arquivo FXML da tela de login: " + e.getMessage());
         }
     }
+
+    @FXML
+    void openRenewal(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeReader, "view/renew-view.fxml");
+    }
+
+    @FXML
+    void openReservation(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeReader, "view/reservation-view.fxml");
+    }
+
 }

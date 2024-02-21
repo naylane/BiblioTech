@@ -34,16 +34,6 @@ public class HomeReaderController implements Initializable {
     @FXML
     private AnchorPane sceneHomeReader;
 
-    @FXML
-    void SearchBook(ActionEvent event) {
-
-    }
-
-    @FXML
-    void SelectTitulo(ActionEvent event) {
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundl) {
         try {

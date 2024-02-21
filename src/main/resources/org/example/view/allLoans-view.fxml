@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -12,16 +12,21 @@
 <AnchorPane prefHeight="656.0" prefWidth="652.0" style="-fx-background-color: white; -fx-background-radius: 90;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AllLoansController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="546.0" stroke="WHITE" strokeType="INSIDE" width="105.0" />
-      <Text fill="#47068a" layoutX="48.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Todos Empréstimos">
+      <TableView fx:id="table" layoutX="48.0" layoutY="87.0" prefHeight="533.0" prefWidth="575.0">
+         <columns>
+            <TableColumn fx:id="id" prefWidth="70.0" text="ID" />
+            <TableColumn fx:id="reader" prefWidth="75.0" text="LEITOR" />
+            <TableColumn fx:id="book" prefWidth="175.0" text="LIVRO" />
+            <TableColumn fx:id="date" prefWidth="104.0" text="DATA" />
+            <TableColumn fx:id="renew" prefWidth="87.0" text="RENOVAÇÕES" />
+            <TableColumn fx:id="active" prefWidth="63.0" text="ATIVO" />
+         </columns>
+      </TableView>
+      <Text fill="#47068a" layoutX="48.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TODOS EMPRÉSTIMOS" wrappingWidth="387.00001525878906">
          <font>
-            <Font name="Arial Bold" size="32.0" />
+            <Font name="Arial Black" size="30.0" />
          </font>
       </Text>
-      <ScrollPane layoutX="48.0" layoutY="112.0" prefHeight="511.0" prefWidth="575.0" style="-fx-background-color: #47068a;">
-         <content>
-            <VBox fx:id="loanPanelReader" prefHeight="501.0" prefWidth="576.0" />
-         </content>
-      </ScrollPane>
    </children>
    <effect>
       <DropShadow height="15.21" offsetX="-10.0" radius="24.942500000000003" width="86.56">
