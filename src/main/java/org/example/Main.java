@@ -17,6 +17,10 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException, Exception {
         FileControl.generateData();
 
+        System.out.println(DAO.getAdmDAO().findAll());
+        System.out.println(DAO.getLibrarianDAO().findAll());
+        System.out.println(DAO.getReaderDAO().findAll());
+
         //os livros abaixo ja foram criados
 //        BookLocation location = new BookLocation("A", "B", "22");
 //        BookLocation location1 = new BookLocation("C", "C", "17");
