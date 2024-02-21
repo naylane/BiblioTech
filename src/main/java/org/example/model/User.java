@@ -25,6 +25,7 @@ public class User implements Serializable {
     private String pin;
     private String phone;
     private Residence address;
+    private String position;
 
     /**
      * Construtor da classe User.
@@ -34,11 +35,13 @@ public class User implements Serializable {
      * @param phone   O telefone do usuário.
      * @param address O endereço do usuário.
      */
-    public User(String name, String pin, String phone, Residence address){
+    public User(String name, String pin, String phone, Residence address, String position){
         this.name = name;
         this.pin = pin;
         this.phone = phone;
-        this.address = address;}
+        this.address = address;
+        this.position = position;
+    }
 
     // Métodos Get
     public String getName() {
@@ -59,6 +62,10 @@ public class User implements Serializable {
 
     public Residence getAddress() {
         return address;
+    }
+
+    public String getPosition() {
+        return position;
     }
 
     // Métodos Set

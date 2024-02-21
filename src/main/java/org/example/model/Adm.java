@@ -27,8 +27,8 @@ public class Adm extends Librarian implements Serializable {
      * @param phone   O número de telefone do administrador.
      * @param address O endereço do administrador.
      */
-    public Adm(String name, String pin, String phone, Residence address) throws Exception {
-        super(name, pin, phone, address);
+    public Adm(String name, String pin, String phone, Residence address, String position) throws Exception {
+        super(name, pin, phone, address, position);
     }
 
     //CRIAÇÃO DE USERS
@@ -42,8 +42,8 @@ public class Adm extends Librarian implements Serializable {
      * @param address O endereço do leitor.
      * @return O leitor recém-criado.
      */
-    public Reader creatReader(String name, String pin, String phone, Residence address) throws Exception {
-        Reader reader = new Reader(name, pin, phone, address);
+    public Reader creatReader(String name, String pin, String phone, Residence address, String position) throws Exception {
+        Reader reader = new Reader(name, pin, phone, address, position);
         DAO.getReaderDAO().create(reader);
         return reader;
     }
@@ -57,8 +57,8 @@ public class Adm extends Librarian implements Serializable {
      * @param address O endereço do bibliotecário.
      * @return O bibliotecário recém-criado.
      */
-    public Librarian creatLibrariam(String name, String pin, String phone, Residence address) throws Exception {
-        Librarian librarian = new Librarian(name, pin, phone, address);
+    public Librarian creatLibrariam(String name, String pin, String phone, Residence address, String position) throws Exception {
+        Librarian librarian = new Librarian(name, pin, phone, address, position);
         DAO.getLibrarianDAO().create(librarian);
         return librarian;
     }
@@ -72,8 +72,8 @@ public class Adm extends Librarian implements Serializable {
      * @param address O endereço do administrador.
      * @return O administrador recém-criado.
      */
-    public Adm creatAdm(String name, String pin, String phone, Residence address) throws Exception {
-        Adm adm = new Adm(name, pin, phone, address);
+    public Adm creatAdm(String name, String pin, String phone, Residence address, String position) throws Exception {
+        Adm adm = new Adm(name, pin, phone, address, position);
         DAO.getAdmDAO().create(adm); // criou o book no banco de dados e armazenou no map tendo o seu id como chave
         return adm;}
 

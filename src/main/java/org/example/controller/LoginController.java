@@ -47,7 +47,7 @@ public class LoginController implements Initializable {
     @FXML
     private ChoiceBox<String> choiceBox;
 
-    private String[] position = {"Leitor", "Blibiotecário", "Administrador"};
+    private String[] position = {"Leitor", "Bibliotecário", "Administrador"};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -99,7 +99,7 @@ public class LoginController implements Initializable {
                 alertMessageController.showAlertMensage(UsersException.LoginError);
             }
         }
-        else if (choiceBox.getValue().equals("Blibiotecário")) {
+        else if (choiceBox.getValue().equals("Bibliotecário")) {
             Librarian found = DAO.getLibrarianDAO().findById(id);
             if ((found != null) && found.getPin().equals(pin)) {
                 LibrarianHolder.getInstance().setLibrarian(found);

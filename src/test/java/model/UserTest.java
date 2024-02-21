@@ -18,7 +18,7 @@ public class UserTest {
     public void setUp() throws BookException, IOException {
         // Configurando objetos para teste
         Residence address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
-        user = new User("Nome do Usuário", "Senha123", "xx xxxxx-xxxx", address);
+        user = new User("Nome do Usuário", "Senha123", "xx xxxxx-xxxx", address, "cargo");
         BookLocation location = new BookLocation("Estante", "Corredor", "Seção");
         book = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
         try {

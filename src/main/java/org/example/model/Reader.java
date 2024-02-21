@@ -37,8 +37,8 @@ public class Reader extends User {
      * @param phone   O número de telefone do leitor.
      * @param address O endereço do leitor.
      */
-    public Reader(String name, String pin, String phone, Residence address) { //construtor reader
-        super(name, pin, phone, address);
+    public Reader(String name, String pin, String phone, Residence address, String position) { //construtor reader
+        super(name, pin, phone, address, position);
         this.fineDeadline = null;
         this.loanLimit = 3;
         this.block = false;

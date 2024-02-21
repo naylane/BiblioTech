@@ -36,8 +36,8 @@ public class Librarian extends User implements Serializable {
      * @param phone   O número de telefone do bibliotecário.
      * @param address O endereço do bibliotecário.
      */
-    public Librarian(String name, String pin, String phone, Residence address) throws Exception {
-        super(name, pin, phone, address);
+    public Librarian(String name, String pin, String phone, Residence address, String position) throws Exception {
+        super(name, pin, phone, address, position);
         this.block = false;
     }
 

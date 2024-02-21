@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import org.example.model.Adm;
 import org.example.model.Residence;
@@ -48,7 +49,10 @@ public class RegisterUserController implements Initializable {
     @FXML
     private ChoiceBox<String> choiceBox;
 
-    private String[] position = {"Leitor", "Blibiotecário", "Administrador"};
+    @FXML
+    private Label messageAlert;
+
+    private String[] position = {"Leitor", "Bibliotecário", "Administrador"};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -69,21 +73,19 @@ public class RegisterUserController implements Initializable {
             String street = streetField.getText();
             int number = Integer.parseInt(numberField.getText());
             String cep = cepField.getText();
-
             Residence address = new Residence(state, city, neighborhood, street, number, cep);
 
             if (choiceBox.getValue().equals("Leitor")) {
-                adm.creatReader(name, pin, phone, address);
-            } else if (choiceBox.getValue().equals("Blibiotecário")) {
-                adm.creatLibrariam(name, pin, phone, address);
+                adm.creatReader(name, pin, phone, address, "Leitor");
+            } else if (choiceBox.getValue().equals("Bibliotecário")) {
+                adm.creatLibrariam(name, pin, phone, address, "Bibliotecário");
             } else if (choiceBox.getValue().equals("Administrador")) {
-                adm.creatAdm(name, pin, phone, address);
+                adm.creatAdm(name, pin, phone, address, "Administrador");
             } else if (choiceBox.getValue().isEmpty()) {
-                // nada selecionado
-                System.out.println("KK");
+                messageAlert.setText("Por favor, selecione uma opção para o tipo de conta.");
             }
         } catch (Exception e) {
-            //
+            messageAlert.setText("Exceção");
         }
     }
 
