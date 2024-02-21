@@ -64,7 +64,7 @@
                   <Insets top="5.0" />
                </padding>
             </Button>
-            <Button fx:id="buttonLoan" mnemonicParsing="false" onAction="#openLoan" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Empréstimos" textFill="WHITE">
+            <Button mnemonicParsing="false" styleClass="button-menuBar" stylesheets="@css/styles.css" text="*" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>
@@ -72,7 +72,7 @@
                   <Insets top="5.0" />
                </padding>
             </Button>
-            <Button fx:id="buttonDevolution" mnemonicParsing="false" onAction="#openDevolution" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Devoluções" textFill="WHITE">
+            <Button mnemonicParsing="false" styleClass="button-menuBar" stylesheets="@css/styles.css" text="*" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
                </font>

@@ -22,33 +22,29 @@ public class AllBooksController implements Initializable {
     private TableColumn<Book, Integer> qnt;
 
     @FXML
-    private TableView<Book> table;
-
-    @FXML
     private TableColumn<Book, String> title;
 
-    //private ObservableList<Book> list;
+    @FXML
+    private TableView<Book> table;
 
-    private ObservableList<Book> list() {
-        try {
-            for (Book book : DAO.getBookDAO().findAll()) {
-                list().add(book);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return FXCollections.observableArrayList();
-    }
+    private ObservableList<Book> list = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         isbn.setCellValueFactory(
-                new PropertyValueFactory<>("isbn"));
+                new PropertyValueFactory<>("ISBN"));
         title.setCellValueFactory(
                 new PropertyValueFactory<>("title"));
         qnt.setCellValueFactory(
                 new PropertyValueFactory<>("quantityTotal"));
 
-        table.setItems(list());
+        try {
+            list.addAll(DAO.getBookDAO().findAll());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        table.setItems(list);
     }
+
 }

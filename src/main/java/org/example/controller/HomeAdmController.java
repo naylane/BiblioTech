@@ -22,16 +22,10 @@ public class HomeAdmController {
     private Button buttonCount;
 
     @FXML
-    private Button buttonDevolution;
-
-    @FXML
     private Button buttonGoOut;
 
     @FXML
     private Button buttonHome;
-
-    @FXML
-    private Button buttonLoan;
 
     @FXML
     private AnchorPane sceneHomeAdm;
@@ -43,6 +37,26 @@ public class HomeAdmController {
     @FXML
     void backHome(ActionEvent event) throws IOException {
         new SceneSwitch(sceneHomeAdm, "view/admHomeScreen-view.fxml");
+    }
+
+    @FXML
+    void openBooks(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/allBooks-view.fxml");
+    }
+
+    @FXML
+    void openCount(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/admAccount-view.fxml");
+    }
+
+    @FXML
+    void openManageBook(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/manageBook-view.fxml");
+    }
+
+    @FXML
+    void openManageUser(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/manageUser-view.fxml");
     }
 
     @FXML
@@ -75,26 +89,5 @@ public class HomeAdmController {
             //System.err.println("Erro ao carregar o arquivo FXML da tela de login: " + e.getMessage());
         }
     }
-
-    @FXML
-    void openBooks(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/allBooks-view.fxml");
-    }
-
-    @FXML
-    void openCount(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/admAccount-view.fxml");
-    }
-
-    @FXML
-    void openDevolution(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/allDevolutions-view.fxml");
-    }
-
-    @FXML
-    void openLoan(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/allLoans-view.fxml");
-    }
-
 
 }

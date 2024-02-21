@@ -22,19 +22,14 @@ public class HomeLibrarianController {
     private Button buttonCount;
 
     @FXML
-    private Button buttonDevolution;
-
-    @FXML
     private Button buttonGoOut;
 
     @FXML
     private Button buttonHome;
 
     @FXML
-    private Button buttonLoan;
-
-    @FXML
     private AnchorPane sceneHomeLibrarian;
+
     public void initialize() throws IOException {
         new SceneSwitch(sceneHomeLibrarian, "view/librarianHomeScreen-view.fxml"); //trocar somente o anchopane
     }
@@ -85,15 +80,4 @@ public class HomeLibrarianController {
         new SceneSwitch(sceneHomeLibrarian, "view/librarianAccount-view.fxml"); //trocar somente o anchopane
     }
 
-    @FXML
-    void openDevolution(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeLibrarian, "view/allDevolutions-view.fxml"); //trocar somente o anchopane
-    }
-
-    @FXML
-    void openLoan(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeLibrarian, "view/allLoans-view.fxml"); //trocar somente o anchopane
-    }
-
 }
-
