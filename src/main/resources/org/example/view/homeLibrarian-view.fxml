@@ -64,22 +64,6 @@
                   <Insets top="5.0" />
                </padding>
             </Button>
-            <Button mnemonicParsing="false" styleClass="button-menuBar" stylesheets="@css/styles.css" text="*" textFill="WHITE">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-               <padding>
-                  <Insets top="5.0" />
-               </padding>
-            </Button>
-            <Button mnemonicParsing="false" styleClass="button-menuBar" stylesheets="@css/styles.css" text="*" textFill="WHITE">
-               <font>
-                  <Font name="Arial" size="20.0" />
-               </font>
-               <padding>
-                  <Insets top="5.0" />
-               </padding>
-            </Button>
             <Button fx:id="buttonGoOut" mnemonicParsing="false" onAction="#goOut" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Sair" textFill="WHITE">
                <font>
                   <Font name="Arial" size="20.0" />
@@ -105,16 +89,6 @@
             <ImageView fitHeight="30.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/iconLivros.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/iconEmprestimo.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/iconDevolucao.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="30.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">

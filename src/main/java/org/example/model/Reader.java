@@ -85,23 +85,6 @@ public class Reader extends User {
     }
 
     /**
-     * Bloqueia um leitor, definindo seu estado de bloqueio como verdadeiro.
-     *
-     * @param reader O leitor que será bloqueado.
-     */
-    public void blockReader(Reader reader) {
-        reader.block = true;
-    }
-
-    /**
-     * Desbloqueia um leitor, definindo seu estado de bloqueio como falso.
-     *
-     * @param reader O leitor que será desbloqueado.
-     */
-    public void unlockReader(Reader reader) {
-        reader.block = false;}
-
-    /**
      * Método que verifica se um leitor está com multa ativa.
      * @param reader leitor
      * @return boolean referente ao leitor estar bloqueado ou não

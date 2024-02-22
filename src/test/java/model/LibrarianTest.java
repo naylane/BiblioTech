@@ -20,8 +20,8 @@ public class LibrarianTest {
     public void setUp() throws Exception {
         // Configurando objetos para teste
         address = new Residence("Estado", "Cidade", "Bairro", "Rua", 62, "40000000");
-        librarian = new Librarian("Nome do Bibliotecário", "1234", "123-456-7890", address);
-        reader = new Reader("Nome do Leitor", "5678", "75 98765-3210", address);
+        librarian = new Librarian("Nome do Bibliotecário", "1234", "123-456-7890", address, "Bibliotecario");
+        reader = new Reader("Nome do Leitor", "5678", "75 98765-3210", address, "Reader");
         location = new BookLocation("Estante", "Corredor", "Seção");
         book = new Book("ISBN123", "Título do Livro", "Autor do Livro","Editora", 2023, "Categoria", location, 1);
     }

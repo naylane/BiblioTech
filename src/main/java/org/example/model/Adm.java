@@ -81,37 +81,6 @@ public class Adm extends Librarian implements Serializable {
     //OPERAÇÕES DE USERS
 
     /**
-     * Bloqueia um leitor no sistema.
-     *
-     * @param reader O leitor a ser bloqueado.
-     */
-    public void blockReader(Reader reader) {
-        reader.blockReader(reader);}
-
-    /**
-     * Desbloqueia um leitor no sistema.
-     * @param reader O leitor a ser desbloqueado.
-     */
-    public void unlockReader(Reader reader) {
-        reader.unlockReader(reader);}
-
-    /**
-     * Bloqueia um bibliotecário no sistema.
-     *
-     * @param librarian O bibliotecário a ser bloqueado.
-     */
-    public void blockLibrarian(Librarian librarian) {
-        librarian.blockLibrarian(librarian);}
-
-    /**
-     * Desbloqueia um bibliotecário no sistema.
-     *
-     * @param librarian O bibliotecário a ser desbloqueado.
-     */
-    public void unlockLibrarian(Librarian librarian) {
-        librarian.unlockLibrarian(librarian);}
-
-    /**
      * Proucura um leitor no sistema.
      *
      * @param id O Id do leitor a ser pesquisado.

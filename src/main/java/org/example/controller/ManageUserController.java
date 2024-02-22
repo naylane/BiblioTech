@@ -91,6 +91,7 @@ public class ManageUserController implements Initializable {
         String city = cityField.getText();
         String cep = cepField.getText();
         int number = Integer.parseInt(numberField.getText());
+        Boolean block = blockCheckBox.isSelected();
 
         Residence residence = new Residence(state, city, neighborhood, street, number, cep);
 
@@ -105,6 +106,7 @@ public class ManageUserController implements Initializable {
                         messageAlert.setText("Esse ID não existe!");
                     } else {
                         Reader reader = new Reader(name, pin, phone, residence, choiceBox.getValue());
+                        reader.setBlock(block);
                         adm.updateReader(reader);
                     }
                 }
@@ -117,6 +119,7 @@ public class ManageUserController implements Initializable {
                         messageAlert.setText("Esse ID não existe!");
                     } else {
                         Librarian librarian = new Librarian(name, pin, phone, residence, choiceBox.getValue());
+                        librarian.setblock(block);
                         adm.updateLibrarian(librarian);
                     }
                 }

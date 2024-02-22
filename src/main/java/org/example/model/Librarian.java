@@ -53,19 +53,10 @@ public class Librarian extends User implements Serializable {
     /**
      * Bloqueia o bibliotecário.
      *
-     * @param librarian O bibliotecário a ser bloqueado.
+     * @param block O bibliotecário a ser bloqueado.
      */
-    public void blockLibrarian(Librarian librarian) {
-        librarian.block = true;
-    }
-
-    /**
-     * Desbloqueia o bibliotecário.
-     *
-     * @param librarian O bibliotecário a ser desbloqueado.
-     */
-    public void unlockLibrarian(Librarian librarian) {
-        librarian.block = false;
+    public void setblock(Boolean block) {
+        this.block = block;
     }
 
     /**

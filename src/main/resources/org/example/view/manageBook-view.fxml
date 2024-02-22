@@ -92,11 +92,6 @@
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="shelfField" layoutX="257.0" layoutY="457.0" text="Estante" textFill="#8751b0">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Label>
       <TextField fx:id="sectionField" layoutX="456.0" layoutY="478.0" prefHeight="28.0" prefWidth="150.0" style="-fx-background-radius: 50;" />
       <TextField fx:id="shelfField" layoutX="256.0" layoutY="479.0" prefHeight="28.0" prefWidth="150.0" style="-fx-background-radius: 50;" />
       <TextField fx:id="hallField" layoutX="42.0" layoutY="480.0" prefHeight="28.0" prefWidth="150.0" style="-fx-background-radius: 50;" />

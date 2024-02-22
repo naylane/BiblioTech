@@ -29,10 +29,16 @@ public class ManageBookController {
     private TextField dispField;
 
     @FXML
+    private Label erroMessage;
+
+    @FXML
     private TextField hallField;
 
     @FXML
     private TextField isbnField;
+
+    @FXML
+    private Button okButton;
 
     @FXML
     private TextField publishField;
@@ -56,24 +62,20 @@ public class ManageBookController {
     private TextField yearField;
 
     @FXML
-    private Label erroMessage;
-
-
-    @FXML
     void confirmAction(ActionEvent event) {
         Adm adm = AdmHolder.getInstance().getAdm();
         erroMessage.setText("");
 
         try {
-            if(isbnField.getText() == null) {
+            if (isbnField.getText() == null) {
                 erroMessage.setText("Digite um ISBN para editar um Livro!");
-            }else{
+            } else {
                 erroMessage.setText("");
                 BookDAO bookDAO = DAO.getBookDAO();
                 String isbnSearch = isbnField.getText();
-                if(bookDAO.findByIsbn(isbnSearch) == null){
+                if (bookDAO.findByIsbn(isbnSearch) == null) {
                     erroMessage.setText("Esse ISBN não existe ou está incorreto.");
-                }else{
+                } else {
                     erroMessage.setText("");
                     String isbn = isbnField.getText();
                     String title = titleField.getText();
@@ -89,28 +91,26 @@ public class ManageBookController {
 
                     Book book = new Book(isbn, title, author, publishingCompany, yearPublication, category, location, quantity);
                     adm.updateBook(book);
-
-                    AlertMessageController alertMessageController = new AlertMessageController();
-                    alertMessageController.setAlert("Edição concluida com sucesso!");}}
-        } catch (Exception e) {
-            AlertMessageController alertMessageController = new AlertMessageController();
-            alertMessageController.setAlert("Não foi possível concluir edição.");
-            //throw new RuntimeException(e);
-        }}
+            }
+        }
+    } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @FXML
-    void search(ActionEvent event) throws Exception {
+    void search (ActionEvent event) throws Exception {
         erroMessage.setText("");
 
-        if(isbnField.getText() == null) {
+        if (isbnField.getText() == null) {
             erroMessage.setText("Digite um ISBN para editar um Livro!");
-        }else{
+        } else {
             erroMessage.setText("");
             BookDAO bookDAO = DAO.getBookDAO();
             String isbnSearch = isbnField.getText();
-            if(bookDAO.findByIsbn(isbnSearch) == null){
-                erroMessage.setText("Esse ISBN não existe ou está incorreto.");}
-            else{
+            if (bookDAO.findByIsbn(isbnSearch) == null) {
+                erroMessage.setText("Esse ISBN não existe ou está incorreto.");
+            } else {
                 Book book = bookDAO.findByIsbn(isbnSearch);
                 erroMessage.setText("");
                 isbnField.setText(book.getISBN());
@@ -123,8 +123,8 @@ public class ManageBookController {
                 hallField.setText(book.getLocation().getHall());
                 sectionField.setText(book.getLocation().getSection());
                 totalField.setText(Integer.toString(book.getQuantityTotal()));
-                dispField.setText(Integer.toString(book.getQuantityAvailable()));
-            }
-    }}
+                dispField.setText(Integer.toString(book.getQuantityAvailable()));}
+                }
+    }
 
 }

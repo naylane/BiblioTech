@@ -50,13 +50,13 @@ public class HomeAdmController {
     }
 
     @FXML
-    void openManageBook(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/manageBook-view.fxml");
+    void openManageUser(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/manageUser-view.fxml");
     }
 
     @FXML
-    void openManageUser(ActionEvent event) throws IOException {
-        new SceneSwitch(sceneHomeAdm, "view/manageUser-view.fxml");
+    void openManageBook(ActionEvent event) throws IOException {
+        new SceneSwitch(sceneHomeAdm, "view/manageBook-view.fxml");
     }
 
     @FXML
