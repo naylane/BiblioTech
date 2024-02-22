@@ -7,10 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.example.dao.DAO;
-import org.example.exceptions.LoanException;
-import org.example.model.Book;
-import org.example.model.Librarian;
-import org.example.model.Reader;
+import org.example.exceptions.BookException;
+import org.example.exceptions.UsersException;
+import org.example.model.*;
+import org.example.util.AdmHolder;
 import org.example.util.LibrarianHolder;
 
 public class RegisterLoanController {
@@ -34,6 +34,7 @@ public class RegisterLoanController {
     void confirmAction(ActionEvent event) throws Exception {
         try {
             Librarian librarian = LibrarianHolder.getInstance().getLibrarian();
+            Adm adm = AdmHolder.getInstance().getAdm();
 
             String isbn = isbnField.getText();
             Book bookFound = DAO.getBookDAO().findByIsbn(isbn);
@@ -43,23 +44,35 @@ public class RegisterLoanController {
 
             if (bookFound != null) {
                 if (readerFound != null) {
-                    librarian.creatLoan(readerFound, bookFound);
-                    System.out.println("criou");
-                } else {
-                    System.out.println("leitor");
-                    messageAlert.setText("Leitor não encontrado!");
-                    AlertMessageController alertMessageController = new AlertMessageController();
-                    alertMessageController.showAlertMensage("Leitor não encontrado!");
-                }
-            } else {
-                System.out.println("livro");
-                messageAlert.setText("Livro não encontrado!");
-                AlertMessageController alertMessageController = new AlertMessageController();
-                alertMessageController.showAlertMensage("Livro não encontrado!");
-            }
-        } catch (Exception e) {
-            messageAlert.setText("Ocorreu um erro! Verifique os dados e tente novamente.");
+                    if (librarian != null) { // se for o bibliotecário logado no sistema
+                        Loan loan = librarian.creatLoan(readerFound, bookFound);
 
+                        String idLoan = String.valueOf(loan.getIdLoan());
+                        String book = String.valueOf(loan.getBook());
+                        String date = String.valueOf(loan.getDateLoan());
+                        String devolution = String.valueOf(loan.getDateDevolution());
+
+                        PrintController printController = new PrintController();
+                        printController.show(idLoan, book, date, devolution);
+                    } else if (adm != null) { // se for o bibliotecário logado no sistema
+                        Loan loan = adm.creatLoan(readerFound, bookFound);
+
+                        String idLoan = String.valueOf(loan.getIdLoan());
+                        String book = String.valueOf(loan.getBook().getTitle());
+                        String date = String.valueOf(loan.getDateLoan());
+                        String devolution = String.valueOf(loan.getDateDevolution());
+
+                        PrintController printController = new PrintController();
+                        printController.show(idLoan, book, date, devolution);
+                        System.out.println("criou");
+                    }
+                } else {
+                    messageAlert.setText(UsersException.UserNotFound); }
+            } else {
+                messageAlert.setText(BookException.BookNotFound); }
+        } catch (Exception e) {
+            e.printStackTrace();
+            messageAlert.setText("Ocorreu um erro! Verifique os dados e tente novamente.");
         }
     }
 

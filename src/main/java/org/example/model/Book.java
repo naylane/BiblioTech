@@ -161,12 +161,10 @@ public class Book implements Serializable {
     public Queue<Reader> getResevationQueue(){return reservationQueue;}
 
     public void setReservationQueue(Queue<Reader> list){this.reservationQueue = list;}
-    
+
     @Override
     public String toString() {
-        return String.format("%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s",
-                isbn, title, author, publishing_company, year_publication, category,
-                location.getShelf(), location.getHall(), location.getSection(), quantityTotal, quantityAvailable, quantityLoan);
+        return title;
     }
 
 }
