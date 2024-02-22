@@ -64,7 +64,6 @@ public class RegisterLoanController {
 
                         PrintController printController = new PrintController();
                         printController.show(idLoan, book, date, devolution);
-                        System.out.println("criou");
                     }
                 } else {
                     messageAlert.setText(UsersException.UserNotFound); }

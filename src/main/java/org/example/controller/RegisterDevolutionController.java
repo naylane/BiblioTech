@@ -42,8 +42,10 @@ public class RegisterDevolutionController {
             if ((loan != null) && (reader != null)) {
                 if (librarian != null) { // se for o bibliotecário logado no sistema
                     librarian.registerDevolution(loan, reader);
+                    messageAlert.setText("Devolução concluída com sucesso!");
                 } else if (adm != null) { // se for o bibliotecário logado no sistema
-                    adm.registerDevolution(loan, reader); }
+                    adm.registerDevolution(loan, reader);
+                    messageAlert.setText("Devolução concluída com sucesso!"); }
             } else {
                 messageAlert.setText("Ocorreu um erro.");
             }
