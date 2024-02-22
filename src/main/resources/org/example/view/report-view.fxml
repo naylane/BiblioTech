@@ -17,7 +17,7 @@
 <AnchorPane prefHeight="656.0" prefWidth="652.0" style="-fx-background-color: white; -fx-background-radius: 90;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ReportController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="546.0" stroke="WHITE" strokeType="INSIDE" width="105.0" />
-      <Text fill="#8751b0" layoutX="52.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RELÁTORIO" wrappingWidth="210.00001525878906">
+      <Text fill="#8751b0" layoutX="52.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RELÁTORIO" wrappingWidth="210.00001525878906">
          <font>
             <Font name="Arial Black" size="30.0" />
          </font>

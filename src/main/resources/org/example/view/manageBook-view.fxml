@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.paint.Color?>
@@ -14,7 +16,7 @@
 <AnchorPane fx:id="sceneManageBook" prefHeight="656.0" prefWidth="652.0" style="-fx-background-color: white; -fx-background-radius: 90;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ManageBookController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="546.0" stroke="WHITE" strokeType="INSIDE" width="105.0" />
-      <Button fx:id="buttonConfirm" alignment="CENTER" graphicTextGap="0.0" layoutX="501.0" layoutY="586.0" mnemonicParsing="false" onAction="#confirmAction" prefHeight="42.0" prefWidth="116.0" style="-fx-background-color: #8751B0; -fx-background-radius: 25;" text="CONFIRMAR" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="buttonConfirm" alignment="CENTER" graphicTextGap="0.0" layoutX="499.0" layoutY="584.0" mnemonicParsing="false" onAction="#confirmAction" prefHeight="42.0" prefWidth="116.0" style="-fx-background-color: #8751B0; -fx-background-radius: 25;" text="CONFIRMAR" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="Arial Black" size="11.0" />
          </font>
@@ -26,7 +28,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <HBox layoutX="41.0" layoutY="352.0" prefHeight="16.0" prefWidth="567.0" style="-fx-spacing: 260;">
+      <HBox layoutX="43.0" layoutY="311.0" prefHeight="16.0" prefWidth="567.0" style="-fx-spacing: 260;">
          <children>
             <Label text="Editora" textFill="#8751b0">
                <font>
@@ -40,7 +42,7 @@
             </Label>
          </children>
       </HBox>
-      <HBox layoutX="43.0" layoutY="421.0" prefHeight="16.0" prefWidth="559.0" style="-fx-spacing: 95;">
+      <HBox layoutX="43.0" layoutY="389.0" prefHeight="16.0" prefWidth="559.0" style="-fx-spacing: 95;">
          <children>
             <Label text="Ano de publicação" textFill="#8751b0">
                <font>
@@ -59,56 +61,67 @@
             </Label>
          </children>
       </HBox>
-      <HBox layoutX="41.0" layoutY="376.0" prefHeight="36.0" prefWidth="567.0" style="-fx-spacing: 40;">
+      <HBox layoutX="41.0" layoutY="333.0" prefHeight="36.0" prefWidth="567.0" style="-fx-spacing: 40;">
          <children>
             <TextField fx:id="publishField" prefHeight="28.0" prefWidth="261.0" style="-fx-background-radius: 50;" />
             <TextField fx:id="categoryField" prefHeight="28.0" prefWidth="267.0" style="-fx-background-radius: 50;" />
          </children>
       </HBox>
-      <Label layoutX="40.0" layoutY="214.0" text="Título" textFill="#8751b0">
+      <Label layoutX="44.0" layoutY="169.0" text="Título" textFill="#8751b0">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="titleField" layoutX="37.0" layoutY="242.0" prefHeight="28.0" prefWidth="567.0" style="-fx-background-radius: 50;" />
-      <Label layoutX="40.0" layoutY="142.0" text="ISBN" textFill="#8751b0">
+      <TextField fx:id="titleField" layoutX="41.0" layoutY="191.0" prefHeight="28.0" prefWidth="567.0" style="-fx-background-radius: 50;" />
+      <Label layoutX="45.0" layoutY="235.0" text="Autor" textFill="#8751b0">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="isbnField" layoutX="38.0" layoutY="167.0" prefHeight="28.0" prefWidth="567.0" style="-fx-background-radius: 50;" />
-      <Label layoutX="41.0" layoutY="286.0" text="Autor" textFill="#8751b0">
+      <TextField fx:id="auhtorField" layoutX="41.0" layoutY="261.0" prefHeight="28.0" prefWidth="567.0" style="-fx-background-radius: 50;" />
+      <TextField fx:id="dispField" layoutX="453.0" layoutY="412.0" prefHeight="28.0" prefWidth="151.0" style="-fx-background-radius: 50;" />
+      <Label layoutX="457.0" layoutY="457.0" prefHeight="16.0" prefWidth="112.0" text="Seção" textFill="#8751b0">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="auhtorField" layoutX="37.0" layoutY="309.0" prefHeight="28.0" prefWidth="567.0" style="-fx-background-radius: 50;" />
-      <TextField fx:id="dispField" layoutX="453.0" layoutY="443.0" prefHeight="28.0" prefWidth="151.0" style="-fx-background-radius: 50;" />
-      <Label layoutX="455.0" layoutY="482.0" prefHeight="16.0" prefWidth="112.0" text="Seção" textFill="#8751b0">
+      <TextField fx:id="totalField" layoutX="254.0" layoutY="413.0" prefHeight="28.0" prefWidth="151.0" style="-fx-background-radius: 50;" />
+      <TextField fx:id="yearField" layoutX="43.0" layoutY="413.0" prefHeight="28.0" prefWidth="151.0" style="-fx-background-radius: 50;" />
+      <Label layoutX="45.0" layoutY="458.0" text="Corredor" textFill="#8751b0">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="totalField" layoutX="254.0" layoutY="444.0" prefHeight="28.0" prefWidth="151.0" style="-fx-background-radius: 50;" />
-      <TextField fx:id="yearField" layoutX="43.0" layoutY="444.0" prefHeight="28.0" prefWidth="151.0" style="-fx-background-radius: 50;" />
-      <Label layoutX="45.0" layoutY="481.0" text="Corredor" textFill="#8751b0">
+      <Label fx:id="shelfField" layoutX="257.0" layoutY="457.0" text="Estante" textFill="#8751b0">
          <font>
             <Font name="Arial" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="shelfField" layoutX="257.0" layoutY="484.0" text="Estante" textFill="#8751b0">
-         <font>
-            <Font name="Arial" size="14.0" />
-         </font>
-      </Label>
-      <TextField fx:id="sectionField" layoutX="456.0" layoutY="505.0" prefHeight="28.0" prefWidth="150.0" style="-fx-background-radius: 50;" />
-      <TextField fx:id="shelfField" layoutX="257.0" layoutY="509.0" prefHeight="28.0" prefWidth="150.0" style="-fx-background-radius: 50;" />
-      <TextField fx:id="hallField" layoutX="42.0" layoutY="507.0" prefHeight="28.0" prefWidth="150.0" style="-fx-background-radius: 50;" />
-      <Text fill="#47068a" layoutX="37.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GERENCIAMENTO DE LIVRO" wrappingWidth="559.0">
+      <TextField fx:id="sectionField" layoutX="456.0" layoutY="478.0" prefHeight="28.0" prefWidth="150.0" style="-fx-background-radius: 50;" />
+      <TextField fx:id="shelfField" layoutX="256.0" layoutY="479.0" prefHeight="28.0" prefWidth="150.0" style="-fx-background-radius: 50;" />
+      <TextField fx:id="hallField" layoutX="42.0" layoutY="480.0" prefHeight="28.0" prefWidth="150.0" style="-fx-background-radius: 50;" />
+      <Text fill="#47068a" layoutX="37.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="GERENCIAMENTO DE LIVRO" wrappingWidth="559.0">
          <font>
             <Font name="Arial Black" size="25.0" />
          </font>
       </Text>
+      <Text fill="#4d4d4d" layoutX="43.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite o ISBN do Livro:" wrappingWidth="321.0">
+         <font>
+            <Font name="Arial Bold" size="15.0" />
+         </font>
+      </Text>
+      <TextField fx:id="isbnField" alignment="CENTER" layoutX="43.0" layoutY="133.0" prefHeight="26.0" prefWidth="335.0" promptText="ISBN" />
+      <Button fx:id="okButton" layoutX="384.0" layoutY="132.0" mnemonicParsing="false" onAction="#search" prefHeight="28.0" prefWidth="46.0" text="OK">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="115.0" fitWidth="191.0" layoutX="431.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/illustration06.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="erroMessage" layoutX="118.0" layoutY="541.0" prefHeight="18.0" prefWidth="426.0" textFill="#ae0202" />
    </children>
    <effect>
       <DropShadow height="15.21" offsetX="-10.0" radius="24.942500000000003" width="86.56">

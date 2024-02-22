@@ -12,7 +12,7 @@
 <AnchorPane fx:id="sceneHomeReader" prefHeight="656.0" prefWidth="652.0" style="-fx-background-color: white; -fx-background-radius: 90;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.ReaderLoansController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="546.0" stroke="WHITE" strokeType="INSIDE" width="105.0" />
-      <TableView fx:id="table" layoutX="47.0" layoutY="97.0" prefHeight="520.0" prefWidth="575.0">
+      <TableView fx:id="table" layoutX="47.0" layoutY="97.0" prefHeight="514.0" prefWidth="575.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="70.0" text="ID" />
           <TableColumn fx:id="book" prefWidth="153.0" text="LIVRO" />
@@ -22,9 +22,9 @@
             <TableColumn fx:id="active" prefWidth="49.0" text="ATIVO" />
         </columns>
       </TableView>
-      <Text fill="#47068a" layoutX="47.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MEUS EMPRÉSTIMOS" wrappingWidth="387.00001525878906">
+      <Text fill="#47068a" layoutX="47.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meus Empréstimos" wrappingWidth="387.00001525878906">
          <font>
-            <Font name="Arial Black" size="30.0" />
+            <Font name="Arial Bold" size="36.0" />
          </font>
       </Text>
    </children>

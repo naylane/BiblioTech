@@ -10,7 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.example.dao.DAO;
-import org.example.model.Reader;
+import org.example.exceptions.UsersException;
+import org.example.model.*;
+import org.example.util.AdmHolder;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,6 +39,8 @@ public class ManageUserController implements Initializable {
 
     @FXML
     private Label idLabel;
+    @FXML
+    private Button okButton;
 
     @FXML
     private Label messageAlert;
@@ -49,9 +53,6 @@ public class ManageUserController implements Initializable {
 
     @FXML
     private TextField numberField;
-
-    @FXML
-    private Button okButton;
 
     @FXML
     private TextField phoneField;
@@ -73,27 +74,98 @@ public class ManageUserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choiceBox.getItems().addAll(position);
+
     }
 
     @FXML
     void confirmAction(ActionEvent event) {
+        Adm adm = AdmHolder.getInstance().getAdm();
 
-    }
+        String name = nameField.getText();
+        String pin = pinField.getText();
+        String phone = phoneField.getText();
 
-    @FXML
-    void search(ActionEvent event) {
+        String state = stateField.getText();
+        String neighborhood = neighborhoodField.getText();
+        String street = streetField.getText();
+        String city = cityField.getText();
+        String cep = cepField.getText();
+        int number = Integer.parseInt(numberField.getText());
+
+        Residence residence = new Residence(state, city, neighborhood, street, number, cep);
+
         try {
+            messageAlert.setText("");
+
             if (choiceBox.getValue().equals("Leitor")) {
-                System.out.println("1"); // ok
-                long id = Long.parseLong(idField.getText());
-                Reader reader = DAO.getReaderDAO().findById(id);
-                System.out.println("2");
-                System.out.println(reader);
-                idLabel.setText("CC");
-                System.out.println("3");
+                if(idField.getText() == null){
+                    messageAlert.setText("O campo de ID é Obrigatório!");}
+                else {
+                    if (adm.readerSearch(Long.parseLong(idField.getText())) == null) {
+                        messageAlert.setText("Esse ID não existe!");
+                    } else {
+                        Reader reader = new Reader(name, pin, phone, residence, choiceBox.getValue());
+                        adm.updateReader(reader);
+                    }
+                }
+
+            } else if (choiceBox.getValue().equals("Blibiotecário")) {
+                if(idField.getText() == null){
+                    messageAlert.setText("O campo de ID é Obrigatório!");}
+                else {
+                    if (adm.librarianSearch(Long.parseLong(idField.getText())) == null) {
+                        messageAlert.setText("Esse ID não existe!");
+                    } else {
+                        Librarian librarian = new Librarian(name, pin, phone, residence, choiceBox.getValue());
+                        adm.updateLibrarian(librarian);
+                    }
+                }
+
+            } else if (choiceBox.getValue().equals("Administrador")) {
+                if(idField.getText() == null){
+                    messageAlert.setText("O campo de ID é Obrigatório!");}
+                else {
+                    if (adm.admSearch(Long.parseLong(idField.getText())) == null) {
+                        messageAlert.setText("Esse ID não existe!");
+                    } else {
+                        Adm admUpdate = new Adm(name, pin, phone, residence, choiceBox.getValue());
+                        adm.updateAdm(admUpdate);
+                    }
+                }
             }
+            messageAlert.setText("Edição Concluída Com Sucesso!");
         } catch (Exception e) {
-            //
+            messageAlert.setText("Algo Deu Errado Com A Edição! Verifique os Dados.");
+            throw new NullPointerException ();
+        }
+    }
+    @FXML
+    void search(ActionEvent event) throws Exception { //refresh
+        messageAlert.setText("");
+        if(idField.getText() == null){
+            messageAlert.setText("Digite um ID!");}
+        else{
+            if(choiceBox.getValue() == null){
+                messageAlert.setText("Escolha um tipo de Conta!");
+            }else{
+                if(choiceBox.getValue().equals("Leitor")){
+                    Adm adm = AdmHolder.getInstance().getAdm();
+                    if (adm.readerSearch(Long.parseLong(idField.getText())) == null) {
+                        messageAlert.setText("Esse ID não existe!");
+                    }else{ //faz o refresh view
+                        Reader reader = adm.readerSearch(Integer.parseInt(idField.getText()));
+
+                        nameField.setText(reader.getName());
+                        pinField.setText(reader.getPin());
+                        phoneField.setText(reader.getPhone());
+                        stateField.setText(reader.getAddress().getState());
+                        neighborhoodField.setText(reader.getAddress().getNeighborhood());
+                        streetField.setText(reader.getAddress().getStreet());
+                        cityField.setText(reader.getAddress().getCity());
+                        cepField.setText(reader.getAddress().getCep());
+                        numberField.setText(Integer.toString(reader.getAddress().getNumber()));
+                }}
+            }
         }
     }
 

@@ -17,11 +17,11 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException, Exception {
         FileControl.generateData();
 
-        System.out.println(DAO.getAdmDAO().findAll());
-        System.out.println(DAO.getLibrarianDAO().findAll());
-        System.out.println(DAO.getReaderDAO().findAll());
+//        System.out.println(DAO.getAdmDAO().findAll());
+//        System.out.println(DAO.getLibrarianDAO().findAll());
+//        System.out.println(DAO.getReaderDAO().findAll());
 
-        //os livros abaixo ja foram criados
+//        //os livros abaixo ja foram criados
 //        BookLocation location = new BookLocation("A", "B", "22");
 //        BookLocation location1 = new BookLocation("C", "C", "17");
 //        Book book = new Book("00000", "Turma da Monica", "Mauricio de Sousa", "MSP", 1990, "animado", location, 1);
@@ -34,6 +34,15 @@ public class Main extends Application {
 //        bookDAO.create(book4);
 //        bookDAO.create(book3);
 //        bookDAO.create(book2);
+//
+//        //criando contas admin - ja criadas
+//        Residence residence = new Residence("bahia", "Feira de Santana", "Brasilia", "rua 2", 45, "44004-444");
+//        Adm adm = new Adm("admin", "123", "(75) 9 9999-9999", residence, "Adm");
+//        Reader reader = new Reader("admin", "123", "(75) 9 9999-9999", residence, "Reader");
+//        Librarian librarian = new Adm("admin", "123", "(75) 9 9999-9999", residence, "Librarian");
+//        DAO.getAdmDAO().create(adm);
+//        DAO.getReaderDAO().create(reader);
+//        DAO.getLibrarianDAO().create(librarian);
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("view/home-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());

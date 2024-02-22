@@ -17,7 +17,7 @@
 <AnchorPane fx:id="sceneHomeAdm" prefHeight="656.0" prefWidth="652.0" style="-fx-background-color: white; -fx-background-radius: 90;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.controller.AdmHomeScreenController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="656.0" layoutX="557.0" stroke="WHITE" strokeType="INSIDE" width="105.0" />
-      <ImageView fitHeight="292.0" fitWidth="294.0" layoutX="338.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="309.0" fitWidth="303.0" layoutX="331.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/illustration05.png" />
          </image>
@@ -42,12 +42,12 @@
             <Font name="Arial" size="16.0" />
          </font>
       </Text>
-      <Text fill="#430187" layoutX="32.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DashBoard">
+      <Text fill="#430187" layoutX="36.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DashBoard">
          <font>
-            <Font name="Arial Bold" size="32.0" />
+            <Font name="Arial Bold" size="36.0" />
          </font>
       </Text>
-      <HBox alignment="CENTER" layoutX="11.0" layoutY="514.0" prefHeight="122.0" prefWidth="622.0" spacing="20.0" stylesheets="@css/styles.css">
+      <HBox alignment="CENTER" layoutX="16.0" layoutY="518.0" prefHeight="122.0" prefWidth="622.0" spacing="20.0" stylesheets="@css/styles.css">
          <children>
             <Button fx:id="buttonRegisterBook" alignment="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#openRegisterBook" prefHeight="77.0" prefWidth="151.0" style="-fx-background-color: #430187; -fx-background-radius: 25;" textAlignment="CENTER">
                <font>
@@ -120,7 +120,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER" layoutX="13.0" layoutY="409.0" prefHeight="122.0" prefWidth="621.0" spacing="20.0" stylesheets="@css/styles.css">
+      <HBox alignment="CENTER" layoutX="18.0" layoutY="414.0" prefHeight="122.0" prefWidth="621.0" spacing="20.0" stylesheets="@css/styles.css">
          <children>
             <Button fx:id="buttonRegisterUser" alignment="CENTER" graphicTextGap="0.0" mnemonicParsing="false" onAction="#registerNewUser" prefHeight="102.0" prefWidth="131.0" style="-fx-background-color: #8751B0; -fx-background-radius: 25;" textAlignment="CENTER">
                <font>
@@ -193,7 +193,7 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
       </HBox>
-      <Button fx:id="buttonSearch" alignment="CENTER" contentDisplay="RIGHT" layoutX="419.0" layoutY="45.0" mnemonicParsing="false" onAction="#SearchBook" prefHeight="53.0" prefWidth="210.0" style="-fx-background-color: #8751B0; -fx-background-radius: 50;" text="Pesquise Um Livro" textFill="WHITE">
+      <Button fx:id="buttonSearch" alignment="CENTER" contentDisplay="RIGHT" layoutX="419.0" layoutY="41.0" mnemonicParsing="false" onAction="#SearchBook" prefHeight="53.0" prefWidth="210.0" style="-fx-background-color: #8751B0; -fx-background-radius: 50;" text="Pesquise Um Livro" textFill="WHITE">
          <effect>
             <DropShadow height="18.66" offsetX="2.0" offsetY="6.0" radius="8.83" width="18.66">
                <color>

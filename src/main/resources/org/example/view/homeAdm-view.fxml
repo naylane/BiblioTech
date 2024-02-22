@@ -35,7 +35,7 @@
             <Image url="@images/logo 2.png" />
          </image>
       </ImageView>
-      <VBox layoutX="94.0" layoutY="107.0" prefHeight="274.0" prefWidth="146.0" spacing="17.0">
+      <VBox layoutX="77.0" layoutY="111.0" prefHeight="274.0" prefWidth="146.0" spacing="17.0">
          <children>
             <Button fx:id="buttonHome" mnemonicParsing="false" onAction="#backHome" styleClass="button-menuBar" stylesheets="@css/styles.css" text="Home" textFill="WHITE">
                <font>
@@ -90,7 +90,7 @@
             </Button>
          </children>
       </VBox>
-      <VBox layoutX="60.0" layoutY="110.0" prefHeight="222.0" prefWidth="38.0" spacing="22.0">
+      <VBox layoutX="43.0" layoutY="110.0" prefHeight="222.0" prefWidth="38.0" spacing="22.0">
          <children>
             <ImageView fitHeight="32.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -112,9 +112,9 @@
                   <Image url="@images/iconEmprestimo.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="24.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/iconDevolucao.png" />
+                  <Image url="@images/configurationIcon.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="30.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">

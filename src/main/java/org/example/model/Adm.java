@@ -1,6 +1,7 @@
 package org.example.model;
 
 import org.example.dao.DAO;
+import org.example.exceptions.UsersException;
 
 import java.io.Serializable;
 import java.util.List;
@@ -129,6 +130,15 @@ public class Adm extends Librarian implements Serializable {
         return DAO.getLibrarianDAO().findById(id);}
 
     /**
+     * Proucura um adm no sistema.
+     *
+     * @param id O Id do bibladmiotecario a ser pesquisado.
+     * @return adm retornado.
+     */
+    public Adm admSearch(long id) throws Exception {
+        return DAO.getAdmDAO().findById(id);}
+
+    /**
      * Retorna todos os leitores do sistema.
      *
      * @return Lista com todos leitores existentes.
@@ -187,6 +197,13 @@ public class Adm extends Librarian implements Serializable {
      */
     public void updateLibrarian(Librarian librarian) throws Exception {
         DAO.getLibrarianDAO().update(librarian);}
+
+    /**
+     * Atualiza um Adm no sistema.
+     *
+     */
+    public void updateAdm(Adm adm) throws Exception {
+        DAO.getAdmDAO().update(adm);}
 
     //GERENCIAMENTO DO ACERVO - a adição de livros o adm herda do bibliotecario
 
