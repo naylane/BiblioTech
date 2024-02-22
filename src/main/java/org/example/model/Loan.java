@@ -71,12 +71,12 @@ public class Loan implements Serializable {
 
     @Override
     public String toString() {
-        return "\n[ID]: " + idLoan + "\n" +
+        return "\nID do empréstimo: " + idLoan + "\n" +
                 "ID do leitor: " + idUser + '\n' +
-                "livro: " + book + '\n' +
-                "data do empréstimo: " + dateLoan + '\n' +
-                "data de devolução: " + dateDevolution + '\n' +
-                "renovações:" + renovationQuantity + '\n' +
-                "ativo?: " + active;
+                "Livro: " + book + '\n' +
+                "Data do empréstimo: " + dateLoan + '\n' +
+                "Data de devolução: " + dateDevolution + '\n' +
+                "Renovações:" + renovationQuantity + '\n' +
+                "Ativo? " + active;
     }
 }
