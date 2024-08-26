@@ -1,7 +1,7 @@
 <h3 align="center">
  <img src="src/main/resources/org/example/view/images/logo 1.png" alt="BiblioTech" width="450"></a>
   
-  Projeto da disciplina EXA 805 - Algoritmos e Programação II
+  Projeto da disciplina EXA 863 - Algoritmos e Programação II
 </h3>
 
 <br>
@@ -67,7 +67,7 @@ o método apenas uma vez.
 * JDK 20
 * JavaFX 19.0.2.1
 * Maven
-* [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/) - IDE utilizado para codificação
+* [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/) - IDE utilizada para codificação
 
 ## Equipe
 [//]: equipe
