@@ -1,14 +1,21 @@
-# Library Project 📚
-Alunas: Sara e Naylane | Classe: Algoritmos 2
+<h3 align="center">
+ <img src="src/main/resources/org/example/view/images/logo 1.png" alt="BiblioTech" width="450"></a>
+  
+  Projeto da disciplina EXA 805 - Algoritmos e Programação II
+</h3>
+
+<br>
 
 ## Tópicos ✅
-1. Objetivo
-2. Diagrama de Casos de Uso
-3. Diagrama de Classes
-4. Divisão dos pacotes 
-5. Classes DAO
-6. Exceções
-7. Testes
+1. [Objetivo](#Objetivo)
+2. [Diagrama de Casos de Uso](#Diagrama-de-Casos-de-Uso)
+3. [Diagrama de Classes](#Diagrama-de-Classes)
+4. [Divisão dos pacotes](#Divisão-dos-pacotes)
+5. [Classes DAO](#Classes-DAO)
+6. [Exceções](#Exceções)
+7. [Testes](#Testes)
+8. [Construído com](#Construído-com)
+9. [Equipe](#Equipe)
 
 ## Objetivo 📝
 O objetivo desse problema foi construir um sistema de gerenciamento de uma biblioteca utilizando a linguagem Java e
@@ -16,7 +23,7 @@ a Programação Orientada a Objeto (POO). Nesse primeira etapa foram solicitadas
 projeto DAO e por fim, os testes de unidade e integração.
 - Docs que contém anotações e decisões de projeto:
 [PERSONAL DOCS](https://docs.google.com/document/d/1mNysGljSI1wn0CKSz9MCoo9DC_7ymS4rivhGJET128w/edit)
-- Docs que contém a descrição e detalhamento do projeto
+- Docs que contém a descrição e detalhamento do projeto:
 [PROJECT DOCS](https://docs.google.com/document/d/1K5wVcqw1sJ4_HRGZKCJ5lyudzDCfvsqBEtBueskVJrQ/edit)
 
 ## Diagrama de Casos de Uso
@@ -55,6 +62,17 @@ métodos como os getters e setters não foram testados. E também, métodos simp
 testados. Alguns métodos foram repetidos no código, porém para uma melhor eficiência dos testes, priorizamos em testar 
 o método apenas uma vez.
 
-## Construído com
-
+## Ferramentas utilizadas 🔧
+* Linguagem de Programação Java
+* JDK 20
+* JavaFX 19.0.2.1
+* Maven
 * [IntelliJ IDEA Community](https://www.jetbrains.com/idea/download/) - IDE utilizado para codificação
+
+## Equipe
+[//]: equipe
+
+<a href="https://github.com/naylane"><img src="https://avatars.githubusercontent.com/u/89545660?v=4" title="Naylane Ribeiro" width="100"></a>
+<a href="https://github.com/sarinhasf"><img src="https://avatars.githubusercontent.com/u/143294885?v=4" title="Sara Ferreira" width="100" ></a>
+
+[//]: equipe
